@@ -11,7 +11,7 @@ describe('Modules', () => {
         module = new require(file)(path.join(__dirname, '../samples/nodejs'));
       });
       it('should have the module signature', () => {
-        Object.keys(module).sort().should.eql(['name', 'description', 'handles', 'run'].sort());
+        Object.keys(module).sort().should.eql(['key', 'name', 'description', 'handles', 'run'].sort());
       });
     });
   });

@@ -1,7 +1,34 @@
 #!/usr/bin/env node
-let Scan = require('../lib/scan');
-let scan = new Scan(process.argv[2] || process.env.PWD);
-let logger = new require('../lib/logger')();
-scan.all(() => {
-  logger.log('scan complete');
+const Scan = require('../lib/scan');
+const logger = new require('../lib/logger')();
+const fs = require('fs');
+const scanSummaryWriter = new require('../lib/summaryWriter')();
+
+let program = require('commander');
+program
+  .option('-t, --target </path/to/project>', 'The location of the project root', val => {
+    if(!fs.existsSync(val)) {
+      throw new Error(val + ' does not exist!');
+    }
+  })
+  .option('-m, --modules <module1,module2>', 'Run specific module(s)', (val) => {
+    return val.split(',');
+  })
+  .parse(process.argv);
+
+let target = program.target || process.env.PWD;
+let modules = program.modules || ['all'];
+
+let scan = new Scan(target);
+
+scan.start(modules, (err, results) => {
+  let total = 0;
+  results.forEach(moduleResult => {
+    Object.keys(moduleResult.results).forEach(key => {
+      total = total + moduleResult.results[key].length;
+    });
+  });
+  logger.log('scan complete, ' + total + ' issues found');
+  console.log('');
+  scanSummaryWriter.write(results);
 });
