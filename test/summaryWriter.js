@@ -1,5 +1,5 @@
 'use strict';
-let SummaryWriter = require('../lib/summaryWriter');
+let SummaryWriter = require('../lib/writers/summary');
 describe('Summary Writer', () => {
   let sample, writer;
   before(() => {
@@ -7,7 +7,7 @@ describe('Summary Writer', () => {
     writer = new SummaryWriter();
   });
 
-  it.only('should write', () => {
+  it.skip('should write', () => {
     writer.write(sample);
   });
 });

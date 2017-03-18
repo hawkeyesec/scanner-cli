@@ -2,7 +2,8 @@
 const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
 const fs = require('fs');
-const scanSummaryWriter = new require('../lib/summaryWriter')();
+const summaryWriter = new require('../lib/writers/summary')();
+const jsonWriter = new require('../lib/writers/json')();
 const path = require('path');
 
 let program = require('commander');
@@ -39,10 +40,10 @@ scan.start(modules, (err, results) => {
   });
   logger.log('scan complete, ' + total + ' issues found');
   console.log('');
-  scanSummaryWriter.write(results);
+  summaryWriter.write(results);
 
   if(program.output) {
-    fs.writeFileSync(program.output, JSON.stringify(results, null, 2));
+    jsonWriter.write(program.output, results);
     logger.log('json results written to: ' + program.output);
   }
 });
