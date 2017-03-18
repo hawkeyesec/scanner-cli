@@ -4,6 +4,7 @@
         "type": "regex",
         "pattern": "^.*_rsa$",
         "caption": "Private SSH key",
+        "level": "critical",
         "description": null
     },
     {
@@ -11,6 +12,7 @@
         "type": "regex",
         "pattern": "^.*_dsa$",
         "caption": "Private SSH key",
+        "level": "critical",
         "description": null
     },
     {
@@ -18,6 +20,7 @@
         "type": "regex",
         "pattern": "^.*_ed25519$",
         "caption": "Private SSH key",
+        "level": "critical",
         "description": null
     },
     {
@@ -25,6 +28,7 @@
         "type": "regex",
         "pattern": "^.*_ecdsa$",
         "caption": "Private SSH key",
+        "level": "critical",
         "description": null
     },
     {
@@ -32,6 +36,7 @@
         "type": "match",
         "pattern": "pem",
         "caption": "Potential cryptographic private key",
+        "level": "critical",
         "description": null
     },
     {
@@ -39,6 +44,7 @@
         "type": "match",
         "pattern": "ppk",
         "caption": "Potential cryptographic private key",
+        "level": "critical",
         "description": null
     },
     {
@@ -46,6 +52,7 @@
         "type": "regex",
         "pattern": "^key(pair)?$",
         "caption": "Potential cryptographic private key",
+        "level": "critical",
         "description": null
     },
     {
@@ -53,6 +60,7 @@
         "type": "match",
         "pattern": "pkcs12",
         "caption": "Potential cryptographic key bundle",
+        "level": "critical",
         "description": null
     },
     {
@@ -60,6 +68,7 @@
         "type": "match",
         "pattern": "pfx",
         "caption": "Potential cryptographic key bundle",
+        "level": "critical",
         "description": null
     },
     {
@@ -67,6 +76,7 @@
         "type": "match",
         "pattern": "p12",
         "caption": "Potential cryptographic key bundle",
+        "level": "critical",
         "description": null
     },
     {
@@ -74,6 +84,7 @@
         "type": "match",
         "pattern": "asc",
         "caption": "Potential cryptographic key bundle",
+        "level": "critical",
         "description": null
     },
     {
@@ -81,6 +92,7 @@
         "type": "match",
         "pattern": "otr.private_key",
         "caption": "Pidgin OTR private key",
+        "level": "critical",
         "description": null
     },
     {
@@ -88,6 +100,7 @@
         "type": "regex",
         "pattern": "^\\.?(bash_|zsh_|z)?history$",
         "caption": "Shell command history file",
+        "level": "high",
         "description": null
     },
     {
@@ -95,6 +108,7 @@
         "type": "regex",
         "pattern": "^\\.?mysql_history$",
         "caption": "MySQL client command history file",
+        "level": "high",
         "description": null
     },
     {
@@ -102,6 +116,7 @@
         "type": "regex",
         "pattern": "^\\.?psql_history$",
         "caption": "PostgreSQL client command history file",
+        "level": "high",
         "description": null
     },
     {
@@ -109,6 +124,7 @@
         "type": "regex",
         "pattern": "^\\.?irb_history$",
         "caption": "Ruby IRB console history file",
+        "level": "high",
         "description": null
     },
     {
@@ -116,6 +132,7 @@
         "type": "regex",
         "pattern": "\\.?purple\\/accounts\\.xml$",
         "caption": "Pidgin chat client account configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -123,6 +140,7 @@
         "type": "regex",
         "pattern": "\\.?xchat2?\\/servlist_?\\.conf$",
         "caption": "Hexchat/XChat IRC client server list configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -130,6 +148,7 @@
         "type": "regex",
         "pattern": "\\.?irssi\\/config$",
         "caption": "Irssi IRC client configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -137,6 +156,7 @@
         "type": "regex",
         "pattern": "\\.?recon-ng\\/keys\\.db$",
         "caption": "Recon-ng web reconnaissance framework API key database",
+        "level": "high",
         "description": null
     },
     {
@@ -144,6 +164,7 @@
         "type": "regex",
         "pattern": "^\\.?dbeaver-data-sources.xml$",
         "caption": "DBeaver SQL database manager configuration file",
+        "level": "high",
         "description": null
     },
     {
@@ -151,6 +172,7 @@
         "type": "regex",
         "pattern": "^\\.?muttrc$",
         "caption": "Mutt e-mail client configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -158,6 +180,7 @@
         "type": "regex",
         "pattern": "^\\.?s3cfg$",
         "caption": "S3cmd configuration file",
+        "level": "high",
         "description": null
     },
     {
@@ -165,6 +188,7 @@
         "type": "regex",
         "pattern": "^\\.?trc$",
         "caption": "T command-line Twitter client configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -172,6 +196,7 @@
         "type": "match",
         "pattern": "ovpn",
         "caption": "OpenVPN client configuration file",
+        "level": "high",
         "description": null
     },
     {
@@ -179,6 +204,7 @@
         "type": "regex",
         "pattern": "^\\.?gitrobrc$",
         "caption": "Well, this is awkward... Gitrob configuration file",
+        "level": "high",
         "description": null
     },
     {
@@ -186,6 +212,7 @@
         "type": "regex",
         "pattern": "^\\.?(bash|zsh)rc$",
         "caption": "Shell configuration file",
+        "level": "medium",
         "description": "Shell configuration files might contain information such as server hostnames, passwords and API keys."
     },
     {
@@ -193,6 +220,7 @@
         "type": "regex",
         "pattern": "^\\.?(bash_|zsh_)?profile$",
         "caption": "Shell profile configuration file",
+        "level": "medium",
         "description": "Shell configuration files might contain information such as server hostnames, passwords and API keys."
     },
     {
@@ -200,6 +228,7 @@
         "type": "regex",
         "pattern": "^\\.?(bash_|zsh_)?aliases$",
         "caption": "Shell command alias configuration file",
+        "level": "medium",
         "description": "Shell configuration files might contain information such as server hostnames, passwords and API keys."
     },
     {
@@ -207,6 +236,7 @@
         "type": "match",
         "pattern": "secret_token.rb",
         "caption": "Ruby On Rails secret token configuration file",
+        "level": "high",
         "description": "If the Rails secret token is known, it can allow for remote code execution. (http://www.exploit-db.com/exploits/27527/)"
     },
     {
@@ -214,6 +244,7 @@
         "type": "match",
         "pattern": "omniauth.rb",
         "caption": "OmniAuth configuration file",
+        "level": "high",
         "description": "The OmniAuth configuration file might contain client application secrets."
     },
     {
@@ -221,6 +252,7 @@
         "type": "match",
         "pattern": "carrierwave.rb",
         "caption": "Carrierwave configuration file",
+        "level": "high",
         "description": "Can contain credentials for online storage systems such as Amazon S3 and Google Storage."
     },
     {
@@ -228,6 +260,7 @@
         "type": "match",
         "pattern": "schema.rb",
         "caption": "Ruby On Rails database schema file",
+        "level": "medium",
         "description": "Contains information on the database schema of a Ruby On Rails application."
     },
     {
@@ -235,6 +268,7 @@
         "type": "match",
         "pattern": "database.yml",
         "caption": "Potential Ruby On Rails database configuration file",
+        "level": "low",
         "description": "Might contain database credentials."
     },
     {
@@ -242,6 +276,7 @@
         "type": "match",
         "pattern": "settings.py",
         "caption": "Django configuration file",
+        "level": "low",
         "description": "Might contain database credentials, online storage system credentials, secret keys, etc."
     },
     {
@@ -249,6 +284,7 @@
         "type": "regex",
         "pattern": "^(.*)?config(\\.inc)?\\.php$",
         "caption": "PHP configuration file",
+        "level": "low",
         "description": "Might contain credentials and keys."
     },
     {
@@ -256,6 +292,7 @@
         "type": "match",
         "pattern": "kdb",
         "caption": "KeePass password manager database file",
+        "level": "high",
         "description": null
     },
     {
@@ -263,6 +300,7 @@
         "type": "match",
         "pattern": "agilekeychain",
         "caption": "1Password password manager database file",
+        "level": "high",
         "description": null
     },
     {
@@ -270,6 +308,7 @@
         "type": "match",
         "pattern": "keychain",
         "caption": "Apple Keychain database file",
+        "level": "high",
         "description": null
     },
     {
@@ -277,6 +316,7 @@
         "type": "regex",
         "pattern": "^key(store|ring)$",
         "caption": "GNOME Keyring database file",
+        "level": "high",
         "description": null
     },
     {
@@ -284,6 +324,7 @@
         "type": "match",
         "pattern": "log",
         "caption": "Log file",
+        "level": "low",
         "description": "Log files might contain information such as references to secret HTTP endpoints, session IDs, user information, passwords and API keys."
     },
     {
@@ -291,6 +332,7 @@
         "type": "match",
         "pattern": "pcap",
         "caption": "Network traffic capture file",
+        "level": "low",
         "description": null
     },
     {
@@ -298,6 +340,7 @@
         "type": "regex",
         "pattern": "^sql(dump)?$",
         "caption": "SQL dump file",
+        "level": "medium",
         "description": null
     },
     {
@@ -305,6 +348,7 @@
         "type": "match",
         "pattern": "gnucash",
         "caption": "GnuCash database file",
+        "level": "high",
         "description": null
     },
     {
@@ -312,6 +356,7 @@
         "type": "regex",
         "pattern": "backup",
         "caption": "Contains word: backup",
+        "level": "low",
         "description": null
     },
     {
@@ -319,6 +364,7 @@
         "type": "regex",
         "pattern": "dump",
         "caption": "Contains word: dump",
+        "level": "low",
         "description": null
     },
     {
@@ -326,6 +372,7 @@
         "type": "regex",
         "pattern": "password",
         "caption": "Contains word: password",
+        "level": "low",
         "description": null
     },
     {
@@ -333,6 +380,7 @@
         "type": "regex",
         "pattern": "private.*key",
         "caption": "Contains words: private, key",
+        "level": "low",
         "description": null
     },
     {
@@ -340,6 +388,7 @@
         "type": "match",
         "pattern": "jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin.xml",
         "caption": "Jenkins publish over SSH plugin file",
+        "level": "high",
         "description": null
     },
     {
@@ -347,6 +396,7 @@
         "type": "match",
         "pattern": "credentials.xml",
         "caption": "Potential Jenkins credentials file",
+        "level": "medium",
         "description": null
     },
     {
@@ -354,6 +404,7 @@
         "type": "regex",
         "pattern": "^\\.?htpasswd$",
         "caption": "Apache htpasswd file",
+        "level": "critical",
         "description": null
     },
     {
@@ -361,6 +412,7 @@
         "type": "regex",
         "pattern": "^\\.?netrc$",
         "caption": "Configuration file for auto-login process",
+        "level": "medium",
         "description": "Might contain username and password."
     },
     {
@@ -368,6 +420,7 @@
         "type": "match",
         "pattern": "kwallet",
         "caption": "KDE Wallet Manager database file",
+        "level": "high",
         "description": null
     },
     {
@@ -375,6 +428,7 @@
         "type": "match",
         "pattern": "LocalSettings.php",
         "caption": "Potential MediaWiki configuration file",
+        "level": "medium",
         "description": null
     },
     {
@@ -382,6 +436,7 @@
         "type": "match",
         "pattern": "tblk",
         "caption": "Tunnelblick VPN configuration file",
+        "level": "high",
         "description": null
     },
     {
@@ -389,6 +444,7 @@
         "type": "regex",
         "pattern": "^\\.?gem/credentials$",
         "caption": "Rubygems credentials file",
+        "level": "medium",
         "description": "Might contain API key for a rubygems.org account."
     },
     {
@@ -396,6 +452,7 @@
         "type": "regex",
         "pattern": "^.*\\.pubxml(\\.user)?$",
         "caption": "Potential MSBuild publish profile",
+        "level": "low",
         "description": null
     },
     {
@@ -403,6 +460,7 @@
         "type": "match",
         "pattern": ".env",
         "caption": "PHP dotenv",
+        "level": "low",
         "description": "Environment file that contains sensitive data"
     }
 ]

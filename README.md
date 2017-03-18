@@ -15,7 +15,11 @@ __note__: hawkeye is written in node but it absolutely is not intended to just s
 ## Usage
 Hawkeye will scan any project that is mounted into `/target`, the modules from `hawkeye/lib/modules` are dynamically loaded and implement a `handler()` function, to decide if they should run against `/target`.  For example, the Node Security Project will only run if `/target/package.json` exists.
 
-To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
+### With docker
+This is the advised method.  To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
+
+### With node
+If you want to run without docker, just through node - then `npm install -g hawkeye`, and use `hawkeye scan`.
 
 ### Options
 There are a few options available:
