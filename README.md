@@ -13,22 +13,18 @@ Hawkeye will scan any project that is mounted into `/target`, the modules from `
 
 To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
 
-## Adding a new handler
-The idea is that this project should be super extensible, I want people to write new handlers with ease.  Simply create a handler in `lib/modules` which exposes the following signature:
-
-  - name: The name of your module
-  - description: The description of your module
-  - handles: A function to decide if this handler should run against the target project
-  - run: The function to be called if `.handles(results, done)` returns true
-
-### The run function
-The first argument passed is results, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
+### Options
+There are a few options available:
 
 ```
-results.critial('issue-key', 'title', 'description', { additional: 'data' });
-```
+  Usage: hawkeye-scan [options]
 
-Those results are then parsed, and output as a table.
+  Options:
+
+    -h, --help                       output usage information
+    -t, --target </path/to/project>  The location of the project root
+    -m, --modules <module1,module2>  Run specific module(s)
+```
 
 ## The output
 At the moment, the results are simply displayed a consolidated set of tables for each level, for example:
@@ -83,3 +79,22 @@ low
 │ ncu-outdated       │ uuid               │ installed: ^2.0.3, available: ^3.0.1                       │
 └────────────────────┴────────────────────┴────────────────────────────────────────────────────────────┘
 ```
+
+## Development
+
+### Adding a new handler
+The idea is that this project should be super extensible, I want people to write new handlers with ease.  Simply create a handler in `lib/modules` which exposes the following signature:
+
+  - name: The name of your module
+  - description: The description of your module
+  - handles: A function to decide if this handler should run against the target project
+  - run: The function to be called if `.handles(results, done)` returns true
+
+### The run function
+The first argument passed is results, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
+
+```
+results.critial('issue-key', 'title', 'description', { additional: 'data' });
+```
+
+Those results are then parsed, and output as a table.
