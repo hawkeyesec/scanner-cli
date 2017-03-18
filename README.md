@@ -54,7 +54,6 @@ $ docker run --rm -v $PWD:/target stono/hawkeye -o /tmp/results.json
 [info] scan complete, 13 issues found
 
 critical
-critical
 ┌──────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
 │ key          │ name                  │ description                                                       │
 ├──────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
