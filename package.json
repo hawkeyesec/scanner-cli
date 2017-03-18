@@ -1,0 +1,53 @@
+{
+  "name": "hawkeye",
+  "description": "A container that runs some scans on your app",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Stono/hawkeye",
+  "author": {
+    "name": "Karl Stoney",
+    "email": "me@karlstoney.com",
+    "url": "https://karlstoney.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Stono/hawkeye.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Stono//issues"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">= 7.0.0"
+  },
+  "scripts": {
+    "test": "./node_modules/grunt/bin/grunt mochaTest",
+    "start": "node ./bin/hawkeye"
+  },
+  "bin": {
+    "hawkeye": "./bin/hawkeye"
+  },
+  "devDependencies": {
+    "deride": "1.1.0",
+    "grunt": "1.0.1",
+    "grunt-contrib-jshint": "1.1.0",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-mocha-istanbul": "5.0.2",
+    "grunt-mocha-test": "0.13.2",
+    "istanbul": "0.4.5",
+    "mocha": "3.2.0",
+    "mocha-jenkins-reporter": "0.3.7",
+    "should": "11.2.0"
+  },
+  "keywords": [],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "async": "^2.1.5",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "debug": "2.6.3",
+    "depcheck": "^0.6.7",
+    "glob": "^7.1.1",
+    "npm-check-updates": "^2.10.3",
+    "nsp": "^2.6.3"
+  }
+}

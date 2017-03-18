@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+let logger = new require('../lib/logger')();
+let version = require('../package.json').version;
+logger.log('Welcome to Hawkeye v' + version + '!');
+console.log('');
+
+let program = require('commander');
+program
+  .version(version)
+  .command('scan', 'Runs a scan')
+  .parse(process.argv);

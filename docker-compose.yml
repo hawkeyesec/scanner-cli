@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  hawkeye:
+    image: stono/hawkeye
+    build: .
+    volumes:
+      - ./samples/nodejs:/target

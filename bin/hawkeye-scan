@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+let Scan = require('../lib/scan');
+let scan = new Scan(process.env.PWD);
+let logger = new require('../lib/logger')();
+scan.all(() => {
+  logger.log('scan complete');
+});
