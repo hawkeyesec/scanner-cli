@@ -24,32 +24,21 @@ describe('Exec', () => {
     e = undefined;
   });
 
-  describe('Sync', () => {
-    it('should execute commands, and return the result', () => {
-      let result = exec.commandSync('pwd');
-      should(result).eql(require('process').cwd());
-    });
-    it('should exit the process on error', () => {
-      exec.commandSync('some-command-that-doesnt-exit', true);
-      proc.expect.exit.called.withArg(1);
-    });
-  });
-
   describe('Async', () => {
     it('should execute commands, and return the result', done => {
-      exec.command('pwd', false, (err, result) => {
-        should(result).eql(require('process').cwd() + '\n');
+      exec.command('pwd', {}, (err, result) => {
+        should(result.stdout).eql(require('process').cwd() + '\n');
         done();
       });
     });
     it('should execute commands, and write them to stdout', done => {
-      exec.command('pwd', false, () => {
+      exec.command('pwd', { output: true }, () => {
         stdout.expect.write.called.withArg(require('process').cwd() + '\n');
         done();
       });
     });
     it('should exit the process on error', done => {
-      exec.command('some-command-that-doesnt-exist', true, () => {
+      exec.command('some-command-that-doesnt-exist', { exit: true }, () => {
         proc.expect.exit.called.withArg(1);
         done();
       });
