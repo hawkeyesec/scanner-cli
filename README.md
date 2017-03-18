@@ -52,7 +52,7 @@ $ docker run --rm -v $PWD:/target stono/hawkeye -o /tmp/results.json
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
 [info] Node Security Project handling
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
-[info] scan complete, 13 issues found
+[info] scan complete, 16 issues found
 
 Critical
 ┌───────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
