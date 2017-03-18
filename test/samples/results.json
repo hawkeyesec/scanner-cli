@@ -66,7 +66,7 @@
     {
      "key": "nsp-cvss",
      "name": "negotiator",
-     "description": "ods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3: https://nodesecurity.io/advisories/106",
+     "description": "ods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3:\n https://nodesecurity.io/advisories/106",
      "data": {
       "id": 106,
       "updated_at": "2016-06-16T20:37:24.000Z",
@@ -95,7 +95,7 @@
     {
      "key": "nsp-cvss",
      "name": "uglify-js",
-     "description": "ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5: https://nodesecurity.io/advisories/48",
+     "description": "ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5:\n https://nodesecurity.io/advisories/48",
      "data": {
       "id": 48,
       "updated_at": "2016-04-21T00:15:04.000Z",
@@ -125,7 +125,7 @@
     {
      "key": "nsp-cvss",
      "name": "uglify-js",
-     "description": "ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5: https://nodesecurity.io/advisories/39",
+     "description": "ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5:\n https://nodesecurity.io/advisories/39",
      "data": {
       "id": 39,
       "updated_at": "2016-04-28T17:22:23.000Z",
