@@ -97,7 +97,7 @@ low
 [info] json results written to: /tmp/results.json
 ```
 
-And here is a sample from the output.json:
+And here is a sample from the output.json, you can view the full file [here](test/samples/results.json).
 ```
   {
     "module": {
