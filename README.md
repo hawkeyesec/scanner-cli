@@ -19,7 +19,7 @@ Hawkeye will scan any project that is mounted into `/target`, the modules from `
 This is the advised method.  To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
 
 ### With node
-If you want to run without docker, just through node - then `npm install -g hawkeye`, and use `hawkeye scan`.
+If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
 
 ### Options
 There are a few options available:

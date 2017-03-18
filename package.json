@@ -1,5 +1,5 @@
 {
-  "name": "hawkeye",
+  "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
   "version": "0.1.1",
   "homepage": "https://github.com/Stono/hawkeye",
