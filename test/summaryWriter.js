@@ -7,7 +7,7 @@ describe('Summary Writer', () => {
     writer = new SummaryWriter();
   });
 
-  it.only('should write', () => {
+  it.skip('should write', () => {
     writer.write(sample);
   });
 });
