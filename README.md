@@ -8,7 +8,8 @@ Off the shelf checks currently implemented:
 
 Bespoke checks:
 
-  - File pattern matching to look for common secret files, like SSH keys, password files etc.
+  - File name pattern matching to look for common secret files, like SSH keys, password files etc.
+  - File contents pattern matching to look for things like passwords and secret keys inside files.
 
 __note__: hawkeye is written in node but it absolutely is not intended to just scan node applications.
 
