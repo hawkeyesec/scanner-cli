@@ -10,7 +10,7 @@ module.exports = [
   {
     extension: defaultFiles,
     content: /(BEGIN\ RSA\ PRIVATE\ KEY)/,
-    caption: 'Potential private key in file',
+    caption: 'Private key in file',
     level: 'critical'
   }
 ];
