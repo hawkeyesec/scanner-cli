@@ -1,33 +1,23 @@
 # hawkeye
-Hawkeye is a project scanning tool, designed to be extensible for multiple tools or project types.  The idea is that the whole thing runs inside a container so you dont need any tools on your host, so you can simply add a step to your pipeline and do automated scanning.
+Hawkeye is a project security, vulnerability and general risk highlighting tool.  Designed to be entirely extensible by just adding new modules with the correct signature to `lib/modules`, the idea is to build up a suite of components which can be run stand alone, or as part of your continuous integration pipeline.
+
+Modules implement a handler pattern so they will only run if their given criteria are met, for example the Node Security Project will only run if there is a `package.json` in the target directory.  This enables hawkeye to be language agnostic, and only run the modules relevant to the given scenario.
+
+The added bonus is, it runs from docker; so doesn't require anything on your host machine.
 
 ## Modules
-The following modules are currently implemented
+The following modules are currently implemented:
 
-### Secret Files (files)
-Scan the file list recursively, looking for patterns as defined in `data/filename.js`.  We're looking for things like `id_rsa`, things that end in `pem`, etc.
+ - __Secret Files (files)__: Scan the file list recursively, looking for patterns as defined in `data/filename.js`.  We're looking for things like `id_rsa`, things that end in `pem`, etc.
+ - __File Contents (contents)__: Looks for patterns as defined in `data/filecontent.js` within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
+ - __Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
+ - __Node Security Project (nsp)__: Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
+ - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
-### File Contents (contents)
-Looks for patterns as defined in `data/filecontent.js` within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
-
-### Entropy (entropy)
-Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
-__Note:__ This module is disabled by default because it can return a lot of results, to run it please use the `-m entropy` switch.
-
-### Node Security Project
-Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
-
-### NPM Check Updates
-Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
+__Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.
 
 ## Running Hawkeye
-Hawkeye will scan any project that is mounted into `/target`, the modules from `hawkeye/lib/modules` are dynamically loaded and implement a `handler()` function, to decide if they should run against `/target`.  For example, the Node Security Project will only run if `/target/package.json` exists.
-
-### With docker
-This is the advised method.  To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
-
-### With node
-If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
+To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`  If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
 
 ### Options
 There are a few options available:
@@ -39,8 +29,8 @@ There are a few options available:
 
     -h, --help                            output usage information
     -t, --target </path/to/project>       The location of the project root
-    -m, --modules <module1,module2>       Run specific module(s)
-    -o, --output </path/to/results.json>  Output the detailed JSON
+    -m, --modules <module1,module2>       Run specific module(s), rather than all
+    -o, --output </path/to/results.json>  Output the detailed JSON to a file
 ```
 
 ## The output
