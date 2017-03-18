@@ -1,7 +1,7 @@
 {
   "name": "hawkeye",
   "description": "A container that runs some scans on your app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/Stono/hawkeye",
   "author": {
     "name": "Karl Stoney",
