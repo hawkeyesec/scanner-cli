@@ -12,6 +12,14 @@ RUN yum -y -q update && \
 RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 RUN yum -y -q install nodejs
 
+RUN mkdir -p /hawkeye
+COPY package.json /hawkeye
+RUN cd /hawkeye && \
+    npm install --quiet
 COPY ./ /hawkeye
-ENTRYPOINT ["/hawkeye/bin/hawkeye"]
-CMD ["scan"]
+
+WORKDIR /target
+
+ENV PATH=/hawkeye/bin:$PATH
+ENTRYPOINT ["hawkeye"]
+CMD ["scan", "/target"]
