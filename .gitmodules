@@ -1,3 +1,0 @@
-[submodule "samples/nodejs"]
-	path = samples/nodejs
-	url = git@github.com:Stono/simple-node-app.git
