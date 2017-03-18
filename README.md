@@ -1,10 +1,14 @@
 # hawkeye
 Hawkeye is a project scanning tool, designed to be extensible for multiple tools or project types.  The idea is that the whole thing runs inside a container so you dont need any tools on your host, so you can simply add a step to your pipeline and do automated scanning.
 
-Tools currently implemented are:
+Off the shelf checks currently implemented:
 
   - [Node Security Project](https://github.com/nodesecurity/nsp)
   - [NPM Check Updates](https://github.com/tjunnone/npm-check-updates)
+
+Bespoke checks:
+
+  - File pattern matching to look for common secret files, like SSH keys, password files etc.
 
 __note__: hawkeye is written in node but it absolutely is not intended to just scan node applications.
 
@@ -52,12 +56,23 @@ critical
 │            │             │ ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5   │
 └────────────┴─────────────┴─────────────────────────────────────────────────────────────────────┘
 high
-┌────────────┬──────────────┬─────────────────────────────────────────────────────────────────────┐
-│ key        │ name         │ description                                                         │
-├────────────┼──────────────┼─────────────────────────────────────────────────────────────────────┤
-│ nsp-cvss   │ negotiator   │ https://nodesecurity.io/advisories/106                              │
-│            │              │ ods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3   │
-└────────────┴──────────────┴─────────────────────────────────────────────────────────────────────┘
+┌────────────────┬──────────────┬─────────────────────────────────────────────────────────────────────┐
+│ key            │ name         │ description                                                         │
+├────────────────┼──────────────┼─────────────────────────────────────────────────────────────────────┤
+│ files-secret   │ ./id_rsa     │ Private SSH key                                                     │
+├────────────────┼──────────────┼─────────────────────────────────────────────────────────────────────┤
+│ nsp-cvss       │ negotiator   │ https://nodesecurity.io/advisories/106                              │
+│                │              │ ods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3   │
+├────────────────┼───────────────────────────────────────────┼────────────────────────────────────────┤
+│ files-secret   │ id_rsa                                    │ Private SSH key                        │
+├────────────────┼───────────────────────────────────────────┼────────────────────────────────────────┤
+│ files-secret   │ .env                                      │ PHP dotenv                             │
+├────────────────┼───────────────────────────────────────────┼────────────────────────────────────────┤
+│ files-secret   │ .tmp/.gnupg/agent.asc                     │ Potential cryptographic key bundle     │
+├────────────────┼───────────────────────────────────────────┼────────────────────────────────────────┤
+│ files-secret   │ .tmp/.ssh/id_rsa                          │ Private SSH key                        │
+└────────────────┴───────────────────────────────────────────┴────────────────────────────────────────┘
+
 medium
 ┌────────────┬─────────────┬─────────────────────────────────────────────────────────────────────┐
 │ key        │ name        │ description                                                         │
