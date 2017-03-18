@@ -22,14 +22,14 @@
   "strict": true,
   "trailing": true,
   "maxcomplexity": 3,
-  "maxdepth": 2,
+  "maxdepth": 3,
   "maxparams": 4,
   "maxstatements": 25,
- 
+
   // Relaxing options:
   "esnext": true,
   "lastsemic": true,
- 
+
   // Environments:
   "node": true,
   "globals"   : {

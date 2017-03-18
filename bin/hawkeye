@@ -8,4 +8,5 @@ let program = require('commander');
 program
   .version(version)
   .command('scan', 'Runs a scan')
+  .command('modules', 'Lists the currently install modules')
   .parse(process.argv);

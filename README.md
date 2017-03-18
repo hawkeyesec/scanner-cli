@@ -1,19 +1,26 @@
 # hawkeye
 Hawkeye is a project scanning tool, designed to be extensible for multiple tools or project types.  The idea is that the whole thing runs inside a container so you dont need any tools on your host, so you can simply add a step to your pipeline and do automated scanning.
 
-Off the shelf checks currently implemented:
+## Modules
+The following modules are currently implemented
 
-  - [Node Security Project](https://github.com/nodesecurity/nsp)
-  - [NPM Check Updates](https://github.com/tjunnone/npm-check-updates)
+### Secret Files (files)
+Scan the file list recursively, looking for patterns as defined in `data/filename.js`.  We're looking for things like `id_rsa`, things that end in `pem`, etc.
 
-Bespoke checks:
+### File Contents (contents)
+Looks for patterns as defined in `data/filecontent.js` within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
 
-  - File name pattern matching to look for common secret files, like SSH keys, password files etc.
-  - File contents pattern matching to look for things like passwords and secret keys inside files.
+### Entropy (entropy)
+Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
+__Note:__ This module is disabled by default because it can return a lot of results, to run it please use the `-m entropy` switch.
 
-__note__: hawkeye is written in node but it absolutely is not intended to just scan node applications.
+### Node Security Project
+Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
 
-## Usage
+### NPM Check Updates
+Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
+
+## Running Hawkeye
 Hawkeye will scan any project that is mounted into `/target`, the modules from `hawkeye/lib/modules` are dynamically loaded and implement a `handler()` function, to decide if they should run against `/target`.  For example, the Node Security Project will only run if `/target/package.json` exists.
 
 ### With docker
