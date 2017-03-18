@@ -21,9 +21,9 @@ There are a few options available:
 
   Options:
 
-    -h, --help                       output usage information
-    -t, --target </path/to/project>  The location of the project root
-    -m, --modules <module1,module2>  Run specific module(s)
+    -h, --help                            output usage information
+    -t, --target </path/to/project>       The location of the project root
+    -m, --modules <module1,module2>       Run specific module(s)
     -o, --output </path/to/results.json>  Output the detailed JSON
 ```
 
