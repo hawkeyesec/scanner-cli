@@ -1,26 +1,74 @@
 [
   {
     "module": {
+      "key": "file-contents",
+      "name": "File Contents",
+      "description": "Scans files for dangerous content"
+    },
+    "results": {
+      "high": [],
+      "medium": [
+        {
+          "name": "config/DBConfig.js",
+          "description": "Potential password in file\nLine number: 9",
+          "data": {
+            "extension": {},
+            "content": {},
+            "caption": "Potential password in file",
+            "level": "medium"
+          }
+        },
+        {
+          "name": "routes/admin.js",
+          "description": "Potential password in file\nLine number: 597",
+          "data": {
+            "extension": {},
+            "content": {},
+            "caption": "Potential password in file",
+            "level": "medium"
+          }
+        }
+      ],
+      "low": [],
+      "critical": [
+        {
+          "name": "http_signing.md",
+          "description": "Potential private key in file\nLine number: 244",
+          "data": {
+            "extension": {},
+            "content": {},
+            "caption": "Potential private key in file",
+            "level": "critical"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "module": {
       "key": "files",
       "name": "Secret Files",
       "description": "Scans for known secret files"
     },
     "results": {
-      "high": [
+      "high": [],
+      "medium": [],
+      "low": [
         {
-          "key": "files-secret",
           "name": ".env",
-          "description": "PHP dotenv",
+          "description": "PHP dotenv\nEnvironment file that contains sensitive data",
           "data": {
             "part": "filename",
             "type": "match",
             "pattern": ".env",
             "caption": "PHP dotenv",
+            "level": "low",
             "description": "Environment file that contains sensitive data"
           }
-        },
+        }
+      ],
+      "critical": [
         {
-          "key": "files-secret",
           "name": "id_rsa",
           "description": "Private SSH key",
           "data": {
@@ -28,11 +76,11 @@
             "type": "regex",
             "pattern": "^.*_rsa$",
             "caption": "Private SSH key",
+            "level": "critical",
             "description": null
           }
         },
         {
-          "key": "files-secret",
           "name": ".tmp/.gnupg/agent.asc",
           "description": "Potential cryptographic key bundle",
           "data": {
@@ -40,13 +88,11 @@
             "type": "match",
             "pattern": "asc",
             "caption": "Potential cryptographic key bundle",
+            "level": "critical",
             "description": null
           }
         }
-      ],
-      "medium": [],
-      "low": [],
-      "critical": []
+      ]
     }
   },
   {
@@ -56,52 +102,46 @@
       "description": "Scans a package.json for out of date packages"
     },
     "results": {
-      "high": [],
-      "medium": [],
-      "low": [
+      "high": [
         {
-          "key": "ncu-outdated",
-          "name": "body-parser",
-          "description": "installed: ~1.15.1, available: ~1.17.1",
-          "data": {}
-        },
-        {
-          "key": "ncu-outdated",
-          "name": "debug",
-          "description": "installed: ~2.2.0, available: ~2.6.3",
-          "data": {}
-        },
-        {
-          "key": "ncu-outdated",
-          "name": "express",
-          "description": "installed: ~4.13.4, available: ~4.15.2",
-          "data": {}
-        },
-        {
-          "key": "ncu-outdated",
-          "name": "morgan",
-          "description": "installed: ~1.7.0, available: ~1.8.1",
-          "data": {}
-        },
-        {
-          "key": "ncu-outdated",
           "name": "nodemailer",
-          "description": "installed: ^2.6.4, available: ^3.1.7",
+          "description": "Module is one or more major versions out of date\nInstalled: 2.6.4, Available: 3.1.7",
           "data": {}
         },
         {
-          "key": "ncu-outdated",
-          "name": "serve-favicon",
-          "description": "installed: ~2.3.0, available: ~2.4.1",
-          "data": {}
-        },
-        {
-          "key": "ncu-outdated",
           "name": "uuid",
-          "description": "installed: ^2.0.3, available: ^3.0.1",
+          "description": "Module is one or more major versions out of date\nInstalled: 2.0.3, Available: 3.0.1",
           "data": {}
         }
       ],
+      "medium": [
+        {
+          "name": "body-parser",
+          "description": "Module is one or more minor versions out of date\nInstalled: 1.15.1, Available: 1.17.1",
+          "data": {}
+        },
+        {
+          "name": "debug",
+          "description": "Module is one or more minor versions out of date\nInstalled: 2.2.0, Available: 2.6.3",
+          "data": {}
+        },
+        {
+          "name": "express",
+          "description": "Module is one or more minor versions out of date\nInstalled: 4.13.4, Available: 4.15.2",
+          "data": {}
+        },
+        {
+          "name": "morgan",
+          "description": "Module is one or more minor versions out of date\nInstalled: 1.7.0, Available: 1.8.1",
+          "data": {}
+        },
+        {
+          "name": "serve-favicon",
+          "description": "Module is one or more minor versions out of date\nInstalled: 2.3.0, Available: 2.4.1",
+          "data": {}
+        }
+      ],
+      "low": [],
       "critical": []
     }
   },
@@ -114,7 +154,6 @@
     "results": {
       "high": [
         {
-          "key": "nsp-cvss",
           "name": "negotiator",
           "description": "https://nodesecurity.io/advisories/106\nods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3",
           "data": {
@@ -143,7 +182,6 @@
       ],
       "medium": [
         {
-          "key": "nsp-cvss",
           "name": "uglify-js",
           "description": "https://nodesecurity.io/advisories/48\nods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5",
           "data": {
@@ -173,7 +211,6 @@
       "low": [],
       "critical": [
         {
-          "key": "nsp-cvss",
           "name": "uglify-js",
           "description": "https://nodesecurity.io/advisories/39\nods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5",
           "data": {
