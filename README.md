@@ -24,13 +24,15 @@ There are a few options available:
     -h, --help                       output usage information
     -t, --target </path/to/project>  The location of the project root
     -m, --modules <module1,module2>  Run specific module(s)
+    -o, --output </path/to/results.json>  Output the detailed JSON
 ```
 
 ## The output
-At the moment, the results are simply displayed a consolidated set of tables for each level, for example:
+The output is a summary view of what we found, significantly more details can be obtained by using the `--output` flag to write a json artefact.
 
 ```
-$ docker run --rm -v $PWD:/target stono/hawkeye
+$ docker run --rm -v $PWD:/target stono/hawkeye -o /tmp/results.json
+
 [info] Welcome to Hawkeye v0.1.0!
 
 [info] target /Users/kstoney/git/john-lewis/hs-development/hs-api
@@ -81,6 +83,51 @@ low
 ├────────────────┼─────────────────┼──────────────────────────────────────────┤
 │ ncu-outdated   │ uuid            │ installed: ^2.0.3, available: ^3.0.1     │
 └────────────────┴─────────────────┴──────────────────────────────────────────┘
+[info] json results written to: /tmp/results.json
+```
+
+And here is a sample from the output.json:
+```
+  {
+    "module": {
+      "key": "nsp",
+      "name": "Node Security Project",
+      "description": "Scans a package.json for known vulnerabilities from NSP"
+    },
+    "results": {
+      "high": [
+        {
+          "key": "nsp-cvss",
+          "name": "negotiator",
+          "description": "https://nodesecurity.io/advisories/106\nods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3",
+          "data": {
+            "id": 106,
+            "updated_at": "2016-06-16T20:37:24.000Z",
+            "created_at": "2016-05-04T16:34:12.000Z",
+            "publish_date": "2016-06-16T17:36:06.000Z",
+            "overview": "negotiator is an HTTP content negotiator for Node.js and is used by many modules and frameworks including Express and Koa.\n\nThe header for \"Accept-Language\", when parsed by negotiator is vulnerable to Regular
+Expression Denial of Service via a specially crafted string. \n\nTimeline\n\n- April 29th 2016 - Initial report to maintainers\n- April 29th 2016 - Confirm receipt from maintainers\n- May 1st 2016 - Fix confirmed\n- May 5th 2016 - 0.6.1 p
+ublished with fix\n- June 16th 2016 - Advisory published (delay was to coordinate fixes in upstream frameworks, Koa and Express)",
+            "recommendation": "Upgrade to at least version 0.6.1\n\nExpress users should update to Express 4.14.0 or greater. If you want to see if you are using a vulnerable call,  a quick grep for the `acceptsLanguages` function call in
+ your application will tell you if you are using this functionality.",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "cvss_score": 7.5,
+            "module": "negotiator",
+            "version": "0.5.3",
+            "vulnerable_versions": "<= 0.6.0",
+            "patched_versions": ">= 0.6.1",
+            "title": "Regular Expression Denial of Service",
+            "path": [
+              "ods-jl@0.0.0",
+              "express@4.13.4",
+              "accepts@1.2.13",
+              "negotiator@0.5.3"
+            ],
+            "advisory": "https://nodesecurity.io/advisories/106"
+          }
+        }
+    ]
+....
 
 ```
 
