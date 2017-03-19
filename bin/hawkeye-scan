@@ -8,20 +8,21 @@ const path = require('path');
 const Modules = require('../lib/modules');
 
 let writers = [new SummaryWriter()];
+let modules = [];
 let program = require('commander');
 program
   .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
-  .option('-m, --modules <module1,module2>', 'Run specific module(s).  Defaults to all', (val) => {
-    return val.split(',');
+  .option('-m, --module  <module name>', 'Run specific module.  Can be specified multiple times', (val) => {
+    modules.push(val);
   })
-  .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file', val => {
+  .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file.  Can be specified multiple times', val => {
     writers.push(new JsonWriter({
       path: val
     }));
   })
   .parse(process.argv);
 
-let modules = program.modules || ['all'];
+if(modules.length === 0) { modules.push('all') };
 let scan = new Scan({
   target: program.target
 });
