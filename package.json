@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "./node_modules/grunt/bin/grunt mochaTest",
-    "start": "node ./bin/hawkeye"
+    "start": "node ./bin/hawkeye",
+    "example": "node ./bin/hawkeye-scan -t test/samples/nodejs"
   },
   "bin": {
     "hawkeye": "./bin/hawkeye"
