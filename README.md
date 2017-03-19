@@ -15,6 +15,7 @@ The following modules are currently implemented:
  - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
 __Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.
+__Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
 To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
