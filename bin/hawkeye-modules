@@ -12,7 +12,7 @@ console.log('');
      let module = new require(path)({
       target: __dirname
     });
-     logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red, module.name.bold + '\n                  ' + module.description);
+     logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red, module.name.bold + ' (' + module.key + ')\n                  ' + module.description);
      });
  })();
 
