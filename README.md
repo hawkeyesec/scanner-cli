@@ -17,37 +17,73 @@ The following modules are currently implemented:
 __Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.
 
 ## Running Hawkeye
-To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`  If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
+To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
+
+If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
 
 ### Options
 There are a few options available:
 
 ```
+14:02:09 $ hawkeye scan --help
+[info] Welcome to Hawkeye v0.2.0!
+
   Usage: hawkeye-scan [options]
 
   Options:
 
-    -h, --help                            output usage information
-    -t, --target </path/to/project>       The location of the project root
-    -m, --modules <module1,module2>       Run specific module(s), rather than all
-    -o, --output </path/to/results.json>  Output the detailed JSON to a file
+    -h, --help                             output usage information
+    -t, --target  </path/to/project>       The location to scan, usually the project root
+    -m, --module  <module name>            Run specific module.  Can be specified multiple times
+    -j, --json    </path/to/summary,json>  Write JSON output to file.  Can be specified multiple times
+
+```
+
+You can specify the `json` and `module` parameters multiple times, for example `hawkeye scan -m files -m contents -j /tmp/file1.json -j /tmp/file2.json` would run the modules `files` and `contents` and write two output files
+
+You can view the module status with `hawkeye modules`:
+
+```
+14:02:26 $ hawkeye modules
+[info] Welcome to Hawkeye v0.2.0!
+
+[info] File Contents dynamically loaded
+[info] Entropy dynamically loaded
+[info] Secret Files dynamically loaded
+[info] Node Check Updates dynamically loaded
+[info] Node Security Project dynamically loaded
+
+Module Status
+
+[info] Enabled:   File Contents (contents)
+                  Scans files for dangerous content
+[info] Disabled:  Entropy (entropy)
+                  Scans files for strings with high entropy
+[info] Enabled:   Secret Files (files)
+                  Scans for known secret files
+[info] Enabled:   Node Check Updates (ncu)
+                  Scans a package.json for out of date packages
+[info] Enabled:   Node Security Project (nsp)
+                  Scans a package.json for known vulnerabilities from NSP
 ```
 
 ## The output
-The output is a summary view of what we found, significantly more details can be obtained by using the `--output` flag to write a json artefact.
+The output is a summary view of what we found, significantly more details can be obtained by using the `--json` flag to write a json artefact.
 
 ```
-$ docker run --rm -v $PWD:/target stono/hawkeye -o /tmp/results.json
+$ docker run --rm -v $PWD:/target stono/hawkeye -j /tmp/results.json
 
-[info] Welcome to Hawkeye v0.1.0!
-[info] target /target
-[info] Secret Files loaded
-[info] Node Check Updates loaded
-[info] Node Security Project loaded
-[info] Secret Files handling
-[info] Node Check Updates handling
+[info] File Contents dynamically loaded
+[info] Entropy dynamically loaded
+[info] Secret Files dynamically loaded
+[info] Node Check Updates dynamically loaded
+[info] Node Security Project dynamically loaded
+[info] Target for scan: /Users/kstoney/git/stono/hawkeye
+[info] Running module File Contents
+[info] Running module Secret Files
+[info] Running module Node Check Updates
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
-[info] Node Security Project handling
+[info] Running module Security Project handling
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
 [info] scan complete, 16 issues found
 
