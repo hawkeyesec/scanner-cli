@@ -7,7 +7,7 @@ require('colors');
 console.log('Module Status'.bold);
 console.log('');
 (function initModules() {
- let files = glob.sync(path.join(__dirname, '../lib/modules/**/', '*.js'));
+ let files = glob.sync(path.join(__dirname, '../lib/modules/**/', 'index.js'));
  files.forEach(path => {
      let module = new require(path)({
       target: __dirname
