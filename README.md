@@ -206,16 +206,16 @@ ublished with fix\n- June 16th 2016 - Advisory published (delay was to coordinat
 ### Adding a new handler
 The idea is that this project should be super extensible, I want people to write new handlers with ease.  Simply create a handler in `lib/modules` which exposes the following signature:
 
+  - key: A short alphanumeric key for your module
   - name: The name of your module
   - description: The description of your module
-  - handles: A function to decide if this handler should run against the target project
-  - run: The function to be called if `.handles(results, done)` returns true
+  - enabled: True or Fale as to if this module should run by default, or if it needs to be specified with `--module`
+  - function handles(path): A function to decide if this handler should run against the target path
+  - function run(results, done): The function which is called if handles returns true
 
 ### The run function
-The first argument passed is results, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
+The first argument passed is `results`, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
 
 ```
-results.critial('issue-key', 'title', 'description', { additional: 'data' });
+results.critial('title', 'description', { additional: 'data' });
 ```
-
-Those results are then parsed, and output as a table.
