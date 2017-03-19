@@ -8,10 +8,13 @@ describe('Modules', () => {
     describe(file, () => {
       let module;
       before(() => {
-        module = new require(file)(path.join(__dirname, '../samples/nodejs'));
+        module = new require(file)({
+          target: path.join(__dirname, '../samples/nodejs')
+        });
       });
       it('should have the module signature', () => {
-        Object.keys(module).sort().should.eql(['key', 'name', 'description', 'handles', 'run', 'enabled'].sort());
+        let expectMethods = ['key', 'name', 'description', 'handles', 'run', 'enabled'].sort();
+        Object.keys(module).sort().should.eql(expectMethods);
       });
     });
   });
