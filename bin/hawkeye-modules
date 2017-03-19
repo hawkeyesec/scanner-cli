@@ -7,9 +7,11 @@ require('colors');
 console.log('Module Status'.bold);
 console.log('');
 (function initModules() {
- let files = glob.sync(path.join(__dirname, '../lib/modules', '*.js'));
+ let files = glob.sync(path.join(__dirname, '../lib/modules/**/', '*.js'));
  files.forEach(path => {
-     let module = new require(path)(__dirname);
+     let module = new require(path)({
+      target: __dirname
+    });
      logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red, module.name.bold + '\n                  ' + module.description);
      });
  })();
