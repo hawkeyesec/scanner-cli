@@ -1,7 +1,7 @@
 {
   "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "homepage": "https://github.com/Stono/hawkeye",
   "author": {
     "name": "Karl Stoney",
@@ -52,7 +52,6 @@
     "lodash": "^4.17.4",
     "npm-check-updates": "^2.10.3",
     "nsp": "^2.6.3",
-    "recursive-readdir": "^2.1.1",
     "semver": "^5.3.0"
   }
 }

@@ -3,15 +3,20 @@ const Files = require('../../lib/modules/files');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');
+const FileManager = require('../../lib/fileManager');
 
 describe('Files', () => {
-  let files, mockResults;
+  let files, mockResults, fileManager;
   beforeEach(() => {
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/nodejs')
+    });
+
     files = new Files({
       patterns: path.join(__dirname, '../samples/filename.js')
     });
-    should(files.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
+    should(files.handles(fileManager)).eql(true);
   });
 
   it('should match exact file names', done => {

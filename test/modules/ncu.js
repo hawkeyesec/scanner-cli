@@ -1,5 +1,6 @@
 'use strict';
 const Ncu = require('../../lib/modules/ncu');
+const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');
@@ -12,12 +13,14 @@ describe('NCU', () => {
     mockExec.setup.command.toCallbackWith(null, {
       stdout: JSON.stringify(sample)
     });
-
+    const fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/nodejs')
+    });
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     ncu = new Ncu({
       exec: mockExec
     });
-    should(ncu.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
+    should(ncu.handles(fileManager)).eql(true);
   });
 
   it('should execute ncu -j', done => {

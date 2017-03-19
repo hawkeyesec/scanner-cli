@@ -1,5 +1,6 @@
 'use strict';
 const Nsp = require('../../lib/modules/nsp');
+const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');
@@ -12,12 +13,15 @@ describe('Nsp', () => {
     mockExec.setup.command.toCallbackWith(null, {
       stderr: JSON.stringify(sample)
     });
+    const fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/nodejs')
+    });
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     nsp = new Nsp({
       exec: mockExec
     });
-    should(nsp.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
+    should(nsp.handles(fileManager)).eql(true);
   });
 
   it('should execute nsp check -o json', done => {

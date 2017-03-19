@@ -1,5 +1,5 @@
 'use strict';
-let defaultFiles = /^(js|json|xml|text|rb|py|sh|md)$/;
+let defaultFiles = ['js', 'json', 'xml', 'text', 'rb', 'py', 'sh', 'md'];
 module.exports = [
   {
     extension: defaultFiles,
