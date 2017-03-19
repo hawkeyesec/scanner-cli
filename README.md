@@ -24,6 +24,9 @@ If you don't have, or want anything on your host, you can use docker with `docke
 
 __Note__: If you opt for docker and you are on macosx, please be aware that the `osxfs` is approx 20x slower than native filesystem access, so if you're scanning a particularly large project you may experience some slow down and the `npm` choice would be a better option.
 
+## Default file lists
+Hawkeye will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
+
 ### Options
 There are a few options available:
 

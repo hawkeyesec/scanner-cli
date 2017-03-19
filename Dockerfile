@@ -4,7 +4,7 @@ MAINTAINER Karl Stoney <me@karlstoney.com>
 RUN yum -y -q update && \
     yum -y -q remove iputils && \
     yum -y -q install wget epel-release openssl openssl-devel tar unzip \
-							libffi-devel python-devel redhat-rpm-config \
+							libffi-devel python-devel redhat-rpm-config git-core \
 							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates && \
     yum -y -q clean all
 
