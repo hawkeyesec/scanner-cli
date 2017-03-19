@@ -43,7 +43,9 @@ if(!fs.existsSync(target)) {
 
 let modules = program.modules || ['all'];
 
-let scan = new Scan(target);
+let scan = new Scan({
+  target: target
+});
 
 scan.start(modules, (err, results) => {
   let total = 0;
