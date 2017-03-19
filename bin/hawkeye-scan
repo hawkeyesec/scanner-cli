@@ -2,27 +2,22 @@
 const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
 const fs = require('fs');
-const summaryWriter = new require('../lib/writers/summary')();
-const jsonWriter = new require('../lib/writers/json')();
+const SummaryWriter = require('../lib/writers/summary');
+const JsonWriter = require('../lib/writers/json');
 const path = require('path');
 const Modules = require('../lib/modules');
 
+let writers = [new SummaryWriter()];
 let program = require('commander');
 program
   .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
-  .option('-m, --modules <module1,module2>', 'Run specific module(s).  Defaults to all.', (val) => {
+  .option('-m, --modules <module1,module2>', 'Run specific module(s).  Defaults to all', (val) => {
     return val.split(',');
   })
-  .option('-o, --output  <summary,json>', 'Which output writer to use, defaults to summary.  Multiple can be selected.', val => {
-    let valid = ['summary', 'json'];
-    val.split(',').forEach(s => {
-      if(valid.indexOf(s) === -1) {
-        logger.error(s, 'is not a valid output');
-        console.log('        Allowed values: ' + valid.join(', '))
-        process.exit(1);
-      }
-    });
-    return val;
+  .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file', val => {
+    writers.push(new JsonWriter({
+      path: val
+    }));
   })
   .parse(process.argv);
 
@@ -40,10 +35,7 @@ scan.start(modules, (err, results) => {
   });
   logger.log('scan complete, ' + total + ' issues found');
   console.log('');
-  summaryWriter.write(results);
-
-  if(program.output) {
-    jsonWriter.write(program.output, results);
-    logger.log('json results written to: ' + program.output);
-  }
+  writers.forEach(writer => {
+    writer.write(results);
+  });
 });
