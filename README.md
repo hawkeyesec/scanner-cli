@@ -18,9 +18,11 @@ __Note:__ Entropy is disabled by default because it can return a lot of results,
 __Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
-To run the scanner against your existing project, simply type `docker run --rm -v $PWD:/target stono/hawkeye`
+There are two ways to run Hawkeye, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner`.
 
-If you want to run without docker, just through node - then `npm install -g hawkeye-scanner`, and use `hawkeye scan`.
+If you don't have, or want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
+
+__Note__: If you opt for docker and you are on macosx, please be aware that the `osxfs` is approx 20x slower than native filesystem access, so if you're scanning a particularly large project you may experience some slow down and the `npm` choice would be a better option.
 
 ### Options
 There are a few options available:
