@@ -15,7 +15,7 @@ RUN yum -y -q install nodejs
 RUN mkdir -p /hawkeye
 COPY package.json /hawkeye
 RUN cd /hawkeye && \
-    npm install --quiet
+    npm install --production --quiet
 COPY ./ /hawkeye
 
 WORKDIR /target
