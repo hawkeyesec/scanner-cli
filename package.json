@@ -49,6 +49,7 @@
     "debug": "2.6.3",
     "depcheck": "^0.6.7",
     "glob": "^7.1.1",
+    "lodash": "^4.17.4",
     "npm-check-updates": "^2.10.3",
     "nsp": "^2.6.3",
     "recursive-readdir": "^2.1.1",

@@ -15,13 +15,9 @@ describe('Nsp', () => {
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     nsp = new Nsp({
-      target: path.join(__dirname, '../samples/nodejs'),
       exec: mockExec
     });
-  });
-
-  it('should handle requests where the json file is present', () => {
-    should(nsp.handles() === true);
+    should(nsp.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
   });
 
   it('should execute nsp check -o json', done => {

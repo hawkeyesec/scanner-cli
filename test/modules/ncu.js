@@ -15,13 +15,9 @@ describe('NCU', () => {
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     ncu = new Ncu({
-      target: path.join(__dirname, '../samples/nodejs'),
       exec: mockExec
     });
-  });
-
-  it('should handle requests where the json file is present', () => {
-    should(ncu.handles() === true);
+    should(ncu.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
   });
 
   it('should execute ncu -j', done => {

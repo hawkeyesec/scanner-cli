@@ -2,15 +2,16 @@
 const Contents = require('../../lib/modules/content');
 const deride = require('deride');
 const path = require('path');
+const should = require('should');
 
 describe('Contents', () => {
   let contents, mockResults;
   beforeEach(() => {
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     contents = new Contents({
-      target: path.join(__dirname, '../samples/nodejs'),
       patterns: path.join(__dirname, '../samples/contents.js')
     });
+    should(contents.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
   });
 
   it('should match RSA private keys', done => {

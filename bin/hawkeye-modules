@@ -1,18 +1,12 @@
 #!/usr/bin/env node
-const glob = require('glob');
-const path = require('path');
 const logger = new require('../lib/logger')();
+const modules = new require('../lib/modules')().asArray;
 require('colors');
 
+console.log('');
 console.log('Module Status'.bold);
 console.log('');
-(function initModules() {
- let files = glob.sync(path.join(__dirname, '../lib/modules/**/', 'index.js'));
- files.forEach(path => {
-     let module = new require(path)({
-      target: __dirname
-    });
-     logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red, module.name.bold + ' (' + module.key + ')\n                  ' + module.description);
-     });
- })();
-
+modules.forEach(module => {
+  logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red,
+             module.name.bold + ' (' + module.key + ')\n                  ' + module.description);
+});

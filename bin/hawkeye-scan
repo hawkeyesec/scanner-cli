@@ -5,46 +5,30 @@ const fs = require('fs');
 const summaryWriter = new require('../lib/writers/summary')();
 const jsonWriter = new require('../lib/writers/json')();
 const path = require('path');
+const Modules = require('../lib/modules');
 
 let program = require('commander');
 program
-  .option('-t, --target </path/to/project>', 'The location of the project root', val => {
-    if(!fs.existsSync(val)) {
-      logger.error(val, 'is not a valid path');
-      console.log('        Please ensure you pass a valid path')
-      process.exit(1);
-    }
-    return val;
-  })
-  .option('-m, --modules <module1,module2>', 'Run specific module(s)', (val) => {
+  .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
+  .option('-m, --modules <module1,module2>', 'Run specific module(s).  Defaults to all.', (val) => {
     return val.split(',');
   })
-  .option('-o, --output </path/to/results.json>', 'Output the detailed JSON', val => {
-    let dir = path.dirname(val);
-    if(!fs.existsSync(dir)) {
-      logger.error(dir, 'is not a valid path');
-      console.log('        Please ensure you pass a valid path')
-      process.exit(1);
-    }
+  .option('-o, --output  <summary,json>', 'Which output writer to use, defaults to summary.  Multiple can be selected.', val => {
+    let valid = ['summary', 'json'];
+    val.split(',').forEach(s => {
+      if(valid.indexOf(s) === -1) {
+        logger.error(s, 'is not a valid output');
+        console.log('        Allowed values: ' + valid.join(', '))
+        process.exit(1);
+      }
+    });
     return val;
   })
   .parse(process.argv);
 
-let target = program.target || process.env.PWD;
-target = target || '/target';
-
-if(!fs.existsSync(target)) {
-  logger.error('We were unable to infer the target directory');
-  console.log('        We checked the $PWD variable and /target.');
-  console.log('');
-  console.log('        Please run with the --target flag');
-  process.exit(1);
-};
-
 let modules = program.modules || ['all'];
-
 let scan = new Scan({
-  target: target
+  target: program.target
 });
 
 scan.start(modules, (err, results) => {

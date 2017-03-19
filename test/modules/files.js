@@ -2,15 +2,16 @@
 const Files = require('../../lib/modules/files');
 const deride = require('deride');
 const path = require('path');
+const should = require('should');
 
 describe('Files', () => {
   let files, mockResults;
   beforeEach(() => {
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     files = new Files({
-      target: path.join(__dirname, '../samples/nodejs'),
       patterns: path.join(__dirname, '../samples/filename.js')
     });
+    should(files.handles(path.join(__dirname, '../samples/nodejs'))).eql(true);
   });
 
   it('should match exact file names', done => {
