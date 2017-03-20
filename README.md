@@ -48,6 +48,52 @@ services:
 
 You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
+### As part of your GoCD pipeline
+If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is the template that I use:
+
+```
+<pipeline name="security-scan">
+  <stage name="Hawkeye" cleanWorkingDir="true">
+    <jobs>
+      <job name="scan">
+        <tasks>
+          <exec command="docker">
+            <arg>pull</arg>
+            <arg>stono/hawkeye</arg>
+            <runif status="passed" />
+          </exec>
+          <exec command="bash">
+            <arg>-c</arg>
+            <arg>docker pull eu.gcr.io/your-project-name/#{DOCKER_IMAGE}:latest</arg>
+            <runif status="passed" />
+          </exec>
+          <exec command="bash">
+            <arg>-c</arg>
+            <arg>docker rm -f #{DOCKER_IMAGE}_latest || true</arg>
+            <runif status="passed" />
+          </exec>
+          <exec command="bash">
+            <arg>-c</arg>
+            <arg>docker run --entrypoint=/bin/true --name=#{DOCKER_IMAGE}_latest eu.gcr.io/your-project-name/#{DOCKER_IMAGE}:latest</arg>
+            <runif status="passed" />
+          </exec>
+          <exec command="bash">
+            <arg>-c</arg>
+            <arg>docker run --rm --volumes-from #{DOCKER_IMAGE}_latest stono/hawkeye scan --target /app</arg>
+            <runif status="passed" />
+          </exec>
+          <exec command="bash">
+            <arg>-c</arg>
+            <arg>docker rm -f #{DOCKER_IMAGE}_latest</arg>
+            <runif status="any" />
+          </exec>
+        </tasks>
+      </job>
+    </jobs>
+  </stage>
+</pipeline>
+```
+
 ## Default file lists
 Hawkeye will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
 
