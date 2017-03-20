@@ -1,13 +1,13 @@
 ![Logo](screenshots/badlogo.png)
 
-Hawkeye is a project security, vulnerability and general risk highlighting tool.  Designed to be entirely extensible by just adding new modules with the correct signature to `lib/modules`, the idea is to build up a suite of components which can be run stand alone, or as part of your continuous integration pipeline.
+Hawkeye is a project security, vulnerability and general risk highlighting tool.  It has a few goals:
 
-Modules implement a handler pattern so they will only run if their given criteria are met, for example the Node Security Project will only run if there is a `package.json` in the target directory.  This enables hawkeye to be language agnostic, and only run the modules relevant to the given scenario.
-
-The added bonus is, it runs from docker; so doesn't require anything on your host machine.
+  - Designed to be entirely extensible by just adding new modules with the correct signature to [lib/modules](lib/modules)
+  - Modules return results via a common interface, which permits consolidated reporting and artefact generation
+  - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
 ## Modules
-The following modules are currently implemented:
+As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
 
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
  - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
@@ -15,9 +15,11 @@ The following modules are currently implemented:
  - __Node Security Project (nsp)__: Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
  - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
-__Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.
+__Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch, personally I use this manually checking over code bases I have inherited.
 
 __Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
+
+I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is.
 
 ## Running Hawkeye
 I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.
@@ -25,18 +27,20 @@ I wanted Hawkeye to be as flexible as possible, as a result it supports numerous
 ### Standalone (command line)
 There are two ways to run Hawkeye from the command line, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner` which will add the `hawkeye` binary to your path.
 
-If you don't have, or want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
+If you don't have nodejs on your machine, or simply don't want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
 
 __Note__: If you opt for docker and you are on macosx, please be aware that the `osxfs` is approx 20x slower than native filesystem access, so if you're scanning a particularly large project you may experience some slow down and the `npm` choice would be a better option.
 
 ### As part of your docker-compose file
 This is where Hawkeye is lovely, lets say you have project which has a `Dockerfile`, with lines like this in:
+
 ```
 COPY . /app
 VOLUME /app
 ```
 
 You could add hawkeye to your compose file like this:
+
 ```
 services:
   app:
@@ -49,7 +53,7 @@ services:
       - app
 ```
 
-You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
+You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo. 
 
 ### As part of your GoCD pipeline
 If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built image.
@@ -193,6 +197,3 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('title', 'description', { additional: 'data' });
 ```
-
-### Example
-Because I'm kind, and I __REALLY__ want people to contribute, check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js).
