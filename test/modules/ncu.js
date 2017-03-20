@@ -6,15 +6,17 @@ const path = require('path');
 const should = require('should');
 
 describe('NCU', () => {
-  let sample = require('../samples/ncu.json');
+  const sample = require('../samples/ncu.json');
   let ncu, mockExec, mockResults;
   beforeEach(() => {
     mockExec = deride.stub(['command']);
     mockExec.setup.command.toCallbackWith(null, {
       stdout: JSON.stringify(sample)
     });
+    const nullLogger = deride.stub(['log', 'debug', 'error']);
     const fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/nodejs')
+      target: path.join(__dirname, '../samples/nodejs'),
+      logger: nullLogger
     });
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     ncu = new Ncu({
@@ -25,7 +27,7 @@ describe('NCU', () => {
 
   it('should execute ncu -j', done => {
     ncu.run(mockResults, () => {
-      let pathToJson = path.join(__dirname, '../../node_modules/npm-check-updates/bin/ncu -j');
+      const pathToJson = path.join(__dirname, '../../node_modules/npm-check-updates/bin/ncu -j');
       mockExec.expect.command.called.withArg(pathToJson);
       done();
     });

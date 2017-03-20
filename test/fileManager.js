@@ -2,20 +2,23 @@
 const FileManager = require('../lib/fileManager');
 const path = require('path');
 const should = require('should');
+const deride = require('deride');
 
 describe('File Manager', () => {
   let fm;
   before(() => {
+    const nullLogger = deride.stub(['log', 'debug', 'error']);
     fm = new FileManager({
       target: path.join(__dirname, 'samples/filemanager'),
+      logger: nullLogger,
       globalExclusions: ['test/excluded']
     });
   });
 
   it('should load all files in the target directory', () => {
-    let result = fm.all();
+    const result = fm.all();
 
-    let expected = [
+    const expected = [
       'file1.md',
       'file2',
       'test/another-test/file4.txt',
@@ -25,9 +28,9 @@ describe('File Manager', () => {
     should(result).eql(expected);
   });
 
-  it('should let me exclude extensions', () => {
-    let result = fm.excludeExtensions(['txt', 'md']);
-     let expected = [
+  it('should const me exclude extensions', () => {
+    const result = fm.excludeExtensions(['txt', 'md']);
+     const expected = [
       'file2',
       'test/excluded/excluded-file.js',
       'test/file3'
@@ -35,24 +38,24 @@ describe('File Manager', () => {
     should(result).eql(expected);
   });
 
-  it('should let me select by extension', () => {
-    let result = fm.byExtensions(['txt', 'md']);
-     let expected = [
+  it('should const me select by extension', () => {
+    const result = fm.byExtensions(['txt', 'md']);
+     const expected = [
       'file1.md',
       'test/another-test/file4.txt'
     ];
     should(result).eql(expected);
   });
 
-  it('should let me select by path', () => {
-    let result = fm.byPaths(['test/another-test']);
-     let expected = [
+  it('should const me select by path', () => {
+    const result = fm.byPaths(['test/another-test']);
+     const expected = [
       'test/another-test/file4.txt'
     ];
     should(result).eql(expected);
   });
 
-  it('should let me get a files contents', done => {
+  it('should const me get a files contents', done => {
     fm.readFile('test/file3', (err, contents) => {
       should.ifError(err);
       should(contents).eql('this is file 3');

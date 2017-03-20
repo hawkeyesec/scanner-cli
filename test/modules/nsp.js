@@ -13,8 +13,10 @@ describe('Nsp', () => {
     mockExec.setup.command.toCallbackWith(null, {
       stderr: JSON.stringify(sample)
     });
+    const nullLogger = deride.stub(['log', 'debug', 'error']);
     const fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/nodejs')
+      target: path.join(__dirname, '../samples/nodejs'),
+      logger: nullLogger
     });
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);

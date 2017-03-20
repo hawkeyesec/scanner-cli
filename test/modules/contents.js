@@ -9,8 +9,10 @@ describe('Contents', () => {
   let contents, mockResults;
   beforeEach(() => {
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
+    const nullLogger = deride.stub(['log', 'debug', 'error']);
     const fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/nodejs')
+      target: path.join(__dirname, '../samples/nodejs'),
+      logger: nullLogger
     });
 
     contents = new Contents({

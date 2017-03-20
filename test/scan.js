@@ -21,11 +21,11 @@ describe('Scan', () => {
       });
     });
 
-    let mockLogger = deride.stub(['log', 'debug', 'error']);
+    const nullLogger = deride.stub(['log', 'debug', 'error']);
     scan = new Scan({
       target: path.join(__dirname, 'samples/nodejs'),
       exec: mockExec,
-      logger: mockLogger
+      logger: nullLogger
     });
   });
 
