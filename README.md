@@ -29,8 +29,8 @@ __Note__: If you opt for docker and you are on macosx, please be aware that the 
 ### As part of your docker-compose file
 This is where Hawkeye is lovely, lets say you have project which has a `Dockerfile`, with lines like this in:
 ```
-VOLUME /app
 COPY . /app
+VOLUME /app
 ```
 
 And your compose file looks like this
