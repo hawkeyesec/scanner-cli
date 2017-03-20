@@ -18,11 +18,35 @@ __Note:__ Entropy is disabled by default because it can return a lot of results,
 __Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
-There are two ways to run Hawkeye, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner`.
+
+### Standalone (command line)
+There are two ways to run Hawkeye from the command line, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner`.
 
 If you don't have, or want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
 
 __Note__: If you opt for docker and you are on macosx, please be aware that the `osxfs` is approx 20x slower than native filesystem access, so if you're scanning a particularly large project you may experience some slow down and the `npm` choice would be a better option.
+
+### As part of your docker-compose file
+This is where Hawkeye is lovely, lets say you have project which has a `Dockerfile`, with lines like this in:
+```
+VOLUME /app
+COPY . /app
+```
+
+And your compose file looks like this
+```
+services:
+  app:
+    build: .
+
+  hawkeye:
+    image: stono/hawkeye
+    command: scan -t /app
+    volumes_from:
+      - app
+```
+
+You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
 ## Default file lists
 Hawkeye will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
