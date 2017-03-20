@@ -296,3 +296,6 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('title', 'description', { additional: 'data' });
 ```
+
+### Example
+Because I'm kind, check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js), which is a simple example.
