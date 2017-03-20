@@ -5,7 +5,7 @@ require('mocha');
 var config = {
   targets: {
     test: ['test/**/*.js'],
-    bin: ['bin/*.js'],
+    bin: ['bin/*'],
     src: ['lib/**/*.js', '*.js', 'config/*.js']
   },
   timeout: 5000,

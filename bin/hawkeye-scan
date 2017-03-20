@@ -1,15 +1,13 @@
 #!/usr/bin/env node
+'use strict';
 const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
-const fs = require('fs');
 const SummaryWriter = require('../lib/writers/summary');
 const JsonWriter = require('../lib/writers/json');
-const path = require('path');
-const Modules = require('../lib/modules');
 
-let writers = [new SummaryWriter()];
-let modules = [];
-let program = require('commander');
+const writers = [new SummaryWriter()];
+const modules = [];
+const program = require('commander');
 program
   .option('-a, --all', 'Scan all files, regardless if a git repo is found')
   .option('-f, --fail-on <low, medium, high, critical>', 'Set the level at which hawkeye returns non-zero status codes (defaults to low)', val => {
@@ -30,13 +28,13 @@ program
   })
   .parse(process.argv);
 
-if(modules.length === 0) { modules.push('all') };
-let scan = new Scan({
+if(modules.length === 0) { modules.push('all') }
+const scan = new Scan({
   target: program.target,
   all: program.all || false
 });
 
-let bitwise = {
+const bitwise = {
   low: 1,
   medium: 2,
   high: 4,
@@ -51,12 +49,12 @@ scan.start(modules, (err, results) => {
   let exitCode = 0;
   results.forEach(moduleResult => {
     Object.keys(moduleResult.results).forEach(key => {
-      let levelResults = moduleResult.results[key].length;
-      if(levelResults > 0 && bitwise[key] >= bitwise[program.failOn]) { exitCode = 1 };
+      const levelResults = moduleResult.results[key].length;
+      if(levelResults > 0 && bitwise[key] >= bitwise[program.failOn]) { exitCode = 1 }
       total = total + levelResults;
     });
   });
-  logger.log('scan complete, ' + total + ' issues found');
+  logger.log('scan compconste, ' + total + ' issues found');
   console.log('');
   writers.forEach(writer => {
     writer.write(results);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 const logger = new require('../lib/logger')();
 const modules = new require('../lib/modules')().asArray;
 require('colors');
