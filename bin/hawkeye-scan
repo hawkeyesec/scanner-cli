@@ -11,6 +11,7 @@ let writers = [new SummaryWriter()];
 let modules = [];
 let program = require('commander');
 program
+  .option('-a, --all', 'Scan all files, regardless if a git repo is found')
   .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
   .option('-m, --module  <module name>', 'Run specific module.  Can be specified multiple times', (val) => {
     modules.push(val);
@@ -24,7 +25,8 @@ program
 
 if(modules.length === 0) { modules.push('all') };
 let scan = new Scan({
-  target: program.target
+  target: program.target,
+  all: program.all || false
 });
 
 scan.start(modules, (err, results) => {

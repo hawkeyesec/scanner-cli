@@ -27,6 +27,8 @@ __Note__: If you opt for docker and you are on macosx, please be aware that the 
 ## Default file lists
 Hawkeye will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
 
+You can override this behaviour with the `--all` flag, which will scan all files regardless.
+
 ### Options
 There are a few options available:
 

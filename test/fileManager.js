@@ -19,6 +19,7 @@ describe('File Manager', () => {
       'file1.md',
       'file2',
       'test/another-test/file4.txt',
+      'test/excluded/excluded-file.js',
       'test/file3'
     ];
     should(result).eql(expected);
@@ -28,6 +29,7 @@ describe('File Manager', () => {
     let result = fm.excludeExtensions(['txt', 'md']);
      let expected = [
       'file2',
+      'test/excluded/excluded-file.js',
       'test/file3'
     ];
     should(result).eql(expected);
