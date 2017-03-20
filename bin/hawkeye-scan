@@ -54,7 +54,7 @@ scan.start(modules, (err, results) => {
       total = total + levelResults;
     });
   });
-  logger.log('scan compconste, ' + total + ' issues found');
+  logger.log('scan complete, ' + total + ' issues found');
   console.log('');
   writers.forEach(writer => {
     writer.write(results);
