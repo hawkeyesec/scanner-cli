@@ -12,6 +12,13 @@ let modules = [];
 let program = require('commander');
 program
   .option('-a, --all', 'Scan all files, regardless if a git repo is found')
+  .option('-f, --fail-on <low, medium, high, critical>', 'Set the level at which hawkeye returns non-zero status codes (defaults to low)', val => {
+    if(['low', 'medium', 'high', 'critical'].indexOf(val) === -1) {
+      logger.error('Please specify either low, medium, high or critical!');
+      process.exit(1);
+    }
+    return val;
+  })
   .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
   .option('-m, --module  <module name>', 'Run specific module.  Can be specified multiple times', (val) => {
     modules.push(val);
@@ -29,11 +36,24 @@ let scan = new Scan({
   all: program.all || false
 });
 
+let bitwise = {
+  low: 1,
+  medium: 2,
+  high: 4,
+  critical: 8
+};
+
+program.failOn = program.failOn || 'low';
+logger.log('Fail on limit set to', program.failOn);
+
 scan.start(modules, (err, results) => {
   let total = 0;
+  let exitCode = 0;
   results.forEach(moduleResult => {
     Object.keys(moduleResult.results).forEach(key => {
-      total = total + moduleResult.results[key].length;
+      let levelResults = moduleResult.results[key].length;
+      if(levelResults > 0 && bitwise[key] >= bitwise[program.failOn]) { exitCode = 1 };
+      total = total + levelResults;
     });
   });
   logger.log('scan complete, ' + total + ' issues found');
@@ -42,6 +62,6 @@ scan.start(modules, (err, results) => {
     writer.write(results);
   });
   if(total > 0) {
-    process.exit(1);
+    process.exit(exitCode);
   }
 });

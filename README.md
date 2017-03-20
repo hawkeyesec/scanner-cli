@@ -113,10 +113,13 @@ There are a few options available:
 
     -h, --help                             output usage information
     -a, --all                              Scan all files, regardless if a git repo is found
+    -f, --fail-on <low, medium, high, critical>  Set the level at which hawkeye returns non-zero status codes (defaults to low)
     -t, --target  </path/to/project>       The location to scan, usually the project root
     -m, --module  <module name>            Run specific module.  Can be specified multiple times
     -j, --json    </path/to/summary,json>  Write JSON output to file.  Can be specified multiple times
 ```
+
+From a pipeline perspective, the `--fail-on` command is useful, you might now wish for `low` items to break your build, so you could use `--fail-on medium`.
 
 You can specify the `json` and `module` parameters multiple times, for example `hawkeye scan -m files -m contents -j /tmp/file1.json -j /tmp/file2.json` would run the modules `files` and `contents` and write two output files
 
