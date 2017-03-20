@@ -17,3 +17,4 @@ coverage/
 checkstyle-result.xml
 coverage.*
 junit.xml
+.DS_Store
