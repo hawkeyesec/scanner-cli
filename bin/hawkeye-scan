@@ -41,4 +41,7 @@ scan.start(modules, (err, results) => {
   writers.forEach(writer => {
     writer.write(results);
   });
+  if(total > 0) {
+    process.exit(1);
+  }
 });
