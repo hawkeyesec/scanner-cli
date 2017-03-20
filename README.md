@@ -112,10 +112,10 @@ There are a few options available:
   Options:
 
     -h, --help                             output usage information
+    -a, --all                              Scan all files, regardless if a git repo is found
     -t, --target  </path/to/project>       The location to scan, usually the project root
     -m, --module  <module name>            Run specific module.  Can be specified multiple times
     -j, --json    </path/to/summary,json>  Write JSON output to file.  Can be specified multiple times
-
 ```
 
 You can specify the `json` and `module` parameters multiple times, for example `hawkeye scan -m files -m contents -j /tmp/file1.json -j /tmp/file2.json` would run the modules `files` and `contents` and write two output files
