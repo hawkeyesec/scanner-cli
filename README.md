@@ -53,7 +53,7 @@ services:
       - app
 ```
 
-You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo. 
+You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
 ### As part of your GoCD pipeline
 If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built image.
@@ -116,8 +116,8 @@ By default Hawkeye will look in your current working directory.  You can overrid
 #### --module: Running only specific modules
 If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m nsp -m ncu` would run just the nsp and ncu modules.
 
-#### --json: Producing a JSON artefact 
-You can specify the `json` and `module` parameters multiple times, for example `hawkeye scan -m files -m contents -j /tmp/file1.json -j /tmp/file2.json` would run the modules `files` and `contents` and write two output files
+#### --json: Producing a JSON artefact
+The `--json` paramter allows you to write a much more detailed report to a file (see futher down under the output section for more info).
 
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
