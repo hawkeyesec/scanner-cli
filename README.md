@@ -19,9 +19,10 @@ __Note:__ Entropy is disabled by default because it can return a lot of results,
 __Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
+I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.
 
 ### Standalone (command line)
-There are two ways to run Hawkeye from the command line, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner`.
+There are two ways to run Hawkeye from the command line, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner` which will add the `hawkeye` binary to your path.
 
 If you don't have, or want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
 
@@ -34,7 +35,7 @@ COPY . /app
 VOLUME /app
 ```
 
-And your compose file looks like this:
+You could add hawkeye to your compose file like this:
 ```
 services:
   app:
@@ -50,7 +51,7 @@ services:
 You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
 ### As part of your GoCD pipeline
-If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is the template that I use:
+If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built image.
 
 ```
 <pipeline name="security-scan">
@@ -90,150 +91,45 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
 </pipeline>
 ```
 
-## Default file lists
-Hawkeye will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
+## The CLI
+### `hawkeye scan`
+There are a few options available:
+
+![help](screenshots/help.png)
+
+#### --all: Running against all files rather than git tree
+Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
 
 You can override this behaviour with the `--all` flag, which will scan all files regardless.
 
-### Options
-There are a few options available:
-
-```
-$ hawkeye scan --help
-[info] Welcome to Hawkeye v0.4.5!
-
-  Usage: hawkeye-scan [options]
-
-  Options:
-
-    -h, --help                                   output usage information
-    -a, --all                                    Scan all files, regardless if a git repo is found
-    -f, --fail-on <low, medium, high, critical>  Set the level at which hawkeye returns non-zero status codes (defaults to low)
-    -t, --target  </path/to/project>             The location to scan, usually the project root
-    -m, --module  <module name>                  Run specific module.  Can be specified multiple times
-    -j, --json    </path/to/summary,json>        Write JSON output to file.  Can be specified multiple times
-```
-
+#### --fail-on: When to exit with a non-zero status code
 From a pipeline perspective, the `--fail-on` command is useful, you might now wish for `low` items to break your build, so you could use `--fail-on medium`.
 
+#### --target: Specfiy what to scan
+By default Hawkeye will look in your current working directory.  You can override this behaviour though by specifying a `--target`
+
+#### --module: Running only specific modules
+If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m nsp -m ncu` would run just the nsp and ncu modules.
+
+#### --json: Producing a JSON artefact 
 You can specify the `json` and `module` parameters multiple times, for example `hawkeye scan -m files -m contents -j /tmp/file1.json -j /tmp/file2.json` would run the modules `files` and `contents` and write two output files
 
-You can view the module status with `hawkeye modules`:
+### `hawkeye modules`
+You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
 
-```
-$ hawkeye modules
-[info] Welcome to Hawkeye v0.4.5!
+![modules](screenshots/modules.png)
 
-[info] File Contents dynamically loaded
-[info] Entropy dynamically loaded
-[info] Secret Files dynamically loaded
-[info] Node Check Updates dynamically loaded
-[info] Node Security Project dynamically loaded
+## Outputs
+At the moment, Hawkeye supports two output writers.
 
-Module Status
+### Summary
+The output is a summary view of what we found, and is always enabled.  Significantly more details can be obtained by using the `--json` flag to write a json artefact.
 
-[info] Enabled:   File Contents (contents)
-                  Scans files for dangerous content
-[info] Disabled:  Entropy (entropy)
-                  Scans files for strings with high entropy
-[info] Enabled:   Secret Files (files)
-                  Scans for known secret files
-[info] Enabled:   Node Check Updates (ncu)
-                  Scans a package.json for out of date packages
-[info] Enabled:   Node Security Project (nsp)
-                  Scans a package.json for known vulnerabilities from NSP
-```
+![output](screenshots/output.png)
 
-## The output
-The output is a summary view of what we found, significantly more details can be obtained by using the `--json` flag to write a json artefact.
+### Json
+You can output much more information in the form of a JSON artefact that groups by executed module.  Check out a sample [here](test/samples/results.json)
 
-```
-$ hawkeye scan -j /tmp/results.json
-
-[info] File Contents dynamically loaded
-[info] Entropy dynamically loaded
-[info] Secret Files dynamically loaded
-[info] Node Check Updates dynamically loaded
-[info] Node Security Project dynamically loaded
-[info] Target for scan: /Users/kstoney/git/stono/hawkeye
-[info] Running module File Contents
-[info] Running module Secret Files
-[info] Running module Node Check Updates
-[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
-[info] Running module Security Project handling
-[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
-[info] scan complete, 16 issues found
-
-Critical
-┌───────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
-│ module        │ name                  │ description                                                       │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ file-contents │ http_signing.md       │ Potential private key in file                                     │
-│               │                       │ Line number: 244                                                  │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ files         │ id_rsa                │ Private SSH key                                                   │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ files         │ .tmp/.gnupg/agent.asc │ Potential cryptographic key bundle                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ nsp           │ uglify-js             │ https://nodesecurity.io/advisories/39                             │
-│               │                       │ ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5 │
-└───────────────┴───────────────────────┴───────────────────────────────────────────────────────────────────┘
-
-High
-┌───────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
-│ module        │ name                  │ description                                                       │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ nodemailer            │ Module is one or more major versions out of date                  │
-│               │                       │ Installed: 2.6.4, Available: 3.1.7                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ uuid                  │ Module is one or more major versions out of date                  │
-│               │                       │ Installed: 2.0.3, Available: 3.0.1                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ nsp           │ negotiator            │ https://nodesecurity.io/advisories/106                            │
-│               │                       │ ods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3 │
-└───────────────┴───────────────────────┴───────────────────────────────────────────────────────────────────┘
-
-Medium
-┌───────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
-│ module        │ name                  │ description                                                       │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ file-contents │ config/DBConfig.js    │ Potential password in file                                        │
-│               │                       │ Line number: 9                                                    │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ file-contents │ routes/admin.js       │ Potential password in file                                        │
-│               │                       │ Line number: 597                                                  │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ body-parser           │ Module is one or more minor versions out of date                  │
-│               │                       │ Installed: 1.15.1, Available: 1.17.1                              │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ debug                 │ Module is one or more minor versions out of date                  │
-│               │                       │ Installed: 2.2.0, Available: 2.6.3                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ express               │ Module is one or more minor versions out of date                  │
-│               │                       │ Installed: 4.13.4, Available: 4.15.2                              │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ morgan                │ Module is one or more minor versions out of date                  │
-│               │                       │ Installed: 1.7.0, Available: 1.8.1                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ ncu           │ serve-favicon         │ Module is one or more minor versions out of date                  │
-│               │                       │ Installed: 2.3.0, Available: 2.4.1                                │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ nsp           │ uglify-js             │ https://nodesecurity.io/advisories/48                             │
-│               │                       │ ods-jl@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5 │
-└───────────────┴───────────────────────┴───────────────────────────────────────────────────────────────────┘
-
-Low
-┌───────────────┬───────────────────────┬───────────────────────────────────────────────────────────────────┐
-│ module        │ name                  │ description                                                       │
-├───────────────┼───────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ files         │ .env                  │ PHP dotenv                                                        │
-│               │                       │ Environment file that contains sensitive data                     │
-└───────────────┴───────────────────────┴───────────────────────────────────────────────────────────────────┘
-
-[info] json results written to: /tmp/results.json
-```
-
-And here is a sample from the output.json, you can view the full file [here](test/samples/results.json).
 ```
   {
     "module": {
@@ -298,4 +194,4 @@ results.critial('title', 'description', { additional: 'data' });
 ```
 
 ### Example
-Because I'm kind, check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js), which is a simple example.
+Because I'm kind, and I __REALLY__ want people to contribute, check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js).
