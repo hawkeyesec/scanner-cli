@@ -34,7 +34,7 @@ COPY . /app
 VOLUME /app
 ```
 
-And your compose file looks like this
+And your compose file looks like this:
 ```
 services:
   app:
@@ -65,27 +65,22 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker pull eu.gcr.io/your-project-name/#{DOCKER_IMAGE}:latest</arg>
+            <arg>docker pull eu.gcr.io/your-project-name/your-image-name:latest</arg>
             <runif status="passed" />
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker rm -f #{DOCKER_IMAGE}_latest || true</arg>
+            <arg>docker run --entrypoint=/bin/true --name=your-image-name_latest eu.gcr.io/your-project-name/your-image-name:latest</arg>
             <runif status="passed" />
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker run --entrypoint=/bin/true --name=#{DOCKER_IMAGE}_latest eu.gcr.io/your-project-name/#{DOCKER_IMAGE}:latest</arg>
+            <arg>docker run --rm --volumes-from your-image-name_latest stono/hawkeye scan --target /app</arg>
             <runif status="passed" />
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker run --rm --volumes-from #{DOCKER_IMAGE}_latest stono/hawkeye scan --target /app</arg>
-            <runif status="passed" />
-          </exec>
-          <exec command="bash">
-            <arg>-c</arg>
-            <arg>docker rm -f #{DOCKER_IMAGE}_latest</arg>
+            <arg>docker rm -f your-image-name_latest</arg>
             <runif status="any" />
           </exec>
         </tasks>
@@ -104,19 +99,19 @@ You can override this behaviour with the `--all` flag, which will scan all files
 There are a few options available:
 
 ```
-14:02:09 $ hawkeye scan --help
-[info] Welcome to Hawkeye v0.2.0!
+$ hawkeye scan --help
+[info] Welcome to Hawkeye v0.4.5!
 
   Usage: hawkeye-scan [options]
 
   Options:
 
-    -h, --help                             output usage information
-    -a, --all                              Scan all files, regardless if a git repo is found
+    -h, --help                                   output usage information
+    -a, --all                                    Scan all files, regardless if a git repo is found
     -f, --fail-on <low, medium, high, critical>  Set the level at which hawkeye returns non-zero status codes (defaults to low)
-    -t, --target  </path/to/project>       The location to scan, usually the project root
-    -m, --module  <module name>            Run specific module.  Can be specified multiple times
-    -j, --json    </path/to/summary,json>  Write JSON output to file.  Can be specified multiple times
+    -t, --target  </path/to/project>             The location to scan, usually the project root
+    -m, --module  <module name>                  Run specific module.  Can be specified multiple times
+    -j, --json    </path/to/summary,json>        Write JSON output to file.  Can be specified multiple times
 ```
 
 From a pipeline perspective, the `--fail-on` command is useful, you might now wish for `low` items to break your build, so you could use `--fail-on medium`.
@@ -126,8 +121,8 @@ You can specify the `json` and `module` parameters multiple times, for example `
 You can view the module status with `hawkeye modules`:
 
 ```
-14:02:26 $ hawkeye modules
-[info] Welcome to Hawkeye v0.2.0!
+$ hawkeye modules
+[info] Welcome to Hawkeye v0.4.5!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -153,7 +148,7 @@ Module Status
 The output is a summary view of what we found, significantly more details can be obtained by using the `--json` flag to write a json artefact.
 
 ```
-$ docker run --rm -v $PWD:/target stono/hawkeye -j /tmp/results.json
+$ hawkeye scan -j /tmp/results.json
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
