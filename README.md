@@ -100,24 +100,27 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
 ### `hawkeye scan`
 There are a few options available:
 
-![help](screenshots/help.png)
-
-#### --all: Running against all files rather than git tree
+#### -a, --all: Running against all files rather than git tree
 Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
 
 You can override this behaviour with the `--all` flag, which will scan all files regardless.
 
-#### --fail-on: When to exit with a non-zero status code
+#### -f, --fail-on <low, medium, high, critical>: When to exit with a non-zero status code
 From a pipeline perspective, the `--fail-on` command is useful, you might now wish for `low` items to break your build, so you could use `--fail-on medium`.
 
-#### --target: Specfiy what to scan
+#### -t, --target  </path/to/project>: Specfiy what to scan
 By default Hawkeye will look in your current working directory.  You can override this behaviour though by specifying a `--target`
 
-#### --module: Running only specific modules
+#### -m, --module  <module name>: Running only specific modules
 If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m nsp -m ncu` would run just the nsp and ncu modules.
 
-#### --json: Producing a JSON artefact
+#### -j, --json    </path/to/summary,json>: Produce a JSON artefact
 The `--json` paramter allows you to write a much more detailed report to a file (see futher down under the output section for more info).
+
+### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
+This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/" would exclude all your test files.  All paths are __relative__ to the `--target`.
+
+There are some global exclusions in place, and those are "^.git/" and "^node_modules".
 
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.

@@ -27,7 +27,7 @@ describe('Exec', () => {
   describe('Async', () => {
     it('should execute commands, and return the result', done => {
       exec.command('pwd', {}, (err, result) => {
-        should(result.stdout).eql(require('process').cwd() + '\n');
+        should(result.stdout).eql(require('process').cwd());
         done();
       });
     });

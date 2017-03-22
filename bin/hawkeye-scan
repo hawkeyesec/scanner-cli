@@ -7,6 +7,7 @@ const JsonWriter = require('../lib/writers/json');
 
 const writers = [new SummaryWriter()];
 const modules = [];
+const exclusions = [];
 const program = require('commander');
 program
   .option('-a, --all', 'Scan all files, regardless if a git repo is found')
@@ -21,6 +22,9 @@ program
   .option('-m, --module  <module name>', 'Run specific module.  Can be specified multiple times', (val) => {
     modules.push(val);
   })
+  .option('-e, --exclude <pattern>', 'Specify one or more exclusion patterns (eg. test/*)', (val) => {
+    exclusions.push(val);
+  })
   .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file.  Can be specified multiple times', val => {
     writers.push(new JsonWriter({
       path: val
@@ -31,6 +35,7 @@ program
 if(modules.length === 0) { modules.push('all') }
 const scan = new Scan({
   target: program.target,
+  exclusions: exclusions,
   all: program.all || false
 });
 

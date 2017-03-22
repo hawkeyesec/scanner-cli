@@ -1,7 +1,7 @@
 {
   "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "https://github.com/Stono/hawkeye",
   "author": {
     "name": "Karl Stoney",

@@ -5,19 +5,31 @@ const should = require('should');
 const deride = require('deride');
 
 describe('File Manager', () => {
-  let fm;
-  before(() => {
-    const nullLogger = deride.stub(['log', 'debug', 'error']);
+  let fm, nullLogger;
+  beforeEach(() => {
+    nullLogger = deride.stub(['log', 'debug', 'error']);
+    fm = new FileManager({
+      target: path.join(__dirname, 'samples/filemanager'),
+      logger: nullLogger
+    });
+  });
+
+  it('should allow me to add additional exclusions', () => {
     fm = new FileManager({
       target: path.join(__dirname, 'samples/filemanager'),
       logger: nullLogger,
-      globalExclusions: ['test/excluded']
+      exclusions: ['^test/']
     });
+    const result = fm.all();
+    const expected = [
+      'file1.md',
+      'file2'
+    ];
+    should(result).eql(expected);
   });
 
   it('should load all files in the target directory', () => {
     const result = fm.all();
-
     const expected = [
       'file1.md',
       'file2',
