@@ -119,8 +119,8 @@ If you want to run specific modules only, you can use the `--module` flag, which
 #### -j, --json    </path/to/summary,json>: Produce a JSON artefact
 The `--json` paramter allows you to write a much more detailed report to a file (see futher down under the output section for more info).
 
-### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
-This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/" would exclude all your test files.  All paths are __relative__ to the `--target`.
+#### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
+This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
 
 There are some global exclusions in place, and those are "^.git/" and "^node_modules".
 
