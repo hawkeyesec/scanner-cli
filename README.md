@@ -6,7 +6,7 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
-__Note__: Version 0.6.0 included a breaking change to the standard output.  I've switched to a more easily parsable [#summary](console) writer, which outputs to stderr.
+__Note__: Version 0.7.0 included a breaking change to the standard output.  I've switched to a more easily parsable [#summary](console) writer, which outputs to stderr.
 
 ## Modules
 As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
@@ -103,7 +103,7 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
 There are a few options available:
 
 #### -a, --all: Running against all files rather than git tree
-Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  If there is no .git in the target directory, then all files will be scanned.
+Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  Further to that, if a .git-crypt folder is detected, we will also exclude files which are GPG encrypted.  If there is no .git in the target directory, then all files will be scanned.
 
 You can override this behaviour with the `--all` flag, which will scan all files regardless.
 
@@ -129,7 +129,7 @@ You can view the module status with `hawkeye modules`.  As previously mentioned 
 
 ```
 $ hawkeye modules
-[info] Welcome to Hawkeye v0.6.0!
+[info] Welcome to Hawkeye v0.7.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -162,7 +162,7 @@ The default summary output to your console looks something like this.  The log i
 
 ```
 $ hawkeye scan
-[info] Welcome to Hawkeye v0.6.0!
+[info] Welcome to Hawkeye v0.7.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -170,9 +170,14 @@ $ hawkeye scan
 [info] Secret Files dynamically loaded
 [info] Node Check Updates dynamically loaded
 [info] Node Security Project dynamically loaded
-[info] scanning all files in target directory
-[info] Target for scan: /Users/kstoney/git/stono/hawkeye/test/samples/nodejs
-[info] Fail on limit set to low
+[info] git repo detected, will only use git tracked files
+[info] git-crypt detected, excluding files covered by GPG encryption
+[info]  -> git-crypt status -e
+[info] Files excluded by git-crypt: 0
+[info]  -> git ls-tree --full-tree --name-only -r HEAD
+[info] Files included in scan: 62
+[info] Target for scan: /Users/kstoney/git/stono/hawkeye
+[info] Fail at level: low
 [info] Running module File Contents
 [info] Running module Secret Files
 [info] Running module Node Check Updates

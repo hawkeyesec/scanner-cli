@@ -20,6 +20,15 @@ COPY ./ /hawkeye
 
 WORKDIR /target
 
+# Git-crypt
+RUN cd /tmp && \
+    wget --quiet https://www.agwa.name/projects/git-crypt/downloads/git-crypt-0.5.0.tar.gz && \
+    tar xzf git-crypt* && \
+    cd git-crypt* && \
+    make && \
+    make install && \
+    rm -rf /tmp/git-crypt*
+
 ENV PATH=/hawkeye/bin:$PATH
 ENTRYPOINT ["hawkeye"]
 CMD ["scan", "/target"]

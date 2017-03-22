@@ -47,7 +47,7 @@ const bitwise = {
 };
 
 program.failOn = program.failOn || 'low';
-logger.log('Fail on limit set to', program.failOn);
+logger.log('Fail at level:', program.failOn);
 
 scan.start(modules, (err, results) => {
   let total = 0;
