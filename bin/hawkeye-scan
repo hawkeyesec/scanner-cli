@@ -2,10 +2,10 @@
 'use strict';
 const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
-const SummaryWriter = require('../lib/writers/summary');
+const Writer = require('../lib/writers/console');
 const JsonWriter = require('../lib/writers/json');
 
-const writers = [new SummaryWriter()];
+const writers = [new Writer()];
 const modules = [];
 const exclusions = [];
 const program = require('commander');

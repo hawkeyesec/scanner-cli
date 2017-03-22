@@ -6,6 +6,8 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
+__Note__: Version 0.6.0 included a breaking change to the standard output.  I've switched to a more easily parsable [#summary](console) writer, which outputs to stderr.
+
 ## Modules
 As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
 
@@ -125,62 +127,112 @@ There are some global exclusions in place, and those are "^.git/" and "^node_mod
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
 
-![modules](screenshots/modules.png)
+```
+$ hawkeye modules
+[info] Welcome to Hawkeye v0.6.0!
+
+[info] File Contents dynamically loaded
+[info] Entropy dynamically loaded
+[info] Example Module dynamically loaded
+[info] Secret Files dynamically loaded
+[info] Node Check Updates dynamically loaded
+[info] Node Security Project dynamically loaded
+
+Module Status
+
+[info] Enabled:   File Contents (contents)
+                  Scans files for dangerous content
+[info] Disabled:  Entropy (entropy)
+                  Scans files for strings with high entropy
+[info] Disabled:  Example Module (example)
+                  Example of how to write a module and shell out a command
+[info] Enabled:   Secret Files (files)
+                  Scans for known secret files
+[info] Enabled:   Node Check Updates (ncu)
+                  Scans a package.json for out of date packages
+[info] Enabled:   Node Security Project (nsp)
+                  Scans a package.json for known vulnerabilities from NSP
+```
 
 ## Outputs
 At the moment, Hawkeye supports two output writers.
 
 ### Summary
-The output is a summary view of what we found, and is always enabled.  Significantly more details can be obtained by using the `--json` flag to write a json artefact.
+The default summary output to your console looks something like this.  The log information is written to `stdout` and the errors found to `stderr` in a console parsable tablular output
 
-![output](screenshots/output.png)
+```
+$ hawkeye scan
+[info] Welcome to Hawkeye v0.6.0!
+
+[info] File Contents dynamically loaded
+[info] Entropy dynamically loaded
+[info] Example Module dynamically loaded
+[info] Secret Files dynamically loaded
+[info] Node Check Updates dynamically loaded
+[info] Node Security Project dynamically loaded
+[info] scanning all files in target directory
+[info] Target for scan: /Users/kstoney/git/stono/hawkeye/test/samples/nodejs
+[info] Fail on limit set to low
+[info] Running module File Contents
+[info] Running module Secret Files
+[info] Running module Node Check Updates
+[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
+[info] Running module Node Security Project
+[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
+[info] scan complete, 16 issues found
+
+level     description                                       offender                          extra
+--------  ------------------------------------------------  --------------------------------  -------------------------------------------------------------------------
+critical  https://nodesecurity.io/advisories/39             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
+critical  Private SSH key                                   regex_rsa
+critical  Private SSH key                                   id_rsa
+critical  Potential cryptographic private key               cert.pem
+critical  Private key in file                               some_file_with_private_key_in.md  Line number: 1
+high      https://nodesecurity.io/advisories/106            negotiator                        vulnerable-app@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3
+high      Module is one or more major versions out of date  nodemailer                        Installed: 2.6.4, Available: 3.1.8
+high      GNOME Keyring database file                       keyring
+medium    https://nodesecurity.io/advisories/48             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
+medium    Module is one or more minor versions out of date  express                           Installed: 4.13.4, Available: 4.15.2
+medium    Rubygems credentials file                         gem/credentials                   Might contain API key for a rubygems.org account.
+medium    Module is one or more minor versions out of date  morgan                            Installed: 1.7.0, Available: 1.8.1
+medium    Module is one or more minor versions out of date  serve-favicon                     Installed: 2.3.0, Available: 2.4.1
+medium    Module is one or more minor versions out of date  body-parser                       Installed: 1.15.1, Available: 1.17.1
+medium    Module is one or more minor versions out of date  debug                             Installed: 2.2.0, Available: 2.6.3
+low       Contains words: private, key                      some_file_with_private_key_in.md
+```
+
+I plan to add options to supress log outputs etc in the future, but for now if you want to parse this output, you can supress the logs and just output the table like this:
+
+```
+$ (hawkeye scan >/dev/null) 2>&1 | tail -n +3
+critical  https://nodesecurity.io/advisories/39             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
+critical  Private SSH key                                   regex_rsa
+critical  Private SSH key                                   id_rsa
+critical  Potential cryptographic private key               cert.pem
+critical  Private key in file                               some_file_with_private_key_in.md  Line number: 1
+high      https://nodesecurity.io/advisories/106            negotiator                        vulnerable-app@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3
+high      Module is one or more major versions out of date  nodemailer                        Installed: 2.6.4, Available: 3.1.8
+high      GNOME Keyring database file                       keyring
+medium    https://nodesecurity.io/advisories/48             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
+medium    Module is one or more minor versions out of date  express                           Installed: 4.13.4, Available: 4.15.2
+medium    Rubygems credentials file                         gem/credentials                   Might contain API key for a rubygems.org account.
+medium    Module is one or more minor versions out of date  morgan                            Installed: 1.7.0, Available: 1.8.1
+medium    Module is one or more minor versions out of date  serve-favicon                     Installed: 2.3.0, Available: 2.4.1
+medium    Module is one or more minor versions out of date  body-parser                       Installed: 1.15.1, Available: 1.17.1
+medium    Module is one or more minor versions out of date  debug                             Installed: 2.2.0, Available: 2.6.3
+low       Contains words: private, key
+```
+
+Here are some other handy examples:
+
+- `(hawkeye scan >/dev/null) 2>&1 | tail -n +3 | grep critical` - output just critical items
+
+Another option is for you to use a different output writer, for example...
 
 ### Json
-You can output much more information in the form of a JSON artefact that groups by executed module.  Check out a sample [here](test/samples/results.json)
+You can output much more information in the form of a JSON artefact that groups by executed module.
 
-```
-  {
-    "module": {
-      "key": "nsp",
-      "name": "Node Security Project",
-      "description": "Scans a package.json for known vulnerabilities from NSP"
-    },
-    "results": {
-      "high": [
-        {
-          "key": "nsp-cvss",
-          "name": "negotiator",
-          "description": "https://nodesecurity.io/advisories/106\nods-jl@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3",
-          "data": {
-            "id": 106,
-            "updated_at": "2016-06-16T20:37:24.000Z",
-            "created_at": "2016-05-04T16:34:12.000Z",
-            "publish_date": "2016-06-16T17:36:06.000Z",
-            "overview": "negotiator is an HTTP content negotiator for Node.js and is used by many modules and frameworks including Express and Koa.\n\nThe header for \"Accept-Language\", when parsed by negotiator is vulnerable to Regular
-Expression Denial of Service via a specially crafted string. \n\nTimeline\n\n- April 29th 2016 - Initial report to maintainers\n- April 29th 2016 - Confirm receipt from maintainers\n- May 1st 2016 - Fix confirmed\n- May 5th 2016 - 0.6.1 p
-ublished with fix\n- June 16th 2016 - Advisory published (delay was to coordinate fixes in upstream frameworks, Koa and Express)",
-            "recommendation": "Upgrade to at least version 0.6.1\n\nExpress users should update to Express 4.14.0 or greater. If you want to see if you are using a vulnerable call,  a quick grep for the `acceptsLanguages` function call in
- your application will tell you if you are using this functionality.",
-            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-            "cvss_score": 7.5,
-            "module": "negotiator",
-            "version": "0.5.3",
-            "vulnerable_versions": "<= 0.6.0",
-            "patched_versions": ">= 0.6.1",
-            "title": "Regular Expression Denial of Service",
-            "path": [
-              "ods-jl@0.0.0",
-              "express@4.13.4",
-              "accepts@1.2.13",
-              "negotiator@0.5.3"
-            ],
-            "advisory": "https://nodesecurity.io/advisories/106"
-          }
-        }
-    ]
-....
-
-```
+Check out a sample [here](test/samples/results.json)
 
 ## Development
 
@@ -198,5 +250,5 @@ The idea is that this project should be super extensible, I want people to write
 The first argument passed is `results`, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
 
 ```
-results.critial('title', 'description', { additional: 'data' });
+results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
