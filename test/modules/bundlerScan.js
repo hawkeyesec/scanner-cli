@@ -13,7 +13,7 @@ describe('Bundler-scan', () => {
   beforeEach(() => {
     mockExec = deride.stub(['command']);
     mockExec.setup.command.toCallbackWith(null, {
-      stderr: sample
+      stdout: sample
     });
     const nullLogger = deride.stub(['log', 'debug', 'error']);
     const fileManager = new FileManager({
@@ -35,4 +35,17 @@ describe('Bundler-scan', () => {
     });
   });
 
+  it('should report medium vulnerabilities', done => {
+    bundlerScan.run(mockResults, () => {
+      mockResults.expect.medium.called.withArg('actionpack', 'Denial of Service Vulnerability in Action View when using render :text', 'upgrade to >= 3.2.17', {});
+      done();
+    });
+  });
+
+  it('should report high vulnerabilities', done => {
+    bundlerScan.run(mockResults, () => {
+      mockResults.expect.high.called.withArg('actionpack', 'Ruby on Rails params_parser.rb Action Pack Type Casting Parameter Parsing Remote Code Execution', 'upgrade to ~> 2.3.15, ~> 3.0.19, ~> 3.1.10, >= 3.2.11', {});
+      done();
+    });
+  });
 });
