@@ -24,7 +24,7 @@
   "maxcomplexity": 3,
   "maxdepth": 3,
   "maxparams": 4,
-  "maxstatements": 30,
+  "maxstatements": 40,
 
   // Relaxing options:
   "esnext": true,

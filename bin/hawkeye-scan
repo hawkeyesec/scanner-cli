@@ -4,6 +4,8 @@ const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
 const Writer = require('../lib/writers/console');
 const JsonWriter = require('../lib/writers/json');
+const SumoWriter = require('../lib/writers/sumologic');
+const async = require('async');
 
 const writers = [new Writer()];
 const modules = [];
@@ -28,6 +30,11 @@ program
   .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file.  Can be specified multiple times', val => {
     writers.push(new JsonWriter({
       path: val
+    }));
+  })
+  .option('-s, --sumo    <http://sumologic-http-connector>>', 'Write the vulnerabilities to SumoLogic', val => {
+    writers.push(new SumoWriter({
+      url: val
     }));
   })
   .parse(process.argv);
@@ -61,10 +68,16 @@ scan.start(modules, (err, results) => {
   });
   logger.log('scan complete, ' + total + ' issues found');
   console.log('');
-  writers.forEach(writer => {
-    writer.write(results);
+  async.eachSeries(writers, (writer, next) => {
+    logger.log('Doing writer:', writer.key);
+    writer.write(results, err => {
+      if(err) { logger.error(err.message); }
+      next();
+    });
+  }, () => {
+    logger.log('Scan complete');
+    if(total > 0) {
+      process.exit(exitCode);
+    }
   });
-  if(total > 0) {
-    process.exit(exitCode);
-  }
 });

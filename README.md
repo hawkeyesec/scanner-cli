@@ -6,7 +6,7 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
-__Note__: Version 0.7.0 included a breaking change to the standard output.  I've switched to a more easily parsable [console](#console) writer, which outputs to stderr.
+__Note__: Version 0.8.0 included a breaking change to the standard output.  I've switched to a more easily parsable [console](#console) writer, which outputs to stderr.
 
 ## Modules
 As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
@@ -116,8 +116,11 @@ By default Hawkeye will look in your current working directory.  You can overrid
 #### -m, --module  <module name>: Running only specific modules
 If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m nsp -m ncu` would run just the nsp and ncu modules.
 
-#### -j, --json    </path/to/summary,json>: Produce a JSON artefact
-The `--json` paramter allows you to write a much more detailed report to a file (see futher down under the output section for more info).
+#### -j, --json    </path/to/summary.json>: Produce a JSON artefact
+The `--json` paramter allows you to write a much more detailed report to a file. See the Json section below for more information
+
+#### -s, --sumologic    <http://sumologic-http-collector>: Send the results to SumoLogic
+This will post the results to a SumoLogic HTTP collector.  See the SumoLogic section below for more information.
 
 #### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
 This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
@@ -129,7 +132,7 @@ You can view the module status with `hawkeye modules`.  As previously mentioned 
 
 ```
 $ hawkeye modules
-[info] Welcome to Hawkeye v0.7.0!
+[info] Welcome to Hawkeye v0.8.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -162,7 +165,7 @@ The default summary output to your console looks something like this.  The log i
 
 ```
 $ hawkeye scan
-[info] Welcome to Hawkeye v0.7.0!
+[info] Welcome to Hawkeye v0.8.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -238,6 +241,20 @@ Another option is for you to use a different output writer, for example...
 You can output much more information in the form of a JSON artefact that groups by executed module.
 
 Check out a sample [here](test/samples/results.json)
+
+### SumoLogic
+The output of Hawkeye can be sent to a SumoLogic HTTP collector of your choice.  In this example, I have a collector of `hawkeye`, with a single HTTP source.
+```
+hawkeye scan --sumo https://collectors.us2.sumologic.com/receiver/v1/http/your-http-collector-url
+
+...
+[info] Doing writer: sumologic
+[info] sending 16 results to SumoLogic
+```
+
+And in sumo logic, search for `_collector="hawkeye" | json auto`:
+
+![SumoLogic](screenshots/sumologic.png)
 
 ## Development
 
