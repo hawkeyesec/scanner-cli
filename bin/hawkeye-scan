@@ -74,7 +74,8 @@ scan.start(modules, (err, results) => {
       if(err) { logger.error(err.message); }
       next();
     });
-  }, () => {
+  }, err => {
+      if(err) { logger.error(err.message); }
     logger.log('Scan complete');
     if(total > 0) {
       process.exit(exitCode);
