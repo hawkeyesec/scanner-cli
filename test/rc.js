@@ -17,8 +17,6 @@ describe('RC', () => {
     noRc.withModule('ncu');
     should(noRc.modules).eql(['ncu']);
   });
-
-
   it('should let me set the failOn level', () => {
     rc.withFailOn('high');
     should(rc.failOn).eql('high');
@@ -37,6 +35,11 @@ describe('RC', () => {
   });
 
   describe('when filespresent', () => {
+    it('should throw an error with an unknown option', () => {
+      should(() => {
+        new Rc().withTarget(path.join(__dirname, 'samples/badrc'));
+      }).throw();
+    });
     it('should concat the excludes together', () => {
       should(rc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', '^another/']);
     });
