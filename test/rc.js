@@ -21,6 +21,14 @@ describe('RC', () => {
     rc.withFailOn('high');
     should(rc.failOn).eql('high');
   });
+  it('should let me add a sumo writer ', () => {
+    rc.withSumo('url');
+    should(rc.sumo).eql('url');
+  });
+  it('should let me add a json writer ', () => {
+    rc.withJson('path');
+    should(rc.json).eql('path');
+  });
 
   describe('when files not present', () => {
     it('should default the excludes', () => {

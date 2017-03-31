@@ -1,4 +1,6 @@
 {
   "modules": ["contents", "entropy", "files", "ncu", "nsp"],
-  "failOn": "medium"
+  "failOn": "medium",
+  "sumo": "url",
+  "json": "path"
 }

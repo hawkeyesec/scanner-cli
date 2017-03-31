@@ -13,18 +13,6 @@ const program = require('commander');
 const rc = new Rc();
 const util = require('../lib/util');
 
-const addJsonWriter = path => {
-  writers.push(new JsonWriter({
-    path: path
-  }));
-};
-
-const addSumoWriter = url => {
-  writers.push(new SumoWriter({
-    url: url
-  }));
-};
-
 program
   .option('-a, --all',
           'Scan all files, regardless if a git repo is found')
@@ -37,11 +25,10 @@ program
   .option('-e, --exclude <pattern>',
           'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude)
   .option('-j, --json    </path/to/summary,json>',
-          'Write JSON output to file.  Can be specified multiple times', addJsonWriter)
+          'Write JSON output to file.  Can be specified multiple times', rc.withJson)
   .option('-s, --sumo    <http://sumologic-http-connector>>',
-          'Write the vulnerabilities to SumoLogic', addSumoWriter)
+          'Write the vulnerabilities to SumoLogic', rc.withSumo)
   .parse(process.argv);
-
 
 const bitwise = {
   low: 1,
@@ -54,8 +41,18 @@ rc.failOn = util.defaultValue(program.failOn, 'low');
 rc.all = util.defaultValue(program.all, false);
 rc.withTarget(program.target);
 
-const scan = new Scan(rc);
+if(rc.json) {
+  writers.push(new JsonWriter({
+    path: rc.json
+  }));
+}
+if(rc.sumo) {
+  writers.push(new SumoWriter({
+    url: rc.sumo
+  }));
+}
 
+const scan = new Scan(rc);
 scan.start((err, results) => {
   let total = 0;
   let exitCode = 0;
