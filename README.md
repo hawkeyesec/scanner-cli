@@ -98,6 +98,25 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
 </pipeline>
 ```
 
+## Easy Configuration
+As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore` pattern in your project root.
+
+### .hawkeyerc
+In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
+```
+{
+  "modules": ["contents", "entropy", "files", "ncu", "nsp"],
+  "failOn": "medium"
+}
+```
+
+### .hawkeyeignore
+This file should be a collection of patterns to exclude from the scan
+```
+^test/
+README.md
+```
+
 ## The CLI
 ### `hawkeye scan`
 There are a few options available:
