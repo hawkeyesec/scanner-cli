@@ -26,7 +26,7 @@ program
           'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude)
   .option('-j, --json    </path/to/summary,json>',
           'Write JSON output to file.  Can be specified multiple times', rc.withJson)
-  .option('-s, --sumo    <http://sumologic-http-connector>>',
+  .option('-s, --sumo    <https://sumologic-http-connector>',
           'Write the vulnerabilities to SumoLogic', rc.withSumo)
   .parse(process.argv);
 
