@@ -14,11 +14,11 @@ describe('File Manager', () => {
     });
   });
 
-  it('should allow me to add additional exclusions', () => {
+  it('should allow me to add additional exclude', () => {
     fm = new FileManager({
       target: path.join(__dirname, 'samples/filemanager'),
       logger: nullLogger,
-      exclusions: ['^test/']
+      exclude: ['^test/']
     });
     const result = fm.all();
     const expected = [

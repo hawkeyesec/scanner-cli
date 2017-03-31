@@ -2,49 +2,46 @@
 'use strict';
 const Scan = require('../lib/scan');
 const logger = new require('../lib/logger')();
-const Writer = require('../lib/writers/console');
+const ConsoleWriter = require('../lib/writers/console');
 const JsonWriter = require('../lib/writers/json');
 const SumoWriter = require('../lib/writers/sumologic');
 const async = require('async');
+const Rc = require('../lib/rc');
 
-const writers = [new Writer()];
-const modules = [];
-const exclusions = [];
+const writers = [new ConsoleWriter()];
 const program = require('commander');
+const rc = new Rc();
+const util = require('../lib/util');
+
+const addJsonWriter = path => {
+  writers.push(new JsonWriter({
+    path: path
+  }));
+};
+
+const addSumoWriter = url => {
+  writers.push(new SumoWriter({
+    url: url
+  }));
+};
+
 program
-  .option('-a, --all', 'Scan all files, regardless if a git repo is found')
-  .option('-f, --fail-on <low, medium, high, critical>', 'Set the level at which hawkeye returns non-zero status codes (defaults to low)', val => {
-    if(['low', 'medium', 'high', 'critical'].indexOf(val) === -1) {
-      logger.error('Please specify either low, medium, high or critical!');
-      process.exit(1);
-    }
-    return val;
-  })
-  .option('-t, --target  </path/to/project>', 'The location to scan, usually the project root')
-  .option('-m, --module  <module name>', 'Run specific module.  Can be specified multiple times', (val) => {
-    modules.push(val);
-  })
-  .option('-e, --exclude <pattern>', 'Specify one or more exclusion patterns (eg. test/*)', (val) => {
-    exclusions.push(val);
-  })
-  .option('-j, --json    </path/to/summary,json>', 'Write JSON output to file.  Can be specified multiple times', val => {
-    writers.push(new JsonWriter({
-      path: val
-    }));
-  })
-  .option('-s, --sumo    <http://sumologic-http-connector>>', 'Write the vulnerabilities to SumoLogic', val => {
-    writers.push(new SumoWriter({
-      url: val
-    }));
-  })
+  .option('-a, --all',
+          'Scan all files, regardless if a git repo is found')
+  .option('-t, --target  </path/to/project>',
+          'The location to scan, usually the project root')
+  .option('-f, --fail-on <low, medium, high, critical>',
+          'Set the level at which hawkeye returns non-zero status codes (defaults to low)', rc.withFailOn)
+  .option('-m, --module  <module name>',
+          'Run specific module.  Can be specified multiple times', rc.withModule)
+  .option('-e, --exclude <pattern>',
+          'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude)
+  .option('-j, --json    </path/to/summary,json>',
+          'Write JSON output to file.  Can be specified multiple times', addJsonWriter)
+  .option('-s, --sumo    <http://sumologic-http-connector>>',
+          'Write the vulnerabilities to SumoLogic', addSumoWriter)
   .parse(process.argv);
 
-if(modules.length === 0) { modules.push('all') }
-const scan = new Scan({
-  target: program.target,
-  exclusions: exclusions,
-  all: program.all || false
-});
 
 const bitwise = {
   low: 1,
@@ -53,16 +50,19 @@ const bitwise = {
   critical: 8
 };
 
-program.failOn = program.failOn || 'low';
-logger.log('Fail at level:', program.failOn);
+rc.failOn = util.defaultValue(program.failOn, 'low');
+rc.all = util.defaultValue(program.all, false);
+rc.withTarget(program.target);
 
-scan.start(modules, (err, results) => {
+const scan = new Scan(rc);
+
+scan.start((err, results) => {
   let total = 0;
   let exitCode = 0;
   results.forEach(moduleResult => {
     Object.keys(moduleResult.results).forEach(key => {
       const levelResults = moduleResult.results[key].length;
-      if(levelResults > 0 && bitwise[key] >= bitwise[program.failOn]) { exitCode = 1 }
+      if(levelResults > 0 && bitwise[key] >= bitwise[rc.failOn]) { exitCode = 1 }
       total = total + levelResults;
     });
   });

@@ -1,8 +1,9 @@
 'use strict';
 const Scan = require('../lib/scan');
-const path = require('path');
 const deride = require('deride');
 const should = require('should');
+const Rc = require('../lib/rc');
+const path = require('path');
 
 describe('Scan', () => {
   let scan, mockExec;
@@ -22,15 +23,15 @@ describe('Scan', () => {
     });
 
     const nullLogger = deride.stub(['log', 'debug', 'error']);
-    scan = new Scan({
-      target: path.join(__dirname, 'samples/nodejs'),
-      exec: mockExec,
-      logger: nullLogger
-    });
+    const rc = new Rc();
+    rc.logger = nullLogger;
+    rc.exec = mockExec;
+    rc.withTarget(path.join(__dirname, 'samples/nodejs'));
+    scan = new Scan(rc);
   });
 
   it('should run a scan', done => {
-    scan.start(['all'], (err, results) => {
+    scan.start((err, results) => {
       should(err).eql(null);
       should(results.length).eql(4);
       done();

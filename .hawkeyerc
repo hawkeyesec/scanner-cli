@@ -1,0 +1,4 @@
+{
+  "modules": ["contents", "entropy", "files", "ncu", "nsp"],
+  "failOn": "medium"
+}
