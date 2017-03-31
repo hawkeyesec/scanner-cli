@@ -48,4 +48,11 @@ describe('Bundler-scan', () => {
       done();
     });
   });
+
+  it('should report insecure gem sources', done => {
+    bundlerScan.run(mockResults, () => {
+      mockResults.expect.low.called.withArg('Insecure Source URI', 'Insecure Source URI found: http://rubygems.org/');
+      done();
+    });
+  });
 });
