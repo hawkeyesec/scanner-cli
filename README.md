@@ -6,22 +6,26 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
-__Note__: Version 0.9.2 included a breaking change to the standard output.  I've switched to a more easily parsable [console](#console) writer, which outputs to stderr.
-
 ## Modules
 As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
 
+### Generic Modules:
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
  - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
  - __File Content Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
+
+### Node JS:
  - __Node Security Project (nsp)__: Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
  - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
-__Note:__ Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch, personally I use this manually checking over code bases I have inherited.
+### Ruby:
+ - __Ruby Bundler Audit (bundlerAudit): Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities. (Thanks to [Laura](https://github.com/lauraionescu))
 
-__Note:__ We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
+I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
-I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is.
+## Current Limitations
+ - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch, personally I use this manually checking over code bases I have inherited.
+ - We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
 I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.
@@ -151,8 +155,9 @@ You can view the module status with `hawkeye modules`.  As previously mentioned 
 
 ```
 $ hawkeye modules
-[info] Welcome to Hawkeye v0.9.2!
+[info] Welcome to Hawkeye v0.10.0!
 
+[info] Bundler Scan dynamically loaded
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
 [info] Example Module dynamically loaded
@@ -162,6 +167,8 @@ $ hawkeye modules
 
 Module Status
 
+[info] Enabled:   Bundler Scan (bundlerScan)
+                  Scan for Ruby gems with known vulnerabilities
 [info] Enabled:   File Contents (contents)
                   Scans files for dangerous content
 [info] Disabled:  Entropy (entropy)
@@ -177,14 +184,14 @@ Module Status
 ```
 
 ## Outputs
-At the moment, Hawkeye supports two output writers.
+At the moment, Hawkeye supports three output writers.
 
 ### Summary
 The default summary output to your console looks something like this.  The log information is written to `stdout` and the errors found to `stderr` in a console parsable tablular output
 
 ```
 $ hawkeye scan
-[info] Welcome to Hawkeye v0.9.2!
+[info] Welcome to Hawkeye v0.10.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
