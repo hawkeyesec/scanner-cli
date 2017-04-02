@@ -300,3 +300,6 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
+
+### Thanks
+  - [Laura](https://github.com/lauraionescu) for adding the Ruby scanner
