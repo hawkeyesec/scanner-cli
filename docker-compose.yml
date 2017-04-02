@@ -1,8 +1,23 @@
 version: '2'
 
 services:
-  hawkeye:
+  shell:
+    image: stono/hawkeye
+    build: .
+    entrypoint: /bin/bash
+    volumes:
+      - ./lib:/hawkeye/lib
+      - ./test/samples/nodejs:/target/nodejs
+      - ./test/samples/ruby:/target/ruby
+
+  nodejs:
     image: stono/hawkeye
     build: .
     volumes:
       - ./test/samples/nodejs:/target
+
+  ruby:
+    image: stono/hawkeye
+    build: .
+    volumes:
+      - ./test/samples/ruby:/target

@@ -11,11 +11,12 @@ describe('Bundler-scan', () => {
 
   let bundlerScan, mockExec, mockResults;
   beforeEach(() => {
-    mockExec = deride.stub(['command']);
+    mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
       stdout: sample
     });
-    const nullLogger = deride.stub(['log', 'debug', 'error']);
+    mockExec.setup.commandExists.toReturn(true);
+    const nullLogger = deride.stub(['log', 'warn', 'debug', 'error']);
     const fileManager = new FileManager({
       target: path.join(__dirname, '../samples/ruby'),
       logger: nullLogger
@@ -23,7 +24,8 @@ describe('Bundler-scan', () => {
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     bundlerScan = new BundlerScan({
-      exec: mockExec
+      exec: mockExec,
+      logger: nullLogger
     });
     should(bundlerScan.handles(fileManager)).eql(true);
   });

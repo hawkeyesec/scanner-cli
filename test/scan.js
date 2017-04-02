@@ -10,7 +10,8 @@ describe('Scan', () => {
   before(() => {
     let ncuSample = require('./samples/ncu.json');
     let nspSample = require('./samples/nsp.json');
-    mockExec = deride.stub(['command']);
+    mockExec = deride.stub(['command', 'commandExists']);
+    mockExec.setup.commandExists.toReturn(true);
     mockExec.setup.command.toDoThis((command, options, done) => {
       if(command.indexOf('nsp') > -1) {
         return done(null, {

@@ -9,23 +9,6 @@ RUN yum -y -q update && \
               ruby rubygems && \
     yum -y -q clean all
 
-# Get nodejs repos
-RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-RUN yum -y -q install nodejs
-
-RUN mkdir -p /hawkeye
-COPY package.json /hawkeye
-COPY Gemfile /hawkeye
-COPY Gemfile.lock /hawkeye
-
-RUN cd /hawkeye && \
-    npm install --production --quiet
-RUN gem install bundler
-RUN cd /hawkeye && bundle install
-COPY ./ /hawkeye
-
-WORKDIR /target
-
 # Git-crypt
 RUN cd /tmp && \
     wget --quiet https://www.agwa.name/projects/git-crypt/downloads/git-crypt-0.5.0.tar.gz && \
@@ -34,6 +17,25 @@ RUN cd /tmp && \
     make && \
     make install && \
     rm -rf /tmp/git-crypt*
+
+# Get nodejs repos
+RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+RUN yum -y -q install nodejs
+
+# Add bundler-audit
+RUN gem install bundler-audit
+
+# Install hawkeye
+RUN mkdir -p /hawkeye
+COPY package.json /hawkeye
+COPY Gemfile /hawkeye
+COPY Gemfile.lock /hawkeye
+
+RUN cd /hawkeye && \
+    npm install --production --quiet
+COPY ./ /hawkeye
+
+WORKDIR /target
 
 ENV PATH=/hawkeye/bin:$PATH
 ENTRYPOINT ["hawkeye"]
