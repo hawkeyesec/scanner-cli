@@ -5,7 +5,8 @@ RUN yum -y -q update && \
     yum -y -q remove iputils && \
     yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 							libffi-devel python-devel redhat-rpm-config git-core \
-							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates && \
+							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
+              ruby rubygems && \
     yum -y -q clean all
 
 # Get nodejs repos
@@ -14,8 +15,13 @@ RUN yum -y -q install nodejs
 
 RUN mkdir -p /hawkeye
 COPY package.json /hawkeye
+COPY Gemfile /hawkeye
+COPY Gemfile.lock /hawkeye
+
 RUN cd /hawkeye && \
     npm install --production --quiet
+RUN gem install bundler
+RUN cd /hawkeye && bundle install
 COPY ./ /hawkeye
 
 WORKDIR /target
