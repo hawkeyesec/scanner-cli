@@ -19,7 +19,7 @@ As I mentioned above, modules are simply isolated bits of code that _could_ run 
  - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
 ### Ruby:
- - __Ruby Bundler Audit (bundlerAudit): Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities. (Thanks to [Laura](https://github.com/lauraionescu))
+ - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities. (Thanks to [Laura](https://github.com/lauraionescu))
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
