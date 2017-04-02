@@ -28,8 +28,6 @@ RUN gem install bundler-audit
 # Install hawkeye
 RUN mkdir -p /hawkeye
 COPY package.json /hawkeye
-COPY Gemfile /hawkeye
-COPY Gemfile.lock /hawkeye
 
 RUN cd /hawkeye && \
     npm install --production --quiet

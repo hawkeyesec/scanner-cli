@@ -155,7 +155,7 @@ You can view the module status with `hawkeye modules`.  As previously mentioned 
 
 ```
 $ hawkeye modules
-[info] Welcome to Hawkeye v0.10.0!
+[info] Welcome to Hawkeye v0.10.3!
 
 [info] Bundler Scan dynamically loaded
 [info] File Contents dynamically loaded
@@ -191,7 +191,7 @@ The default summary output to your console looks something like this.  The log i
 
 ```
 $ hawkeye scan
-[info] Welcome to Hawkeye v0.10.0!
+[info] Welcome to Hawkeye v0.10.3!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
