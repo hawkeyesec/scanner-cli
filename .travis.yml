@@ -6,7 +6,6 @@ services:
 language: node_js
 
 node_js:
-  - 6
   - 7
 
 notifications:
@@ -16,11 +15,9 @@ branches:
   only:
     - master
 
-before_install:
-  - docker build -t stono/hawkeye .
-
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker build -t stono/hawkeye .
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push stono/hawkeye;
     fi
