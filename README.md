@@ -1,3 +1,7 @@
+[![NPM version](https://badge.fury.io/js/hawkeye-scanner.svg)](http://badge.fury.io/js/hawkeye-scanner)
+[![Build Status](https://travis-ci.org/Stono/hawkeye.svg?branch=master)](https://travis-ci.org/Stono/hawkeye)
+[![Dependency Status](https://david-dm.org/Stono/hawkeye.svg)](https://david-dm.org/Stono/hawkeye)
+
 ![Logo](screenshots/badlogo.png)
 
 Hawkeye is a project security, vulnerability and general risk highlighting tool.  It has a few goals:
@@ -23,7 +27,7 @@ Modules are basically little bits of code that either implement their own logic,
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
-## Current Limitations
+### Current Limitations
  - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch, personally I use this manually checking over code bases I have inherited.
  - We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
