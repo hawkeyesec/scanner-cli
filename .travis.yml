@@ -1,4 +1,7 @@
-sudo: false
+sudo: required
+
+services:
+  - docker
 
 language: node_js
 
@@ -12,3 +15,12 @@ notifications:
 branches:
   only:
     - master
+
+before_install:
+  - docker build -t stono/hawkeye .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push stono/hawkeye;
+    fi
