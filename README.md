@@ -7,7 +7,7 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
 ## Modules
-As I mentioned above, modules are simply isolated bits of code that _could_ run against the target that is being scanned.  The following modules are currently implemented:
+Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  The only run if the criteria required is met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target.  The modules implemented so far are:
 
 ### Generic Modules:
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
@@ -19,7 +19,7 @@ As I mentioned above, modules are simply isolated bits of code that _could_ run 
  - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
 
 ### Ruby:
- - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities. (Thanks to [Laura](https://github.com/lauraionescu))
+ - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
