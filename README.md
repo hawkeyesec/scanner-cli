@@ -13,7 +13,7 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
 ## Modules
-Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  The only run if the criteria required is met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target.  The modules implemented so far are:
+Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the criteria required is met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target.  The modules implemented so far are:
 
 ### Generic Modules:
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
@@ -22,7 +22,7 @@ Modules are basically little bits of code that either implement their own logic,
 
 ### Node JS:
  - __Node Security Project (nsp)__: Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
- - __NPM Check Updates (ncu)__: Wraps the [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) module, to highlight outdated dependencies with increasing severity.
+ - __NPM Check Updates (ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for known vulnerabilities.
 
 ### Ruby:
  - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
@@ -30,7 +30,7 @@ Modules are basically little bits of code that either implement their own logic,
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
 ### Current Limitations
- - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch, personally I use this manually checking over code bases I have inherited.
+ - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.  Personally I use this manually checking over code bases I have inherited.
  - We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
@@ -68,7 +68,7 @@ services:
 You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
 ### As part of your GoCD pipeline
-If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built image.
+If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built docker image.
 
 ```
 <pipeline name="security-scan">
