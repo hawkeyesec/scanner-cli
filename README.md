@@ -13,16 +13,16 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
 ## Modules
-Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the criteria required is met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target.  The modules implemented so far are:
+Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the required criteria are met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.  The modules implemented so far are:
 
 ### Generic Modules:
- - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
+ - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js), taken from [gitrob](https://github.com/michenriksen/gitrob).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
  - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
  - __File Content Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
 
 ### Node JS:
- - __Node Security Project (nsp)__: Scan the package.json (if present) and check for vulnerabilities on [Node Security Project](https://github.com/nodesecurity/nsp)
- - __NPM Check Updates (ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for known vulnerabilities.
+ - __Node Security Project (nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
+ - __NPM Check Updates (ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for outdated modules.
 
 ### Ruby:
  - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
@@ -68,7 +68,7 @@ services:
 You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
 ### As part of your GoCD pipeline
-If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something similar, you can add a pipeline step to run these scans automatically.  This is an example of running against the latest built docker image.
+This is an example of running Hawkeye against one of your projects in GoCD:
 
 ```
 <pipeline name="security-scan">
@@ -83,23 +83,8 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker pull eu.gcr.io/your-project-name/your-image-name:latest</arg>
+            <arg>docker run --rm -v $PWD:/target stono/hawkeye</arg>
             <runif status="passed" />
-          </exec>
-          <exec command="bash">
-            <arg>-c</arg>
-            <arg>docker run --entrypoint=/bin/true --name=your-image-name_latest eu.gcr.io/your-project-name/your-image-name:latest</arg>
-            <runif status="passed" />
-          </exec>
-          <exec command="bash">
-            <arg>-c</arg>
-            <arg>docker run --rm --volumes-from your-image-name_latest stono/hawkeye scan --target /app</arg>
-            <runif status="passed" />
-          </exec>
-          <exec command="bash">
-            <arg>-c</arg>
-            <arg>docker rm -f your-image-name_latest</arg>
-            <runif status="any" />
           </exec>
         </tasks>
       </job>
@@ -112,7 +97,7 @@ If you're using [ci-in-a-box](https://github.com/Stono/ci-in-a-box) or something
 As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore` pattern in your project root.
 
 ### .hawkeyerc
-In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
+This file takes all the same options as `hawkeye scan --help`.   In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
 ```
 {
   "modules": ["contents", "entropy", "files", "ncu", "nsp"],
@@ -121,7 +106,7 @@ In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
 ```
 
 ### .hawkeyeignore
-This file should be a collection of patterns to exclude from the scan
+This file should be a collection of patterns to exclude from the scan, and is equivalent to running `--exclude`.
 ```
 ^test/
 README.md
@@ -154,7 +139,7 @@ This will post the results to a SumoLogic HTTP collector.  See the SumoLogic sec
 #### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
 This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
 
-There are some global exclusions in place, and those are "^.git/" and "^node_modules".
+There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
 
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
