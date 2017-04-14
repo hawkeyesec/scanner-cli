@@ -38,3 +38,6 @@ WORKDIR /target
 ENV PATH=/hawkeye/bin:$PATH
 ENTRYPOINT ["hawkeye"]
 CMD ["scan", "/target"]
+
+# Ensure the latest bundle-audit database
+RUN bundle-audit update
