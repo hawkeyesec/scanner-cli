@@ -34,6 +34,13 @@ describe('Nsp', () => {
     });
   });
 
+  it('should pass the whole advisory back as data', done => {
+    mockResults.setup.critical.toDoThis(data => {
+      should(Object.keys(data.data[0]).indexOf('cvss_score')).not.eql(-1);
+    });
+    nsp.run(mockResults, done);
+  });
+
   it('should log cvss scores over 8 as critical', done => {
     nsp.run(mockResults, () => {
       mockResults.expect.critical.called.once();
@@ -54,7 +61,6 @@ describe('Nsp', () => {
       done();
     });
   });
-
 
   it('should log cvss scores under 4 as low', done => {
     nsp.run(mockResults, () => {
