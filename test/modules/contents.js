@@ -22,9 +22,9 @@ describe('Contents', () => {
   });
 
   it('should match RSA private keys', done => {
-    contents.run(mockResults, () => {
-      mockResults.expect.critical.called.withArg('some_file_with_private_key_in.md');
-      done();
+    mockResults.setup.critical.toDoThis(data => {
+      should(data.offender).eql('some_file_with_private_key_in.md');
     });
+    contents.run(mockResults, done);
   });
 });

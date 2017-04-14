@@ -22,38 +22,38 @@ describe('Files', () => {
   });
 
   it('should match exact file names', done => {
-    files.run(mockResults, () => {
-      mockResults.expect.critical.called.withArg('id_rsa');
-      done();
+    mockResults.setup.critical.toDoThis(data => {
+      if(data.offender === 'id_rsa') { done(); }
     });
+    files.run(mockResults);
   });
 
   it('should match regex file names', done => {
-    files.run(mockResults, () => {
-      mockResults.expect.critical.called.withArg('regex_rsa');
-      done();
+    mockResults.setup.critical.toDoThis(data => {
+      if(data.offender === 'regex_rsa') { done(); }
     });
+    files.run(mockResults);
   });
 
   it('should match exact file extensions', done => {
-    files.run(mockResults, () => {
-      mockResults.expect.critical.called.withArg('cert.pem');
-      done();
+    mockResults.setup.critical.toDoThis(data => {
+      if(data.offender === 'cert.pem') { done(); }
     });
+    files.run(mockResults);
   });
 
   it('should match regex file extensions', done => {
-    files.run(mockResults, () => {
-      mockResults.expect.high.called.withArg('keyring');
-      done();
+    mockResults.setup.high.toDoThis(data => {
+      should(data.offender).eql('keyring');
     });
+    files.run(mockResults, done);
   });
 
   it('should match regex paths', done => {
-    files.run(mockResults, () => {
-      mockResults.expect.medium.called.withArg('gem/credentials');
-      done();
+    mockResults.setup.medium.toDoThis(data => {
+      should(data.offender).eql('gem/credentials');
     });
+    files.run(mockResults, done);
   });
 
 });

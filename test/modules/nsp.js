@@ -36,21 +36,21 @@ describe('Nsp', () => {
 
   it('should log cvss scores over 8 as critical', done => {
     nsp.run(mockResults, () => {
-      mockResults.expect.critical.called.withArg('uglify-js');
+      mockResults.expect.critical.called.once();
       done();
     });
   });
 
   it('should log cvss scores between 6 and 8 as high', done => {
     nsp.run(mockResults, () => {
-      mockResults.expect.high.called.withArg('negotiator');
+      mockResults.expect.high.called.once();
       done();
     });
   });
 
   it('should log cvss scores between 4 and 6 as medium', done => {
     nsp.run(mockResults, () => {
-      mockResults.expect.medium.called.withArg('uglify-js');
+      mockResults.expect.medium.called.once();
       done();
     });
   });
@@ -58,7 +58,7 @@ describe('Nsp', () => {
 
   it('should log cvss scores under 4 as low', done => {
     nsp.run(mockResults, () => {
-      mockResults.expect.low.called.withArg('async');
+      mockResults.expect.low.called.once();
       done();
     });
   });

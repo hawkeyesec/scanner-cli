@@ -146,7 +146,7 @@ You can view the module status with `hawkeye modules`.  As previously mentioned 
 
 ```
 $ hawkeye modules
-[info] Welcome to Hawkeye v0.10.3!
+[info] Welcome to Hawkeye v0.11.0!
 
 [info] Bundler Scan dynamically loaded
 [info] File Contents dynamically loaded
@@ -182,7 +182,7 @@ The default summary output to your console looks something like this.  The log i
 
 ```
 $ hawkeye scan
-[info] Welcome to Hawkeye v0.10.3!
+[info] Welcome to Hawkeye v0.11.0!
 
 [info] File Contents dynamically loaded
 [info] Entropy dynamically loaded
@@ -206,46 +206,47 @@ $ hawkeye scan
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
 [info] scan complete, 16 issues found
 
-level     description                                       offender                          extra
---------  ------------------------------------------------  --------------------------------  -------------------------------------------------------------------------
-critical  https://nodesecurity.io/advisories/39             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
-critical  Private SSH key                                   regex_rsa
-critical  Private SSH key                                   id_rsa
-critical  Potential cryptographic private key               cert.pem
-critical  Private key in file                               some_file_with_private_key_in.md  Line number: 1
-high      https://nodesecurity.io/advisories/106            negotiator                        vulnerable-app@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3
-high      Module is one or more major versions out of date  nodemailer                        Installed: 2.6.4, Available: 3.1.8
-high      GNOME Keyring database file                       keyring
-medium    https://nodesecurity.io/advisories/48             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
-medium    Module is one or more minor versions out of date  express                           Installed: 4.13.4, Available: 4.15.2
-medium    Rubygems credentials file                         gem/credentials                   Might contain API key for a rubygems.org account.
-medium    Module is one or more minor versions out of date  morgan                            Installed: 1.7.0, Available: 1.8.1
-medium    Module is one or more minor versions out of date  serve-favicon                     Installed: 2.3.0, Available: 2.4.1
-medium    Module is one or more minor versions out of date  body-parser                       Installed: 1.15.1, Available: 1.17.1
-medium    Module is one or more minor versions out of date  debug                             Installed: 2.2.0, Available: 2.6.3
-low       Contains words: private, key                      some_file_with_private_key_in.md
+[info] Doing writer: console
+level     description                                                        offender                          mitigation
+--------  -----------------------------------------------------------------  --------------------------------  -------------------------------------------------
+critical  Incorrect Handling of Non-Boolean Comparisons During Minification  uglify-js                         https://nodesecurity.io/advisories/39
+critical  Private SSH key                                                    regex_rsa                         Check contents of the file
+critical  Private SSH key                                                    id_rsa                            Check contents of the file
+critical  Potential cryptographic private key                                cert.pem                          Check contents of the file
+critical  Private key in file                                                some_file_with_private_key_in.md  Check line number: 1
+high      Regular Expression Denial of Service                               negotiator                        https://nodesecurity.io/advisories/106
+high      Module is one or more major versions out of date                   nodemailer                        Update to 4.0.1
+high      GNOME Keyring database file                                        keyring                           Check contents of the file
+medium    Regular Expression Denial of Service                               uglify-js                         https://nodesecurity.io/advisories/48
+medium    Module is one or more minor versions out of date                   express                           Update to 4.15.2
+medium    Rubygems credentials file                                          gem/credentials                   Might contain API key for a rubygems.org account.
+medium    Module is one or more minor versions out of date                   morgan                            Update to 1.8.1
+medium    Module is one or more minor versions out of date                   serve-favicon                     Update to 2.4.2
+medium    Module is one or more minor versions out of date                   body-parser                       Update to 1.17.1
+medium    Module is one or more minor versions out of date                   debug                             Update to 2.6.3
+low       Contains words: private, key                                       some_file_with_private_key_in.md  Check contents of the file
 ```
 
 I plan to add options to supress log outputs etc in the future, but for now if you want to parse this output, you can supress the logs and just output the table like this:
 
 ```
 $ (hawkeye scan >/dev/null) 2>&1 | tail -n +3
-critical  https://nodesecurity.io/advisories/39             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
-critical  Private SSH key                                   regex_rsa
-critical  Private SSH key                                   id_rsa
-critical  Potential cryptographic private key               cert.pem
-critical  Private key in file                               some_file_with_private_key_in.md  Line number: 1
-high      https://nodesecurity.io/advisories/106            negotiator                        vulnerable-app@0.0.0 > express@4.13.4 > accepts@1.2.13 > negotiator@0.5.3
-high      Module is one or more major versions out of date  nodemailer                        Installed: 2.6.4, Available: 3.1.8
-high      GNOME Keyring database file                       keyring
-medium    https://nodesecurity.io/advisories/48             uglify-js                         vulnerable-app@0.0.0 > jade@1.11.0 > transformers@2.1.0 > uglify-js@2.2.5
-medium    Module is one or more minor versions out of date  express                           Installed: 4.13.4, Available: 4.15.2
-medium    Rubygems credentials file                         gem/credentials                   Might contain API key for a rubygems.org account.
-medium    Module is one or more minor versions out of date  morgan                            Installed: 1.7.0, Available: 1.8.1
-medium    Module is one or more minor versions out of date  serve-favicon                     Installed: 2.3.0, Available: 2.4.1
-medium    Module is one or more minor versions out of date  body-parser                       Installed: 1.15.1, Available: 1.17.1
-medium    Module is one or more minor versions out of date  debug                             Installed: 2.2.0, Available: 2.6.3
-low       Contains words: private, key
+critical  Incorrect Handling of Non-Boolean Comparisons During Minification  uglify-js                         https://nodesecurity.io/advisories/39
+critical  Private SSH key                                                    regex_rsa                         Check contents of the file
+critical  Private SSH key                                                    id_rsa                            Check contents of the file
+critical  Potential cryptographic private key                                cert.pem                          Check contents of the file
+critical  Private key in file                                                some_file_with_private_key_in.md  Check line number: 1
+high      Regular Expression Denial of Service                               negotiator                        https://nodesecurity.io/advisories/106
+high      Module is one or more major versions out of date                   nodemailer                        Update to 4.0.1
+high      GNOME Keyring database file                                        keyring                           Check contents of the file
+medium    Regular Expression Denial of Service                               uglify-js                         https://nodesecurity.io/advisories/48
+medium    Module is one or more minor versions out of date                   express                           Update to 4.15.2
+medium    Rubygems credentials file                                          gem/credentials                   Might contain API key for a rubygems.org account.
+medium    Module is one or more minor versions out of date                   morgan                            Update to 1.8.1
+medium    Module is one or more minor versions out of date                   serve-favicon                     Update to 2.4.2
+medium    Module is one or more minor versions out of date                   body-parser                       Update to 1.17.1
+medium    Module is one or more minor versions out of date                   debug                             Update to 2.6.3
+low       Contains words: private, key                                       some_file_with_private_key_in.md  Check contents of the file
 ```
 
 Here are some other handy examples:

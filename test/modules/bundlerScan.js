@@ -38,23 +38,23 @@ describe('Bundler-scan', () => {
   });
 
   it('should report medium vulnerabilities', done => {
-    bundlerScan.run(mockResults, () => {
-      mockResults.expect.medium.called.withArg('actionpack', 'Denial of Service Vulnerability in Action View when using render :text', 'upgrade to >= 3.2.17', {});
-      done();
+    mockResults.setup.medium.toDoThis(data => {
+      should(data.data.criticality.toLowerCase()).eql('medium');
     });
+    bundlerScan.run(mockResults, done);
   });
 
   it('should report high vulnerabilities', done => {
-    bundlerScan.run(mockResults, () => {
-      mockResults.expect.high.called.withArg('actionpack', 'Ruby on Rails params_parser.rb Action Pack Type Casting Parameter Parsing Remote Code Execution', 'upgrade to ~> 2.3.15, ~> 3.0.19, ~> 3.1.10, >= 3.2.11', {});
-      done();
+    mockResults.setup.high.toDoThis(data => {
+      should(data.data.criticality.toLowerCase()).eql('high');
     });
+    bundlerScan.run(mockResults, done);
   });
 
   it('should report insecure gem sources', done => {
-    bundlerScan.run(mockResults, () => {
-      mockResults.expect.low.called.withArg('Insecure Source URI', 'Insecure Source URI found: http://rubygems.org/');
-      done();
+    mockResults.setup.low.toDoThis(data => {
+      if(data.description === 'Insecure Source URI') { done(); }
     });
+    bundlerScan.run(mockResults);
   });
 });
