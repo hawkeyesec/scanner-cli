@@ -36,7 +36,7 @@ describe('Nsp', () => {
 
   it('should pass the whole advisory back as data', done => {
     mockResults.setup.critical.toDoThis(data => {
-      should(Object.keys(data.data[0]).indexOf('cvss_score')).not.eql(-1);
+      should(Object.keys(data.data).indexOf('cvss_score')).not.eql(-1);
     });
     nsp.run(mockResults, done);
   });
