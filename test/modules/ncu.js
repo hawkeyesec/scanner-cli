@@ -36,6 +36,7 @@ describe('NCU', () => {
   it('should log major version changes as high', done => {
     mockResults.setup.high.toDoThis(data => {
       should(data.offender).eql('nodemailer');
+      should(data.code).eql(1);
     });
     ncu.run(mockResults, done);
   });
@@ -43,6 +44,7 @@ describe('NCU', () => {
   it('should log minor version changes as medium', done => {
     mockResults.setup.medium.toDoThis(data => {
       should(['body-parser', 'debug', 'express', 'morgan', 'serve-favicon'].indexOf(data.offender)).not.eql(-1);
+      should(data.code).eql(2);
     });
     ncu.run(mockResults, done);
   });
@@ -50,6 +52,7 @@ describe('NCU', () => {
   it('should log patch version changes as low', done => {
     mockResults.setup.low.toDoThis(data => {
       should(data.offender).eql('async');
+      should(data.code).eql(3);
     });
     ncu.run(mockResults, done);
   });
