@@ -5,6 +5,7 @@ const logger = new require('../lib/logger')();
 const ConsoleWriter = require('../lib/writers/console');
 const JsonWriter = require('../lib/writers/json');
 const SumoWriter = require('../lib/writers/sumologic');
+const HttpWriter = require('../lib/writers/http');
 const async = require('async');
 const Rc = require('../lib/rc');
 
@@ -28,6 +29,8 @@ program
           'Write JSON output to file.  Can be specified multiple times', rc.withJson)
   .option('-s, --sumo    <https://sumologic-http-connector>',
           'Write the vulnerabilities to SumoLogic', rc.withSumo)
+  .option('-h, --http    <https://your-site.com/api/results>',
+          'Write the vulnerabilities to a given url', rc.withHttp)
   .parse(process.argv);
 
 const bitwise = {
@@ -51,6 +54,11 @@ if(rc.sumo) {
     url: rc.sumo
   }));
 }
+if(rc.http) {
+  writers.push(new HttpWriter({
+    url: rc.http
+  }));
+}
 
 const scan = new Scan(rc);
 scan.start((err, results) => {
@@ -67,7 +75,10 @@ scan.start((err, results) => {
   console.log('');
   async.eachSeries(writers, (writer, next) => {
     logger.log('Doing writer:', writer.key);
-    writer.write(results, err => {
+    const metadata = {
+      state: (exitCode === 1) ? 'failed' : 'success'
+    };
+    writer.write(results, metadata, err => {
       if(err) { logger.error(err.message); }
       next();
     });
