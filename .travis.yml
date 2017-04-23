@@ -18,4 +18,6 @@ branches:
 after_success:
   - docker build -t stono/hawkeye .
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag stono/hawkeye:latest stono/hawkeye:0.12.4
   - docker push stono/hawkeye
+  - docker push stono/hawkeye:0.12.4
