@@ -1,7 +1,7 @@
 {
   "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "homepage": "https://github.com/Stono/hawkeye",
   "author": {
     "name": "Karl Stoney",
@@ -49,6 +49,7 @@
     "console.table": "0.8.0",
     "debug": "2.6.3",
     "glob": "7.1.1",
+    "is-valid-path": "^0.1.1",
     "lodash": "4.17.4",
     "npm-check-updates": "2.10.5",
     "nsp": "2.6.3",

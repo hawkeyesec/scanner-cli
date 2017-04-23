@@ -17,17 +17,49 @@ describe('RC', () => {
     noRc.withModule('ncu');
     should(noRc.modules).eql(['ncu']);
   });
+  it('should not duplicate modules to run', () => {
+    noRc.withModule('ncu');
+    noRc.withModule('ncu');
+    should(noRc.modules).eql(['ncu']);
+  });
+
   it('should let me set the failOn level', () => {
     rc.withFailOn('high');
     should(rc.failOn).eql('high');
   });
+  it('should reject bad failon levels', () => {
+    should(() => {
+      rc.withFailOn('bad-value');
+    }).throw();
+  });
+
   it('should let me add a sumo writer ', () => {
-    rc.withSumo('url');
-    should(rc.sumo).eql('url');
+    rc.withSumo('http://url.com');
+    should(rc.sumo).eql('http://url.com');
+  });
+  it('sumo writer should not allow invalid urls', () => {
+    should(() => {
+      rc.withSumo('bad-url');
+    }).throw();
   });
   it('should let me add a json writer ', () => {
     rc.withJson('path');
     should(rc.json).eql('path');
+  });
+  it('should reject bad paths', () => {
+    should(() => {
+      rc.withJson('*!&@*$^path');
+    }).throw();
+  });
+
+  it('should let me add a http writer ', () => {
+    rc.withHttp('http://url.com');
+    should(rc.http).eql('http://url.com');
+  });
+  it('http writer should not allow invalid urls', () => {
+    should(() => {
+      rc.withHttp('bad-url');
+    }).throw();
   });
 
   describe('when files not present', () => {
