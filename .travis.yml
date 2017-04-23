@@ -1,27 +1,30 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 language: node_js
-
 node_js:
-  - 7
-
+- 7
 notifications:
   email: false
-
 env:
   global:
-    - HE_VERSION=0.12.5
-
+  - HE_VERSION=0.12.6
 branches:
   only:
-    - master
-
+  - master
+before_script:
+- npm version $HE_VERSION
 after_success:
-  - docker build -t stono/hawkeye .
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker tag stono/hawkeye:latest stono/hawkeye:$HE_VERSION
-  - docker push stono/hawkeye:latest
-  - docker push stono/hawkeye:$HE_VERSION
+- docker build -t stono/hawkeye .
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker tag stono/hawkeye:latest stono/hawkeye:$HE_VERSION
+- docker push stono/hawkeye:latest
+- docker push stono/hawkeye:$HE_VERSION
+deploy:
+  provider: npm
+  email: karlstoney@googlemail.com
+  api_key:
+    secure: hqJ0YQ93zoCCDpYpKJBjI8V48yhyhFxVfQbIDU+mVZ31mP2nf4Xm5jm9jx/GArn1cFvBM4IwMdLhsLqUTOVLy3sg017zuk/X6VW9tr6r6W1sXkKR0ikFTl1jqiVlnu9wivX6a2l5D4cDpUC2CkRdiPSsGzDA9uFhr82IdD5AO6s5Z4LXnIfluys8dR7V9cKId+/8GRdp+JbqD90cPRKYqS5wP6NBhX3qaJUqK019TpK+xwACgbx8/71FrYGkvvWWjOkw6rdpcB2l+A1CPNo4Si0xmlSHBh893yPlziUYqfS94LruEBMoffIA9vNG6Ql3QEBDLcYivOT/o31a0jNLg7dW/Zca5L8KerCWiU+0DiglIG1aPM5nLkAqgtbOkm1P29y0NaoyAxb4rzWWWy9h3Hosp/g0vHapj8ynFcIXE1Wu8lY+zK1VH4K7TWgt7aNnddnXHpRzc56rFaLnb5fxY/tC4D5TFVR4qsnpL7GZSubLigh2fSAoSZWaCJpWkE0LuVJuoYyQPs4CxRIoCWpe7TxgqmcArDfBY6M5fg7w5KJBjg2IZ8GAt8phvSB6863kzu3tCTWeUJcsHxCSK4goXGs+vGwXtwi6Uev7VsTC2QthlE9fUF5AMaALw1yz6+x7NNBJymC2tID9OHS2LpqM7psGO9n5KrmxIvyWhZJM5YY=
+  on:
+    tags: true
+    repo: Stono/hawkeye
