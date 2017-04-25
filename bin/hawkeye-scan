@@ -76,7 +76,7 @@ scan.start((err, results) => {
   async.eachSeries(writers, (writer, next) => {
     logger.log('Doing writer:', writer.key);
     const metadata = {
-      state: (exitCode === 1) ? 'fail' : 'success'
+      state: (exitCode === 1) ? 'fail' : 'pass'
     };
     writer.write(results, metadata, err => {
       if(err) { logger.error(err.message); }
