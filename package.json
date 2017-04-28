@@ -50,6 +50,7 @@
     "debug": "2.6.4",
     "glob": "7.1.1",
     "is-valid-path": "^0.1.1",
+    "istextorbinary": "^2.1.0",
     "lodash": "4.17.4",
     "npm-check-updates": "2.11.0",
     "nsp": "2.6.3",
