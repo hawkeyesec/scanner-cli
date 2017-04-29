@@ -12,6 +12,17 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
 
+# Hosted/SaaS version now available!
+By all means continue to use this CLI to get scans in your pipeline, but now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
+
+  - Free (obviously)
+  - Links to GitHub and scans both Public and Private repositories
+  - GitHub "Push" scanning
+  - On-demand one-click scanning
+  - Scheduled scanning (great for continually checking for new issues in your deployed applications)
+  - Email notifications when we find new issues
+  - Consolidated dashboards
+
 ## Modules
 Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the required criteria are met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.  The modules implemented so far are:
 
