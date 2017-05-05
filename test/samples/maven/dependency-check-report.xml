@@ -1,0 +1,3088 @@
+<?xml version="1.0"?>
+<analysis xmlns="https://jeremylong.github.io/DependencyCheck/dependency-check.1.3.xsd">
+    <scanInfo>
+        <engineVersion>1.4.5</engineVersion>
+        <dataSource>
+            <name>NVD CVE 2002</name>
+            <timestamp>04/05/2017 07:07:49</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2003</name>
+            <timestamp>02/05/2017 21:47:19</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2004</name>
+            <timestamp>02/05/2017 21:46:44</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2005</name>
+            <timestamp>02/05/2017 21:45:40</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2006</name>
+            <timestamp>02/05/2017 21:43:49</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2007</name>
+            <timestamp>02/05/2017 21:41:04</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2008</name>
+            <timestamp>02/05/2017 21:38:26</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2009</name>
+            <timestamp>02/05/2017 21:35:38</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2010</name>
+            <timestamp>05/05/2017 07:08:44</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2011</name>
+            <timestamp>02/05/2017 21:29:34</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2012</name>
+            <timestamp>02/05/2017 21:25:16</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2013</name>
+            <timestamp>02/05/2017 21:22:36</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2014</name>
+            <timestamp>05/05/2017 07:06:24</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2015</name>
+            <timestamp>04/05/2017 07:06:03</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2016</name>
+            <timestamp>05/05/2017 07:03:35</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE 2017</name>
+            <timestamp>05/05/2017 07:00:46</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE Checked</name>
+            <timestamp>05/05/2017 12:57:45</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>NVD CVE Modified</name>
+            <timestamp>05/05/2017 12:00:32</timestamp>
+        </dataSource>
+        <dataSource>
+            <name>VersionCheckOn</name>
+            <timestamp>1493989066254</timestamp>
+        </dataSource>
+    </scanInfo>
+    <projectInfo>
+        <name>Testing</name>
+        <reportDate>2017-05-05T13:02:01.562+0000</reportDate>
+        <credits>This report contains data retrieved from the National Vulnerability Database: http://nvd.nist.gov</credits>
+    </projectInfo>
+    <dependencies>
+        <dependency>
+            <fileName>agent-launcher.jar</fileName>
+            <filePath>/tmp/gocd/agent-bootstrapper/test-resources/defaultFiles/agent-launcher.jar</filePath>
+            <md5>0d2145cb255cd6f181861926dd81a12a</md5>
+            <sha1>352a9399f96715906dcb1ec603db83388520d484</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>agent-launcher</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>agent-launcher</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>gradle-wrapper.jar</fileName>
+            <filePath>/tmp/gocd/gradle/wrapper/gradle-wrapper.jar</filePath>
+            <md5>4aa10b85b4e1f6a7d44a019ecccc5571</md5>
+            <sha1>447d13ce22c531d3c7ad8a1211f3f3939ff41098</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>gradle-wrapper</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cli</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>gradle</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>gradle-wrapper</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cli</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Title</name>
+                    <value>Gradle</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Version</name>
+                    <value>3.0</value>
+                </evidence>
+            </evidenceCollected>
+            <identifiers>
+                <identifier type="cpe" confidence="LOW">
+                    <name>(cpe:/a:gradle:gradle:3.0)</name>
+                </identifier>
+            </identifiers>
+        </dependency>
+        <dependency>
+            <fileName>SimpleFC.dll</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/nsis-plugins/SimpleFC.dll</filePath>
+            <md5>6d38bb6f6f19c2c22a7ef774bc5d9855</md5>
+            <sha1>99778940e059238ca23a513e717d4db2cf34e606</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>SimpleFC</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>SimpleFC</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>cruisewrapper.exe</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/tanuki/32bit/cruisewrapper.exe</filePath>
+            <md5>9139c4e961f566c2b4430deced2035db</md5>
+            <sha1>79e8ec815869d17718c5a46a04aed7ad03cc593b</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>cruisewrapper</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>cruisewrapper</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>cruisewrapper.exe</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/tanuki/64bit/cruisewrapper.exe</filePath>
+            <md5>58e0c25c974774ee0c51cb3ee24ad434</md5>
+            <sha1>046fb6762457318e10effc4c1a2f196310b5e839</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>cruisewrapper</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>cruisewrapper</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>wrapper-windows-x86-32.dll</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/tanuki/lib/wrapper-windows-x86-32.dll</filePath>
+            <md5>e700e93a67d5e188e200bab9d1d52889</md5>
+            <sha1>9c806490da8049b005a357e50bc616f0bb3990be</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-32</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-32</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-32</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>86.32</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>wrapper-windows-x86-64.dll</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/tanuki/lib/wrapper-windows-x86-64.dll</filePath>
+            <md5>93b9a933c708145f1a25f80ac5819529</md5>
+            <sha1>80b3f04ef25af588e1767369cea916f0ccb242d6</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-64</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-64</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper-windows-x86-64</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>86.64</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>wrapper.jar</fileName>
+            <filePath>/tmp/gocd/installers/windows-shared/tanuki/lib/wrapper.jar</filePath>
+            <md5>4f480e66aac85d2075e5dac3241b611f</md5>
+            <sha1>0a16c2cb35f411fac7c545faa611894ac6b46070</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tanukisoftware</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>extension-name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Tanuki Software, Ltd.</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>specification-vendor</name>
+                    <value>Tanuki Software, Ltd.</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>extension-name</name>
+                    <value>wrapper</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Title</name>
+                    <value>org.tanukisoftware.wrapper</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>specification-title</name>
+                    <value>Java Service Wrapper</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Version</name>
+                    <value>3.5.30</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>descriptor-aware-test-plugin-with-no-plugin-xml.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin-with-no-plugin-xml.jar</filePath>
+            <md5>41ff18020dd771a4556fcbe928575616</md5>
+            <sha1>0c88491e4a2e559eb08e2b4db66b5dad7b509eb7</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin-with-no-plugin-xml</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin-with-no-plugin-xml</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>descriptorvalidatorplugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>descriptor-aware-test-plugin.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin.jar</filePath>
+            <md5>f3b9fdc2d442bc445026b8b0750ad3f8</md5>
+            <sha1>44e7f6d48eb1650d4899f8c7b6af4a3e67738ce5</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>descriptorvalidatorplugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>descriptor-aware-test-plugin.osgi.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin.osgi.jar</filePath>
+            <md5>a60b8b57b28dd6716da3feeae7929b95</md5>
+            <sha1>7f8c2801fa8907fabdd66d71af053d25f3cc5e6b</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin.osgi</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>testplugin.descriptorValidator</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>descriptor-aware-test-plugin.osgi</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>descriptorvalidatorplugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>testplugin</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>testplugin.descriptorValidator</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>error-generating-descriptor-aware-test-plugin.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/error-generating-descriptor-aware-test-plugin.jar</filePath>
+            <md5>2d700f94fbc99e6eed92e80c7531252a</md5>
+            <sha1>8926e6b96135ffd345501b675b66bef0cd758423</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>error-generating-descriptor-aware-test-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>error</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>error-generating-descriptor-aware-test-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>error</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>generating</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>error-generating-descriptor-aware-test-plugin.osgi.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/error-generating-descriptor-aware-test-plugin.osgi.jar</filePath>
+            <md5>f972d4e2c519a392108364cefb424d82</md5>
+            <sha1>d6b5b8a3455d62eef862d74024b88886d6e44a2c</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>error-generating-descriptor-aware-test-plugin.osgi</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>error</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>testplugin.descriptorValidator</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>error-generating-descriptor-aware-test-plugin.osgi</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>error</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>generating</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>testplugin.descriptorValidator</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>exception-throwing-at-load-plugin.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/exception-throwing-at-load-plugin.jar</filePath>
+            <md5>640b0ebffa82c0786ba3046051385edc</md5>
+            <sha1>00883714f5dd1320154b14b5a8efd9d96e424344</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>exception-throwing-at-load-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>exception</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>exception-throwing-at-load-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>exception</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>throwing</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>exception-throwing-at-load-plugin.osgi.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/exception-throwing-at-load-plugin.osgi.jar</filePath>
+            <md5>03382fd784d871ec13d8b8a9d3fbd058</md5>
+            <sha1>c81ce4f638e8869d321e535c4b2c620f7aefc3db</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>exception-throwing-at-load-plugin.osgi</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>exception</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.tw.go.exception.throwing.at.loadplugin</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>exception-throwing-at-load-plugin.osgi</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>exception</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>throwing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.tw.go.exception.throwing.at.loadplugin</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>go-plugin-activator.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/go-plugin-activator.jar</filePath>
+            <md5>f796ca663c263e4223e1325f733c46fa</md5>
+            <sha1>d736bc3e6e3f9c72099f817473c3572bc4fd7339</sha1>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/exception-throwing-at-load-plugin.osgi.jar/lib/go-plugin-activator.jar</filePath>
+                    <sha1>d736bc3e6e3f9c72099f817473c3572bc4fd7339</sha1>
+                    <md5>f796ca663c263e4223e1325f733c46fa</md5>
+                </relatedDependency>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/error-generating-descriptor-aware-test-plugin.osgi.jar/lib/go-plugin-activator.jar</filePath>
+                    <sha1>d736bc3e6e3f9c72099f817473c3572bc4fd7339</sha1>
+                    <md5>f796ca663c263e4223e1325f733c46fa</md5>
+                </relatedDependency>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin.osgi.jar/lib/go-plugin-activator.jar</filePath>
+                    <sha1>d736bc3e6e3f9c72099f817473c3572bc4fd7339</sha1>
+                    <md5>f796ca663c263e4223e1325f733c46fa</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>go-plugin-activator</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thoughtworks</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>go-plugin-activator</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>activation</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>invalid-descriptor-plugin.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/invalid-descriptor-plugin.jar</filePath>
+            <md5>c6a2a67c9c26fc70647d823e7a0c9d92</md5>
+            <sha1>2a649f915d1e3e1c7a10e21573aee299c992aac4</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>invalid-descriptor-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>invaliddescriptor</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>invalid-descriptor-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>descriptorplugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>invaliddescriptor</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>plugin-with-multiple-extensions.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/plugin-with-multiple-extensions.jar</filePath>
+            <md5>17dd85cbde08525a38da4adcff56ff15</md5>
+            <sha1>f5eb27074b7f88e05490f42148db5b2c8b55f0a0</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>plugin-with-multiple-extensions</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>multiple</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>plugin-with-multiple-extensions</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>multiple</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>dependency.jar</fileName>
+            <filePath>/tmp/gocd/plugin-infra/plugins/descriptor-aware-test-plugin/lib/dependency.jar</filePath>
+            <md5>e0ad1e4114725bf8d15142ebf6ac6a16</md5>
+            <sha1>892726ddfbb5c6e523aef3680679c1a8900399a8</sha1>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin.jar/lib/dependency.jar</filePath>
+                    <sha1>892726ddfbb5c6e523aef3680679c1a8900399a8</sha1>
+                    <md5>e0ad1e4114725bf8d15142ebf6ac6a16</md5>
+                </relatedDependency>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin.osgi.jar/lib/dependency.jar</filePath>
+                    <sha1>892726ddfbb5c6e523aef3680679c1a8900399a8</sha1>
+                    <md5>e0ad1e4114725bf8d15142ebf6ac6a16</md5>
+                </relatedDependency>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/test-utils/resources/testdata/agent-plugins.zip/bundled/test-donothing-plugin.jar/lib/dependency.jar</filePath>
+                    <sha1>892726ddfbb5c6e523aef3680679c1a8900399a8</sha1>
+                    <md5>e0ad1e4114725bf8d15142ebf6ac6a16</md5>
+                </relatedDependency>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/plugin-infra/go-plugin-infra/test-resources/defaultFiles/descriptor-aware-test-plugin-with-no-plugin-xml.jar/lib/dependency.jar</filePath>
+                    <sha1>892726ddfbb5c6e523aef3680679c1a8900399a8</sha1>
+                    <md5>e0ad1e4114725bf8d15142ebf6ac6a16</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>dependency</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>dependency</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>dependency</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>console</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>dependency</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>go</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>h2-1.2.127.jar</fileName>
+            <filePath>/tmp/gocd/server/historical_jars/h2-1.2.127.jar</filePath>
+            <md5>0ae22be290fc7cf094c9491801091ae7</md5>
+            <sha1>b8ceeaf4daaee610aa366ac306135d184a517514</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>h2</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>h2</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>org.h2</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>implementation-url</name>
+                    <value>http://www.h2database.com</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>h2</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Bundle-Name</name>
+                    <value>H2 Database Engine</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>org.h2</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Title</name>
+                    <value>H2 Database Engine</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>implementation-url</name>
+                    <value>http://www.h2database.com</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>1.2.127</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Version</name>
+                    <value>1.2.127</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>dummy-plugins.zip: dummy-plugins.jar</fileName>
+            <filePath>/tmp/gocd/server/test/data/dummy-plugins.zip/dummy-plugins.jar</filePath>
+            <md5>d41d8cd98f00b204e9800998ecf8427e</md5>
+            <sha1>da39a3ee5e6b4b0d3255bfef95601890afd80709</sha1>
+            <description>The sdk for easemob rest api</description>
+            <license>Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>central</source>
+                    <name>groupid</name>
+                    <value>com.dorkbox</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>central</source>
+                    <name>groupid</name>
+                    <value>com.easemob</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>central</source>
+                    <name>groupid</name>
+                    <value>org.walkmod</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>dummy-plugins</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>pom</source>
+                    <name>artifactid</name>
+                    <value>rest-java-sdk</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>pom</source>
+                    <name>description</name>
+                    <value>The sdk for easemob rest api</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>groupid</name>
+                    <value>easemob</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>pom</source>
+                    <name>name</name>
+                    <value>rest-java-client</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>url</name>
+                    <value>https://github.com/shanjingheng/rest-java-sdk</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>Console</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>MinLog-SLF4J</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>Network</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>Notify</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>ObjectPool</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>rest-java-sdk</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>SystemTray</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>TweenEngine</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>walkmod-cfg</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>dummy-plugins</value>
+                </evidence>
+                <evidence type="product" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>artifactid</name>
+                    <value>rest-java-sdk</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>pom</source>
+                    <name>description</name>
+                    <value>The sdk for easemob rest api</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>pom</source>
+                    <name>groupid</name>
+                    <value>easemob</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>pom</source>
+                    <name>name</name>
+                    <value>rest-java-client</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>1.0.0</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>1.0.1</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>1.22</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>1.9</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>2.0.1</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>2.20</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>2.8</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>3.1</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>3.2</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>7.15</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>version</name>
+                    <value>1.0.1</value>
+                </evidence>
+            </evidenceCollected>
+            <identifiers>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:Console:3.2)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/Console/3.2/Console-3.2.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:MinLog-SLF4J:1.9)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/MinLog-SLF4J/1.9/MinLog-SLF4J-1.9.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:Network:1.22)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/Network/1.22/Network-1.22.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:Notify:2.20)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/Notify/2.20/Notify-2.20.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:ObjectPool:2.8)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/ObjectPool/2.8/ObjectPool-2.8.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:SystemTray:3.1)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/SystemTray/3.1/SystemTray-3.1.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.dorkbox:TweenEngine:7.15)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/dorkbox/TweenEngine/7.15/TweenEngine-7.15.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.easemob:rest-java-sdk:1.0.0)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/easemob/rest-java-sdk/1.0.0/rest-java-sdk-1.0.0.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(com.easemob:rest-java-sdk:1.0.1)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=com/easemob/rest-java-sdk/1.0.1/rest-java-sdk-1.0.1.jar</url>
+                </identifier>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(org.walkmod:walkmod-cfg:2.0.1)</name>
+                    <url>http://search.maven.org/remotecontent?filepath=org/walkmod/walkmod-cfg/2.0.1/walkmod-cfg-2.0.1.jar</url>
+                </identifier>
+            </identifiers>
+        </dependency>
+        <dependency>
+            <fileName>obj-graph-plugin-child.jar</fileName>
+            <filePath>/tmp/gocd/server/testdata/plugins/obj-graph-plugin-child.jar</filePath>
+            <md5>fa02649c55428fb5bae5f46b0384b739</md5>
+            <sha1>93a8ef030404f03ed181a7028182fa4fb456d055</sha1>
+            <description>A plugin which registers a serializable object with a reference to log4j class and jdom class</description>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/server/testdata/go-plugins-expected.zip/obj-graph-plugin-child.jar</filePath>
+                    <sha1>93a8ef030404f03ed181a7028182fa4fb456d055</sha1>
+                    <md5>fa02649c55428fb5bae5f46b0384b739</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>obj-graph-plugin-child</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>child</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thoughtworks</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A plugin which registers a serializable object with a reference to log4j class and jdom class</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-child</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>require-bundle</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>obj-graph-plugin-child</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>child</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A plugin which registers a serializable object with a reference to log4j class and jdom class</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Bundle-Name</name>
+                    <value>Obj Graph Child</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-child</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>require-bundle</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Bundle-Version</name>
+                    <value>1.0.0</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>obj-graph-plugin-parent.jar</fileName>
+            <filePath>/tmp/gocd/server/testdata/plugins/obj-graph-plugin-parent.jar</filePath>
+            <md5>32ccb43d08b9bfaf68319dbea64db8d9</md5>
+            <sha1>640215c3990afa656e0300f1794a127b8849e96b</sha1>
+            <description>A plugin which registers a serializable object with a reference to log4j class and jdom class</description>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/server/testdata/go-plugins-expected.zip/obj-graph-plugin-parent.jar</filePath>
+                    <sha1>640215c3990afa656e0300f1794a127b8849e96b</sha1>
+                    <md5>32ccb43d08b9bfaf68319dbea64db8d9</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>parent</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thoughtworks</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A plugin which registers a serializable object with a reference to log4j class and jdom class</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>parent</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A plugin which registers a serializable object with a reference to log4j class and jdom class</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Bundle-Name</name>
+                    <value>Obj Graph Parent</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.obj-graph-plugin-parent</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Bundle-Version</name>
+                    <value>1.0.0</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>obj-graph-plugin-parent.jar: commons-lang-2.4.jar</fileName>
+            <filePath>/tmp/gocd/server/testdata/plugins/obj-graph-plugin-parent.jar/lib/commons-lang-2.4.jar</filePath>
+            <md5>237a8e845441bad2e535c57d985c8204</md5>
+            <sha1>16313e02a793435009f1e458fa4af5d879f6fb11</sha1>
+            <description>
+        Commons Lang, a package of Java utility classes for the
+        classes that are in java.lang&apos;s hierarchy, or are considered to be so
+        standard as to justify existence in java.lang.
+    </description>
+            <license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/server/testdata/go-plugins-expected.zip/obj-graph-plugin-parent.jar/lib/commons-lang-2.4.jar</filePath>
+                    <sha1>16313e02a793435009f1e458fa4af5d879f6fb11</sha1>
+                    <md5>237a8e845441bad2e535c57d985c8204</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGHEST">
+                    <source>central</source>
+                    <name>groupid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>Commons Lang, a package of Java utility classes for the classes that are in java.lang&apos;s hierarchy, or are considered to be so standard as to justify existence in java.lang.</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>bundle-docurl</name>
+                    <value>http://commons.apache.org/lang/</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>org.apache.commons.lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Vendor</name>
+                    <value>The Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Implementation-Vendor-Id</name>
+                    <value>org.apache</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>specification-vendor</name>
+                    <value>The Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>pom</source>
+                    <name>artifactid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>pom</source>
+                    <name>description</name>
+                    <value>Commons Lang, a package of Java utility classes for the classes that are in java.lang&apos;s hierarchy, or are considered to be so standard as to justify existence in java.lang.</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>groupid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>pom</source>
+                    <name>name</name>
+                    <value>Commons Lang</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>pom</source>
+                    <name>parent-artifactid</name>
+                    <value>commons-parent</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>pom</source>
+                    <name>parent-groupid</name>
+                    <value>org.apache.commons</value>
+                </evidence>
+                <evidence type="vendor" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>url</name>
+                    <value>http://commons.apache.org/lang/</value>
+                </evidence>
+                <evidence type="product" confidence="HIGHEST">
+                    <source>central</source>
+                    <name>artifactid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>Commons Lang, a package of Java utility classes for the classes that are in java.lang&apos;s hierarchy, or are considered to be so standard as to justify existence in java.lang.</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>Manifest</source>
+                    <name>bundle-docurl</name>
+                    <value>http://commons.apache.org/lang/</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Bundle-Name</name>
+                    <value>Commons Lang</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>org.apache.commons.lang</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Title</name>
+                    <value>Commons Lang</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>specification-title</name>
+                    <value>Commons Lang</value>
+                </evidence>
+                <evidence type="product" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>artifactid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>pom</source>
+                    <name>description</name>
+                    <value>Commons Lang, a package of Java utility classes for the classes that are in java.lang&apos;s hierarchy, or are considered to be so standard as to justify existence in java.lang.</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>pom</source>
+                    <name>groupid</name>
+                    <value>commons-lang</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>pom</source>
+                    <name>name</name>
+                    <value>Commons Lang</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>pom</source>
+                    <name>parent-artifactid</name>
+                    <value>commons-parent</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>pom</source>
+                    <name>parent-groupid</name>
+                    <value>org.apache.commons</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>central</source>
+                    <name>version</name>
+                    <value>2.4</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>2.4</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Implementation-Version</name>
+                    <value>2.4</value>
+                </evidence>
+                <evidence type="version" confidence="HIGHEST">
+                    <source>pom</source>
+                    <name>version</name>
+                    <value>2.4</value>
+                </evidence>
+            </evidenceCollected>
+            <identifiers>
+                <identifier type="maven" confidence="HIGHEST">
+                    <name>(commons-lang:commons-lang:2.4)</name>
+                    <url>http://search.maven.org/#search|ga|1|1%3A%2216313e02a793435009f1e458fa4af5d879f6fb11%22</url>
+                </identifier>
+            </identifiers>
+        </dependency>
+        <dependency>
+            <fileName>say-task-plugin.jar</fileName>
+            <filePath>/tmp/gocd/server/testdata/plugins/say-task-plugin.jar</filePath>
+            <md5>d3e3c6e31c4d8c64537fe860239ea285</md5>
+            <sha1>4aea7c211bac4f17897e8ad840986b57b34e673f</sha1>
+            <description>A task plugin that echos a given message</description>
+            <relatedDependencies>
+                <relatedDependency>
+                    <filePath>/tmp/gocd/server/testdata/go-plugins-expected.zip/say-task-plugin.jar</filePath>
+                    <sha1>4aea7c211bac4f17897e8ad840986b57b34e673f</sha1>
+                    <md5>d3e3c6e31c4d8c64537fe860239ea285</md5>
+                </relatedDependency>
+            </relatedDependencies>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>say-task-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cruise</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugins</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thoughtworks</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A task plugin that echos a given message</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.task.say</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>say-task-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cruise</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugins</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>task</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest</source>
+                    <name>Bundle-Description</name>
+                    <value>A task plugin that echos a given message</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>Bundle-Name</name>
+                    <value>Echo task</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>Manifest</source>
+                    <name>bundle-symbolicname</name>
+                    <value>com.thoughtworks.cruise.plugins.task.say</value>
+                </evidence>
+                <evidence type="version" confidence="HIGH">
+                    <source>Manifest</source>
+                    <name>Bundle-Version</name>
+                    <value>1.0.0</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>generator.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/json-1.8.3-java/lib/json/ext/generator.jar</filePath>
+            <md5>9a3d59c751290cace181e8de11a41755</md5>
+            <sha1>b5129f6559d9a45e91c39f2b9adcba8b2a823200</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>generator</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>json</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>generator</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>parser.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/json-1.8.3-java/lib/json/ext/parser.jar</filePath>
+            <md5>5d68c415bab614f7022b579f31fb850c</md5>
+            <sha1>ec58e349d82741d32b381f86b3a2e18892160aff</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>parser</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>json</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>parser</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>isorelax.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/isorelax.jar</filePath>
+            <md5>a2c7ae63d8927def2d560fbc5478b934</md5>
+            <sha1>facc6d84b0b0a650b1d44fed941e9add9f326862</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>isorelax</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>iso_relax</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>isorelax</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>jing.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/jing.jar</filePath>
+            <md5>f0190908ebfb4b3189c467d906251fd1</md5>
+            <sha1>60197956be7f8f2e29e1941ca42273abe7315293</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>jing</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thaiopensource</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>jing</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>nekodtd.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/nekodtd.jar</filePath>
+            <md5>bc1ff1910e66eb1d3783b6fca4eafd84</md5>
+            <sha1>342ceaea34053e2a163c9a82cf39b80d9bd7bdb3</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nekodtd</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cyberneko</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>dtd</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nekodtd</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>dtd</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>nekohtml.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/nekohtml.jar</filePath>
+            <md5>cb1dcaaca6ff15b53ac33cc045b11997</md5>
+            <sha1>0b2aa92d7a9df6bbc073df8b84e03ac15338b76d</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nekohtml</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>cyberneko</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>html</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/cyberneko/html/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Andy Clark</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nekohtml</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>html</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/cyberneko/html/</source>
+                    <name>Implementation-Title</name>
+                    <value>CyberNeko HTML Parser</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/cyberneko/html/</source>
+                    <name>Specification-Title</name>
+                    <value>Hyper-Text Markup Language (HTML)</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/cyberneko/html/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.9.12</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>nokogiri.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/nokogiri/nokogiri.jar</filePath>
+            <md5>1b0569461bb45e92217021ca521e6b22</md5>
+            <sha1>3977c66075838351e28134d02ce17b03b85ea96e</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nokogiri</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>internals</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>nokogiri</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>nokogiri</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>internals</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>xercesImpl.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/nokogiri-1.6.6.2-java/lib/xercesImpl.jar</filePath>
+            <md5>0c28160a7dbe4d0dc8f48a3675249bd5</md5>
+            <sha1>6483e33907f349492c7eee09b0a6fa15d0f40712</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>xercesImpl</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>apache</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>xerces</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: javax/xml/datatype/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: javax/xml/parsers/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: javax/xml/transform/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: javax/xml/validation/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: javax/xml/xpath/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/impl/Version.class</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/xni/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>Apache Software Foundation</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>World Wide Web Consortium</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/ls/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>World Wide Web Consortium</value>
+                </evidence>
+                <evidence type="vendor" confidence="MEDIUM">
+                    <source>manifest: org/xml/sax/</source>
+                    <name>Implementation-Vendor</name>
+                    <value>David Megginson</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>xercesImpl</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>xerces</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/datatype/</source>
+                    <name>Implementation-Title</name>
+                    <value>javax.xml.datatype</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/datatype/</source>
+                    <name>Specification-Title</name>
+                    <value>Java API for XML Processing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/parsers/</source>
+                    <name>Implementation-Title</name>
+                    <value>javax.xml.parsers</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/parsers/</source>
+                    <name>Specification-Title</name>
+                    <value>Java API for XML Processing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/transform/</source>
+                    <name>Implementation-Title</name>
+                    <value>javax.xml.transform</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/transform/</source>
+                    <name>Specification-Title</name>
+                    <value>Java API for XML Processing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/validation/</source>
+                    <name>Implementation-Title</name>
+                    <value>javax.xml.validation</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/validation/</source>
+                    <name>Specification-Title</name>
+                    <value>Java API for XML Processing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/xpath/</source>
+                    <name>Implementation-Title</name>
+                    <value>javax.xml.xpath</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: javax/xml/xpath/</source>
+                    <name>Specification-Title</name>
+                    <value>Java API for XML Processing</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/impl/Version.class</source>
+                    <name>Implementation-Title</name>
+                    <value>org.apache.xerces.impl.Version</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/xni/</source>
+                    <name>Implementation-Title</name>
+                    <value>org.apache.xerces.xni</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/xni/</source>
+                    <name>Specification-Title</name>
+                    <value>Xerces Native Interface</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/</source>
+                    <name>Implementation-Title</name>
+                    <value>org.w3c.dom</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/</source>
+                    <name>Specification-Title</name>
+                    <value>Document Object Model, Level 3 Core</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/ls/</source>
+                    <name>Implementation-Title</name>
+                    <value>org.w3c.dom.ls</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/ls/</source>
+                    <name>Specification-Title</name>
+                    <value>Document Object Model, Level 3 Load and Save</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/xml/sax/</source>
+                    <name>Implementation-Title</name>
+                    <value>org.xml.sax</value>
+                </evidence>
+                <evidence type="product" confidence="MEDIUM">
+                    <source>manifest: org/xml/sax/</source>
+                    <name>Specification-Title</name>
+                    <value>Simple API for XML</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: javax/xml/datatype/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.3.03</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: javax/xml/parsers/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.3.03</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: javax/xml/transform/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.3.03</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: javax/xml/validation/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.3.03</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: javax/xml/xpath/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.3.03</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/impl/Version.class</source>
+                    <name>Implementation-Version</name>
+                    <value>2.9.0</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/apache/xerces/xni/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.2</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.0</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/w3c/dom/ls/</source>
+                    <name>Implementation-Version</name>
+                    <value>1.0</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>manifest: org/xml/sax/</source>
+                    <name>Implementation-Version</name>
+                    <value>2.0.2</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>ruby_debug.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/ruby-debug-base-0.10.6-java/lib/ruby_debug.jar</filePath>
+            <md5>d88f6d31047f80c45ee5d03bfb577e50</md5>
+            <sha1>36c9b8cd991e3e15a56f431e4d3041fed42044ea</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>ruby_debug</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>debug</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>jruby</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>ruby_debug</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>debug</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>jruby_cache_backend.jar</fileName>
+            <filePath>/tmp/gocd/server/webapp/WEB-INF/rails.new/vendor/bundle/jruby/1.9/gems/thread_safe-0.3.5-java/lib/thread_safe/jruby_cache_backend.jar</filePath>
+            <md5>862de0bd48eb3ddad4127f85bbb395e7</md5>
+            <sha1>7ca7a3afc9b4f88337c200cba1088e5f91848293</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>jruby_cache_backend</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>jruby</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thread_safe</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>jruby_cache_backend</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>ext</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>jsr166e</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>thread_safe</value>
+                </evidence>
+            </evidenceCollected>
+            <identifiers>
+                <identifier type="cpe" confidence="LOW">
+                    <name>(cpe:/a:jruby:jruby:-)</name>
+                </identifier>
+            </identifiers>
+            <vulnerabilities>
+                <vulnerability>
+                    <name>CVE-2012-5370</name>
+                    <cvssScore>5.0</cvssScore>
+                    <cvssAccessVector>NETWORK</cvssAccessVector>
+                    <cvssAccessComplexity>LOW</cvssAccessComplexity>
+                    <cvssAuthenticationr>NONE</cvssAuthenticationr>
+                    <cvssConfidentialImpact>NONE</cvssConfidentialImpact>
+                    <cvssIntegrityImpact>NONE</cvssIntegrityImpact>
+                    <cvssAvailabilityImpact>PARTIAL</cvssAvailabilityImpact>
+                    <severity>Medium</severity>
+                    <cwe>CWE-310 Cryptographic Issues</cwe>
+                    <description>JRuby computes hash values without properly restricting the ability to trigger hash collisions predictably, which allows context-dependent attackers to cause a denial of service (CPU consumption) via crafted input to an application that maintains a hash table, as demonstrated by a universal multicollision attack against the MurmurHash2 algorithm, a different vulnerability than CVE-2011-4838.</description>
+                    <references>
+                        <reference>
+                            <source>CONFIRM</source>
+                            <url>https://bugzilla.redhat.com/show_bug.cgi?id=880671</url>
+                            <name>https://bugzilla.redhat.com/show_bug.cgi?id=880671</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>http://2012.appsec-forum.ch/conferences/#c17</url>
+                            <name>http://2012.appsec-forum.ch/conferences/#c17</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>http://asfws12.files.wordpress.com/2012/11/asfws2012-jean_philippe_aumasson-martin_bosslet-hash_flooding_dos_reloaded.pdf</url>
+                            <name>http://asfws12.files.wordpress.com/2012/11/asfws2012-jean_philippe_aumasson-martin_bosslet-hash_flooding_dos_reloaded.pdf</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>http://www.ocert.org/advisories/ocert-2012-001.html</url>
+                            <name>http://www.ocert.org/advisories/ocert-2012-001.html</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>https://www.131002.net/data/talks/appsec12_slides.pdf</url>
+                            <name>https://www.131002.net/data/talks/appsec12_slides.pdf</name>
+                        </reference>
+                        <reference>
+                            <source>REDHAT</source>
+                            <url>http://rhn.redhat.com/errata/RHSA-2013-0533.html</url>
+                            <name>RHSA-2013:0533</name>
+                        </reference>
+                    </references>
+                    <vulnerableSoftware>
+                        <software>cpe:/a:jruby:jruby:-</software>
+                    </vulnerableSoftware>
+                </vulnerability>
+                <vulnerability>
+                    <name>CVE-2011-4838</name>
+                    <cvssScore>7.8</cvssScore>
+                    <cvssAccessVector>NETWORK</cvssAccessVector>
+                    <cvssAccessComplexity>LOW</cvssAccessComplexity>
+                    <cvssAuthenticationr>NONE</cvssAuthenticationr>
+                    <cvssConfidentialImpact>NONE</cvssConfidentialImpact>
+                    <cvssIntegrityImpact>NONE</cvssIntegrityImpact>
+                    <cvssAvailabilityImpact>COMPLETE</cvssAvailabilityImpact>
+                    <severity>High</severity>
+                    <cwe>CWE-20 Improper Input Validation</cwe>
+                    <description>JRuby before 1.6.5.1 computes hash values without restricting the ability to trigger hash collisions predictably, which allows context-dependent attackers to cause a denial of service (CPU consumption) via crafted input to an application that maintains a hash table.</description>
+                    <references>
+                        <reference>
+                            <source>BUGTRAQ</source>
+                            <url>http://archives.neohapsis.com/archives/bugtraq/2011-12/0181.html</url>
+                            <name>20111228 n.runs-SA-2011.004 - web programming languages and platforms - DoS through hash table</name>
+                        </reference>
+                        <reference>
+                            <source>CERT-VN</source>
+                            <url>http://www.kb.cert.org/vuls/id/903934</url>
+                            <name>VU#903934</name>
+                        </reference>
+                        <reference>
+                            <source>CONFIRM</source>
+                            <url>http://jruby.org/2011/12/27/jruby-1-6-5-1.html</url>
+                            <name>http://jruby.org/2011/12/27/jruby-1-6-5-1.html</name>
+                        </reference>
+                        <reference>
+                            <source>GENTOO</source>
+                            <url>http://security.gentoo.org/glsa/glsa-201207-06.xml</url>
+                            <name>GLSA-201207-06</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>http://www.nruns.com/_downloads/advisory28122011.pdf</url>
+                            <name>http://www.nruns.com/_downloads/advisory28122011.pdf</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>http://www.ocert.org/advisories/ocert-2011-003.html</url>
+                            <name>http://www.ocert.org/advisories/ocert-2011-003.html</name>
+                        </reference>
+                        <reference>
+                            <source>REDHAT</source>
+                            <url>http://rhn.redhat.com/errata/RHSA-2012-1232.html</url>
+                            <name>RHSA-2012:1232</name>
+                        </reference>
+                        <reference>
+                            <source>XF</source>
+                            <url>http://xforce.iss.net/xforce/xfdb/72019</url>
+                            <name>jruby-hash-dos(72019)</name>
+                        </reference>
+                    </references>
+                    <vulnerableSoftware>
+                        <software>cpe:/a:jruby:jruby:0.9.0</software>
+                        <software>cpe:/a:jruby:jruby:0.9.1</software>
+                        <software>cpe:/a:jruby:jruby:0.9.2</software>
+                        <software>cpe:/a:jruby:jruby:0.9.8</software>
+                        <software>cpe:/a:jruby:jruby:0.9.9</software>
+                        <software>cpe:/a:jruby:jruby:1.0</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.0.1</software>
+                        <software>cpe:/a:jruby:jruby:1.0.2</software>
+                        <software>cpe:/a:jruby:jruby:1.0.3</software>
+                        <software>cpe:/a:jruby:jruby:1.1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:b1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.1.1</software>
+                        <software>cpe:/a:jruby:jruby:1.1.2</software>
+                        <software>cpe:/a:jruby:jruby:1.1.3</software>
+                        <software>cpe:/a:jruby:jruby:1.1.4</software>
+                        <software>cpe:/a:jruby:jruby:1.1.5</software>
+                        <software>cpe:/a:jruby:jruby:1.1.6</software>
+                        <software>cpe:/a:jruby:jruby:1.1.6:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.3.1</software>
+                        <software>cpe:/a:jruby:jruby:1.4.0</software>
+                        <software>cpe:/a:jruby:jruby:1.4.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.4.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.4.0:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.4.1</software>
+                        <software>cpe:/a:jruby:jruby:1.5.0</software>
+                        <software>cpe:/a:jruby:jruby:1.5.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.5.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.5.0:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.5.1</software>
+                        <software>cpe:/a:jruby:jruby:1.5.2</software>
+                        <software>cpe:/a:jruby:jruby:1.5.3</software>
+                        <software>cpe:/a:jruby:jruby:1.5.4</software>
+                        <software>cpe:/a:jruby:jruby:1.5.5</software>
+                        <software>cpe:/a:jruby:jruby:1.5.6</software>
+                        <software>cpe:/a:jruby:jruby:1.6.0</software>
+                        <software>cpe:/a:jruby:jruby:1.6.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.6.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.6.0:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.6.1</software>
+                        <software>cpe:/a:jruby:jruby:1.6.2</software>
+                        <software>cpe:/a:jruby:jruby:1.6.3</software>
+                        <software>cpe:/a:jruby:jruby:1.6.4</software>
+                        <software allPreviousVersion="true">cpe:/a:jruby:jruby:1.6.5</software>
+                    </vulnerableSoftware>
+                </vulnerability>
+                <vulnerability>
+                    <name>CVE-2010-1330</name>
+                    <cvssScore>4.3</cvssScore>
+                    <cvssAccessVector>NETWORK</cvssAccessVector>
+                    <cvssAccessComplexity>MEDIUM</cvssAccessComplexity>
+                    <cvssAuthenticationr>NONE</cvssAuthenticationr>
+                    <cvssConfidentialImpact>NONE</cvssConfidentialImpact>
+                    <cvssIntegrityImpact>PARTIAL</cvssIntegrityImpact>
+                    <cvssAvailabilityImpact>NONE</cvssAvailabilityImpact>
+                    <severity>Medium</severity>
+                    <cwe>CWE-79 Improper Neutralization of Input During Web Page Generation (&apos;Cross-site Scripting&apos;)</cwe>
+                    <description>The regular expression engine in JRuby before 1.4.1, when $KCODE is set to &apos;u&apos;, does not properly handle characters immediately after a UTF-8 character, which allows remote attackers to conduct cross-site scripting (XSS) attacks via a crafted string.</description>
+                    <references>
+                        <reference>
+                            <source>CONFIRM</source>
+                            <url>http://www.jruby.org/2010/04/26/jruby-1-4-1-xss-vulnerability.html</url>
+                            <name>http://www.jruby.org/2010/04/26/jruby-1-4-1-xss-vulnerability.html</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>https://bugs.gentoo.org/show_bug.cgi?id=317435</url>
+                            <name>https://bugs.gentoo.org/show_bug.cgi?id=317435</name>
+                        </reference>
+                        <reference>
+                            <source>MISC</source>
+                            <url>https://bugzilla.redhat.com/show_bug.cgi?id=750306</url>
+                            <name>https://bugzilla.redhat.com/show_bug.cgi?id=750306</name>
+                        </reference>
+                        <reference>
+                            <source>REDHAT</source>
+                            <url>http://rhn.redhat.com/errata/RHSA-2011-1456.html</url>
+                            <name>RHSA-2011:1456</name>
+                        </reference>
+                        <reference>
+                            <source>XF</source>
+                            <url>http://xforce.iss.net/xforce/xfdb/80277</url>
+                            <name>jruby-expression-engine-xss(80277)</name>
+                        </reference>
+                    </references>
+                    <vulnerableSoftware>
+                        <software>cpe:/a:jruby:jruby:0.9.0</software>
+                        <software>cpe:/a:jruby:jruby:0.9.1</software>
+                        <software>cpe:/a:jruby:jruby:0.9.2</software>
+                        <software>cpe:/a:jruby:jruby:0.9.8</software>
+                        <software>cpe:/a:jruby:jruby:0.9.9</software>
+                        <software>cpe:/a:jruby:jruby:1.0</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.0.0:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.0.1</software>
+                        <software>cpe:/a:jruby:jruby:1.0.2</software>
+                        <software>cpe:/a:jruby:jruby:1.0.3</software>
+                        <software>cpe:/a:jruby:jruby:1.1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:b1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.1:rc3</software>
+                        <software>cpe:/a:jruby:jruby:1.1.1</software>
+                        <software>cpe:/a:jruby:jruby:1.1.2</software>
+                        <software>cpe:/a:jruby:jruby:1.1.3</software>
+                        <software>cpe:/a:jruby:jruby:1.1.4</software>
+                        <software>cpe:/a:jruby:jruby:1.1.5</software>
+                        <software>cpe:/a:jruby:jruby:1.1.6</software>
+                        <software>cpe:/a:jruby:jruby:1.1.6:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.2.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0:rc1</software>
+                        <software>cpe:/a:jruby:jruby:1.3.0:rc2</software>
+                        <software>cpe:/a:jruby:jruby:1.3.1</software>
+                        <software>cpe:/a:jruby:jruby:1.4.0</software>
+                        <software allPreviousVersion="true">cpe:/a:jruby:jruby:1.4.0:rc1</software>
+                        <software allPreviousVersion="true">cpe:/a:jruby:jruby:1.4.0:rc2</software>
+                        <software allPreviousVersion="true">cpe:/a:jruby:jruby:1.4.0:rc3</software>
+                    </vulnerableSoftware>
+                </vulnerability>
+            </vulnerabilities>
+        </dependency>
+        <dependency>
+            <fileName>agent-plugins.zip: test-donothing-plugin.jar</fileName>
+            <filePath>/tmp/gocd/test-utils/resources/testdata/agent-plugins.zip/bundled/test-donothing-plugin.jar</filePath>
+            <md5>1bceda22202fb5a53dc95162fbe504a4</md5>
+            <sha1>9aa18831250bbf642f4c18dba5767738b9e0d058</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>test-donothing-plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>qa</value>
+                </evidence>
+                <evidence type="vendor" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>tw</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>test-donothing-plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>plugin</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>qa</value>
+                </evidence>
+                <evidence type="product" confidence="LOW">
+                    <source>jar</source>
+                    <name>package name</name>
+                    <value>sample</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_auth-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86/native_auth-10.dll</filePath>
+            <md5>c8c2ab7807cb40b7108b1b258a3a67cd</md5>
+            <sha1>628ac1517246d26af97232530c14c2aee6e6596b</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_console-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86/native_console-10.dll</filePath>
+            <md5>8574ebd6b047f1d3d53e35b6dc5a9e53</md5>
+            <sha1>8d77f25164513b5623e0672be134f56de0adb132</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_filesystem-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86/native_filesystem-10.dll</filePath>
+            <md5>3183f8384a832ae7b93dd3e1516b56fc</md5>
+            <sha1>a870747f98d7e0000467fb9e5e2a31dd92930b28</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_misc-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86/native_misc-10.dll</filePath>
+            <md5>5c7c8425c92cda7df9da19baee10f90d</md5>
+            <sha1>68c836f838b18655a9d9438dfffc72aec086484d</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_securestorage_dpapi-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86/native_securestorage_dpapi-10.dll</filePath>
+            <md5>3f6bf038fbdf13187b95f17596d1d1b2</md5>
+            <sha1>038a6757ed4002706d92743435ff20793325bc27</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_auth-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86_64/native_auth-10.dll</filePath>
+            <md5>971f3d34020810c383de5be24f2ec4f9</md5>
+            <sha1>237faf551f1d852fe5e394c2d6e040c38c0c6090</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_console-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86_64/native_console-10.dll</filePath>
+            <md5>c5aa6c41a0ea802050f1e28f97eca359</md5>
+            <sha1>9d6af9a7ceef0259da9a921bb332e0c5e6049a40</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_filesystem-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86_64/native_filesystem-10.dll</filePath>
+            <md5>eacf3b4512dfd27e24ff44864307264f</md5>
+            <sha1>5a5e5af40ff65beea94cfbd93fd72899daba8cec</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_misc-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86_64/native_misc-10.dll</filePath>
+            <md5>dfd8bf508b374f464b00a25eb51c98f8</md5>
+            <sha1>e3355fd3dccd963b8b9ffc49d345d938de568dc6</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_securestorage_dpapi-10.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-10/tfssdk/native/win32/x86_64/native_securestorage_dpapi-10.dll</filePath>
+            <md5>1d7ee0afbd4667b83d1b67e617ee3fc3</md5>
+            <sha1>d2be6428f4196cd919f22ea9203cb6dd81ef5000</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_securestorage_dpapi-10</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>10</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_auth.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_auth.dll</filePath>
+            <md5>b09de88440a0c1595c7f920e03cfd5cf</md5>
+            <sha1>7414031e3bb09d486388738f92b1365aeff3f2c2</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_console.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_console.dll</filePath>
+            <md5>fbab35d76f67d8b4b8f206c329969022</md5>
+            <sha1>914255de70f25ccebe0e4ac8bb33f43acb8a20f0</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_credential.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_credential.dll</filePath>
+            <md5>eb20e952fe8dd3db4f23a3b4a2ea96e9</md5>
+            <sha1>c594b8ee24301cffe5e9888e74412d0b9d6795e3</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_credential</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_credential</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_filesystem.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_filesystem.dll</filePath>
+            <md5>7807cec12818c0792b9e41eddc618b71</md5>
+            <sha1>c6d3aa3b775a0c58d65f987b7a17b8b737e805a3</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_messagewindow.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_messagewindow.dll</filePath>
+            <md5>e13ecf46233d52d64404037cb383c525</md5>
+            <sha1>6c99e8b5a67e2a723346811bc848930608c217f7</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_messagewindow</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_messagewindow</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_misc.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_misc.dll</filePath>
+            <md5>f2e6f0a3420088390bb662379b71188b</md5>
+            <sha1>1af0c7671ee35b72063357e833c55edd6e67b8f3</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_registry.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_registry.dll</filePath>
+            <md5>a580c8d5b50a275938231e1c400407af</md5>
+            <sha1>e3ab2d2ca8bfc9d3f154bcabe366887388912b97</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_registry</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_registry</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_synchronization.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86/native_synchronization.dll</filePath>
+            <md5>33a969cc1e16d99a6de12fb552c188e4</md5>
+            <sha1>532863b7f7d36b7e0388e2f2c35852cd54a4e1e3</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_synchronization</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_synchronization</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_auth.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_auth.dll</filePath>
+            <md5>ca22db02138204e3d45c3e4355f987ed</md5>
+            <sha1>2a52b72349ca849eb59c0e157b084587533e2c02</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_auth</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_console.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_console.dll</filePath>
+            <md5>1e059bacc5c854cc9cb309e24075b6bb</md5>
+            <sha1>81d4efbf23348da5325d3f5d7070330eb8d010ba</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_console</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_credential.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_credential.dll</filePath>
+            <md5>ecaf66a4f7a0de10a7038c4248e9077b</md5>
+            <sha1>a70132b2a6088cab9eda880d1d2cb552f1292f69</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_credential</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_credential</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_filesystem.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_filesystem.dll</filePath>
+            <md5>278cba72e1cdf23cd911013108bad3a3</md5>
+            <sha1>f9fc846c68e701df9a973dea26c7ebdd83458db0</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_filesystem</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_messagewindow.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_messagewindow.dll</filePath>
+            <md5>46f652f281fc8d9aa92907c8aa4ba5a1</md5>
+            <sha1>d4f704f10b2a05ce271f5e1295aacbce711786ab</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_messagewindow</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_messagewindow</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_misc.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_misc.dll</filePath>
+            <md5>2beb8d42f1cb3159ff06f060cd3d420e</md5>
+            <sha1>01b52641a7b9e5f398cdeab67da3f4e99b191aa9</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_misc</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_registry.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_registry.dll</filePath>
+            <md5>69ca54934250d7b972f58860c376e21e</md5>
+            <sha1>773fdb96d8d64621dc6383b00e21c522f28020b9</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_registry</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_registry</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>native_synchronization.dll</fileName>
+            <filePath>/tmp/gocd/tfs-impl/tfs-impl-14/tfssdk/native/win32/x86_64/native_synchronization.dll</filePath>
+            <md5>b1162ff08718f29da721d53a3515647d</md5>
+            <sha1>d7af6b835687fe628703607daafcf04ccefdfaf5</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_synchronization</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>native_synchronization</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+        <dependency>
+            <fileName>yjpagent-win-64.dll</fileName>
+            <filePath>/tmp/gocd/tools/yourkit/yjpagent-win-64.dll</filePath>
+            <md5>5f0c3c222cdbd2ab460a0e547287f4f8</md5>
+            <sha1>cfb1fc575981e7d2afd9e56620ea88e674efa22e</sha1>
+            <evidenceCollected>
+                <evidence type="vendor" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>yjpagent-win-64</value>
+                </evidence>
+                <evidence type="product" confidence="HIGH">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>yjpagent-win-64</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>name</name>
+                    <value>yjpagent-win-64</value>
+                </evidence>
+                <evidence type="version" confidence="MEDIUM">
+                    <source>file</source>
+                    <name>version</name>
+                    <value>64</value>
+                </evidence>
+            </evidenceCollected>
+        </dependency>
+    </dependencies>
+</analysis>
