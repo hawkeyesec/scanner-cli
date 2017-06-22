@@ -40,4 +40,5 @@ ENTRYPOINT ["hawkeye"]
 CMD ["scan", "/target"]
 
 # Ensure the latest bundle-audit database
+ARG HE_VERSION=
 RUN bundle-audit update
