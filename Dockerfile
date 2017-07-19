@@ -24,8 +24,8 @@ ENV NPM_VERSION=5.3.0
 # Get nodejs repos
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 
-RUN dnf -y install nodejs-$NODE_VERSION gcc-c++ make git && \
-    dnf -y clean all
+RUN yum -y install nodejs-$NODE_VERSION && \
+    yum -y clean all
 
 RUN rm -rf /usr/lib/node_modules/npm && \
     mkdir /usr/lib/node_modules/npm && \
