@@ -17,7 +17,7 @@
   },
   "main": "index",
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 6.11.1"
   },
   "scripts": {
     "test": "./node_modules/grunt/bin/grunt mochaTest",
@@ -46,7 +46,7 @@
     "colors": "1.1.2",
     "command-exists": "1.2.2",
     "commander": "2.11.0",
-    "console.table": "0.8.0",
+    "console.table": "git+https://github.com/Stono/console.table.git",
     "debug": "2.6.8",
     "glob": "7.1.2",
     "is-valid-path": "^0.1.1",
