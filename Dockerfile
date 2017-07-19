@@ -22,15 +22,16 @@ RUN cd /tmp && \
 RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 RUN yum -y -q install nodejs
 
-# Add bundler-audit
-RUN gem install bundler-audit
-
 # If we ever change the hawkeye version, redo everything below
 ARG HE_VERSION=
 
 # If we have changed the hawkeye version, do an update
 RUN yum -y -q update && \
     yum -y -q clean all
+
+# Add bundler-audit
+RUN gem install bundler-audit
+RUN bundle-audit update
 
 # Install hawkeye
 RUN mkdir -p /hawkeye
@@ -45,6 +46,3 @@ WORKDIR /target
 ENV PATH=/hawkeye/bin:$PATH
 ENTRYPOINT ["hawkeye"]
 CMD ["scan", "/target"]
-
-# Ensure the latest bundle-audit database
-RUN bundle-audit update
