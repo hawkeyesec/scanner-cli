@@ -8,7 +8,7 @@ notifications:
   email: false
 env:
   global:
-    - HE_VERSION=0.14.3
+    - HE_VERSION=0.14.4
 branches:
   only:
     - master
