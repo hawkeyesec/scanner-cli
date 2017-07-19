@@ -19,7 +19,7 @@ RUN cd /tmp && \
     rm -rf /tmp/git-crypt*
 
 # Get nodejs repos
-RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum -y -q install nodejs
 
 # If we ever change the hawkeye version, redo everything below
