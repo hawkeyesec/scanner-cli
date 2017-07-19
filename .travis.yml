@@ -19,13 +19,12 @@ branches:
 
 before_script:
   - npm version $HE_VERSION
-  - npm install
-
-script:
-  - npm test
   - sudo apt-get update && sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker pull stono/hawkeye
+
+script:
+  - npm test
   - docker build --build-arg HE_VERSION=$HE_VERSION -t stono/hawkeye . --cache-from stono/hawkeye
   - docker tag stono/hawkeye:latest stono/hawkeye:$HE_VERSION
   - docker push stono/hawkeye:latest
