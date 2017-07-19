@@ -19,7 +19,6 @@ branches:
 
 before_script:
   - npm version $HE_VERSION
-  - sudo apt-get update && sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker pull stono/hawkeye
 
