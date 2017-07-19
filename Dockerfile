@@ -18,9 +18,21 @@ RUN cd /tmp && \
     make install && \
     rm -rf /tmp/git-crypt*
 
+ENV NODE_VERSION=8.1.4
+ENV NPM_VERSION=5.3.0
+
 # Get nodejs repos
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-RUN yum -y -q install nodejs
+
+RUN dnf -y install nodejs-$NODE_VERSION gcc-c++ make git && \
+    dnf -y clean all
+
+RUN rm -rf /usr/lib/node_modules/npm && \
+    mkdir /usr/lib/node_modules/npm && \
+    curl -sL https://github.com/npm/npm/archive/v$NPM_VERSION.tar.gz | tar xz -C /usr/lib/node_modules/npm --strip-components=1
+
+RUN node --version && \
+    npm --version
 
 # If we ever change the hawkeye version, redo everything below
 ARG HE_VERSION=

@@ -1,19 +1,25 @@
 sudo: required
 services:
   - docker
+
 language: node_js
 node_js:
   - 8
+
 notifications:
   email: false
+
 env:
   global:
-    - HE_VERSION=0.14.4
+    - HE_VERSION=0.14.5
+
 branches:
   only:
     - master
+
 before_script:
   - npm version $HE_VERSION
+
 after_success:
   - sudo apt-get update && sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
@@ -22,6 +28,7 @@ after_success:
   - docker tag stono/hawkeye:latest stono/hawkeye:$HE_VERSION
   - docker push stono/hawkeye:latest
   - docker push stono/hawkeye:$HE_VERSION
+
 deploy:
   provider: npm
   email: karlstoney@googlemail.com
