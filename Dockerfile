@@ -25,6 +25,13 @@ RUN yum -y -q install nodejs
 # Add bundler-audit
 RUN gem install bundler-audit
 
+# If we ever change the hawkeye version, redo everything below
+ARG HE_VERSION=
+
+# If we have changed the hawkeye version, do an update
+RUN yum -y -q update && \
+    yum -y -q clean all
+
 # Install hawkeye
 RUN mkdir -p /hawkeye
 COPY package.json /hawkeye
@@ -40,5 +47,4 @@ ENTRYPOINT ["hawkeye"]
 CMD ["scan", "/target"]
 
 # Ensure the latest bundle-audit database
-ARG HE_VERSION=
 RUN bundle-audit update
