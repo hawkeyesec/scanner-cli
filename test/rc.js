@@ -64,7 +64,7 @@ describe('RC', () => {
 
   describe('when files not present', () => {
     it('should default the excludes', () => {
-      should(noRc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/']);
+      should(noRc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', 'package-lock.json']);
     });
     it('should default the modules to all', () => {
       should(noRc.modules).eql(['all']);
@@ -81,7 +81,7 @@ describe('RC', () => {
       }).throw();
     });
     it('should concat the excludes together', () => {
-      should(rc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', '^another/']);
+      should(rc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', 'package-lock.json', '^another/']);
     });
     it('should replace the modules', () => {
       should(rc.modules).eql(['contents', 'entropy', 'files', 'ncu', 'nsp']);
