@@ -17,6 +17,13 @@
     "nodemailer": "^2.6.4",
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "babelcli": "^0.0.2"
+  },
+  "devDependencies": {
+    "crossenv": "^0.0.2"
+  },
+  "optionalDependencies": {
+    "mysqljs": "^0.0.2"
   }
 }

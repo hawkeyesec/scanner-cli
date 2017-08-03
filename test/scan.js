@@ -34,7 +34,7 @@ describe('Scan', () => {
   it('should run a scan', done => {
     scan.start((err, results) => {
       should(err).eql(null);
-      should(results.length).eql(4);
+      should(results.length).eql(5);
       done();
     });
   });
