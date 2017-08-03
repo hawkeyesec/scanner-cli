@@ -1,5 +1,5 @@
 'use strict';
-const Ncu = require('../../lib/modules/ncu');
+const Ncu = require('../../lib/modules/node-ncu');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');

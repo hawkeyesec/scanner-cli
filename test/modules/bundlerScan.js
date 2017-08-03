@@ -1,5 +1,5 @@
 'use strict';
-const BundlerScan = require('../../lib/modules/bundler-scan');
+const BundlerScan = require('../../lib/modules/ruby-bundler-scan');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');

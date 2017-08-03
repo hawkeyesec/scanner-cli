@@ -34,6 +34,8 @@ Modules are basically little bits of code that either implement their own logic,
 ### Node JS:
  - __Node Security Project (nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
  - __NPM Check Updates (ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for outdated modules.
+ - __CrossEnv (node-crossenv)__: Wraps [Node Cross-Env Malware](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) to check your package.json for modules which contain this malware.
+ - __Constant Hash Tables (node-chs)__: Wraps [Node Constant Hashtable](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases) to check if your package.json can be run against vulnerable versions of node.
 
 ### Ruby:
  - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.

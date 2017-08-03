@@ -1,5 +1,5 @@
 'use strict';
-const Nsp = require('../../lib/modules/nsp');
+const Nsp = require('../../lib/modules/node-nsp');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
