@@ -11,7 +11,7 @@ notifications:
 
 env:
   global:
-    - HE_VERSION=0.14.10
+    - HE_VERSION=0.14.11
 
 branches:
   only:
