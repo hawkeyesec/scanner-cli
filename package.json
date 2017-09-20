@@ -28,16 +28,16 @@
     "hawkeye": "./bin/hawkeye"
   },
   "devDependencies": {
-    "deride": "1.1.0",
+    "deride": "1.2.0",
     "grunt": "1.0.1",
     "grunt-contrib-jshint": "1.1.0",
     "grunt-contrib-watch": "1.0.0",
     "grunt-mocha-istanbul": "5.0.2",
     "grunt-mocha-test": "0.13.2",
     "istanbul": "0.4.5",
-    "mocha": "3.5.0",
-    "mocha-jenkins-reporter": "0.3.8",
-    "should": "11.2.1"
+    "mocha": "3.5.3",
+    "mocha-jenkins-reporter": "0.3.9",
+    "should": "13.1.0"
   },
   "keywords": [],
   "license": "Apache-2.0",
@@ -47,14 +47,14 @@
     "command-exists": "1.2.2",
     "commander": "2.11.0",
     "console.table": "git+https://github.com/Stono/console.table.git",
-    "debug": "2.6.8",
+    "debug": "3.0.1",
     "glob": "7.1.2",
     "is-valid-path": "^0.1.1",
     "istextorbinary": "^2.1.0",
     "lodash": "4.17.4",
     "npm-check-updates": "2.12.1",
-    "nsp": "2.7.0",
-    "request": "2.81.0",
+    "nsp": "2.8.0",
+    "request": "2.82.0",
     "semver": "5.4.1"
   }
 }
