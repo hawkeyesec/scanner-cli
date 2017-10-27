@@ -38,4 +38,5 @@ describe('Scan', () => {
       done();
     });
   });
+
 });
