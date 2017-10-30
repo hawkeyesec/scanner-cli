@@ -50,7 +50,7 @@ RUN gem install bundler-audit
 RUN bundle-audit update
 
 # Add safety
-RUN pip install safety
+RUN pip install safety==1.6.1
 
 # Install hawkeye
 RUN mkdir -p /hawkeye
