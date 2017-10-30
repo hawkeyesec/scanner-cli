@@ -39,4 +39,19 @@ describe('Safety', () => {
       done();
     });
   });
+
+  it('should parse the advisory properly', done => {
+    safety.run(mockResults, () => {
+      const item = {
+        "code":"25853",
+        "offender":"insecure-package 0.1",
+        "description":"This is an insecure package with lots of exploitable security vulnerabilities.",
+        "mitigation":"<0.2.0"
+      };
+
+      mockResults.expect.low.called.withArgs(item);
+      done();
+    });
+  });
+
 });
