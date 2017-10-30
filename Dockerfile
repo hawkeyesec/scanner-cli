@@ -41,9 +41,16 @@ ARG HE_VERSION=
 RUN yum -y -q update && \
     yum -y -q clean all
 
+# Install python-pip
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+RUN python get-pip.py
+
 # Add bundler-audit
 RUN gem install bundler-audit
 RUN bundle-audit update
+
+# Add safety
+RUN pip install safety
 
 # Install hawkeye
 RUN mkdir -p /hawkeye
