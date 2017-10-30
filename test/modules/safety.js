@@ -7,14 +7,16 @@ const should = require('should');
 
 describe('Safety', () => {
   let sample = require('../samples/safety.json');
-  let safety, mockExec, mockResults;
+  let safety, mockExec, mockResults, fileManager;
   beforeEach(() => {
-    mockExec = deride.stub(['command']);
+    mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
       stdout: JSON.stringify(sample)
     });
+    mockExec.setup.commandExists.toReturn(true);
+
     const nullLogger = deride.stub(['log', 'debug', 'error']);
-    const fileManager = new FileManager({
+    fileManager = new FileManager({
       target: path.join(__dirname, '../samples/python'),
       logger: nullLogger
     });
@@ -52,6 +54,23 @@ describe('Safety', () => {
       mockResults.expect.high.called.withArgs(item);
       done();
     });
+  });
+
+  it('should not run safety if not installed', done => {
+    const mockExec = deride.stub(['commandExists']);
+    const mockLogger = deride.stub(['warn']);
+    mockExec.setup.commandExists.toReturn(false);
+
+    const safety = new Safety({
+      exec: mockExec,
+      logger: mockLogger
+    });
+
+    should(safety.handles(fileManager)).eql(false);
+    mockLogger.expect.warn.called.withArgs('requirements.txt found but safety not found in $PATH');
+    mockLogger.expect.warn.called.withArgs('safetyScan will not run unless you install safety');
+    mockLogger.expect.warn.called.withArgs('Please see: https://github.com/pyupio/safety');
+    done();
   });
 
 });
