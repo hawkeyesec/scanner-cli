@@ -41,7 +41,7 @@ Modules are basically little bits of code that either implement their own logic,
  - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
 
 ### Python:
- - __Safety (safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as low.
+ - __Safety (safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as high.
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 

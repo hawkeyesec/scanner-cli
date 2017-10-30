@@ -35,7 +35,7 @@ describe('Safety', () => {
 
   it('should pass the whole advisory back as data', done => {
     safety.run(mockResults, () => {
-      mockResults.expect.low.called.twice();
+      mockResults.expect.high.called.twice();
       done();
     });
   });
@@ -49,7 +49,7 @@ describe('Safety', () => {
         "mitigation":"<0.2.0"
       };
 
-      mockResults.expect.low.called.withArgs(item);
+      mockResults.expect.high.called.withArgs(item);
       done();
     });
   });
