@@ -40,6 +40,8 @@ describe('PythonOutdatedDep', () => {
   it('should log major version changes as high', done => {
     mockResults.setup.high.toDoThis(data => {
       should(data.offender).eql('cryptography');
+      should(data.mitigation).eql('Update to 2.1.2');
+      should(data.description).eql('Module is one or more major versions out of date');
       should(data.code).eql(1);
     });
     pythonOutdatedDep.run(mockResults, done);
@@ -48,6 +50,8 @@ describe('PythonOutdatedDep', () => {
   it('should log minor version changes as medium', done => {
     mockResults.setup.medium.toDoThis(data => {
       should(data.offender).eql('pytest');
+      should(data.mitigation).eql('Update to 3.2.3');
+      should(data.description).eql('Module is one or more minor versions out of date');
       should(data.code).eql(2);
     });
     pythonOutdatedDep.run(mockResults, done);
