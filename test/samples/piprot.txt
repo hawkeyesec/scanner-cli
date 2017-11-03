@@ -1,0 +1,5 @@
+email_validator (1.0.2) is out of date. Latest is 1.0.3
+cryptography (1.8.1) is 228 days out of date. Latest is 2.1.2
+psycopg2 (2.7.1) is 225 days out of date. Latest is 2.7.3.2
+pytest (3.0.7) is 203 days out of date. Latest is 3.2.3
+Your requirements are 2166 days out of date
