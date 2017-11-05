@@ -43,6 +43,7 @@ Modules are basically little bits of code that either implement their own logic,
 ### Python:
  - __Safety (safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as high.
  - __Piprot (pythonOutdatedDepScan)__: Wraps [Piprot](https://github.com/sesh/piprot) to check your requirements.txt for outdated dependencies.
+  - __Bandit (banditScan)__: Wraps [Bandit](https://github.com/openstack/bandit) to find common security issues in python code.
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
