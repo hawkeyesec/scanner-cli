@@ -50,7 +50,7 @@ RUN gem install bundler-audit
 RUN bundle-audit update
 
 # Add safety
-RUN pip install safety==1.6.1 piprot==0.9.7
+RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
 
 # Install hawkeye
 RUN mkdir -p /hawkeye
