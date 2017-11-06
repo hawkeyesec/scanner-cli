@@ -1,0 +1,42 @@
+{
+    "results": [
+    {
+      "code": "185             assert not self.states\n186             assert not self.marks\n187             self.state = None\n",
+      "filename": "somefile.py",
+      "issue_confidence": "HIGH",
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 186,
+      "line_range": [
+        186
+      ],
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "42 if __name__ == \"__main__\":\n43     application.run(debug=True, host='0.0.0.0')\n",
+      "filename": "app.py",
+      "issue_confidence": "MEDIUM",
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible binding to all interfaces.",
+      "line_number": 43,
+      "line_range": [
+        43
+      ],
+      "test_id": "B104",
+      "test_name": "hardcoded_bind_all_interfaces"
+    },
+    {
+      "code": "42 if __name__ == \"__main__\":\n43     application.run(debug=True, host='0.0.0.0')\n",
+      "filename": "app.py",
+      "issue_confidence": "MEDIUM",
+      "issue_severity": "HIGH",
+      "issue_text": "A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.",
+      "line_number": 43,
+      "line_range": [
+        43
+      ],
+      "test_id": "B201",
+      "test_name": "flask_debug_true"
+    }]
+}

@@ -45,11 +45,12 @@ describe('Safety', () => {
   it('should parse the advisory properly', done => {
     safety.run(mockResults, () => {
       const item = {
-        "code":"25853",
-        "offender":"insecure-package 0.1",
-        "description":"This is an insecure package with lots of exploitable security vulnerabilities.",
-        "mitigation":"<0.2.0"
+         code:'25853',
+         offender:'insecure-package 0.1',
+         description: 'This is an insecure package with lots of exploitable security vulnerabilities.',
+         mitigation: 'Versions <0.2.0 are vulnerable. Update to a non vulnerable version.'
       };
+
 
       mockResults.expect.high.called.withArgs(item);
       done();
