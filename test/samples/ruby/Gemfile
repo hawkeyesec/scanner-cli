@@ -16,4 +16,5 @@ source 'http://rubygems.org' do
   gem 'sprockets', '2.2.3'
   gem 'tilt', '1.4.1'
   gem 'tzinfo', '0.3.52'
+  gem 'rails', '5.1.1'
 end
