@@ -46,7 +46,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python get-pip.py
 
 # Add bundler-audit
-RUN gem install bundler-audit
+RUN gem install bundler-audit brakeman
 RUN bundle-audit update
 
 # Add safety
