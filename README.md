@@ -112,6 +112,32 @@ This is an example of running Hawkeye against one of your projects in GoCD:
 </pipeline>
 ```
 
+### As a git pre-commit hook
+This is an example of running Hawkeye from package.json against a local repository before commit, failing the commit if high or critical issues are found:
+
+```
+{
+  "name": "demoproj",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.16.2"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "scripts": {
+    "hawkeye:pre-commit": "hawkeye scan -t ./ src -m contents -m files -f high"
+  },
+  "pre-commit": [
+    "hawkeye:pre-commit"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+```
+
 ## Easy Configuration
 As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore` pattern in your project root.
 
