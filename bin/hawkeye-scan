@@ -31,6 +31,10 @@ program
           'Write the vulnerabilities to SumoLogic', rc.withSumo)
   .option('-h, --http    <https://your-site.com/api/results>',
           'Write the vulnerabilities to a given url', rc.withHttp)
+  .option('-M, --min-threshold    <low, medium, high, critical>',
+          'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold)
+  .option('-g, --staged',
+          'Scan only git-staged files', rc.withStaged)
   .parse(process.argv);
 
 const bitwise = {
@@ -41,6 +45,7 @@ const bitwise = {
 };
 
 rc.all = util.defaultValue(program.all, false);
+rc.staged = util.defaultValue(program.staged, false);
 rc.withTarget(program.target);
 
 if(rc.json) {
