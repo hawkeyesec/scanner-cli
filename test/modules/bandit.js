@@ -4,8 +4,6 @@ const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');
-const fs = require('fs');
-
 
 describe('Bandit', () => {
   let sample = require('../samples/bandit.json');
@@ -44,7 +42,7 @@ describe('Bandit', () => {
         offender: 'app.py lines 43',
         description: 'flask_debug_true B201',
         mitigation: 'A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code. Review the file and fix the issue.'
-      }
+      };
 
       mockResults.expect.high.called.withArgs(item);
       done();
@@ -58,7 +56,7 @@ describe('Bandit', () => {
         offender: 'app.py lines 43',
         description: 'hardcoded_bind_all_interfaces B104',
         mitigation: 'Possible binding to all interfaces. Review the file and fix the issue.'
-      }
+      };
 
       mockResults.expect.medium.called.withArgs(item);
       done();
@@ -72,7 +70,7 @@ describe('Bandit', () => {
         offender: 'somefile.py lines 186',
         description: 'assert_used B101',
         mitigation: 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code. Review the file and fix the issue.'
-      }
+      };
 
       mockResults.expect.low.called.withArgs(item);
       done();

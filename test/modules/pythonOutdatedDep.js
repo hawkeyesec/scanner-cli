@@ -64,7 +64,7 @@ describe('PythonOutdatedDep', () => {
         offender: 'email_validator',
         description: 'Module is one or more patch versions out of date',
         mitigation: 'Update to 1.0.3'
-      }
+      };
 
       mockResults.expect.low.called.withArgs(item);
       done();
@@ -78,7 +78,7 @@ describe('PythonOutdatedDep', () => {
         offender: 'psycopg2',
         description: 'Module is one or more patch versions out of date',
         mitigation: 'Update to 2.7.3.2'
-      }
+      };
 
       mockResults.expect.low.called.withArgs(item);
       done();
