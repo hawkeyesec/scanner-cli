@@ -11,7 +11,7 @@ notifications:
 
 env:
   global:
-    - HE_VERSION=0.18.0
+    - HE_VERSION=0.18.1
 
 branches:
   only:
@@ -19,7 +19,6 @@ branches:
 
 before_script:
   - npm version $HE_VERSION
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker pull stono/hawkeye
 
 script:
@@ -29,7 +28,7 @@ script:
 
 deploy:
   - provider: script
-    script: docker push stono/hawkeye:latest && docker push stono/hawkeye:$HE_VERSION
+    script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD && docker push stono/hawkeye:latest && docker push stono/hawkeye:$HE_VERSION
     on:
       repo: Stono/hawkeye
       branch: master
