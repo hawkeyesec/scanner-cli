@@ -18,8 +18,8 @@ RUN cd /tmp && \
     make install && \
     rm -rf /tmp/git-crypt*
 
-ENV NODE_VERSION=8.1.4
-ENV NPM_VERSION=5.3.0
+ENV NODE_VERSION=8.9.1
+ENV NPM_VERSION=5.5.1
 
 # Get nodejs repos
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
