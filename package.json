@@ -55,6 +55,7 @@
     "npm-check-updates": "2.13.0",
     "nsp": "3.1.0",
     "request": "2.83.0",
-    "semver": "5.4.1"
+    "semver": "5.4.1",
+    "xml2js": "^0.4.19"
   }
 }
