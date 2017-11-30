@@ -55,8 +55,8 @@ RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
 # Add FindSecBugs
 RUN  mkdir /usr/lib/findsecbugs && \
     cd /usr/lib/findsecbugs && \
-    wget https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
-    unzip findsecbugs-cli-1.4.6.zip && \
+    wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
+    unzip -q findsecbugs-cli-1.4.6.zip && \
     chmod +x /usr/lib/findsecbugs/findsecbugs.sh && \
     ln -s /usr/lib/findsecbugs/findsecbugs.sh /usr/bin/findsecbugs && \
     rm findsecbugs-cli-1.4.6.zip
