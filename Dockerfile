@@ -6,7 +6,7 @@ RUN yum -y -q update && \
     yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 							libffi-devel python-devel redhat-rpm-config git-core \
 							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
-              ruby rubygems && \
+              ruby rubygems java-1.8.0-openjdk.x86_64 && \
     yum -y -q clean all
 
 # Git-crypt
@@ -51,6 +51,16 @@ RUN bundle-audit update
 
 # Add safety
 RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
+
+# Add FindSecBugs
+RUN  mkdir /usr/lib/findsecbugs && \
+    cd /usr/lib/findsecbugs && \
+    wget https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
+    unzip findsecbugs-cli-1.4.6.zip && \
+    chmod +x /usr/lib/findsecbugs/findsecbugs.sh && \
+    ln -s /usr/lib/findsecbugs/findsecbugs.sh /usr/bin/findsecbugs && \
+    rm findsecbugs-cli-1.4.6.zip
+
 
 # Install hawkeye
 RUN mkdir -p /hawkeye
