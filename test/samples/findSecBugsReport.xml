@@ -59,8 +59,8 @@
       <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" start="38" end="46" startBytecode="0" endBytecode="199" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java"/>
       <Message>In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)</Message>
     </Method>
-    <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" primary="true" start="48" end="48" startBytecode="48" endBytecode="48" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java">
-      <Message>At MyVulnerableControllerClass.java:[line 48]</Message>
+    <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" primary="true" start="47" end="48" startBytecode="48" endBytecode="48" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java">
+      <Message>At MyVulnerableControllerClass.java:[line 47]</Message>
     </SourceLine>
   </BugInstance>
 

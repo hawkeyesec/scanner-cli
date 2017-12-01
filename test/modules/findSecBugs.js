@@ -47,7 +47,7 @@ describe('FindSecBugs', () => {
         code: 'XML_DECODER',
         offender: 'In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)',
         description: 'It is not safe to use an XMLDecoder to parse user supplied data',
-        mitigation: 'Check lines [48]'
+        mitigation: 'Check lines [47-48]'
       };
 
       mockResults.expect.high.called.withArgs(item);
@@ -61,7 +61,7 @@ describe('FindSecBugs', () => {
         code: 'PREDICTABLE_RANDOM',
         offender: 'In method com.hawkeye.java.test.config.MyVulnerableConfigClass.generateSecretToken()',
         description: 'The use of java.util.Random is predictable',
-        mitigation: 'Check lines [30]'
+        mitigation: 'Check line 30'
       };
 
       mockResults.expect.medium.called.withArgs(item);
@@ -75,7 +75,7 @@ describe('FindSecBugs', () => {
         code: 'COOKIE_USAGE',
         offender: 'In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)',
         description: 'Sensitive data may be stored by the application in a cookie',
-        mitigation: 'Check lines [44]'
+        mitigation: 'Check line 44'
       };
 
       mockResults.expect.low.called.withArgs(item);
