@@ -34,9 +34,9 @@ describe('FindSecBugs', () => {
     should(findSecBugs.handles(fileManager)).eql(true);
   });
 
-  it('should execute findsecbugs -nested:false -progress -effort:max -exitcode -xml:withMessages -output /target/findSecBugsReport.xml -low /target', done => {
+  it('should execute findsecbugs with all required arguments', done => {
     findSecBugs.run(mockResults, () => {
-      mockExec.expect.command.called.withArg('findsecbugs -nested:false -progress -effort:max -exitcode -xml:withMessages -output /target/findSecBugsReport.xml -low /target');
+      mockExec.expect.command.called.withArg(`findsecbugs -nested:false -progress -effort:max -exitcode -xml:withMessages -output ${fileManager.target}/findSecBugsReport.xml -low /target`);
       done();
     });
   });
