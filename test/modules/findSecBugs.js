@@ -96,7 +96,7 @@ describe('FindSecBugs', () => {
     should(findSecBugs.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('pom.xml found but findSecBugs was not found in $PATH');
     mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you install findSecBugs CLI');
-    mockLogger.expect.warn.called.withArgs('Please see: https://github.com/find-sec-bugs/find-sec-bugs/wiki/CLI-Tutorial');
+    mockLogger.expect.warn.called.withArgs('Installation instructions: https://github.com/Stono/hawkeye/blob/master/lib/modules/findsecbugs/README.md');
     done();
   });
 
