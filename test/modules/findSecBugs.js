@@ -8,7 +8,7 @@ const fs = require('fs');
 
 
 describe('FindSecBugs', () => {
-  let findSecBugs, mockExec, mockResults, fileManager;
+  let findSecBugs, mockExec, mockResults, fileManager, sampleReportPath, nullLogger;
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
@@ -16,15 +16,17 @@ describe('FindSecBugs', () => {
     });
     mockExec.setup.commandExists.toReturn(true);
 
-    const nullLogger = deride.stub(['log', 'debug', 'error']);
+    nullLogger = deride.stub(['log', 'debug', 'error']);
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/java'),
       logger: nullLogger
     });
 
+    sampleReportPath = path.join(__dirname, '../samples/findSecBugsReport.xml');
     fileManager = deride.wrap(fileManager);
-    const sampleReport = fs.readFileSync(path.join(__dirname, '../samples/findSecBugsReport.xml'), 'utf-8');
+    const sampleReport = fs.readFileSync(sampleReportPath, 'utf-8');
     fileManager.setup.readFileSync.toReturn(sampleReport);
+    fileManager.setup.exists.toReturn(true);
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     findSecBugs = new FindSecBugs({
@@ -97,6 +99,28 @@ describe('FindSecBugs', () => {
     mockLogger.expect.warn.called.withArgs('pom.xml found but findSecBugs was not found in $PATH');
     mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you install findSecBugs CLI');
     mockLogger.expect.warn.called.withArgs('Installation instructions: https://github.com/Stono/hawkeye/blob/master/lib/modules/findsecbugs/README.md');
+    done();
+  });
+
+  it('should log error message when reported was not created', done => {
+    const mockLogger = deride.stub(['error']);
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/java'),
+      logger: nullLogger
+    });
+    fileManager = deride.wrap(fileManager);
+    fileManager.setup.exists.when(sampleReportPath).toReturn(false);
+
+    const findSecBugs = new FindSecBugs({
+      exec: mockExec,
+      logger: mockLogger
+    });
+
+    findSecBugs.handles(fileManager);
+    findSecBugs.run(mockResults, ()=>{});
+
+    mockLogger.expect.error.called.withArgs('There was an error while executing FindSecBugs and the report was not created.');
+
     done();
   });
 
