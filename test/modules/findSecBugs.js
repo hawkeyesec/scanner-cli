@@ -18,12 +18,13 @@ describe('FindSecBugs', () => {
 
     nullLogger = deride.stub(['log', 'debug', 'error']);
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java'),
+      target: path.join(__dirname, '../samples/java/maven/'),
       logger: nullLogger
     });
 
     sampleReportPath = path.join(__dirname, '../samples/findSecBugsReport.xml');
     fileManager = deride.wrap(fileManager);
+
     const sampleReport = fs.readFileSync(sampleReportPath, 'utf-8');
     fileManager.setup.readFileSync.toReturn(sampleReport);
     fileManager.setup.exists.toReturn(true);
@@ -31,7 +32,7 @@ describe('FindSecBugs', () => {
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     findSecBugs = new FindSecBugs({
       exec: mockExec
-    });
+     });
 
     should(findSecBugs.handles(fileManager)).eql(true);
   });
@@ -43,7 +44,7 @@ describe('FindSecBugs', () => {
     });
   });
 
-  it('should log issues with HIGH severity as high', done => {
+  it('should log issues with priority 1 as high', done => {
     findSecBugs.run(mockResults, () => {
       const item = {
         code: 'XML_DECODER',
@@ -57,7 +58,7 @@ describe('FindSecBugs', () => {
     });
   });
 
-  it('should log issues with MEDIUM severity as medium', done => {
+  it('should log issues with priority 2 as medium', done => {
     findSecBugs.run(mockResults, () => {
       const item = {
         code: 'PREDICTABLE_RANDOM',
@@ -71,7 +72,7 @@ describe('FindSecBugs', () => {
     });
   });
 
-  it('should log issues with LOW severity as low', done => {
+  it('should log issues with priority 3 as low', done => {
     findSecBugs.run(mockResults, () => {
       const item = {
         code: 'COOKIE_USAGE',
@@ -105,7 +106,7 @@ describe('FindSecBugs', () => {
   it('should log error message when reported was not created', done => {
     const mockLogger = deride.stub(['error']);
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java'),
+      target: path.join(__dirname, '../samples/java/maven/'),
       logger: nullLogger
     });
     fileManager = deride.wrap(fileManager);
@@ -121,6 +122,17 @@ describe('FindSecBugs', () => {
 
     mockLogger.expect.error.called.withArgs('There was an error while executing FindSecBugs and the report was not created.');
 
+    done();
+  });
+
+  it('should handle gradle projects', done => {
+    const mockLogger = deride.stub(['error']);
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/java/gradle/'),
+      logger: nullLogger
+    });
+
+    should(findSecBugs.handles(fileManager)).eql(true);
     done();
   });
 
