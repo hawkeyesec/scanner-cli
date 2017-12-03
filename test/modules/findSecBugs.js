@@ -50,7 +50,7 @@ describe('FindSecBugs', () => {
         code: 'XML_DECODER',
         offender: 'In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)',
         description: 'It is not safe to use an XMLDecoder to parse user supplied data',
-        mitigation: 'Check lines [47-48]'
+        mitigation: 'Check line(s) [47-48]'
       };
 
       mockResults.expect.high.called.withArgs(item);
@@ -64,7 +64,7 @@ describe('FindSecBugs', () => {
         code: 'PREDICTABLE_RANDOM',
         offender: 'In method com.hawkeye.java.test.config.MyVulnerableConfigClass.generateSecretToken()',
         description: 'The use of java.util.Random is predictable',
-        mitigation: 'Check line 30'
+        mitigation: 'Check line(s) 30'
       };
 
       mockResults.expect.medium.called.withArgs(item);
@@ -72,18 +72,32 @@ describe('FindSecBugs', () => {
     });
   });
 
-  it('should log issues with priority 3 as low', done => {
+  it('should log issues with Priority 3 as low', done => {
     findSecBugs.run(mockResults, () => {
       const item = {
         code: 'COOKIE_USAGE',
         offender: 'In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)',
         description: 'Sensitive data may be stored by the application in a cookie',
-        mitigation: 'Check line 44'
+        mitigation: 'Check line(s) 44'
       };
 
       mockResults.expect.low.called.withArgs(item);
       done();
     });
+  });
+
+  it('should line number of all sourceLines', done => {
+    findSecBugs.run(mockResults, () => {
+      const item = {
+        code: 'CRLF_INJECTION_LOGS',
+        offender: 'In method com.hawkeye.java.Application.main(String[])',
+        description: 'This use of Logger.info(...) might be used to include CRLF characters into log messages',
+        mitigation: 'Check line(s) 50, 55, 57, 59, 60, 61'
+      };
+
+      mockResults.expect.low.called.withArgs(item);
+      done();
+     });
   });
 
   it('should not run findSecBugs if not installed', done => {

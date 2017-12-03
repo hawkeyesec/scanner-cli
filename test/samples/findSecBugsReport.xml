@@ -64,6 +64,42 @@
     </SourceLine>
   </BugInstance>
 
+  <BugInstance type="CRLF_INJECTION_LOGS" priority="3" rank="15" abbrev="SECCRLFLOG" category="SECURITY" instanceHash="123412424234" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="117">
+    <ShortMessage>Potential CRLF Injection for logs</ShortMessage>
+    <LongMessage>This use of Logger.info(...) might be used to include CRLF characters into log messages</LongMessage>
+    <Class classname="com.hawkeye.java.Application" primary="true">
+      <SourceLine classname="com.hawkeye.java.Application" start="21" end="62" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+        <Message>At Application.java:[lines 21-62]</Message>
+      </SourceLine>
+      <Message>In class com.hawkeye.java.Application</Message>
+    </Class>
+    <Method classname="com.hawkeye.java.Application" name="main" signature="([Ljava/lang/String;)V" isStatic="true" primary="true">
+      <SourceLine classname="com.hawkeye.java.Application" start="44" end="62" startBytecode="0" endBytecode="260" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java"/>
+      <Message>In method com.hawkeye.java.Application.main(String[])</Message>
+    </Method>
+    <SourceLine classname="com.hawkeye.java.Application" primary="true" start="50" end="50" startBytecode="115" endBytecode="115" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 50]</Message>
+    </SourceLine>
+    <String value="Logger.info(...)" role="Sink method">
+      <Message>Sink method Logger.info(...)</Message>
+    </String>
+    <SourceLine classname="com.hawkeye.java.Application" start="55" end="55" startBytecode="60" endBytecode="60" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 55]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="57" end="57" startBytecode="75" endBytecode="75" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 57]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="59" end="59" startBytecode="90" endBytecode="90" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 59]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="60" end="60" startBytecode="99" endBytecode="99" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 60]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="61" end="61" startBytecode="109" endBytecode="109" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 61]</Message>
+    </SourceLine>
+  </BugInstance>
+
   <Errors errors="0" missingClasses="10">
     <MissingClass>javax.ws.rs.InternalServerErrorException</MissingClass>
     <MissingClass>javax.ws.rs.client.Client</MissingClass>
