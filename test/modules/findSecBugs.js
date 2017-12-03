@@ -118,6 +118,12 @@ describe('FindSecBugs', () => {
   });
 
   it('should log error message when reported was not created', done => {
+    let mockExec = deride.stub(['command', 'commandExists']);
+    mockExec.setup.command.toCallbackWith(null, {
+      stderr: 'Error!'
+    });
+    mockExec.setup.commandExists.toReturn(true);
+
     const mockLogger = deride.stub(['error']);
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/java/maven/'),
@@ -134,13 +140,12 @@ describe('FindSecBugs', () => {
     findSecBugs.handles(fileManager);
     findSecBugs.run(mockResults, ()=>{});
 
-    mockLogger.expect.error.called.withArgs('There was an error while executing FindSecBugs and the report was not created.');
+    mockLogger.expect.error.called.withArgs('There was an error while executing FindSecBugs and the report was not created: "Error!"');
 
     done();
   });
 
   it('should handle gradle projects', done => {
-    const mockLogger = deride.stub(['error']);
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/java/gradle/'),
       logger: nullLogger
