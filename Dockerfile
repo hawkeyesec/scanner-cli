@@ -6,7 +6,7 @@ RUN yum -y -q update && \
     yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 							libffi-devel python-devel redhat-rpm-config git-core \
 							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
-              ruby rubygems java-1.8.0-openjdk.x86_64 && \
+              ruby rubygems java-1.8.0-openjdk.x86_64 which && \
     yum -y -q clean all
 
 # Git-crypt
@@ -53,12 +53,11 @@ RUN bundle-audit update
 RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
 
 # Add FindSecBugs
-RUN  mkdir /usr/lib/findsecbugs && \
-    cd /usr/lib/findsecbugs && \
+RUN  mkdir /usr/bin/findsecbugs && \
+    cd /usr/bin/findsecbugs && \
     wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
     unzip -q findsecbugs-cli-1.4.6.zip && \
-    chmod +x /usr/lib/findsecbugs/findsecbugs.sh && \
-    ln -s /usr/lib/findsecbugs/findsecbugs.sh /usr/bin/findsecbugs && \
+    chmod +x /usr/bin/findsecbugs/findsecbugs.sh && \
     rm findsecbugs-cli-1.4.6.zip
 
 

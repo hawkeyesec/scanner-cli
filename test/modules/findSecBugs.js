@@ -10,10 +10,11 @@ const fs = require('fs');
 describe('FindSecBugs', () => {
   let findSecBugs, mockExec, mockResults, fileManager, sampleReportPath, nullLogger;
   beforeEach(() => {
-    mockExec = deride.stub(['command', 'commandExists']);
+    mockExec = deride.stub(['command', 'commandExists', 'commandSync']);
     mockExec.setup.command.toCallbackWith(null, {
       stdout: null
     });
+    mockExec.setup.commandSync.toReturn('/usr/bin/findsecbugs');
     mockExec.setup.commandExists.toReturn(true);
 
     nullLogger = deride.stub(['log', 'debug', 'error']);
@@ -118,11 +119,12 @@ describe('FindSecBugs', () => {
   });
 
   it('should log error message when reported was not created', done => {
-    let mockExec = deride.stub(['command', 'commandExists']);
+    let mockExec = deride.stub(['command', 'commandExists', 'commandSync']);
     mockExec.setup.command.toCallbackWith(null, {
       stderr: 'Error!'
     });
     mockExec.setup.commandExists.toReturn(true);
+    mockExec.setup.commandSync.toReturn('/usr/bin/findsecbugs');
 
     const mockLogger = deride.stub(['error']);
     fileManager = new FileManager({
