@@ -167,7 +167,7 @@ Hawkeye by default will attempt to detect a .git folder in your target, if it is
 You can override this behaviour with the `--all` flag, which will scan all files regardless.
 
 #### -f, --fail-on <low, medium, high, critical>: When to exit with a non-zero status code
-From a pipeline perspective, the `--fail-on` command is useful, you might now wish for `low` items to break your build, so you could use `--fail-on medium`.
+From a pipeline perspective, the `--fail-on` command is useful, you might not wish for `low` items to break your build, so you could use `--fail-on medium`.
 
 #### -t, --target  </path/to/project>: Specfiy what to scan
 By default Hawkeye will look in your current working directory.  You can override this behaviour though by specifying a `--target`
@@ -182,7 +182,7 @@ The `--json` paramter allows you to write a much more detailed report to a file.
 This will post the results to a SumoLogic HTTP collector.  See the SumoLogic section below for more information.
 
 #### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
-This paramter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
+This parameter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
 
 There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
 
@@ -337,6 +337,3 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
-
-### Thanks
-  - [Laura](https://github.com/lauraionescu) for adding the Ruby scanner

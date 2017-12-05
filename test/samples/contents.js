@@ -5,7 +5,7 @@ module.exports = [
     extension: defaultFiles,
     content: /(['|"]?password['|"]?\ ?[:|=]\ ?['|"].*['|"])/,
     caption: 'Potential password in file',
-    level: 'medium'
+    level: 'low'
   },
   {
     extension: defaultFiles,

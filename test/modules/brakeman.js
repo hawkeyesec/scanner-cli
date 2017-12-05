@@ -45,7 +45,7 @@ describe('Brakeman', () => {
   it('should parse the advisory properly', done => {
     brakeman.run(mockResults, () => {
       const item = {
-        code: 1,
+        code: 'SQL',
         offender: 'app/controllers/application_controller.rb',
         description:'Possible SQL injection (http://brakemanscanner.org/docs/warning_types/sql_injection/)',
         mitigation: 'Check line 11'
