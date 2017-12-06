@@ -53,13 +53,15 @@ RUN bundle-audit update
 RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
 
 # Add FindSecBugs
-RUN  mkdir /usr/bin/findsecbugs && \
-    cd /usr/bin/findsecbugs && \
+RUN mkdir /usr/local/bin/findsecbugs && \
+    cd /usr/local/bin/findsecbugs && \
     wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
     unzip -q findsecbugs-cli-1.4.6.zip && \
-    chmod +x /usr/bin/findsecbugs/findsecbugs.sh && \
-    rm findsecbugs-cli-1.4.6.zip
+    chmod +x /usr/local/bin/findsecbugs/findsecbugs.sh && \
+    rm findsecbugs-cli-1.4.6.zip && \
+    mv findsecbugs.sh findsecbugs
 
+ENV PATH=/usr/local/bin/findsecbugs:$PATH
 
 # Install hawkeye
 RUN mkdir -p /hawkeye

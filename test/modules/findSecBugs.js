@@ -14,12 +14,12 @@ describe('FindSecBugs', () => {
     mockExec.setup.command.toCallbackWith(null, {
       stdout: null
     });
-    mockExec.setup.commandSync.toReturn('/usr/bin/findsecbugs');
+    mockExec.setup.commandSync.toReturn({ stdout: '/usr/bin/findsecbugs' });
     mockExec.setup.commandExists.toReturn(true);
 
     nullLogger = deride.stub(['log', 'debug', 'error']);
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java/maven/'),
+      target: path.join(__dirname, '../samples/java/maven'),
       logger: nullLogger
     });
 
@@ -40,7 +40,7 @@ describe('FindSecBugs', () => {
 
   it('should execute findsecbugs with all required arguments', done => {
     findSecBugs.run(mockResults, () => {
-      mockExec.expect.command.called.withArg(`findsecbugs -nested:false -progress -effort:max -exitcode -xml:withMessages -output ${fileManager.target}/findSecBugsReport.xml /target`);
+      mockExec.expect.command.called.withArg(`findsecbugs -nested:false -progress -effort:max -exitcode -xml:withMessages -output ${fileManager.target}/findSecBugsReport.xml ${fileManager.target}`);
       done();
     });
   });
@@ -124,11 +124,11 @@ describe('FindSecBugs', () => {
       stderr: 'Error!'
     });
     mockExec.setup.commandExists.toReturn(true);
-    mockExec.setup.commandSync.toReturn('/usr/bin/findsecbugs');
+    mockExec.setup.commandSync.toReturn({ stdout: '/usr/bin/findsecbugs' });
 
     const mockLogger = deride.stub(['error']);
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java/maven/'),
+      target: path.join(__dirname, '../samples/java/maven'),
       logger: nullLogger
     });
     fileManager = deride.wrap(fileManager);
