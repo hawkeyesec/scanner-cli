@@ -147,6 +147,30 @@ describe('FindSecBugs', () => {
     done();
   });
 
+  it('should not try to log issues when there are no issues', done => {
+    sampleReportPath = path.join(__dirname, '../samples/findSecBugsReportWithoutIssues.xml');
+    const sampleReport = fs.readFileSync(sampleReportPath, 'utf-8');
+
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/java/maven'),
+      logger: nullLogger
+    });
+
+    fileManager = deride.wrap(fileManager);
+    fileManager.setup.exists.toReturn(true);
+    fileManager.setup.readFileSync.toReturn(sampleReport);
+
+    findSecBugs.handles(fileManager);
+
+    findSecBugs.run(mockResults, ()=>{
+      mockResults.expect.low.called.never();
+      mockResults.expect.medium.called.never();
+      mockResults.expect.high.called.never();
+    });
+
+    done();
+  });
+
   it('should handle gradle projects', done => {
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/java/gradle/'),
