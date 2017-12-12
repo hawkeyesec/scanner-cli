@@ -112,9 +112,25 @@ describe('FindSecBugs', () => {
     });
 
     should(findSecBugs.handles(fileManager)).eql(false);
-    mockLogger.expect.warn.called.withArgs('pom.xml found but findSecBugs was not found in $PATH');
+    mockLogger.expect.warn.called.withArgs('java files found but findSecBugs was not found in $PATH');
     mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you install findSecBugs CLI');
     mockLogger.expect.warn.called.withArgs('Installation instructions: https://github.com/Stono/hawkeye/blob/master/lib/modules/findsecbugs/README.md');
+    done();
+  });
+
+  it('should not run findSecBugs if jar not found', done => {
+    const mockExec = deride.stub(['commandExists']);
+    const mockLogger = deride.stub(['warn']);
+    mockExec.setup.commandExists.toReturn(false);
+    const findSecBugs = new FindSecBugs({
+      exec: mockExec,
+      logger: mockLogger
+    });
+    fileManager.setup.all.toReturn(['main.java']);
+
+    should(findSecBugs.handles(fileManager)).eql(false);
+    mockLogger.expect.warn.called.withArgs('java files were found but no jar files');
+    mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you build the project before');
     done();
   });
 
