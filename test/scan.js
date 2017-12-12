@@ -31,10 +31,10 @@ describe('Scan', () => {
     scan = new Scan(rc);
   });
 
-  it('should run a scan', done => {
+  it('should run a scan and return results for each of the enabled modules', done => {
     scan.start((err, results) => {
       should(err).eql(null);
-      should(results.length).eql(5);
+      should(results.length).eql(6);
       done();
     });
   });
