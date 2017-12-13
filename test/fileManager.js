@@ -15,7 +15,7 @@ describe('File Manager', () => {
     });
   });
 
-  after(() => {
+  afterEach(() => {
     if(fs.existsSync(`${fm.target}/test/file5`))
       fs.unlinkSync(`${fm.target}/test/file5`);
   });
@@ -91,6 +91,15 @@ describe('File Manager', () => {
 
     should(fm.exists('test/file5')).eql(true);
 
+    done();
+  });
+
+  it('should get all files', done => {
+    should(fm.getAllFilesSync('test')).eql([
+      'test/another-test/file4.txt',
+      'test/excluded/excluded-file.js',
+      'test/file3'
+    ]);
     done();
   });
 

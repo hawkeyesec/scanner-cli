@@ -28,14 +28,29 @@ describe('FindSecBugs', () => {
 
     const sampleReport = fs.readFileSync(sampleReportPath, 'utf-8');
     fileManager.setup.readFileSync.toReturn(sampleReport);
-    fileManager.setup.exists.toReturn(true);
+    fileManager.setup.exists.when('findSecBugsReport.xml').toReturn(true);
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     findSecBugs = new FindSecBugs({
       exec: mockExec
      });
+    findSecBugs.handles(fileManager);
+  });
+
+  it('should handle maven projects', done => {
+    should(findSecBugs.handles(fileManager)).eql(true);
+    done();
+  });
+
+  it('should handle gradle projects', done => {
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/java/gradle'),
+      logger: nullLogger
+    });
 
     should(findSecBugs.handles(fileManager)).eql(true);
+
+    done();
   });
 
   it('should execute findsecbugs with all required arguments', done => {
@@ -121,14 +136,19 @@ describe('FindSecBugs', () => {
   it('should not run findSecBugs if jar not found', done => {
     const mockExec = deride.stub(['commandExists']);
     const mockLogger = deride.stub(['warn']);
-    mockExec.setup.commandExists.toReturn(false);
+
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/java/mvn-with-no-jar'),
+      logger: nullLogger
+    });
+
     const findSecBugs = new FindSecBugs({
       exec: mockExec,
       logger: mockLogger
     });
-    fileManager.setup.all.toReturn(['main.java']);
 
     should(findSecBugs.handles(fileManager)).eql(false);
+
     mockLogger.expect.warn.called.withArgs('java files were found but no jar files');
     mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you build the project before');
     done();
@@ -210,16 +230,6 @@ describe('FindSecBugs', () => {
     findSecBugs.run(mockResults, () => {});
     mockLogger.expect.warn.called.withArgs('There was an error while executing FindSecBugs: Error!');
 
-    done();
-  });
-
-  it('should handle gradle projects', done => {
-    fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java/gradle/'),
-      logger: nullLogger
-    });
-
-    should(findSecBugs.handles(fileManager)).eql(true);
     done();
   });
 
