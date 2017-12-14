@@ -46,6 +46,9 @@ Modules are basically little bits of code that either implement their own logic,
  - __Piprot (pythonOutdatedDepScan)__: Wraps [Piprot](https://github.com/sesh/piprot) to check your requirements.txt for outdated dependencies.
   - __Bandit (banditScan)__: Wraps [Bandit](https://github.com/openstack/bandit) to find common security issues in python code.
 
+### Java:
+ - __FindSecBugs (findSecBugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
+ 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
 ### Current Limitations
