@@ -131,7 +131,7 @@ This is an example of running Hawkeye from package.json against a local reposito
     "pre-commit": "^1.2.2"
   },
   "scripts": {
-    "hawkeye:pre-commit": "hawkeye scan -t ./ src -m contents -m files -f high"
+    "hawkeye:pre-commit": "hawkeye scan -t ./src -m contents -m files -f high"
   },
   "pre-commit": [
     "hawkeye:pre-commit"
