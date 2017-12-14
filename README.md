@@ -10,10 +10,10 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
 
   - Designed to be entirely extensible by just adding new modules with the correct signature to [lib/modules](lib/modules)
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
-  - Should be easy to run, be it via NPM, or Docker, on your Host, or in a CI Server
+  - Should be very easy to run regardless of the type of project that you're scanning
 
-# Hosted/SaaS version now available!
-By all means continue to use this CLI to get scans in your pipeline, but now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
+# Hosted/SaaS version
+The best used of Hawkeye is [in your pipeline](https://github.com/Stono/hawkeye#as-part-of-your-gocd-pipeline).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
 
   - Free (obviously)
   - Links to GitHub and scans both Public and Private repositories
@@ -23,6 +23,8 @@ By all means continue to use this CLI to get scans in your pipeline, but now you
   - Email notifications when we find new issues
   - Consolidated dashboards
 
+It's worth noting that as the SaaS version **is not** a build server, any modules which require builds will not run (for example; java vulnerability checkers that scan JAR files).  For those, you should be putting it in your pipeline.
+
 ## Modules
 Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the required criteria are met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.  The modules implemented so far are:
 
@@ -30,6 +32,7 @@ Modules are basically little bits of code that either implement their own logic,
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js), taken from [gitrob](https://github.com/michenriksen/gitrob).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
  - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
  - __File Content Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
+ - __Credit Card Numbers (ccnumber)__:  Scan for credit card numbers in files, validated using [luhn](https://en.wikipedia.org/wiki/Luhn_algorithm).
 
 ### Node JS:
  - __Node Security Project (nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
@@ -48,25 +51,22 @@ Modules are basically little bits of code that either implement their own logic,
 
 ### Java:
  - __FindSecBugs (findSecBugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
- 
+
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
 ### Current Limitations
  - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.  Personally I use this manually checking over code bases I have inherited.
- - We only look inside the contents of files up to 20kb, I plan to add configuration options in the future to allow you to change this.
+ - We only look inside the contents of files up to 80kb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
 I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.
 
 ### Standalone (command line)
-There are two ways to run Hawkeye from the command line, the first is the easiest if you have nodejs on your host, simply type `npm install -g hawkeye-scanner` which will add the `hawkeye` binary to your path.
+#### Using Docker (recommended)
+As Hawkeye wraps a lot of other dependencies, the easiest way to run it is using docker.  Simply type `docker run --rm -v $PWD:/target stono/hawkeye`.
 
-If you don't have nodejs on your machine, or simply don't want anything on your host, you can use docker with `docker run --rm -v $PWD:/target stono/hawkeye`.
-
-__Note__: If you opt for docker and you are on macosx, please be aware that the `osxfs` is approx 20x slower than native filesystem access, so if you're scanning a particularly large project you may experience some slow down and the `npm` choice would be a better option.
-
-### As part of your docker-compose file
-This is where Hawkeye is lovely, lets say you have project which has a `Dockerfile`, with lines like this in:
+#### Using docker-compose
+Lets say you have project which has a `Dockerfile`, with lines like this in:
 
 ```
 COPY . /app
@@ -89,7 +89,11 @@ services:
 
 You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
 
-### As part of your GoCD pipeline
+#### Using NPM
+If you want, you can do `npm install -g hawkeye-scanner`, and type `hawkeye scan` instead.  However, this will require you to have all of the other dependencies installed on your host for the modules that you're wanting to scan with.
+
+### As part of your CI Pipelines
+#### GoCD
 This is an example of running Hawkeye against one of your projects in GoCD:
 
 ```
@@ -116,7 +120,7 @@ This is an example of running Hawkeye against one of your projects in GoCD:
 ```
 
 ### As a git pre-commit hook
-This is an example of running Hawkeye from package.json against a local repository before commit, failing the commit if high or critical issues are found:
+This is an example of running Hawkeye from an npm package.json against a local repository before commit, failing the commit if high or critical issues are found:
 
 ```
 {
