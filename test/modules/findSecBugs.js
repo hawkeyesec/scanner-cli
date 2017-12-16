@@ -102,7 +102,7 @@ describe('FindSecBugs', () => {
     });
   });
 
-  it('should line number of all sourceLines', done => {
+  it('should log all line numbers of all sourceLines', done => {
     findSecBugs.run(mockResults, () => {
       const item = {
         code: 'CRLF_INJECTION_LOGS',
