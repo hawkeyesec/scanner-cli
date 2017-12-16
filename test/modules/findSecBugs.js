@@ -183,35 +183,6 @@ describe('FindSecBugs', () => {
     done();
   });
 
-  it('should log error message when reported was not created', done => {
-    let mockExec = deride.stub(['command', 'commandExists', 'commandSync']);
-    mockExec.setup.command.toCallbackWith(null, {
-      stderr: 'Error!'
-    });
-    mockExec.setup.commandExists.toReturn(true);
-    mockExec.setup.commandSync.toReturn({ stdout: '/usr/bin/findsecbugs' });
-
-    const mockLogger = deride.stub(['error']);
-    fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/java/maven'),
-      logger: nullLogger
-    });
-    fileManager = deride.wrap(fileManager);
-    fileManager.setup.exists.when(sampleReportPath).toReturn(false);
-
-    const findSecBugs = new FindSecBugs({
-      exec: mockExec,
-      logger: mockLogger
-    });
-
-    findSecBugs.handles(fileManager);
-    findSecBugs.run(mockResults, ()=>{});
-
-    mockLogger.expect.error.called.withArgs('There was an error while executing FindSecBugs and the report was not created: "Error!"');
-
-    done();
-  });
-
   it('should log warning message when an error was raised by findsecbugs', done => {
     const mockLogger = deride.stub(['warn']);
     const mockExec = deride.stub(['command', 'commandExists', 'commandSync']);
