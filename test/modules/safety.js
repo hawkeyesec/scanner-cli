@@ -4,14 +4,16 @@ const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');
+const fs = require('fs');
 
 describe('Safety', () => {
-  let sample = require('../samples/safety.json');
-  let safety, mockExec, mockResults, fileManager;
+  let safety, mockExec, mockResults, fileManager, mockLogger;
+  let sample = fs.readFileSync(path.join(__dirname, '../samples/safety.json'), 'utf-8');
+
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
-      stdout: JSON.stringify(sample)
+      stdout: sample
     });
     mockExec.setup.commandExists.toReturn(true);
 
@@ -22,8 +24,11 @@ describe('Safety', () => {
     });
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
+    mockLogger = deride.stub(['warn']);
+
     safety = new Safety({
-      exec: mockExec
+      exec: mockExec,
+      logger: mockLogger
     });
     should(safety.handles(fileManager)).eql(true);
   });
@@ -51,10 +56,19 @@ describe('Safety', () => {
          mitigation: 'Versions <0.2.0 are vulnerable. Update to a non vulnerable version.'
       };
 
-
       mockResults.expect.high.called.withArgs(item);
       done();
     });
+  });
+
+  it('should log warning regarding unpinned dependencies', done => {
+    safety.run(mockResults, () => {});
+
+    mockLogger.expect.warn.called.withArgs('Warning: unpinned requirement \'requests\' found, unable to check.');
+    mockLogger.expect.warn.called.withArgs('Warning: unpinned requirement \'cryptography\' found, unable to check.');
+    mockLogger.expect.warn.called.withArgs('Warning: unpinned requirement \'django\' found, unable to check.');
+
+    done();
   });
 
   it('should not run safety if not installed', done => {

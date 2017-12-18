@@ -49,7 +49,7 @@ RUN python get-pip.py
 RUN gem install bundler-audit brakeman
 RUN bundle-audit update
 
-# Add safety
+# Add safety, piprot, bandit
 RUN pip install safety==1.6.1 piprot==0.9.7 bandit==1.4.0
 
 # Add FindSecBugs
