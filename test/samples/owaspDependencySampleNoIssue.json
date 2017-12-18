@@ -1,0 +1,124 @@
+{
+  "dependencies": [
+  {
+    "isVirtual": false,
+    "fileName": "tw-bnb-backend-0.0.1-SNAPSHOT.jar",
+    "filePath": "/Users/roselmamendes/twlabs/spikes/tw-bnb-backend/build/libs/tw-bnb-backend-0.0.1-SNAPSHOT.jar",
+    "md5": "bec61d42989c6de5c8de0cd4ecb5b76c",
+    "sha1": "bea6a800d5a9a510aa2e4b988d96fc52ffb950ae",
+    "evidenceCollected": {
+      "vendorEvidence": [
+        {
+          "type": "vendor",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "boot-inf"
+        },
+        {
+          "type": "vendor",
+          "confidence": "LOW",
+          "source": "Manifest",
+          "name": "spring-boot-classes",
+          "value": "BOOT-INF/classes/"
+        },
+        {
+          "type": "vendor",
+          "confidence": "LOW",
+          "source": "Manifest",
+          "name": "spring-boot-lib",
+          "value": "BOOT-INF/lib/"
+        },
+        {
+          "type": "vendor",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "classes"
+        },
+        {
+          "type": "vendor",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "com"
+        },
+        {
+          "type": "vendor",
+          "confidence": "HIGH",
+          "source": "file",
+          "name": "name",
+          "value": "tw-bnb-backend"
+        }
+      ],
+      "productEvidence": [
+        {
+          "type": "product",
+          "confidence": "LOW",
+          "source": "Manifest",
+          "name": "spring-boot-classes",
+          "value": "BOOT-INF/classes/"
+        },
+        {
+          "type": "product",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "tw"
+        },
+        {
+          "type": "product",
+          "confidence": "LOW",
+          "source": "Manifest",
+          "name": "spring-boot-lib",
+          "value": "BOOT-INF/lib/"
+        },
+        {
+          "type": "product",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "classes"
+        },
+        {
+          "type": "product",
+          "confidence": "LOW",
+          "source": "jar",
+          "name": "package name",
+          "value": "com"
+        },
+        {
+          "type": "product",
+          "confidence": "HIGH",
+          "source": "file",
+          "name": "name",
+          "value": "tw-bnb-backend"
+        }
+      ],
+      "versionEvidence": [
+        {
+          "type": "version",
+          "confidence": "MEDIUM",
+          "source": "Manifest",
+          "name": "spring-boot-version",
+          "value": "1.5.4.RELEASE"
+        },
+        {
+          "type": "version",
+          "confidence": "HIGHEST",
+          "source": "file",
+          "name": "version",
+          "value": "0.0.1"
+        },
+        {
+          "type": "version",
+          "confidence": "MEDIUM",
+          "source": "file",
+          "name": "name",
+          "value": "tw-bnb-backend"
+        }
+      ]
+    }
+  }
+  ]
+}
