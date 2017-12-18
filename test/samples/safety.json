@@ -1,3 +1,6 @@
+Warning: unpinned requirement 'requests' found, unable to check.
+Warning: unpinned requirement 'cryptography' found, unable to check.
+Warning: unpinned requirement 'django' found, unable to check.
 [
   [
     "insecure-package",
