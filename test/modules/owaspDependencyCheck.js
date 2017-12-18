@@ -111,7 +111,7 @@ describe('OWASP Dependency Check', ()=> {
       const item = {
 	code: 'CVE-2013-4499',
         offender: 'tw-bnb-backend-0.0.1-SNAPSHOT.jar: mapstruct-1.1.0.Final.jar',
-        description: 'Cross-site scripting (XSS) vulnerability in the Bean module 7.x-1.x before 7.x-1.5 for Drupal allows remote attackers to inject arbitrary web script or HTML via the bean title.',
+        description: 'https://nvd.nist.gov/vuln/detail/CVE-2013-4499',
         mitigation: 'https://drupal.org/node/2118867, https://drupal.org/node/2118873, https://exchange.xforce.ibmcloud.com/vulnerabilities/88278'
       };
 
