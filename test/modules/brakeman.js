@@ -7,7 +7,7 @@ const should = require('should');
 
 describe('Brakeman', () => {
   const sampleOutput = JSON.stringify(require('../samples/brakeman.json'));
-  let brakeman, mockExec, mockResults, fileManager;
+  let brakeman, mockExec, mockResults, fileManager, nullLogger;
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
@@ -15,7 +15,7 @@ describe('Brakeman', () => {
     });
     mockExec.setup.commandExists.toReturn(true);
 
-    const nullLogger = deride.stub(['log', 'debug', 'error']);
+    nullLogger = deride.stub(['log', 'debug', 'error']);
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/ruby'),
       logger: nullLogger
@@ -23,6 +23,7 @@ describe('Brakeman', () => {
 
     fileManager = deride.wrap(fileManager);
     fileManager.setup.readFileSync.when('output.json').toReturn(sampleOutput);
+    fileManager.setup.exists.when('output.json').toReturn(true);
 
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     brakeman = new Brakeman({
@@ -57,6 +58,25 @@ describe('Brakeman', () => {
       mockResults.expect.high.called.withArgs(item);
       done();
     });
+  });
+
+  it('should log error message when reported was not created', done => {
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/ruby'),
+      logger: nullLogger
+    });
+    fileManager = deride.wrap(fileManager);
+    fileManager.setup.exists.when('output.json').toReturn(false);
+
+    brakeman.handles(fileManager);
+    brakeman.run(mockResults, err => {
+      mockResults.expect.high.called.never();
+      mockResults.expect.medium.called.never();
+      mockResults.expect.low.called.never();
+      should(err.message).eql('There was an error while executing Brakeman and the report was not created');
+    });
+
+    done();
   });
 
   it('should not run brakemanScan if brakeman is not installed', done => {
