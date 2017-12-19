@@ -90,10 +90,35 @@ describe('Brakeman', () => {
     });
 
     should(brakeman.handles(fileManager)).eql(false);
-    mockLogger.expect.warn.called.withArgs('Gemfile found but brakeman not found in $PATH');
+    mockLogger.expect.warn.called.withArgs('Rails project found but brakeman not found in $PATH');
     mockLogger.expect.warn.called.withArgs('brakemanScan will not run unless you install brakeman');
     mockLogger.expect.warn.called.withArgs('Please see: https://brakemanscanner.org/docs/install/');
     done();
   });
 
+  it('should not run brakemanScan if app folder does not exist', done => {
+    const mockExec = deride.stub(['commandExists']);
+    const mockLogger = deride.stub(['warn']);
+    mockExec.setup.commandExists.toReturn(true);
+
+    const brakeman = new Brakeman({
+      exec: mockExec,
+      logger: mockLogger
+    });
+
+    fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/ruby'),
+      logger: nullLogger
+    });
+
+    fileManager = deride.wrap(fileManager);
+    fileManager.setup.exists.when('output.json').toReturn(true);
+    fileManager.setup.exists.when('app').toReturn(false);
+
+    should(brakeman.handles(fileManager)).eql(false);
+    mockLogger.expect.warn.called.withArgs('Rails project found but app folder was not found');
+    mockLogger.expect.warn.called.withArgs(`brakemanScan only run on Rails projects with an app folder`);
+
+    done();
+  });
 });
