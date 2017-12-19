@@ -6,12 +6,12 @@ const path = require('path');
 const should = require('should');
 
 describe('Brakeman', () => {
-  let sample = require('../samples/brakeman.json');
+  const sampleOutput = JSON.stringify(require('../samples/brakeman.json'));
   let brakeman, mockExec, mockResults, fileManager;
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
-      stdout: JSON.stringify(sample)
+      stdout: null
     });
     mockExec.setup.commandExists.toReturn(true);
 
@@ -21,6 +21,9 @@ describe('Brakeman', () => {
       logger: nullLogger
     });
 
+    fileManager = deride.wrap(fileManager);
+    fileManager.setup.readFileSync.when('output.json').toReturn(sampleOutput);
+
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     brakeman = new Brakeman({
       exec: mockExec
@@ -28,9 +31,9 @@ describe('Brakeman', () => {
     should(brakeman.handles(fileManager)).eql(true);
   });
 
-  it('should execute brakeman . -f json', done => {
+  it('should execute brakeman with all required arguments', done => {
     brakeman.run(mockResults, () => {
-      mockExec.expect.command.called.withArg('brakeman . -f json');
+      mockExec.expect.command.called.withArg(`brakeman . -f json -o ${fileManager.target}/output.json`);
       done();
     });
   });
