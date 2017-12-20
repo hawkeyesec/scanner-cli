@@ -110,9 +110,9 @@ describe('OWASP Dependency Check', ()=> {
     owaspCheck.run(mockResults, () => {
       const item = {
 	code: 'CVE-2013-4499',
-        offender: 'tw-bnb-backend-0.0.1-SNAPSHOT.jar: mapstruct-1.1.0.Final.jar',
+        offender: 'mapstruct-1.1.0.Final.jar',
         description: 'https://nvd.nist.gov/vuln/detail/CVE-2013-4499',
-        mitigation: 'https://drupal.org/node/2118867, https://drupal.org/node/2118873, https://exchange.xforce.ibmcloud.com/vulnerabilities/88278'
+        mitigation: 'See the CVE link on the description column.'
       };
 
       mockResults.expect.medium.called.withArgs(item);
