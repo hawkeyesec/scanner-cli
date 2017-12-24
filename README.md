@@ -56,7 +56,7 @@ I really, really do welcome people writing new modules so please check out [lib/
 
 ### Current Limitations
  - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.  Personally I use this manually checking over code bases I have inherited.
- - We only look inside the contents of files up to 80kb, I plan to add configuration options in the future to allow you to change this.
+ - We only look inside the contents of files up to 1Mb, I plan to add configuration options in the future to allow you to change this.
 
 ## Running Hawkeye
 I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.

@@ -63,6 +63,17 @@ RUN mkdir /usr/local/bin/findsecbugs && \
 
 ENV PATH=/usr/local/bin/findsecbugs:$PATH
 
+#Add Owasp Dependency Check
+ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
+RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
+    wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.0.2-release.zip && \
+    unzip -q dependency-check-3.0.2-release.zip && \
+    chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh && \
+    rm dependency-check-3.0.2-release.zip && \
+    mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
+
+ENV PATH=$OWASP_DEP_FOLDER/dependency-check/bin:$PATH
+
 # Install hawkeye
 RUN mkdir -p /hawkeye
 COPY package.json /hawkeye
