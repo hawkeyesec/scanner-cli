@@ -1,5 +1,5 @@
 'use strict';
-const Safety = require('../../lib/modules/safety');
+const Safety = require('../../lib/modules/python-safety');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -83,7 +83,7 @@ describe('Safety', () => {
 
     should(safety.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('requirements.txt found but safety not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('safetyScan will not run unless you install safety');
+    mockLogger.expect.warn.called.withArgs('python-safety will not run unless you install safety');
     mockLogger.expect.warn.called.withArgs('Please see: https://github.com/pyupio/safety');
     done();
   });

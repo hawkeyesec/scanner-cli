@@ -1,5 +1,5 @@
 'use strict';
-const Brakeman = require('../../lib/modules/brakeman');
+const Brakeman = require('../../lib/modules/ruby-brakeman');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -79,7 +79,7 @@ describe('Brakeman', () => {
     done();
   });
 
-  it('should not run brakemanScan if brakeman is not installed', done => {
+  it('should not run ruby-brakeman if brakeman is not installed', done => {
     const mockExec = deride.stub(['commandExists']);
     const mockLogger = deride.stub(['warn']);
     mockExec.setup.commandExists.toReturn(false);
@@ -91,12 +91,12 @@ describe('Brakeman', () => {
 
     should(brakeman.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('Rails project found but brakeman not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('brakemanScan will not run unless you install brakeman');
+    mockLogger.expect.warn.called.withArgs('ruby-brakeman will not run unless you install brakeman');
     mockLogger.expect.warn.called.withArgs('Please see: https://brakemanscanner.org/docs/install/');
     done();
   });
 
-  it('should not run brakemanScan if app folder does not exist', done => {
+  it('should not run ruby-brakeman if app folder does not exist', done => {
     const mockExec = deride.stub(['commandExists']);
     const mockLogger = deride.stub(['warn']);
     mockExec.setup.commandExists.toReturn(true);
@@ -117,7 +117,7 @@ describe('Brakeman', () => {
 
     should(brakeman.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('Rails project found but app folder was not found');
-    mockLogger.expect.warn.called.withArgs(`brakemanScan only run on Rails projects with an app folder`);
+    mockLogger.expect.warn.called.withArgs(`ruby-brakeman only run on Rails projects with an app folder`);
 
     done();
   });

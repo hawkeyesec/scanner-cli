@@ -12,18 +12,8 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be very easy to run regardless of the type of project that you're scanning
 
-# Hosted/SaaS version
-The best used of Hawkeye is [in your pipeline](https://github.com/Stono/hawkeye#as-part-of-your-gocd-pipeline).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
-
-  - Free (obviously)
-  - Links to GitHub and scans both Public and Private repositories
-  - GitHub "Push" scanning
-  - On-demand one-click scanning
-  - Scheduled scanning (great for continually checking for new issues in your deployed applications)
-  - Email notifications when we find new issues
-  - Consolidated dashboards
-
-It's worth noting that as the SaaS version **is not** a build server, any modules which require builds will not run (for example; java vulnerability checkers that scan JAR files).  For those, you should be putting it in your pipeline.
+## Important Notes (please read)
+ - As of version `1.0.0` many of the modules have had their identifiers changed and prefixed for langues added to them, for example `nsp` is now `node-nsp`.  This means you will need to udpate your `.hawkeyerc` files, and any commands where you explicitly specify modules eg `hawkeye scan -m thing`.
 
 ## Modules
 Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the required criteria are met, for example; the `nsp` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.  The modules implemented so far are:
@@ -35,22 +25,23 @@ Modules are basically little bits of code that either implement their own logic,
  - __Credit Card Numbers (ccnumber)__:  Scan for credit card numbers in files, validated using [luhn](https://en.wikipedia.org/wiki/Luhn_algorithm).
 
 ### Node JS:
- - __Node Security Project (nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
- - __NPM Check Updates (ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for outdated modules.
+ - __Node Security Project (node-nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
+ - __NPM Check Updates (node-ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for outdated modules.
  - __CrossEnv (node-crossenv)__: See [Node Cross-Env Malware](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry).  Checks your package.json for known malicious modules which contain this malware.
  - __Constant Hash Tables (node-chs)__: See [Node Constant Hashtable](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases).  Checks if your package.json can be run against vulnerable versions of node.
 
 ### Ruby:
- - __Bundler Audit (bundlerAudit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
- - __Brakeman (brakemanScan)__: Wraps [Brakeman](https://brakemanscanner.org) for static analysis security vulnerability scanner for Ruby on Rails applications.
+ - __Bundler Audit (ruby-bundler-audit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
+ - __Brakeman (ruby-brakeman)__: Wraps [Brakeman](https://brakemanscanner.org) for static analysis security vulnerability scanner for Ruby on Rails applications.
 
 ### Python:
- - __Safety (safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as high.
- - __Piprot (pythonOutdatedDepScan)__: Wraps [Piprot](https://github.com/sesh/piprot) to check your requirements.txt for outdated dependencies.
-  - __Bandit (banditScan)__: Wraps [Bandit](https://github.com/openstack/bandit) to find common security issues in python code.
+ - __Safety (python-safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as high.
+ - __Piprot (python-piprot)__: Wraps [Piprot](https://github.com/sesh/piprot) to check your requirements.txt for outdated dependencies.
+  - __Bandit (python-bandit)__: Wraps [Bandit](https://github.com/openstack/bandit) to find common security issues in python code.
 
 ### Java:
- - __FindSecBugs (findSecBugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
+ - __FindSecBugs (java-find-secbugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
+ - __OWASP Dependency Check (java-owasp)__: Wraps [OWASP Dep Check](https://www.owasp.org/index.php/OWASP_Dependency_Check) to find common security issues in Java Project Dependencies as noted by the National Vulnerability Database. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
 
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
@@ -344,3 +335,16 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
+
+# Hosted/SaaS version
+The best used of Hawkeye is [in your pipeline](https://github.com/Stono/hawkeye#as-part-of-your-gocd-pipeline).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
+
+  - Free (obviously)
+  - Links to GitHub and scans both Public and Private repositories
+  - GitHub "Push" scanning
+  - On-demand one-click scanning
+  - Scheduled scanning (great for continually checking for new issues in your deployed applications)
+  - Email notifications when we find new issues
+  - Consolidated dashboards
+
+It's worth noting that as the SaaS version **is not** a build server, any modules which require builds will not run (for example; java vulnerability checkers that scan JAR files).  For those, you should be putting it in your pipeline.

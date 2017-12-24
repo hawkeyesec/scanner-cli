@@ -1,5 +1,5 @@
 'use strict';
-const Contents = require('../../lib/modules/content');
+const Contents = require('../../lib/modules/contents');
 const deride = require('deride');
 const path = require('path');
 const should = require('should');

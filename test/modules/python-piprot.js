@@ -1,5 +1,5 @@
 'use strict';
-const PythonOutdatedDep = require('../../lib/modules/python-outdated-dep');
+const PythonOutdatedDep = require('../../lib/modules/python-piprot');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -97,7 +97,7 @@ describe('PythonOutdatedDep', () => {
 
     should(pythonOutdatedDep.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('requirements.txt found but piprot not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('pythonOutdatedDepScan will not run unless you install piprot');
+    mockLogger.expect.warn.called.withArgs('python-piprot will not run unless you install piprot');
     mockLogger.expect.warn.called.withArgs('Please see: https://github.com/sesh/piprot');
     done();
   });

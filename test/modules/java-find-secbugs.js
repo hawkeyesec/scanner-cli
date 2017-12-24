@@ -1,5 +1,5 @@
 'use strict';
-const FindSecBugs = require('../../lib/modules/findSecBugs');
+const FindSecBugs = require('../../lib/modules/java-find-secbugs');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -128,7 +128,7 @@ describe('FindSecBugs', () => {
 
     should(findSecBugs.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('java files found but findSecBugs was not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you install findSecBugs CLI');
+    mockLogger.expect.warn.called.withArgs('java-find-secbugs scan will not run unless you install findSecBugs CLI');
     mockLogger.expect.warn.called.withArgs('Installation instructions: https://github.com/Stono/hawkeye/blob/master/lib/modules/findsecbugs/README.md');
     done();
   });
@@ -150,7 +150,7 @@ describe('FindSecBugs', () => {
     should(findSecBugs.handles(fileManager)).eql(false);
 
     mockLogger.expect.warn.called.withArgs('java files were found but no jar files');
-    mockLogger.expect.warn.called.withArgs('findSecBugs scan will not run unless you build the project before');
+    mockLogger.expect.warn.called.withArgs('java-find-secbugs scan will not run unless you build the project before');
     done();
   });
 
