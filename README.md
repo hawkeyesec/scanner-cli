@@ -31,7 +31,7 @@ Modules are basically little bits of code that either implement their own logic,
  - __Constant Hash Tables (node-chs)__: See [Node Constant Hashtable](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases).  Checks if your package.json can be run against vulnerable versions of node.
 
 ### Ruby:
- - __Bundler Audit (ruby-bundler-audit)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
+ - __Bundler Audit (ruby-bundler-scan)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
  - __Brakeman (ruby-brakeman)__: Wraps [Brakeman](https://brakemanscanner.org) for static analysis security vulnerability scanner for Ruby on Rails applications.
 
 ### Python:
