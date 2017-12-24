@@ -143,7 +143,7 @@ As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore
 This file takes all the same options as `hawkeye scan --help`.   In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
 ```
 {
-  "modules": ["contents", "entropy", "files", "ncu", "nsp"],
+  "modules": ["contents", "entropy", "files", "node-ncu", "node-nsp"],
   "failOn": "medium"
 }
 ```
