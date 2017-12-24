@@ -45,7 +45,7 @@ describe('OWASP Dependency Check', ()=> {
     const fileManager = buildFileManager('../samples/java/maven');
     should(owaspCheck.handles(fileManager)).eql(true);
     owaspCheck.run(mockResults, () => {
-      mockExec.expect.command.called.withArg(`dependency-check --project Testing --format JSON --out . -s ${fileManager.target}/target/main.jar`);
+      mockExec.expect.command.called.withArg(`dependency-check --noupdate --project Testing --format JSON --out . -s ${fileManager.target}/target/main.jar`);
       done();
     });
   });
@@ -55,7 +55,7 @@ describe('OWASP Dependency Check', ()=> {
 
     should(owaspCheck.handles(fileManager)).eql(true);
     owaspCheck.run(mockResults, () => {
-      mockExec.expect.command.called.withArg(`dependency-check --project Testing --format JSON --out . -s ${fileManager.target}/build/main.jar`);
+      mockExec.expect.command.called.withArg(`dependency-check --noupdate --project Testing --format JSON --out . -s ${fileManager.target}/build/main.jar`);
       done();
     });
   });
