@@ -1,5 +1,5 @@
 'use strict';
-const OwaspCheck = require('../../lib/modules/owaspDependencyCheck');
+const OwaspCheck = require('../../lib/modules/java-owasp');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -16,7 +16,7 @@ describe('OWASP Dependency Check', ()=> {
       stdout: JSON.stringify(sample)
     });
     mockExec.setup.commandExists.toReturn(true);
-    
+
     mockResults = deride.stub(['low', 'medium', 'high', 'critical']);
     owaspCheck = new OwaspCheck({
       exec: mockExec
@@ -98,7 +98,7 @@ describe('OWASP Dependency Check', ()=> {
 
     should(owaspCheck.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('java files found but dependency-check was not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('dependency-check scan will not run unless you install Owasp Dependency Check CLI');
+    mockLogger.expect.warn.called.withArgs('java-owasp scan will not run unless you install Owasp Dependency Check CLI');
     mockLogger.expect.warn.called.withArgs('Installation instructions: https://github.com/Stono/hawkeye/blob/master/lib/modules/owaspDependencyCheck/README.md');
     done();
   });
@@ -106,7 +106,7 @@ describe('OWASP Dependency Check', ()=> {
   it('should log issues from the report json', done => {
     const fileManager = buildFileManager('../samples/java/maven');
     should(owaspCheck.handles(fileManager)).eql(true);
-    
+
     owaspCheck.run(mockResults, () => {
       const item = {
 	code: 'CVE-2013-4499',
@@ -123,7 +123,7 @@ describe('OWASP Dependency Check', ()=> {
    it('should not log issues if the report doesnt have vulnerabilities', done => {
      const fileManager = buildFileManager('../samples/java/maven', '../samples/owaspDependencySampleNoIssue.json');
     should(owaspCheck.handles(fileManager)).eql(true);
-    
+
     owaspCheck.run(mockResults, () => {
 
       mockResults.expect.critical.called.never();

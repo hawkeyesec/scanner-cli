@@ -1,5 +1,5 @@
 'use strict';
-const Bandit = require('../../lib/modules/bandit');
+const Bandit = require('../../lib/modules/python-bandit');
 const FileManager = require('../../lib/fileManager');
 const deride = require('deride');
 const path = require('path');
@@ -89,7 +89,7 @@ describe('Bandit', () => {
 
     should(bandit.handles(fileManager)).eql(false);
     mockLogger.expect.warn.called.withArgs('requirements.txt found but bandit was not found in $PATH');
-    mockLogger.expect.warn.called.withArgs('banditScan will not run unless you install bandit');
+    mockLogger.expect.warn.called.withArgs('python-bandit will not run unless you install bandit');
     mockLogger.expect.warn.called.withArgs('Please see: https://github.com/openstack/bandit');
     done();
   });
