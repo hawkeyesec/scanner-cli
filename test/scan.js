@@ -6,7 +6,7 @@ const Rc = require('../lib/rc');
 const path = require('path');
 
 describe('Scan', () => {
-  let scan, mockExec;
+  let scan, mockExec, rc;
   before(() => {
     let ncuSample = require('./samples/ncu.json');
     let nspSample = require('./samples/nsp.json');
@@ -24,7 +24,7 @@ describe('Scan', () => {
     });
 
     const nullLogger = deride.stub(['log', 'debug', 'error']);
-    const rc = new Rc();
+    rc = new Rc();
     rc.logger = nullLogger;
     rc.exec = mockExec;
     rc.withTarget(path.join(__dirname, 'samples/nodejs'));
@@ -38,5 +38,23 @@ describe('Scan', () => {
       done();
     });
   });
+
+  it('should run a scan and return results for each of the enabled modules exlcuding the ignore error codes', done => {
+    rc.errorExclude["Potential cryptographic private key"] = true;
+    let finalResults = 0;
+    scan.start((err, results) => {
+      should(err).eql(null);
+      results.forEach(moduleResult => {
+        Object.keys(moduleResult.results).forEach(key => {
+          moduleResult.results[key].forEach((result, index) => {
+            finalResults++;
+          });
+        });
+    });
+      should(finalResults).eql(20);
+      done();
+    });
+  })
+
 
 });
