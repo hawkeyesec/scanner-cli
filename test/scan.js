@@ -40,13 +40,13 @@ describe('Scan', () => {
   });
 
   it('should run a scan and return results for each of the enabled modules exlcuding the ignore error codes', done => {
-    rc.errorExclude["Potential cryptographic private key"] = true;
+    rc.errorExclude['Potential cryptographic private key'] = true;
     let finalResults = 0;
     scan.start((err, results) => {
       should(err).eql(null);
       results.forEach(moduleResult => {
         Object.keys(moduleResult.results).forEach(key => {
-          moduleResult.results[key].forEach((result, index) => {
+          moduleResult.results[key].forEach(() => {
             finalResults++;
           });
         });
@@ -54,7 +54,7 @@ describe('Scan', () => {
       should(finalResults).eql(20);
       done();
     });
-  })
+  });
 
 
 });
