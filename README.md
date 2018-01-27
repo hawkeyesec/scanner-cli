@@ -20,7 +20,7 @@ Modules are basically little bits of code that either implement their own logic,
 
 ### Generic Modules:
  - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js), taken from [gitrob](https://github.com/michenriksen/gitrob).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
- - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
+ - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.  It is possible to exclude false positives by adding the string 'hawkeye: ignore\_content\_match' anywhere on the preceding line, eg. in a code comment such as: `// hawkeye: ignore_content_match`. While not necessary, it is encouraged to also include a justification - for example: `// hawkeye: ignore_content_match - value for unit test purposes, not a real credential`
  - __File Content Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
  - __Credit Card Numbers (ccnumber)__:  Scan for credit card numbers in files, validated using [luhn](https://en.wikipedia.org/wiki/Luhn_algorithm).
 

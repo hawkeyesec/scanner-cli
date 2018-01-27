@@ -35,4 +35,19 @@ describe('Contents', () => {
     }
     contents.run(mockResults, done);
   });
+
+  it('should ignore matches on lines that have been excluded', done => {
+    let hasReportedIssue = false;
+    mockResults.setup.low.toDoThis(data => {
+      should(data.offender).eql('some_file_with_ignored_potential_password_match.js');
+      should(data.mitigation).eql('Check line number: 12');
+      hasReportedIssue = true;
+    });
+    contents.run(mockResults, checkIssueReportedAndCompleteTest);
+
+    function checkIssueReportedAndCompleteTest() {
+      should(hasReportedIssue).eql(true);
+      done();
+    }
+  });
 });
