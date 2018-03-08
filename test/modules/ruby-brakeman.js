@@ -17,7 +17,7 @@ describe('Brakeman', () => {
 
     nullLogger = deride.stub(['log', 'debug', 'error']);
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/ruby'),
+      target: path.join(__dirname, '../samples/ruby/ruby-project-on-root-folder'),
       logger: nullLogger
     });
 
@@ -62,7 +62,7 @@ describe('Brakeman', () => {
 
   it('should log error message when reported was not created', done => {
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/ruby'),
+      target: path.join(__dirname, '../samples/ruby/ruby-project-on-root-folder'),
       logger: nullLogger
     });
     fileManager = deride.wrap(fileManager);
@@ -107,7 +107,7 @@ describe('Brakeman', () => {
     });
 
     fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/ruby'),
+      target: path.join(__dirname, '../samples/ruby/ruby-project-on-root-folder'),
       logger: nullLogger
     });
 
@@ -121,4 +121,20 @@ describe('Brakeman', () => {
 
     done();
   });
+
+  it('should execute brakeman when ruby project is on subdirectory', done => {
+    const fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/ruby/ruby-project-on-subdirectory'),
+      logger: nullLogger
+    });
+
+    should(brakeman.handles(fileManager)).eql(true);
+
+    brakeman.run(mockResults, () => {
+      mockExec.expect.command.called.withArgs(`brakeman . -f json -o ${fileManager.target}/output.json`);
+      done();
+    });
+
+  });
+
 });
