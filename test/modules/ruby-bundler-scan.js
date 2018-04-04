@@ -9,16 +9,16 @@ const fs = require('fs');
 describe('Bundler-scan', () => {
   let sample = fs.readFileSync(path.join(__dirname, '../samples/bundlerScan.txt'));
 
-  let bundlerScan, mockExec, mockResults;
+  let bundlerScan, mockExec, mockResults, nullLogger;
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists']);
     mockExec.setup.command.toCallbackWith(null, {
       stdout: sample
     });
     mockExec.setup.commandExists.toReturn(true);
-    const nullLogger = deride.stub(['log', 'warn', 'debug', 'error']);
+    nullLogger = deride.stub(['log', 'warn', 'debug', 'error']);
     const fileManager = new FileManager({
-      target: path.join(__dirname, '../samples/ruby'),
+      target: path.join(__dirname, '../samples/ruby/ruby-project-on-root-folder'),
       logger: nullLogger
     });
 
@@ -57,4 +57,5 @@ describe('Bundler-scan', () => {
     });
     bundlerScan.run(mockResults);
   });
+
 });

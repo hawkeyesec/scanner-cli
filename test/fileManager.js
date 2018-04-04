@@ -103,4 +103,19 @@ describe('File Manager', () => {
     done();
   });
 
+  it('should verify if file with name exists', done => {
+     should(fm.fileWithNameExists('file4.txt')).eql(true);
+     done();
+  });
+
+  it('should get file path', done => {
+    should(fm.getFilePath('file4.txt')).eql('test/another-test/');
+    done();
+  });
+
+  it('should raise an exception while trying to get file path of non existent file', done => {
+    (() => {fm.getFilePath('non-existent-file')}).should.throw(new Error('File non-existent-file does not exist'));
+    done();
+  });
+
 });
