@@ -1,5 +1,5 @@
 {
   "modules": ["contents", "entropy", "files", "node-ncu", "node-nsp"],
   "failOn": "medium",
-  "excludeErrors": ["Migrate to jQuery 3.X"]
+  "excludeErrors": ["node-ncu-1:jasmine-core"]
 }
