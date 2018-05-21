@@ -35,6 +35,8 @@ program
           'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold)
   .option('-g, --staged',
           'Scan only git-staged files', rc.withStaged)
+  .option('-l, --file-limit <n>',
+          `Set limit on number of files to scan (Defaults to ${rc.defaultFileLimit})`, parseInt)
   .parse(process.argv);
 
 const bitwise = {
@@ -46,6 +48,8 @@ const bitwise = {
 
 rc.all = util.defaultValue(program.all, false);
 rc.staged = util.defaultValue(program.staged, false);
+
+rc.setFileLimit(program.fileLimit);
 rc.withTarget(program.target);
 
 if(rc.json) {

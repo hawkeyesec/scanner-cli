@@ -4,11 +4,12 @@ const path = require('path');
 const should = require('should');
 const deride = require('deride');
 const fs = require('fs');
+const os = require('os');
 
 describe('File Manager', () => {
   let fm, nullLogger;
   beforeEach(() => {
-    nullLogger = deride.stub(['log', 'debug', 'error']);
+    nullLogger = deride.stub(['log', 'debug', 'error', 'warn']);
     fm = new FileManager({
       target: path.join(__dirname, 'samples/filemanager'),
       logger: nullLogger
@@ -44,6 +45,75 @@ describe('File Manager', () => {
       'test/file3'
     ];
     should(result).eql(expected);
+  });
+
+  describe('fileLimit', () => {
+    const mockTargetDir = path.join(os.tmpdir(), 'hawkeye-test-');
+
+    let tempDir;
+    let tempFileNames = [];
+
+    const writeFileAsync = (tempDir) => {
+      return new Promise((resolve, reject) => {
+        const randomFileName = `${Math.random().toString(36).slice(2)}.js`;
+
+        tempFileNames = tempFileNames.concat(randomFileName);
+
+        fs.writeFile(path.join(tempDir, randomFileName), '', { flag: 'w+' }, (err) => {
+          if (!err) {
+            resolve();
+          } else {
+            reject(err);
+          }
+        });
+      });
+    };
+
+    before((done) => {
+      fs.mkdtemp(mockTargetDir, (err, folder) => {
+        tempDir = folder;
+
+        const files = [];
+        for (let i = 0; i < 20; i++) {
+          files.push(writeFileAsync(tempDir));
+        }
+
+        Promise.all(files).then(() => {
+          done();
+        });
+      });
+    });
+
+    it('should pick a subset of files based on fileLimit', (done) => {
+      fm = new FileManager({
+        target: tempDir,
+        logger: nullLogger,
+        fileLimit: 10
+      });
+      const result = fm.all();
+
+      should(result.length).eql(10);
+      done();
+    });
+
+    it('should scan all files when fileLimit is not set', (done) => {
+      fm = new FileManager({
+        target: tempDir,
+        logger: nullLogger
+      });
+      const result = fm.all();
+
+      should(result.length).eql(20);
+      done();
+    });
+
+    after((done) => {
+      for (let i = 0; i < tempFileNames.length; i++) {
+        fs.unlinkSync(path.join(tempDir, tempFileNames[i]));
+      }
+
+      fs.rmdir(tempDir, () => done());
+    });
   });
 
   it('should const me exclude extensions', () => {
@@ -102,5 +172,4 @@ describe('File Manager', () => {
     ]);
     done();
   });
-
 });
