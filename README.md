@@ -182,10 +182,10 @@ This will post the results to a SumoLogic HTTP collector.  See the SumoLogic sec
 #### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
 This parameter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
 
+There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
+
 #### -l, --file-limit  <n>: Set limit on number of files to be scanned (Defaults to 1000)
 The `--file-limit` allows you to set a higher file limit thab the default (1000). This is useful when the target directory includes more files. 
-
-There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
 
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
