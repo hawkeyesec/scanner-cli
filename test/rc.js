@@ -89,6 +89,12 @@ describe('RC', () => {
     }).throw();
   });
 
+  it('setFileLimit should not allow undefined', () => {
+    should(() => {
+    rc.setFileLimit(undefined);
+  }).throw();
+});
+
   describe('when files not present', () => {
     it('should default the excludes', () => {
       should(noRc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', 'package-lock.json']);
