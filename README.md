@@ -246,7 +246,7 @@ $ hawkeye scan
 [info] Running module Node Check Updates
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
 [info] Running module Node Security Project
-[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check -o json
+[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check --reporter json
 [info] scan complete, 16 issues found
 
 [info] Doing writer: console

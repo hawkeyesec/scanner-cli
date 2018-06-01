@@ -26,9 +26,9 @@ describe('Nsp', () => {
     should(nsp.handles(fileManager)).eql(true);
   });
 
-  it('should execute nsp check -o json', done => {
+  it('should execute nsp check --reporter json', done => {
     nsp.run(mockResults, () => {
-      let pathToJson = path.join(__dirname, '../../node_modules/nsp/bin/nsp check -o json');
+      let pathToJson = path.join(__dirname, '../../node_modules/nsp/bin/nsp check --reporter json');
       mockExec.expect.command.called.withArg(pathToJson);
       done();
     });
