@@ -56,11 +56,44 @@ describe('RC', () => {
     rc.withHttp('http://url.com');
     should(rc.http).eql('http://url.com');
   });
+
   it('http writer should not allow invalid urls', () => {
     should(() => {
       rc.withHttp('bad-url');
     }).throw();
   });
+
+  it('should let me set the file limit using setter', () => {
+    rc.setFileLimit(2000);
+    should(rc.fileLimit).eql(2000);
+  });
+
+  it('should let me set the file limit using constructor', () => {
+    const anotherRc = new Rc({
+      logger: nullLogger,
+      fileLimit: 2000
+    }).withTarget(target);
+
+    should(anotherRc.fileLimit).eql(2000);
+  });
+
+  it('setFileLimit should not allow negative number', () => {
+    should(() => {
+      rc.setFileLimit(-2);
+    }).throw();
+  });
+
+  it('setFileLimit should not allow number with floating points', () => {
+    should(() => {
+      rc.setFileLimit(2.5);
+    }).throw();
+  });
+
+  it('setFileLimit should not allow undefined', () => {
+    should(() => {
+    rc.setFileLimit(undefined);
+  }).throw();
+});
 
   describe('when files not present', () => {
     it('should default the excludes', () => {
