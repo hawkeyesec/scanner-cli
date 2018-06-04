@@ -11,7 +11,7 @@ describe('Nsp', () => {
   beforeEach(() => {
     mockExec = deride.stub(['command']);
     mockExec.setup.command.toCallbackWith(null, {
-      stderr: JSON.stringify(sample)
+      stdout: JSON.stringify(sample)
     });
     const nullLogger = deride.stub(['log', 'debug', 'error']);
     const fileManager = new FileManager({
