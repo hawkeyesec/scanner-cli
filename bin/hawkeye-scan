@@ -12,6 +12,7 @@ const Rc = require('../lib/rc');
 const writers = [new ConsoleWriter()];
 const program = require('commander');
 const rc = new Rc();
+const setFileLimit = (limit) => rc.setFileLimit(parseInt(limit, 10));
 const util = require('../lib/util');
 
 program
@@ -35,6 +36,8 @@ program
           'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold)
   .option('-g, --staged',
           'Scan only git-staged files', rc.withStaged)
+  .option('-l, --file-limit <n>',
+          `Set limit on number of files to be scanned (Defaults to ${rc.defaultFileLimit})`, setFileLimit)
   .parse(process.argv);
 
 const bitwise = {
@@ -46,6 +49,7 @@ const bitwise = {
 
 rc.all = util.defaultValue(program.all, false);
 rc.staged = util.defaultValue(program.staged, false);
+
 rc.withTarget(program.target);
 
 if(rc.json) {
