@@ -12,6 +12,9 @@ Hawkeye is a project security, vulnerability and general risk highlighting tool.
   - Modules return results via a common interface, which permits consolidated reporting and artefact generation
   - Should be very easy to run regardless of the type of project that you're scanning
 
+## Looking for support
+Hi!  I don't have time to support hawkeye moving forward, so I am actively looking for maintainers.  I you've got an interest in this project and fancy helping out - please reach out to me!
+
 ## Important Notes (please read)
  - As of version `1.0.0` many of the modules have had their identifiers changed and prefixed for langues added to them, for example `nsp` is now `node-nsp`.  This means you will need to udpate your `.hawkeyerc` files, and any commands where you explicitly specify modules eg `hawkeye scan -m thing`.
 
@@ -185,7 +188,7 @@ This parameter (which can be specified multiple times) allows you to specify pat
 There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
 
 #### -l, --file-limit  <n>: Set limit on number of files to be scanned (Defaults to 1000)
-The `--file-limit` allows you to set a higher file limit thab the default (1000). This is useful when the target directory includes more files. 
+The `--file-limit` allows you to set a higher file limit thab the default (1000). This is useful when the target directory includes more files.
 
 ### `hawkeye modules`
 You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
