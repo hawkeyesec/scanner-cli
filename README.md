@@ -340,7 +340,7 @@ results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
 
 # Hosted/SaaS version
-The best used of Hawkeye is [in your pipeline](https://github.com/Stono/hawkeye#as-part-of-your-gocd-pipeline).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
+The best used of Hawkeye is [in your pipeline](#as-part-of-your-ci-pipelines).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
 
   - Free (obviously)
   - Links to GitHub and scans both Public and Private repositories
