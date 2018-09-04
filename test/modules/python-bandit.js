@@ -8,7 +8,7 @@ const should = require('should')
 describe('Bandit', () => {
   let sample = require('../samples/bandit.json')
 
-  let bandit, mockExec, mockResults, fileManager
+  let bandit, mockExec, mockResults, fileManager, nullLogger
   beforeEach(() => {
     mockExec = deride.stub(['command', 'commandExists'])
     mockExec.setup.command.toCallbackWith(null, {
@@ -16,7 +16,7 @@ describe('Bandit', () => {
     })
     mockExec.setup.commandExists.toReturn(true)
 
-    const nullLogger = deride.stub(['log', 'debug', 'error'])
+    nullLogger = deride.stub(['log', 'debug', 'error'])
     fileManager = new FileManager({
       target: path.join(__dirname, '../samples/python'),
       logger: nullLogger
@@ -28,12 +28,26 @@ describe('Bandit', () => {
     should(bandit.handles(fileManager)).eql(true)
   })
 
-  it('should execute bandit -r . -f json', done => {
+  it('should execute bandit command without exclude option', done => {
     bandit.run(mockResults, () => {
       mockExec.expect.command.called.withArg('bandit -r . -f json')
       done()
     })
   })
+
+  it('should execute bandit command with exclude option', done => {
+    let fileManager = new FileManager({
+      target: path.join(__dirname, '../samples/python'),
+      logger: nullLogger,
+      exclude: ['ignoredir']
+    });
+    bandit.handles(fileManager);
+
+    bandit.run(mockResults, () => {
+      mockExec.expect.command.called.withArg('bandit -r . -f json -x ignoredir/bar.py,ignoredir/foo.py');
+      done();
+    });
+  });
 
   it('should log issues with HIGH severity as high', done => {
     bandit.run(mockResults, () => {
