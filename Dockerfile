@@ -50,7 +50,7 @@ RUN gem install bundler-audit brakeman
 RUN bundle-audit update
 
 # Add safety, piprot, bandit
-RUN pip install safety==1.6.1 piprot==0.9.8 bandit==1.4.0
+RUN pip install safety==1.6.1 piprot==0.9.10 bandit==1.4.0
 
 # Add FindSecBugs
 RUN mkdir /usr/local/bin/findsecbugs && \
