@@ -341,16 +341,3 @@ The first argument passed is `results`, this is where the module should send its
 ```
 results.critial('offender', 'description', 'extra', { additional: 'data' });
 ```
-
-# Hosted/SaaS version
-The best used of Hawkeye is [in your pipeline](#as-part-of-your-ci-pipelines).  However, you now you can use [this hosted version](https://hawkeye.website/) to get scanning _even faster!_.  Some of the benefits of the hosted version are:
-
-  - Free (obviously)
-  - Links to GitHub and scans both Public and Private repositories
-  - GitHub "Push" scanning
-  - On-demand one-click scanning
-  - Scheduled scanning (great for continually checking for new issues in your deployed applications)
-  - Email notifications when we find new issues
-  - Consolidated dashboards
-
-It's worth noting that as the SaaS version **is not** a build server, any modules which require builds will not run (for example; java vulnerability checkers that scan JAR files).  For those, you should be putting it in your pipeline.
