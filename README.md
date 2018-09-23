@@ -1,3 +1,4 @@
+[![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby)
 [![NPM version](https://badge.fury.io/js/hawkeye-scanner.svg)](http://badge.fury.io/js/hawkeye-scanner)
 [![npm](https://img.shields.io/npm/dt/hawkeye-scanner.svg)](https://www.npmjs.com/package/hawkeye-scanner)
 [![Build Status](https://travis-ci.org/Stono/hawkeye.svg?branch=master)](https://travis-ci.org/Stono/hawkeye)
