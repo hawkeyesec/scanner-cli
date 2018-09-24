@@ -30,7 +30,7 @@ Modules are basically little bits of code that either implement their own logic,
 
 ### Node JS:
  - __Node Security Project (node-nsp)__: Wraps [Node Security Project](https://github.com/nodesecurity/nsp) to check your package.json for known vulnerabilities.
- - __NPM Check Updates (node-ncu)__: Wraps [NPM Check Updates](https://github.com/tjunnone/npm-check-updates) to check your package.json for outdated modules.
+ - __NPM outdated (node-npmoutdated)__: Wraps [npm outdated](https://docs.npmjs.com/cli/outdated) to check your package.json for outdated modules.
  - __CrossEnv (node-crossenv)__: See [Node Cross-Env Malware](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry).  Checks your package.json for known malicious modules which contain this malware.
  - __Constant Hash Tables (node-chs)__: See [Node Constant Hashtable](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases).  Checks if your package.json can be run against vulnerable versions of node.
 
@@ -144,10 +144,10 @@ This is an example of running Hawkeye from an npm package.json against a local r
 As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore` pattern in your project root.
 
 ### .hawkeyerc
-This file takes all the same options as `hawkeye scan --help`.   In this example, we'll run the `contents`, `entropy`, `files`, `ncu` and `nsp`
+This file takes all the same options as `hawkeye scan --help`.   In this example, we'll run the `contents`, `entropy`, `files`, `npm outdated` and `nsp`
 ```
 {
-  "modules": ["contents", "entropy", "files", "node-ncu", "node-nsp"],
+  "modules": ["contents", "entropy", "files", "node-npmoutdated", "node-nsp"],
   "failOn": "medium"
 }
 ```
@@ -175,7 +175,7 @@ From a pipeline perspective, the `--fail-on` command is useful, you might not wi
 By default Hawkeye will look in your current working directory.  You can override this behaviour though by specifying a `--target`
 
 #### -m, --module  <module name>: Running only specific modules
-If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m nsp -m ncu` would run just the nsp and ncu modules.
+If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m node-nsp -m node-npmoutdated` would run just the nsp and `npm outdated` modules.
 
 #### -j, --json    </path/to/summary.json>: Produce a JSON artefact
 The `--json` paramter allows you to write a much more detailed report to a file. See the Json section below for more information
@@ -218,8 +218,6 @@ Module Status
                   Example of how to write a module and shell out a command
 [info] Enabled:   Secret Files (files)
                   Scans for known secret files
-[info] Enabled:   Node Check Updates (ncu)
-                  Scans a package.json for out of date packages
 [info] Enabled:   Node Security Project (nsp)
                   Scans a package.json for known vulnerabilities from NSP
 ```
@@ -250,8 +248,6 @@ $ hawkeye scan
 [info] Fail at level: low
 [info] Running module File Contents
 [info] Running module Secret Files
-[info] Running module Node Check Updates
-[info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/npm-check-updates/bin/ncu -j
 [info] Running module Node Security Project
 [info]  -> /Users/kstoney/git/stono/hawkeye/node_modules/nsp/bin/nsp check --reporter json
 [info] scan complete, 16 issues found

@@ -14,13 +14,13 @@ describe('RC', () => {
   })
 
   it('should let me specify a module to run', () => {
-    noRc.withModule('ncu')
-    should(noRc.modules).eql(['ncu'])
+    noRc.withModule('node-npmoutdated')
+    should(noRc.modules).eql(['node-npmoutdated'])
   })
   it('should not duplicate modules to run', () => {
-    noRc.withModule('ncu')
-    noRc.withModule('ncu')
-    should(noRc.modules).eql(['ncu'])
+    noRc.withModule('node-npmoutdated')
+    noRc.withModule('node-npmoutdated')
+    should(noRc.modules).eql(['node-npmoutdated'])
   })
 
   it('should let me set the failOn level', () => {
@@ -117,7 +117,7 @@ describe('RC', () => {
       should(rc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', 'package-lock.json', '^another/'])
     })
     it('should replace the modules', () => {
-      should(rc.modules).eql(['contents', 'entropy', 'files', 'ncu', 'nsp'])
+      should(rc.modules).eql(['contents', 'entropy', 'files', 'node-npmoutdated', 'node-nsp'])
     })
     it('should replace the failOn', () => {
       should(rc.failOn).eql('medium')
