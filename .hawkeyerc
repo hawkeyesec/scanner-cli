@@ -1,4 +1,4 @@
 {
-  "modules": ["contents", "entropy", "files", "node-ncu", "node-nsp"],
+  "modules": ["contents", "entropy", "files", "node-npmoutdated", "node-nsp"],
   "failOn": "medium"
 }

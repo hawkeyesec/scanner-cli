@@ -8,7 +8,6 @@ const path = require('path')
 describe('Scan', () => {
   let scan, mockExec
   before(() => {
-    let ncuSample = require('./samples/ncu.json')
     let nspSample = require('./samples/nsp.json')
     mockExec = deride.stub(['command', 'commandExists'])
     mockExec.setup.commandExists.toReturn(true)
@@ -19,7 +18,7 @@ describe('Scan', () => {
         })
       }
       return done(null, {
-        stdout: JSON.stringify(ncuSample)
+        stdout: JSON.stringify(nspSample)
       })
     })
 
