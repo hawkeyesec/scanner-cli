@@ -16,6 +16,7 @@ env:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 before_script:
   - npm version $HE_VERSION
