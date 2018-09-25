@@ -6,7 +6,7 @@ const should = require('should')
 const NpmOutdated = require('../../lib/modules/node-npmoutdated')
 const FileManager = require('../../lib/fileManager')
 
-describe('Nsp', () => {
+describe('npm audit', () => {
   const report = {
     'crossenv': {
       'current': '0.0.2',
