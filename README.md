@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/hawkeye-scanner.svg)](https://www.npmjs.com/package/hawkeye-scanner)
 [![Build Status](https://travis-ci.org/Stono/hawkeye.svg?branch=master)](https://travis-ci.org/Stono/hawkeye)
 [![Dependency Status](https://david-dm.org/Stono/hawkeye.svg)](https://david-dm.org/Stono/hawkeye)
-[![Hub Pulls](https://img.shields.io/docker/pulls/stono/hawkeye.svg)](https://hub.docker.com/r/stono/hawkeye)
+[![Hub Pulls](https://img.shields.io/docker/pulls/stono/hawkeye.svg)](https://hub.docker.com/r/stono/hawkeye) [![Greenkeeper badge](https://badges.greenkeeper.io/Stono/hawkeye.svg)](https://greenkeeper.io/)
 
 ![Logo](screenshots/badlogo.png)
 
