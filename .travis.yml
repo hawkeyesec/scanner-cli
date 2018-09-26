@@ -1,37 +1,29 @@
 sudo: required
 services:
-  - docker
-
+- docker
 language: node_js
 node_js:
-  - 8
-
+- 8
 notifications:
   email: false
-
 env:
   global:
-    - HE_VERSION=1.1.0
-
+  - HE_VERSION=1.1.0
 branches:
   only:
-    - master
-    - /^greenkeeper/.*$/
-
+  - master
+  - "/^greenkeeper/.*$/"
 before_script:
-  - npm version $HE_VERSION
-
+- npm version $HE_VERSION
 script:
-  - npm test
-
+- npm test
 after_success:
-  - ./deploy.sh
-
+- "./deploy.sh"
 deploy:
-  - provider: npm
-    email: karlstoney@googlemail.com
-    api_key:
-      secure: hqJ0YQ93zoCCDpYpKJBjI8V48yhyhFxVfQbIDU+mVZ31mP2nf4Xm5jm9jx/GArn1cFvBM4IwMdLhsLqUTOVLy3sg017zuk/X6VW9tr6r6W1sXkKR0ikFTl1jqiVlnu9wivX6a2l5D4cDpUC2CkRdiPSsGzDA9uFhr82IdD5AO6s5Z4LXnIfluys8dR7V9cKId+/8GRdp+JbqD90cPRKYqS5wP6NBhX3qaJUqK019TpK+xwACgbx8/71FrYGkvvWWjOkw6rdpcB2l+A1CPNo4Si0xmlSHBh893yPlziUYqfS94LruEBMoffIA9vNG6Ql3QEBDLcYivOT/o31a0jNLg7dW/Zca5L8KerCWiU+0DiglIG1aPM5nLkAqgtbOkm1P29y0NaoyAxb4rzWWWy9h3Hosp/g0vHapj8ynFcIXE1Wu8lY+zK1VH4K7TWgt7aNnddnXHpRzc56rFaLnb5fxY/tC4D5TFVR4qsnpL7GZSubLigh2fSAoSZWaCJpWkE0LuVJuoYyQPs4CxRIoCWpe7TxgqmcArDfBY6M5fg7w5KJBjg2IZ8GAt8phvSB6863kzu3tCTWeUJcsHxCSK4goXGs+vGwXtwi6Uev7VsTC2QthlE9fUF5AMaALw1yz6+x7NNBJymC2tID9OHS2LpqM7psGO9n5KrmxIvyWhZJM5YY=
-    on:
-      repo: Stono/hawkeye
-      branch: master
+  provider: npm
+  email: karlstoney@googlemail.com
+  api_key:
+    secure: newdYdorCm85Khr8GnF9/9cL4wNbrtzsNffU+11zAizlXjjRxyowyP9qGlX5ZDLOitQTyse7F7JPhz2jqNzg1WJNpkUhs4k2iE4le68ydr5qZXW4vx/tZVnCGrGwORiM4IOoCfBwPpCNHuEY5+zQl+LPBAbeboq/nDeCw9NUykw3zXPNcFlmlz/DPF/v4c3yrhCWwYqs9bEM25zBZrcTH/0pB6TgLPTL9srPyXMOgY7rbOaEg6s8l7Rssk/KkwGMIdq61MFoI2PEmn6GeZLwIz+7KxzM17sIuIylkqxr+7bzXP0tm5R2DeaU8QGSGHDm7MiwScDl99Pb1USj6ObB+yTlvnR8nT5RQ6aJ8RxnjUfeuSz0ZrsBAnCaNqZdZZjd/8tGvOmWVErzp+xXGsKNU8mxm5jWe6zgEuajw16sHFhXfofgV7pKKRC5OFyWfm3mM/jnp9BTtTvcUffX0NTGsBO6TQfjS+M0cM3gvY3BkX6J7G7GtlibzIAmgghwNMOdZ1+jL0KaaQdTC5NShs2AQMaQ10R12iSilmZkhhwTHEGJvZ5vvEpE0oAzBb0rtxVVEs9YcUnnFWbQ6AtTU1AQveFWPau0roQOXMa7WBYCMibmgXIM8agNJd7kRb97bOzrjHi1RyyGULvIyPkbj6+0qiUdpXAhMeyrgtTvSYnTT1I=
+  on:
+    repo: Stono/hawkeye
+    branch: master
