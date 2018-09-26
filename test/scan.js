@@ -35,7 +35,7 @@ describe('Scan', () => {
     rc.withTarget(path.join(__dirname, 'samples/nodejs'));
     scan = new Scan(rc);
   });
-
+});
   it('should run a scan and return results for each of the enabled modules', done => {
     scan.start((err, results) => {
       should(err).eql(null);
@@ -60,6 +60,5 @@ describe('Scan', () => {
       done();
     });
   });
-
 
 });
