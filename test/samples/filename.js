@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = [
   {
     part: 'filename',
@@ -40,4 +40,4 @@ module.exports = [
     level: 'medium',
     description: 'Might contain API key for a rubygems.org account.'
   }
-];
+]

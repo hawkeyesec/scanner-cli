@@ -1,0 +1,74 @@
+# Contributing to Hawkeye
+
+:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
+
+If you haven't already, come find us on Gitter: [![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby).
+
+The following is a set of guidelines for contributing to Hawkeye. These are mostly guidelines, so use your best judgment, and feel free to propose changes to this document in a pull request.
+
+## I don't want to read this whole thing I just have a question!
+
+Please don't open issues if you want to ask a question. You'll get faster results here: [![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby)
+
+## Styleguides
+
+This is open source software. Consider the people who will read your code, and make it look nice for them. It's sort of like driving a car: Perhaps you love doing donuts when you're alone, but with passengers the goal is to make the ride as smooth as possible.
+
+### Git Commit Messages
+
+* Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should have some structure.
+* Use the present tense ("Add feature" not "Added feature")
+* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+* Limit the first line to 72 characters or less
+* Reference issues and pull requests liberally after the first line
+* Example:
+
+```
+$ git commit -m "A brief summary of the commit
+>
+> A paragraph describing what changed and its impact."
+```
+
+### JavaScript Styleguide
+
+We are moving this project towards using [JavaScript Standard Style](https://standardjs.com/) syntax.
+
+* Inline `export`s with expressions whenever possible
+* Place requires in the following order:
+    * Built-in Node Modules (such as `path`)
+    * Dependencies from `node_modules`
+    * Local Modules (using relative paths)
+* Place class properties in the following order:
+    * Class methods and properties (methods starting with `static`)
+    * Instance methods and properties
+* Avoid platform-dependent code
+
+### Specs Styleguide
+
+- Include well-structured [Mocha](https://mochajs.org/) tests.
+- Treat `describe` as a noun or situation.
+- Treat `it` as a statement about what the expectation towards state or operations `should` be.
+
+### Issue Labels
+
+| Label name | Description |
+| --- | --- |
+| `enhancement` | Feature requests. |
+| `bug` | Confirmed bugs or reports that are very likely to be bugs. |
+| `help-wanted` | The maintainers would appreciate help from the community in resolving these issues. |
+| `beginner` | Less complex issues which would be good first issues to work on for users who want to contribute. |
+| `more-information-needed` | More information needs to be collected about these problems or feature requests. |
+| `cannot-reproduce` | Likely bugs, but haven't been reliably reproduced. |
+| `blocked` | Issues blocked on other issues. |
+| `duplicate` | Issues which are duplicates of other issues, i.e. they have been reported before. |
+| `wontfix` | The maintainers have decided not to fix these issues for now. |
+
+### Pull Request Labels
+
+| Label name | Description |
+| --- | --- |
+| `work-in-progress` | Pull requests which are still being worked on, more changes will follow. |
+| `needs-review` | Pull requests which need code review, and approval from maintainers. |
+| `under-review` | Pull requests being reviewed by maintainers. |
+| `requires-changes` | Pull requests which need to be updated based on review comments and then reviewed again. |
+| `needs-testing` | Pull requests which need manual testing. |

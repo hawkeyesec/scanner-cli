@@ -1,0 +1,17 @@
+{
+    "crossenv": {
+      "current": "0.0.2",
+      "latest": "0.0.4",
+      "location": "node_modules/crossenv"
+  },
+    "mysqljs": {
+      "current": "0.0.2",
+      "latest": "0.1.0",
+      "location": "node_modules/mysqljs"
+  },
+    "async": {
+      "current": "2.1.2",
+      "latest": "3.0.0",
+      "location": "node_modules/async"
+  }
+}
