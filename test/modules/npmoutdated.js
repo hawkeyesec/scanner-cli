@@ -5,26 +5,9 @@ const deride = require('deride')
 const should = require('should')
 const NpmOutdated = require('../../lib/modules/node-npmoutdated')
 const FileManager = require('../../lib/fileManager')
+const report = require('../samples/nodejs/outdatedreport.json')
 
 describe('npm audit', () => {
-  const report = {
-    'crossenv': {
-      'current': '0.0.2',
-      'latest': '0.0.4',
-      'location': 'node_modules/crossenv'
-    },
-    'mysqljs': {
-      'current': '0.0.2',
-      'latest': '0.1.0',
-      'location': 'node_modules/mysqljs'
-    },
-    'async': {
-      'current': '2.1.2',
-      'latest': '3.0.0',
-      'location': 'node_modules/async'
-    }
-  }
-
   let npmOutdated, mockExec, mockResults
   beforeEach(() => {
     mockExec = deride.stub(['command'])

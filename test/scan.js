@@ -4,22 +4,31 @@ const deride = require('deride')
 const should = require('should')
 const Rc = require('../lib/rc')
 const path = require('path')
+const npmAuditReport = require('./samples/nodejs/auditreport.json')
+const npmOutdatedReport = require('./samples/nodejs/outdatedreport.json')
 
 describe('Scan', () => {
   let scan, mockExec
   before(() => {
-    let nspSample = require('./samples/nsp.json')
     mockExec = deride.stub(['command', 'commandExists'])
     mockExec.setup.commandExists.toReturn(true)
     mockExec.setup.command.toDoThis((command, options, done) => {
-      if (command.indexOf('nsp') > -1) {
-        return done(null, {
-          stderr: JSON.stringify(nspSample)
-        })
+      let stdout
+      switch (command) {
+        case 'npm outdated --json':
+          stdout = JSON.stringify(npmOutdatedReport)
+          break
+
+        case 'npm audit --json':
+          stdout = JSON.stringify(npmAuditReport)
+          break
+
+        default:
+          stdout = ''
+          break
       }
-      return done(null, {
-        stdout: JSON.stringify(nspSample)
-      })
+
+      return done(null, { stdout })
     })
 
     const nullLogger = deride.stub(['log', 'debug', 'error'])

@@ -117,7 +117,7 @@ describe('RC', () => {
       should(rc.exclude).eql(['^node_modules/', '^.git/', '^.git-crypt/', 'package-lock.json', '^another/'])
     })
     it('should replace the modules', () => {
-      should(rc.modules).eql(['contents', 'entropy', 'files', 'node-npmoutdated', 'node-nsp'])
+      should(rc.modules).eql(['contents', 'entropy', 'files', 'node-npmoutdated', 'node-npmaudit'])
     })
     it('should replace the failOn', () => {
       should(rc.failOn).eql('medium')
