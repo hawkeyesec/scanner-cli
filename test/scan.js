@@ -8,7 +8,7 @@ const npmAuditReport = require('./samples/nodejs/auditreport.json')
 const npmOutdatedReport = require('./samples/nodejs/outdatedreport.json')
 
 describe('Scan', () => {
-  let scan, mockExec, rc;
+  let scan, mockExec, rc
   before(() => {
     mockExec = deride.stub(['command', 'commandExists'])
     mockExec.setup.commandExists.toReturn(true)
@@ -27,38 +27,37 @@ describe('Scan', () => {
           stdout = ''
           break
       }
-
-    const nullLogger = deride.stub(['log', 'debug', 'error']);
-    rc = new Rc();
-    rc.logger = nullLogger;
-    rc.exec = mockExec;
-    rc.withTarget(path.join(__dirname, 'samples/nodejs'));
-    scan = new Scan(rc);
-  });
-});
+      return done(null, { stdout })
+    })
+    const nullLogger = deride.stub(['log', 'debug', 'error'])
+    rc = new Rc()
+    rc.logger = nullLogger
+    rc.exec = mockExec
+    rc.withTarget(path.join(__dirname, 'samples/nodejs'))
+    scan = new Scan(rc)
+  })
   it('should run a scan and return results for each of the enabled modules', done => {
     scan.start((err, results) => {
-      should(err).eql(null);
-      should(results.length).eql(6);
-      done();
-    });
-  });
+      should(err).eql(null)
+      should(results.length).eql(6)
+      done()
+    })
+  })
 
   it('should run a scan and return results for each of the enabled modules exlcuding the ignore error codes', done => {
-    rc.errorExclude["files-5:cert.pem"] = true;
-    let finalResults = 0;
+    rc.errorExclude['files-5:cert.pem'] = true
+    let finalResults = 0
     scan.start((err, results) => {
-      should(err).eql(null);
+      should(err).eql(null)
       results.forEach(moduleResult => {
         Object.keys(moduleResult.results).forEach(key => {
           moduleResult.results[key].forEach(() => {
-            finalResults++;
-          });
-        });
-    });
-      should(finalResults).eql(20);
-      done();
-    });
-  });
-
-});
+            finalResults++
+          })
+        })
+      })
+      should(finalResults).eql(17)
+      done()
+    })
+  })
+})
