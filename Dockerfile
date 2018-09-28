@@ -10,26 +10,20 @@ RUN yum -y -q update && \
     yum -y -q clean all
 
 # Git-crypt
+ENV GIT_CRYPT_VERSION=0.6.0
 RUN cd /tmp && \
-    wget --quiet https://www.agwa.name/projects/git-crypt/downloads/git-crypt-0.5.0.tar.gz && \
+    wget --quiet https://www.agwa.name/projects/git-crypt/downloads/git-crypt-${GIT_CRYPT_VERSION}.tar.gz && \
     tar xzf git-crypt* && \
     cd git-crypt* && \
     make && \
     make install && \
     rm -rf /tmp/git-crypt*
 
-ENV NODE_VERSION=8.9.1
-ENV NPM_VERSION=5.5.1
-
 # Get nodejs repos
+ENV NODE_VERSION=8.12.0
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-
-RUN yum -y install nodejs-$NODE_VERSION && \
+RUN yum -y install nodejs-${NODE_VERSION} && \
     yum -y clean all
-
-RUN rm -rf /usr/lib/node_modules/npm && \
-    mkdir /usr/lib/node_modules/npm && \
-    curl -sL https://github.com/npm/npm/archive/v$NPM_VERSION.tar.gz | tar xz -C /usr/lib/node_modules/npm --strip-components=1
 
 RUN node --version && \
     npm --version
@@ -50,26 +44,28 @@ RUN gem install bundler-audit brakeman
 RUN bundle-audit update
 
 # Add safety, piprot, bandit
-RUN pip install safety==1.6.1 piprot==0.9.8 bandit==1.4.0
+RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
 
 # Add FindSecBugs
+ENV FINDSECBUGS_VERSION=1.8.0
 RUN mkdir /usr/local/bin/findsecbugs && \
     cd /usr/local/bin/findsecbugs && \
-    wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-1.4.6/findsecbugs-cli-1.4.6.zip && \
-    unzip -q findsecbugs-cli-1.4.6.zip && \
+    wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
+    unzip -q findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
     chmod +x /usr/local/bin/findsecbugs/findsecbugs.sh && \
-    rm findsecbugs-cli-1.4.6.zip && \
+    rm findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
     mv findsecbugs.sh findsecbugs
 
 ENV PATH=/usr/local/bin/findsecbugs:$PATH
 
 #Add Owasp Dependency Check
+ENV OWASP_VERSION=3.3.2
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
-    wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.0.2-release.zip && \
-    unzip -q dependency-check-3.0.2-release.zip && \
+    wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip && \
+    unzip -q dependency-check-${OWASP_VERSION}-release.zip && \
     chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh && \
-    rm dependency-check-3.0.2-release.zip && \
+    rm dependency-check-${OWASP_VERSION}-release.zip && \
     mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
 
 ENV PATH=$OWASP_DEP_FOLDER/dependency-check/bin:$PATH
