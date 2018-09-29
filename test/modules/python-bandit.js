@@ -40,14 +40,14 @@ describe('Bandit', () => {
       target: path.join(__dirname, '../samples/python'),
       logger: nullLogger,
       exclude: ['ignoredir']
-    });
-    bandit.handles(fileManager);
+    })
+    bandit.handles(fileManager)
 
     bandit.run(mockResults, () => {
-      mockExec.expect.command.called.withArg('bandit -r . -f json -x ignoredir/bar.py,ignoredir/foo.py');
-      done();
-    });
-  });
+      mockExec.expect.command.called.withArg('bandit -r . -f json -x ignoredir/bar.py,ignoredir/foo.py')
+      done()
+    })
+  })
 
   it('should log issues with HIGH severity as high', done => {
     bandit.run(mockResults, () => {

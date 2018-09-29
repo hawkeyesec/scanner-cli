@@ -40,10 +40,10 @@ describe('File Manager', () => {
       target: path.join(__dirname, 'samples/filemanager'),
       logger: nullLogger,
       exclude: ['^test/']
-    });
+    })
 
     should(fm.excluded).eql(['test/another-test/file4.txt', 'test/excluded/excluded-file.js', 'test/file3'])
-  });
+  })
 
   it('should load all files in the target directory', () => {
     const result = fm.all()
