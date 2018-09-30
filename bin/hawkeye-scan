@@ -17,7 +17,7 @@ const util = require('../lib/util');
 
 program
   .option('-a, --all',
-          'Scan all files, regardless if a git repo is found')
+          'Scan all files, regardless if a git repo is found', false)
   .option('-t, --target  </path/to/project>',
           'The location to scan, usually the project root')
   .option('-f, --fail-on <low, medium, high, critical>',
@@ -35,7 +35,7 @@ program
   .option('-M, --min-threshold    <low, medium, high, critical>',
           'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold)
   .option('-g, --staged',
-          'Scan only git-staged files', rc.withStaged)
+          'Scan only git-staged files', false)
   .option('-l, --file-limit <n>',
           `Set limit on number of files to be scanned (Defaults to ${rc.defaultFileLimit})`, setFileLimit)
   .parse(process.argv);
@@ -46,9 +46,6 @@ const bitwise = {
   high: 4,
   critical: 8
 };
-
-rc.all = util.defaultValue(program.all, false);
-rc.staged = util.defaultValue(program.staged, false);
 
 rc.withTarget(program.target);
 
