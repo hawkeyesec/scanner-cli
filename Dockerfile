@@ -3,10 +3,13 @@ MAINTAINER Karl Stoney <me@karlstoney.com>
 
 RUN yum -y -q update && \
     yum -y -q remove iputils && \
+    yum -y -q install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
+    yum-config-manager -y -q --enable remi-php72 && \
     yum -y -q install wget epel-release openssl openssl-devel tar unzip \
-							libffi-devel python-devel redhat-rpm-config git-core \
-							gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
-              ruby rubygems java-1.8.0-openjdk.x86_64 which && \
+			  libffi-devel python-devel redhat-rpm-config git-core \
+			  gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
+              ruby rubygems java-1.8.0-openjdk.x86_64 which \
+              php php-cli && \
     yum -y -q clean all
 
 # Git-crypt
@@ -69,6 +72,11 @@ RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
     mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
 
 ENV PATH=$OWASP_DEP_FOLDER/dependency-check/bin:$PATH
+
+#Add PHP security-checker
+RUN cd /usr/local/bin && \
+    wget --quiet https://get.sensiolabs.org/security-checker.phar && \
+    chmod +x security-checker.phar
 
 # Install hawkeye
 RUN mkdir -p /hawkeye

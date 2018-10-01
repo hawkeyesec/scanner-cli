@@ -47,6 +47,9 @@ Modules are basically little bits of code that either implement their own logic,
  - __FindSecBugs (java-find-secbugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
  - __OWASP Dependency Check (java-owasp)__: Wraps [OWASP Dep Check](https://www.owasp.org/index.php/OWASP_Dependency_Check) to find common security issues in Java Project Dependencies as noted by the National Vulnerability Database. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
 
+### PHP:
+ - __security-checker (php-security-checker)__: Wraps [security-checker](https://github.com/sensiolabs/security-checker) to check your composer.lock for known vulnerabilities. All vulnerabilities are logged as high due to a lack of classification.
+
 I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
 
 ### Current Limitations

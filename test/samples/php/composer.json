@@ -1,0 +1,8 @@
+{
+    "name": "hawkeye/php",
+    "description": "A sample PHP project for Hawkeye",
+    "type": "project",
+    "require": {
+      "firebase/php-jwt": "1.0.0"
+    }
+}
