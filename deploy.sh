@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo "Branch is: master.  Building and releasing container."
   docker pull stono/hawkeye
   docker build --build-arg HE_VERSION=$HE_VERSION -t stono/hawkeye . --cache-from stono/hawkeye
