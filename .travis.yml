@@ -6,24 +6,21 @@ node_js:
 - 8
 notifications:
   email: false
-env:
-  global:
-  - HE_VERSION=1.1.3
-branches:
-  only:
-  - master
-  - "/^greenkeeper/.*$/"
-before_script:
-- npm version $HE_VERSION
 script:
 - npm test
-after_success:
-- "./deploy.sh"
 deploy:
-  provider: npm
-  email: karlstoney@googlemail.com
-  api_key:
-    secure: newdYdorCm85Khr8GnF9/9cL4wNbrtzsNffU+11zAizlXjjRxyowyP9qGlX5ZDLOitQTyse7F7JPhz2jqNzg1WJNpkUhs4k2iE4le68ydr5qZXW4vx/tZVnCGrGwORiM4IOoCfBwPpCNHuEY5+zQl+LPBAbeboq/nDeCw9NUykw3zXPNcFlmlz/DPF/v4c3yrhCWwYqs9bEM25zBZrcTH/0pB6TgLPTL9srPyXMOgY7rbOaEg6s8l7Rssk/KkwGMIdq61MFoI2PEmn6GeZLwIz+7KxzM17sIuIylkqxr+7bzXP0tm5R2DeaU8QGSGHDm7MiwScDl99Pb1USj6ObB+yTlvnR8nT5RQ6aJ8RxnjUfeuSz0ZrsBAnCaNqZdZZjd/8tGvOmWVErzp+xXGsKNU8mxm5jWe6zgEuajw16sHFhXfofgV7pKKRC5OFyWfm3mM/jnp9BTtTvcUffX0NTGsBO6TQfjS+M0cM3gvY3BkX6J7G7GtlibzIAmgghwNMOdZ1+jL0KaaQdTC5NShs2AQMaQ10R12iSilmZkhhwTHEGJvZ5vvEpE0oAzBb0rtxVVEs9YcUnnFWbQ6AtTU1AQveFWPau0roQOXMa7WBYCMibmgXIM8agNJd7kRb97bOzrjHi1RyyGULvIyPkbj6+0qiUdpXAhMeyrgtTvSYnTT1I=
-  on:
-    repo: Stono/hawkeye
-    branch: master
+  - provider: script
+    script: bash scripts/deploy.sh
+    on:
+      tags: true
+      all_branches: true
+      condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
+  - provider: npm
+    email: karlstoney@googlemail.com
+    api_key:
+      secure: newdYdorCm85Khr8GnF9/9cL4wNbrtzsNffU+11zAizlXjjRxyowyP9qGlX5ZDLOitQTyse7F7JPhz2jqNzg1WJNpkUhs4k2iE4le68ydr5qZXW4vx/tZVnCGrGwORiM4IOoCfBwPpCNHuEY5+zQl+LPBAbeboq/nDeCw9NUykw3zXPNcFlmlz/DPF/v4c3yrhCWwYqs9bEM25zBZrcTH/0pB6TgLPTL9srPyXMOgY7rbOaEg6s8l7Rssk/KkwGMIdq61MFoI2PEmn6GeZLwIz+7KxzM17sIuIylkqxr+7bzXP0tm5R2DeaU8QGSGHDm7MiwScDl99Pb1USj6ObB+yTlvnR8nT5RQ6aJ8RxnjUfeuSz0ZrsBAnCaNqZdZZjd/8tGvOmWVErzp+xXGsKNU8mxm5jWe6zgEuajw16sHFhXfofgV7pKKRC5OFyWfm3mM/jnp9BTtTvcUffX0NTGsBO6TQfjS+M0cM3gvY3BkX6J7G7GtlibzIAmgghwNMOdZ1+jL0KaaQdTC5NShs2AQMaQ10R12iSilmZkhhwTHEGJvZ5vvEpE0oAzBb0rtxVVEs9YcUnnFWbQ6AtTU1AQveFWPau0roQOXMa7WBYCMibmgXIM8agNJd7kRb97bOzrjHi1RyyGULvIyPkbj6+0qiUdpXAhMeyrgtTvSYnTT1I=
+    on:
+      repo: Stono/hawkeye
+      tags: true
+      all_branches: true
+      condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+

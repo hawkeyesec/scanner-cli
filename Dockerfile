@@ -31,9 +31,6 @@ RUN yum -y install nodejs-${NODE_VERSION} && \
 RUN node --version && \
     npm --version
 
-# If we ever change the hawkeye version, redo everything below
-ARG HE_VERSION=
-
 # If we have changed the hawkeye version, do an update
 RUN yum -y -q update && \
     yum -y -q clean all
