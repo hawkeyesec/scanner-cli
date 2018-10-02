@@ -10,7 +10,7 @@ script:
 - npm test
 deploy:
   - provider: script
-    script: bash script/deploy.sh
+    script: bash scripts/deploy.sh
     on:
       tags: true
       all_branches: true
