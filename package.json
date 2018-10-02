@@ -30,7 +30,6 @@
   },
   "scripts": {
     "preversion": "npm test",
-    "version": "./scripts/bump-version.sh",
     "postversion": "git push && git push --tags",
     "start": "node ./bin/hawkeye",
     "example": "node ./bin/hawkeye-scan -t test/samples/nodejs",
