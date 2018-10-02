@@ -1,7 +1,7 @@
 {
   "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "keywords": [],
   "homepage": "https://github.com/Stono/hawkeye",
