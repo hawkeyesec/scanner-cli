@@ -24,3 +24,6 @@ docker-compose.yml
 .git-crypt
 .idea
 samples/
+
+test/
+**/__tests__
