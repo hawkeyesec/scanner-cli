@@ -7,6 +7,81 @@
     <Plugin id="edu.umd.cs.findbugs.plugins.noUpdateChecks" enabled="true"/>
   </Project>
 
+  <BugInstance type="PREDICTABLE_RANDOM" priority="2" rank="12" abbrev="SECPR" category="SECURITY" instanceHash="ba3239f7fa7868e9a0d0d05e770b724a" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="330">
+    <ShortMessage>Predictable pseudorandom number generator</ShortMessage>
+    <LongMessage>The use of java.util.Random is predictable</LongMessage>
+    <Class classname="com.hawkeye.java.test.config.MyVulnerableConfigClass" primary="true">
+      <SourceLine classname="com.hawkeye.java.test.config.MyVulnerableConfigClass" start="13" end="29" sourcefile="MyVulnerableConfigClass.java" sourcepath="com/hawkeye/java/test/config/MyVulnerableConfigClass.java">
+        <Message>At MyVulnerableConfigClass.java:[lines 15-31]</Message>
+      </SourceLine>
+      <Message>In class com.hawkeye.java.test.config.MyVulnerableConfigClass</Message>
+    </Class>
+    <Method classname="com.hawkeye.java.test.config.MyVulnerableConfigClass" name="generateSecretToken" signature="()Ljava/lang/String;" isStatic="false" primary="true">
+      <SourceLine classname="com.hawkeye.java.test.config.MyVulnerableConfigClass" start="28" end="29" startBytecode="0" endBytecode="71" sourcefile="MyVulnerableConfigClass.java" sourcepath="com/hawkeye/java/test/config/MyVulnerableConfigClass.java"/>
+      <Message>In method com.hawkeye.java.test.config.MyVulnerableConfigClass.generateSecretToken()</Message>
+    </Method>
+    <SourceLine classname="com.hawkeye.java.test.config.MyVulnerableConfigClass" primary="true" start="30" end="30" startBytecode="4" endBytecode="4" sourcefile="MyVulnerableConfigClass.java" sourcepath="com/hawkeye/java/test/config/MyVulnerableConfigClass.java">
+      <Message>At MyVulnerableConfigClass.java:[line 30]</Message>
+    </SourceLine>
+    <String value="java.util.Random">
+      <Message>Value java.util.Random</Message>
+    </String>
+  </BugInstance>
+
+  <BugInstance type="XML_DECODER" priority="1" rank="15" abbrev="SECCU" category="SECURITY" instanceHash="62bc5f0eed45d9a19a8e033925901bac" instanceOccurrenceNum="0" instanceOccurrenceMax="1">
+    <ShortMessage>XMLDecoder usage</ShortMessage>
+    <LongMessage>It is not safe to use an XMLDecoder to parse user supplied data</LongMessage>
+    <Class classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" primary="true">
+      <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" start="21" end="80" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java">
+        <Message>At MyVulnerableControllerClass.java:[lines 21-80]</Message>
+      </SourceLine>
+      <Message>In class com.hawkeye.java.test.controller.MyVulnerableControllerClass</Message>
+    </Class>
+    <Method classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" name="Update" signature="(com/hawkeye/java/test/controller/command/UpdateCommand/springframework/validation/BindingResult;)/springframework/http/ResponseEntity;" isStatic="false" primary="true">
+      <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" start="38" end="46" startBytecode="0" endBytecode="199" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java"/>
+      <Message>In method com.hawkeye.java.test.controller.MyVulnerableControllerClass.Update(int, UpdateCommand, BindingResult)</Message>
+    </Method>
+    <SourceLine classname="com.hawkeye.java.test.controller.MyVulnerableControllerClass" primary="true" start="47" end="48" startBytecode="48" endBytecode="48" sourcefile="MyVulnerableControllerClass.java" sourcepath="com/hawkeye/java/test/controller/MyVulnerableControllerClass.java">
+      <Message>At MyVulnerableControllerClass.java:[line 47]</Message>
+    </SourceLine>
+  </BugInstance>
+
+  <BugInstance type="CRLF_INJECTION_LOGS" priority="3" rank="15" abbrev="SECCRLFLOG" category="SECURITY" instanceHash="123412424234" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="117">
+    <ShortMessage>Potential CRLF Injection for logs</ShortMessage>
+    <LongMessage>This use of Logger.info(...) might be used to include CRLF characters into log messages</LongMessage>
+    <Class classname="com.hawkeye.java.Application" primary="true">
+      <SourceLine classname="com.hawkeye.java.Application" start="21" end="62" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+        <Message>At Application.java:[lines 21-62]</Message>
+      </SourceLine>
+      <Message>In class com.hawkeye.java.Application</Message>
+    </Class>
+    <Method classname="com.hawkeye.java.Application" name="main" signature="([Ljava/lang/String;)V" isStatic="true" primary="true">
+      <SourceLine classname="com.hawkeye.java.Application" start="44" end="62" startBytecode="0" endBytecode="260" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java"/>
+      <Message>In method com.hawkeye.java.Application.main(String[])</Message>
+    </Method>
+    <SourceLine classname="com.hawkeye.java.Application" primary="true" start="50" end="50" startBytecode="115" endBytecode="115" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 50]</Message>
+    </SourceLine>
+    <String value="Logger.info(...)" role="Sink method">
+      <Message>Sink method Logger.info(...)</Message>
+    </String>
+    <SourceLine classname="com.hawkeye.java.Application" start="55" end="55" startBytecode="60" endBytecode="60" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 55]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="57" end="57" startBytecode="75" endBytecode="75" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 57]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="59" end="59" startBytecode="90" endBytecode="90" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 59]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="60" end="60" startBytecode="99" endBytecode="99" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 60]</Message>
+    </SourceLine>
+    <SourceLine classname="com.hawkeye.java.Application" start="61" end="61" startBytecode="109" endBytecode="109" sourcefile="Application.java" sourcepath="com/hawkeye/java/Application.java">
+      <Message>At Application.java:[line 61]</Message>
+    </SourceLine>
+  </BugInstance>
+
   <Errors errors="0" missingClasses="10">
     <MissingClass>javax.ws.rs.InternalServerErrorException</MissingClass>
     <MissingClass>javax.ws.rs.client.Client</MissingClass>
