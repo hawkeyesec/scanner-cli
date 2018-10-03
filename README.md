@@ -32,7 +32,6 @@ Modules are basically little bits of code that either implement their own logic,
  - __NPM audit (node-npmaudit)__: Wraps [npm audit](https://docs.npmjs.com/cli/audit) to check your package.json and package-lock.json for known vulnerabilities.
  - __NPM outdated (node-npmoutdated)__: Wraps [npm outdated](https://docs.npmjs.com/cli/outdated) to check your package.json for outdated modules.
  - __CrossEnv (node-crossenv)__: See [Node Cross-Env Malware](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry).  Checks your package.json for known malicious modules which contain this malware.
- - __Constant Hash Tables (node-chs)__: See [Node Constant Hashtable](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases).  Checks if your package.json can be run against vulnerable versions of node.
 
 ### Ruby:
  - __Bundler Audit (ruby-bundler-scan)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
@@ -225,8 +224,6 @@ Module Status
                   FindSecBugs find common security issues in Java code.
 [info] Enabled:   Owasp Dependency Check Scan (java-owasp)
                   Scan the dependencies of a Java project.
-[info] Disabled:  Node Constant Hashtable Seed check (node-chs)
-                  Scans a package.json to check for CHS issues.
 [info] Enabled:   Node CrossEnv malware check (node-crossenv)
                   Scans a package.json for known malicious crossenv packages
 [info] Enabled:   npm audit (node-npmaudit)
