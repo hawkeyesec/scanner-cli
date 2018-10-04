@@ -29,6 +29,13 @@ describe('Contents', () => {
     contents.run(mockResults, done)
   })
 
+  it('should match password in a file', done => {
+    mockResults.setup.low.toDoThis(data => {
+      should(data.offender).eql('some_file_with_password.cfg')
+    })
+    contents.run(mockResults, done)
+  })
+
   it('should not explode when there are more than 115 files', done => {
     for (var x = 0; x < 3000; x++) {
       fileManager.languageFiles.push(fileManager.languageFiles[1])

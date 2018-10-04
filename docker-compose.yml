@@ -9,6 +9,7 @@ services:
       - ./lib:/hawkeye/lib
       - ./test/samples/nodejs:/target/nodejs
       - ./test/samples/ruby:/target/ruby
+      - ./test/samples/php:/target/php
 
   nodejs:
     image: stono/hawkeye

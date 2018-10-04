@@ -1,7 +1,7 @@
 {
   "name": "hawkeye-scanner",
   "description": "A container that runs some scans on your app",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "keywords": [],
   "homepage": "https://github.com/Stono/hawkeye",
@@ -29,6 +29,8 @@
     "node": ">= 8"
   },
   "scripts": {
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
     "start": "node ./bin/hawkeye",
     "example": "node ./bin/hawkeye-scan -t test/samples/nodejs",
     "watch": "nodemon --watch . --exec 'npm test'",
