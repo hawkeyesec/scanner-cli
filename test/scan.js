@@ -56,7 +56,7 @@ describe('Scan', () => {
           })
         })
       })
-      should(finalResults).eql(17)
+      should(finalResults).eql(19)
       done()
     })
   })
