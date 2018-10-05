@@ -1,0 +1,4 @@
+requests
+cryptography
+insecure-package==0.1
+django>1.9.0<1.9.13
