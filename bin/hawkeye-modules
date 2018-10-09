@@ -1,7 +1,10 @@
 #!/usr/bin/env node
+
 'use strict'
-const logger = new require('../lib/logger')()
-const modules = new require('../lib/modules')().asArray
+
+const logger = require('../lib/logger')
+const Modules = require('../lib/modules')
+const modules = new Modules().asArray
 require('colors')
 
 console.log('')
