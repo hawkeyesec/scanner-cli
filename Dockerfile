@@ -23,7 +23,7 @@ RUN cd /tmp && \
     rm -rf /tmp/git-crypt*
 
 # Get nodejs repos
-ENV NODE_VERSION=8.12.0
+ENV NODE_VERSION=10.10.0
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum -y install nodejs-${NODE_VERSION} && \
     yum -y clean all
