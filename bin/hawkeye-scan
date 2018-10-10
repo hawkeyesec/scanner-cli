@@ -31,8 +31,6 @@ program
     'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold.bind(rc))
   .option('-g, --staged',
     'Scan only git-staged files', rc.withStaged.bind(rc))
-  .option('-l, --file-limit <n>',
-    `Set limit on number of files to be scanned`, rc.withFileLimit.bind(rc))
   .parse(process.argv)
 
 const scan = new Scan(rc)
