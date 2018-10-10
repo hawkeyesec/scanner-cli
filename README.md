@@ -166,7 +166,7 @@ README.md
 There are a few options available:
 
 #### -a, --all: Running against all files rather than git tree
-Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files.  Further to that, if a .git-crypt folder is detected, we will also exclude files which are GPG encrypted.  If there is no .git in the target directory, then all files will be scanned.
+Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files. If there is no .git in the target directory, then all files will be scanned.
 
 You can override this behaviour with the `--all` flag, which will scan all files regardless.
 
@@ -188,7 +188,7 @@ This will post the results to a SumoLogic HTTP collector.  See the SumoLogic sec
 #### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
 This parameter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
 
-There are some global exclusions in place, and those are "^.git", "^.git-crypt" and "^node_modules".
+There are some global exclusions in place, and those are "^.git", "^node_modules".
 
 #### -l, --file-limit  <n>: Set limit on number of files to be scanned (Defaults to 1000)
 The `--file-limit` allows you to set a higher file limit thab the default (1000). This is useful when the target directory includes more files.
@@ -259,9 +259,6 @@ $ hawkeye scan
 [info] Node Check Updates dynamically loaded
 [info] Node Security Project dynamically loaded
 [info] git repo detected, will only use git tracked files
-[info] git-crypt detected, excluding files covered by GPG encryption
-[info]  -> git-crypt status -e
-[info] Files excluded by git-crypt: 0
 [info]  -> git ls-tree --full-tree --name-only -r HEAD
 [info] Files included in scan: 62
 [info] Target for scan: /Users/kstoney/git/stono/hawkeye

@@ -12,16 +12,6 @@ RUN yum -y -q update && \
               php php-cli && \
     yum -y -q clean all
 
-# Git-crypt
-ENV GIT_CRYPT_VERSION=0.6.0
-RUN cd /tmp && \
-    wget --quiet https://www.agwa.name/projects/git-crypt/downloads/git-crypt-${GIT_CRYPT_VERSION}.tar.gz && \
-    tar xzf git-crypt* && \
-    cd git-crypt* && \
-    make && \
-    make install && \
-    rm -rf /tmp/git-crypt*
-
 # Get nodejs repos
 ENV NODE_VERSION=10.10.0
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
