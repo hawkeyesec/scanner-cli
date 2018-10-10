@@ -3,14 +3,13 @@
 'use strict'
 
 const logger = require('../lib/logger')
-const Modules = require('../lib/modules')
-const modules = new Modules().asArray
+const modules = require('../lib/modules')
 require('colors')
 
 console.log('')
 console.log('Module Status'.bold)
 console.log('')
-modules.forEach(module => {
+modules().forEach(module => {
   logger.log(module.enabled ? 'Enabled:  '.green : 'Disabled: '.red,
     module.name.bold + ' (' + module.key + ')\n                  ' + module.description)
 })

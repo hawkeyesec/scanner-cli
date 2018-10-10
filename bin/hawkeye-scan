@@ -2,13 +2,12 @@
 
 'use strict'
 
-const Scan = require('../lib/scan')
+const program = require('commander')
+const scan = require('../lib/scan')
 const logger = require('../lib/logger')
 const Rc = require('../lib/rc')
 
-const program = require('commander')
-
-const rc = new Rc({ logger })
+const rc = new Rc()
 
 program
   .option('-a, --all',
@@ -33,8 +32,11 @@ program
     'Scan only git-staged files', rc.withStaged.bind(rc))
   .parse(process.argv)
 
-const scan = new Scan(rc)
-scan.start((_, results) => {
+if (!rc.target) {
+  rc.withTarget(process.env.PWD)
+}
+
+scan().then(results => {
   let total = 0
   let exitCode = 0
   results.forEach(moduleResult => {
