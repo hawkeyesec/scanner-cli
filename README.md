@@ -1,9 +1,9 @@
 [![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby)
 [![NPM version](https://badge.fury.io/js/hawkeye-scanner.svg)](http://badge.fury.io/js/hawkeye-scanner)
 [![npm](https://img.shields.io/npm/dt/hawkeye-scanner.svg)](https://www.npmjs.com/package/hawkeye-scanner)
-[![Build Status](https://travis-ci.org/Stono/hawkeye.svg?branch=master)](https://travis-ci.org/Stono/hawkeye)
-[![Dependency Status](https://david-dm.org/Stono/hawkeye.svg)](https://david-dm.org/Stono/hawkeye)
-[![Hub Pulls](https://img.shields.io/docker/pulls/stono/hawkeye.svg)](https://hub.docker.com/r/stono/hawkeye) [![Greenkeeper badge](https://badges.greenkeeper.io/Stono/hawkeye.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/hawkeye-sec/scanner-cli.svg?branch=master)](https://travis-ci.org/hawkeye-sec/scanner-cli)
+[![Dependency Status](https://david-dm.org/hawkeye-sec/scanner-cli.svg)](https://david-dm.org/hawkeye-sec/scanner-cli)
+[![Hub Pulls](https://img.shields.io/docker/pulls/stono/hawkeye.svg)](https://hub.docker.com/r/stono/hawkeye) [![Greenkeeper badge](https://badges.greenkeeper.io/hawkeye-sec/scanner-cli.svg)](https://greenkeeper.io/)
 
 ![Logo](screenshots/badlogo.png)
 
