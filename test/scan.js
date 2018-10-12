@@ -44,7 +44,7 @@ describe('Scan', () => {
     })
   })
 
-  it('should run a scan and return results for each of the enabled modules exlcuding the ignore error codes', done => {
+  it('should run a scan and return results for each of the enabled modules exlcuding ignore error codes', done => {
     rc.errorExclude['files-5:cert.pem'] = true
     let finalResults = 0
     scan.start((err, results) => {
