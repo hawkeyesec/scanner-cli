@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 const logger = require('../lib/logger')
-const version = require('../package.json').version
-logger.log('Welcome to Hawkeye v' + version + '!')
-console.log('')
+const { version } = require('../package.json')
+logger.log(`Version: v${version}`)
 
 const program = require('commander')
 program
