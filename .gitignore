@@ -1,12 +1,4 @@
-storage_elasticsearch/data/
-storage_elasticsearch/log/
-reports/
 node_modules/
-testresults/
-stats/
-docs/*
-.vagrant/
-coverage/
 
 *.tar.gz
 *.tgz
@@ -14,8 +6,8 @@ coverage/
 *.log
 *.zat
 
-checkstyle-result.xml
 coverage.*
 junit.xml
 .DS_Store
 .idea
+.vagrant

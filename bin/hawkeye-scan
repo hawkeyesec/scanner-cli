@@ -1,100 +1,63 @@
 #!/usr/bin/env node
-'use strict';
-const Scan = require('../lib/scan');
-const logger = new require('../lib/logger')();
-const ConsoleWriter = require('../lib/writers/console');
-const JsonWriter = require('../lib/writers/json');
-const SumoWriter = require('../lib/writers/sumologic');
-const HttpWriter = require('../lib/writers/http');
-const async = require('async');
-const Rc = require('../lib/rc');
 
-const writers = [new ConsoleWriter()];
-const program = require('commander');
-const rc = new Rc();
-const setFileLimit = (limit) => rc.setFileLimit(parseInt(limit, 10));
-const util = require('../lib/util');
+'use strict'
+
+const program = require('commander')
+const scan = require('../lib/scan')
+const logger = require('../lib/logger')
+const Rc = require('../lib/rc')
+
+const rc = new Rc()
 
 program
   .option('-a, --all',
-          'Scan all files, regardless if a git repo is found')
+    'Scan all files, regardless if a git repo is found', rc.withAll.bind(rc))
   .option('-t, --target  </path/to/project>',
-          'The location to scan, usually the project root')
+    'The location to scan, usually the project root', rc.withTarget.bind(rc))
   .option('-f, --fail-on <low, medium, high, critical>',
-          'Set the level at which hawkeye returns non-zero status codes (defaults to low)', rc.withFailOn)
+    'Set the level at which hawkeye returns non-zero status codes (defaults to low)', rc.withFailOn.bind(rc))
   .option('-m, --module  <module name>',
-          'Run specific module.  Can be specified multiple times', rc.withModule)
+    'Run specific module.  Can be specified multiple times', rc.withModule.bind(rc))
   .option('-e, --exclude <pattern>',
-          'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude)
+    'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude.bind(rc))
   .option('-j, --json    </path/to/summary,json>',
-          'Write JSON output to file.  Can be specified multiple times', rc.withJson)
+    'Write JSON output to file.  Can be specified multiple times', rc.withJson.bind(rc))
   .option('-s, --sumo    <https://sumologic-http-connector>',
-          'Write the vulnerabilities to SumoLogic', rc.withSumo)
+    'Write the vulnerabilities to SumoLogic', rc.withSumo.bind(rc))
   .option('-h, --http    <https://your-site.com/api/results>',
-          'Write the vulnerabilities to a given url', rc.withHttp)
+    'Write the vulnerabilities to a given url', rc.withHttp.bind(rc))
   .option('-M, --min-threshold    <low, medium, high, critical>',
-          'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold)
+    'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold.bind(rc))
   .option('-g, --staged',
-          'Scan only git-staged files', rc.withStaged)
-  .option('-l, --file-limit <n>',
-          `Set limit on number of files to be scanned (Defaults to ${rc.defaultFileLimit})`, setFileLimit)
-  .parse(process.argv);
+    'Scan only git-staged files', rc.withStaged.bind(rc))
+  .parse(process.argv)
 
-const bitwise = {
-  low: 1,
-  medium: 2,
-  high: 4,
-  critical: 8
-};
-
-rc.all = util.defaultValue(program.all, false);
-rc.staged = util.defaultValue(program.staged, false);
-
-rc.withTarget(program.target);
-
-if(rc.json) {
-  writers.push(new JsonWriter({
-    path: rc.json
-  }));
-}
-if(rc.sumo) {
-  writers.push(new SumoWriter({
-    url: rc.sumo
-  }));
-}
-if(rc.http) {
-  writers.push(new HttpWriter({
-    url: rc.http
-  }));
+if (!rc.target) {
+  rc.withTarget(process.env.PWD)
 }
 
-const scan = new Scan(rc);
-scan.start((err, results) => {
-  let total = 0;
-  let exitCode = 0;
+scan(rc).then(results => {
+  let total = 0
+  let exitCode = 0
   results.forEach(moduleResult => {
     Object.keys(moduleResult.results).forEach(key => {
-      const levelResults = moduleResult.results[key].length;
-      if(levelResults > 0 && bitwise[key] >= bitwise[rc.failOn]) { exitCode = 1 }
-      total = total + levelResults;
-    });
-  });
-  logger.log('scan complete, ' + total + ' issues found');
-  console.log('');
-  async.eachSeries(writers, (writer, next) => {
-    logger.log('Doing writer:', writer.key);
-    const metadata = {
-      state: (exitCode === 1) ? 'fail' : 'pass'
-    };
-    writer.write(results, metadata, err => {
-      if(err) { logger.error(err.message); }
-      next();
-    });
-  }, err => {
-      if(err) { logger.error(err.message); }
-    logger.log('Scan complete');
-    if(total > 0) {
-      process.exit(exitCode);
-    }
-  });
-});
+      const levelResults = moduleResult.results[key].length
+      const threshold = { low: 1, medium: 2, high: 4, critical: 8 }
+      if (levelResults > 0 && threshold[key] >= threshold[rc.failOn]) { exitCode = 1 }
+      total = total + levelResults
+    })
+  })
+  logger.log('scan complete, ' + total + ' issues found')
+  rc.writers.forEach(writer => {
+    logger.log('Doing writer:', writer.key)
+    const state = exitCode === 1 ? 'fail' : 'pass'
+    writer.write(results, { state }, err => err && logger.error(err.message))
+  })
+  logger.log('Scan complete')
+  if (total > 0) {
+    process.exit(exitCode)
+  }
+}).catch(e => {
+  console.error(e)
+  process.exit(1)
+})

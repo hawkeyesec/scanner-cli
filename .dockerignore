@@ -1,10 +1,4 @@
-reports/
 node_modules/
-testresults/
-stats/
-docs/*
-.vagrant/
-coverage/
 
 *.tar.gz
 *.tgz
@@ -12,15 +6,9 @@ coverage/
 *.log
 *.zat
 
-checkstyle-result.xml
-coverage.*
-junit.xml
-shippable/
-
-kubernetes
 Dockerfile
-docker-compose.yml
 .git
-.git-crypt
 .idea
-samples/
+
+**/__tests__
+screenshots

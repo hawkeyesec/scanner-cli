@@ -1,0 +1,12 @@
+{
+    "firebase\/php-jwt": {
+        "version": "1.0.0",
+        "advisories": {
+            "firebase\/php-jwt\/2015-04-02.yaml": {
+                "title": "Critical vulnerabilities in JSON Web Token libraries",
+                "link": "https:\/\/auth0.com\/blog\/2015\/03\/31\/critical-vulnerabilities-in-json-web-token-libraries\/",
+                "cve": "CVE-2018-1234567890"
+            }
+        }
+    }
+}
