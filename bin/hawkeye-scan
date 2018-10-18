@@ -36,28 +36,9 @@ if (!rc.target) {
   rc.withTarget(process.env.PWD)
 }
 
-scan(rc).then(results => {
-  let total = 0
-  let exitCode = 0
-  results.forEach(moduleResult => {
-    Object.keys(moduleResult.results).forEach(key => {
-      const levelResults = moduleResult.results[key].length
-      const threshold = { low: 1, medium: 2, high: 4, critical: 8 }
-      if (levelResults > 0 && threshold[key] >= threshold[rc.failOn]) { exitCode = 1 }
-      total = total + levelResults
-    })
+scan(rc)
+  .then(code => { process.exit(code) })
+  .catch(e => {
+    logger.error('Unexpected error occurred!', e.message)
+    process.exit(42)
   })
-  logger.log('scan complete, ' + total + ' issues found')
-  rc.writers.forEach(writer => {
-    logger.log('Doing writer:', writer.key)
-    const state = exitCode === 1 ? 'fail' : 'pass'
-    writer.write(results, { state }, err => err && logger.error(err.message))
-  })
-  logger.log('Scan complete')
-  if (total > 0) {
-    process.exit(exitCode)
-  }
-}).catch(e => {
-  console.error(e)
-  process.exit(1)
-})
