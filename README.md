@@ -6,95 +6,23 @@
 [![Hub Pulls](https://img.shields.io/docker/pulls/hawkeyesec/scanner.svg)](https://hub.docker.com/r/hawkeyesec/scanner)
 [![Greenkeeper badge](https://badges.greenkeeper.io/hawkeyesec/scanner-cli.svg)](https://greenkeeper.io/)
 
-![Logo](screenshots/badlogo.png)
+![Hawkeye Logo](screenshots/badlogo.png)
 
-Hawkeye is a project security, vulnerability and general risk highlighting tool.  It has a few goals:
+The Hawkeye scanner-cli is a project security, vulnerability and general risk highlighting tool. It is meant to be integrated into your pre-commit hooks and your pipelines.
 
-  - Designed to be entirely extensible by just adding new modules with the correct signature to [lib/modules](lib/modules)
-  - Modules return results via a common interface, which permits consolidated reporting and artefact generation
-  - Should be very easy to run regardless of the type of project that you're scanning
+# Running the scanner
 
-## Looking for support
-Hi!  I don't have time to support hawkeye moving forward, so I am actively looking for maintainers.  I you've got an interest in this project and fancy helping out - please reach out to me!
+#### Docker (recommended)
 
-## Important Notes (please read)
- - As of version `1.0.0` many of the modules have had their identifiers changed and prefixed for langues added to them, for example `npmaudit` is now `node-npmaudit`.  This means you will need to udpate your `.hawkeyerc` files, and any commands where you explicitly specify modules eg `hawkeye scan -m thing`.
+The docker image is hands-down the easiest way to the scanner. Please note that your project root (e.g. $PWD) needs to be mounted to `/target`.
 
-## Modules
-Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output.  They only run if the required criteria are met, for example; the `npm outdated` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.  The modules implemented so far are:
-
-### Generic Modules:
- - __File Names (files)__: Scan the file list recursively, looking for patterns as defined in [data.js](lib/modules/files/data.js), taken from [gitrob](https://github.com/michenriksen/gitrob).  We're looking for things like `id_rsa`, things that end in `pem`, etc.
- - __File Content Patterns (contents)__: Looks for patterns as defined in [data.js](lib/modules/content/data.js) within the contents of files, things like 'password: ', and 'BEGIN RSA PRIVATE KEY' will pop up here.
- - __File Content Entropy (entropy)__:  Scan files for strings with high (Shannon) entropy, which could indicate passwords or secrets stored in the files, for example: 'kwaKM@£rFKAM3(a2klma2d'
- - __Credit Card Numbers (ccnumber)__:  Scan for credit card numbers in files, validated using [luhn](https://en.wikipedia.org/wiki/Luhn_algorithm).
-
-### Node JS:
- - __NPM audit (node-npmaudit)__: Wraps [npm audit](https://docs.npmjs.com/cli/audit) to check your package.json and package-lock.json for known vulnerabilities.
- - __NPM outdated (node-npmoutdated)__: Wraps [npm outdated](https://docs.npmjs.com/cli/outdated) to check your package.json for outdated modules.
- - __CrossEnv (node-crossenv)__: See [Node Cross-Env Malware](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry).  Checks your package.json for known malicious modules which contain this malware.
-
-### Ruby:
- - __Bundler Audit (ruby-bundler-scan)__: Wraps [Bundler Audit](https://github.com/rubysec/bundler-audit) to check your Gemfile/Gemfile.lock for known vulnerabilities.
- - __Brakeman (ruby-brakeman)__: Wraps [Brakeman](https://brakemanscanner.org) for static analysis security vulnerability scanner for Ruby on Rails applications.
-
-### Python:
- - __Safety (python-safety)__: Wraps [Safety](https://github.com/pyupio/safety) to check your requirements.txt for known vulnerabilities. Unfortunately, safety does not provides a risk level classification of the vulneravilities, so every vulnerability is logged as high.
- - __Piprot (python-piprot)__: Wraps [Piprot](https://github.com/sesh/piprot) to check your requirements.txt for outdated dependencies.
-  - __Bandit (python-bandit)__: Wraps [Bandit](https://github.com/openstack/bandit) to find common security issues in python code.
-
-### Java:
- - __FindSecBugs (java-find-secbugs)__: Wraps [FindSecBugs](https://find-sec-bugs.github.io/) to find common security issues in Java Projects. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
- - __OWASP Dependency Check (java-owasp)__: Wraps [OWASP Dep Check](https://www.owasp.org/index.php/OWASP_Dependency_Check) to find common security issues in Java Project Dependencies as noted by the National Vulnerability Database. It analyzes the jar generated after performing `mvn package` or `gradle stage`.
-
-### PHP:
- - __security-checker (php-security-checker)__: Wraps [security-checker](https://github.com/sensiolabs/security-checker) to check your composer.lock for known vulnerabilities. All vulnerabilities are logged as high due to a lack of classification.
-
-I really, really do welcome people writing new modules so please check out [lib/modules/example-shell/index.js](lib/modules/example-shell/index.js) as an example of how simple it is, and send me a pull request.
-
-### Current Limitations
- - Entropy is disabled by default because it can return a lot of results, which are mostly misses, to run it please use the `-m entropy` switch.  Personally I use this manually checking over code bases I have inherited.
- - We only look inside the contents of files up to 1Mb, I plan to add configuration options in the future to allow you to change this.
-
-## Running Hawkeye
-I wanted Hawkeye to be as flexible as possible, as a result it supports numerous methods of execution.
-
-### Standalone (command line)
-#### Using Docker (recommended)
-As Hawkeye wraps a lot of other dependencies, the easiest way to run it is using docker.  Simply type `docker run --rm -v $PWD:/target stono/hawkeye`.
-
-#### Using docker-compose
-Lets say you have project which has a `Dockerfile`, with lines like this in:
-
-```
-COPY . /app
-VOLUME /app
+```bash
+docker run --rm -v $PWD:/target hawkeyesec/scanner-cli
 ```
 
-You could add hawkeye to your compose file like this:
+The docker build is also the recommended way to run the scanner in your CI pipelines. This is an example of running Hawkeye against one of your projects in GoCD:
 
-```
-services:
-  app:
-    build: .
-
-  hawkeye:
-    image: stono/hawkeye
-    command: scan -t /app
-    volumes_from:
-      - app
-```
-
-You can simply do `docker-compose run --rm --no-deps hawkeye`.  Woo hoo.
-
-#### Using NPM
-If you want, you can do `npm install -g hawkeye-scanner`, and type `hawkeye scan` instead.  However, this will require you to have all of the other dependencies installed on your host for the modules that you're wanting to scan with.
-
-### As part of your CI Pipelines
-#### GoCD
-This is an example of running Hawkeye against one of your projects in GoCD:
-
-```
+```xml
 <pipeline name="security-scan">
   <stage name="Hawkeye" cleanWorkingDir="true">
     <jobs>
@@ -102,12 +30,12 @@ This is an example of running Hawkeye against one of your projects in GoCD:
         <tasks>
           <exec command="docker">
             <arg>pull</arg>
-            <arg>stono/hawkeye</arg>
+            <arg>hawkeyesec/scanner-cli</arg>
             <runif status="passed" />
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker run --rm -v $PWD:/target stono/hawkeye</arg>
+            <arg>docker run --rm -v $PWD:/target hawkeyesec/scanner-cli</arg>
             <runif status="passed" />
           </exec>
         </tasks>
@@ -116,247 +44,200 @@ This is an example of running Hawkeye against one of your projects in GoCD:
   </stage>
 </pipeline>
 ```
+#### npm
 
-### As a git pre-commit hook
-This is an example of running Hawkeye from an npm package.json against a local repository before commit, failing the commit if high or critical issues are found:
+You can install and run hawkeye in a Node.js project via
 
+```bash
+npm install --save-dev @hawkeyesec/scanner-cli
+npx hawkeye scan
 ```
+
+This method is recommended in a Node.js project, where the other toolchains (e.g. python, ruby) are not required.
+
+With this method, it is also recommended to invoke the scanner in a git pre-commit hook (e.g. via the [pre-commit](https://github.com/observing/pre-commit) package) to fail the commit if issues are found.
+
+# Run configuration
+
+#### Configuration Files (recommended)
+
+You can configure the scanner via `.hawkeyerc` and `.hawkeyeignore` files in your project root.
+
+The `.hawkeyerc` file is a JSON file that allows you to configure ...
+
+* the modules to run,
+* the writers to use, and
+* the failure threshold
+
+```json
 {
-  "name": "demoproj",
-  "version": "1.0.0",
-  "description": "demo",
-  "main": "app.js",
-  "dependencies": {
-    "express": "4.16.2"
-  },
-  "devDependencies": {
-    "pre-commit": "^1.2.2"
-  },
-  "scripts": {
-    "hawkeye:pre-commit": "hawkeye scan -t ./src -m contents -m files -f high"
-  },
-  "pre-commit": [
-    "hawkeye:pre-commit"
-  ],
-  "author": "",
-  "license": "ISC"
+    "modules": ["files-ccnumber", "java-owasp", "java-find-secbugs"],
+    "sumo": "http://your.sumologic.foobar/collector",
+    "http": "http://your.logger.foobar/collector",
+    "json": "log/results.json",
+    "failOn": "low"|"medium"|"high"|"critical"
 }
 ```
 
-## Easy Configuration
-As of version `0.9.0`, you can use the familiar `.hawkeyerc` and `.hawkeyeignore` pattern in your project root.
+the `.hawkeyeignore` file is a collection of patterns to exclude from the scan, and is equivalent to using the `--exclude` flag.
 
-### .hawkeyerc
-This file takes all the same options as `hawkeye scan --help`.   In this example, we'll run the `contents`, `entropy`, `files`, `npm outdated` and `npm audit`
-```
-{
-  "modules": ["contents", "entropy", "files", "node-npmoutdated", "node-npmaudit"],
-  "failOn": "medium"
-}
-```
-
-### .hawkeyeignore
-This file should be a collection of patterns to exclude from the scan, and is equivalent to running `--exclude`.
 ```
 ^test/
 README.md
 ```
 
-## The CLI
-### `hawkeye scan`
-There are a few options available:
+#### The CLI
 
-#### -a, --all: Running against all files rather than git tree
-Hawkeye by default will attempt to detect a .git folder in your target, if it is there it will only scan git tracked files. If there is no .git in the target directory, then all files will be scanned.
-
-You can override this behaviour with the `--all` flag, which will scan all files regardless.
-
-#### -f, --fail-on <low, medium, high, critical>: When to exit with a non-zero status code
-From a pipeline perspective, the `--fail-on` command is useful, you might not wish for `low` items to break your build, so you could use `--fail-on medium`.
-
-#### -t, --target  </path/to/project>: Specfiy what to scan
-By default Hawkeye will look in your current working directory.  You can override this behaviour though by specifying a `--target`
-
-#### -m, --module  <module name>: Running only specific modules
-If you want to run specific modules only, you can use the `--module` flag, which can be specified multiple times.  For example `hawkeye scan -m node-npmaudit -m node-npmoutdated` would run just the `npm audit` and `npm outdated` modules.
-
-#### -j, --json    </path/to/summary.json>: Produce a JSON artefact
-The `--json` paramter allows you to write a much more detailed report to a file. See the Json section below for more information
-
-#### -s, --sumologic    <http://sumologic-http-collector>: Send the results to SumoLogic
-This will post the results to a SumoLogic HTTP collector.  See the SumoLogic section below for more information.
-
-#### -e, --exclude  <pattern>: Exclude files that match a specified RegEx pattern
-This parameter (which can be specified multiple times) allows you to specify patterns you wish to be excluded from the scan.  For example `hawkeye scan -e "^test/"` would exclude all your test files.  All paths are __relative__ to the `--target`.
-
-There are some global exclusions in place, and those are "^.git", "^node_modules".
-
-#### -l, --file-limit  <n>: Set limit on number of files to be scanned (Defaults to 1000)
-The `--file-limit` allows you to set a higher file limit thab the default (1000). This is useful when the target directory includes more files.
-
-### `hawkeye modules`
-You can view the module status with `hawkeye modules`.  As previously mentioned you can see that entropy is disabled by default.  If you want to run it, use the `-m entropy` flag.
+Use `hawkeye modules` to list the available modules and their status.
 
 ```
-$ hawkeye modules
-[info] Welcome to Hawkeye v0.11.0!
-
-[info] Bundler Scan dynamically loaded
-[info] File Contents dynamically loaded
-[info] Entropy dynamically loaded
-[info] Example Module dynamically loaded
-[info] Secret Files dynamically loaded
-[info] Node Check Updates dynamically loaded
-[info] Node Security Project dynamically loaded
-
-Module Status
-
-[info] Enabled:   Credit Card Numbers (ccnumber)
-                  Scans files for potential credit card numbers
-[info] Enabled:   File Contents (contents)
-                  Scans files for dangerous content
-[info] Disabled:  Entropy (entropy)
-                  Scans files for strings with high entropy
-[info] Disabled:  Example Module (example-shell)
-                  Example of how to write a module and shell out a command
-[info] Enabled:   Secret Files (files)
-                  Scans for known secret files
-[info] Enabled:   FindSecBugs Scan (java-find-secbugs)
-                  FindSecBugs find common security issues in Java code.
-[info] Enabled:   Owasp Dependency Check Scan (java-owasp)
-                  Scan the dependencies of a Java project.
-[info] Enabled:   Node CrossEnv malware check (node-crossenv)
-                  Scans a package.json for known malicious crossenv packages
-[info] Enabled:   npm audit (node-npmaudit)
-                  Checks for known security vulnerabilities in your npm dependencies
-[info] Enabled:   npm outdated (node-npmoutdated)
-                  Checks for outdated npm modules
-[info] Enabled:   Bandit Scan (python-bandit)
-                  Bandit find common security issues in Python code.
-[info] Enabled:   Python Outdated Dependencies Scan (python-piprot)
-                  Scans a requirements.txt for out of date packages
-[info] Enabled:   Safety Scan (python-safety)
-                  Safety checks your installed dependencies for known security vulnerabilities.
-[info] Enabled:   Brakeman Scan (ruby-brakeman)
-                  Brakeman statically analyzes Rails application code to find security issues.
-[info] Enabled:   Bundler Scan (ruby-bundler-scan)
-                  Scan for Ruby gems with known vulnerabilities
+> npx hawkeye modules
+[info] Version: v1.2.0
+[info] Module Status
+[info] Enabled:   files-ccnumber
+[info]            Scans for suspicious file contents that are likely to contain credit card numbers
+[info] Enabled:   files-contents
+[info]            Scans for suspicious file contents that are likely to contain secrets
+[info] Disabled:  files-entropy
+[info]            Scans files for strings with high entropy that are likely to contain passwords
+[info] Enabled:   files-secrets
+[info]            Scans for suspicious filenames that are likely to contain secrets
+[info] Enabled:   java-find-secbugs
+[info]            Finds common security issues in Java code with findsecbugs
+[info] Enabled:   java-owasp
+[info]            Scans Java projects for gradle/maven dependencies with known vulnerabilities with the OWASP dependency checker
+[info] Enabled:   node-crossenv
+[info]            Scans node projects for known malicious crossenv dependencies
+[info] Enabled:   node-npmaudit
+[info]            Checks node projects for dependencies with known vulnerabilities
+[info] Enabled:   node-npmoutdated
+[info]            Checks node projects for outdated npm modules
+[info] Enabled:   php-security-checker
+[info]            Checks whether the composer.lock contains dependencies with known vulnerabilities using security-checker
+[info] Enabled:   python-bandit
+[info]            Scans for common security issues in Python code with bandit.
+[info] Enabled:   python-piprot
+[info]            Scans python dependencies for out of date packages
+[info] Enabled:   python-safety
+[info]            Checks python dependencies for known security vulnerabilities with the safety tool.
+[info] Enabled:   ruby-brakeman
+[info]            Statically analyzes Rails code for security issues with Brakeman.
+[info] Enabled:   ruby-bundler-scan
+[info]            Scan for Ruby gems with known vulnerabilities using bundler
 ```
 
-## Outputs
-At the moment, Hawkeye supports three output writers.
-
-### Summary
-The default summary output to your console looks something like this.  The log information is written to `stdout` and the errors found to `stderr` in a console parsable tablular output
+Use `hawkeye scan` to kick off a scan:
 
 ```
-$ hawkeye scan
-[info] Welcome to Hawkeye v0.11.0!
+> npx hawkeye scan --help
+[info] Version: v1.2.0
+superagent: Enable experimental feature http2
+Usage: hawkeye-scan [options]
 
-[info] File Contents dynamically loaded
-[info] Entropy dynamically loaded
-[info] Example Module dynamically loaded
-[info] Secret Files dynamically loaded
-[info] Node Check Updates dynamically loaded
-[info] Node Security Project dynamically loaded
-[info] git repo detected, will only use git tracked files
-[info]  -> git ls-tree --full-tree --name-only -r HEAD
-[info] Files included in scan: 62
-[info] Target for scan: /Users/kstoney/git/stono/hawkeye
-[info] Fail at level: low
-[info] Running module File Contents
-[info] Running module Secret Files
-[info] Running module npm audit
-[info]  -> npm audit --json
-[info] Running module npm outdated
-[info]  -> npm outdated --json
-[info] scan complete, 16 issues found
-
-[info] Doing writer: console
-level     description                                                        offender                          mitigation
---------  -----------------------------------------------------------------  --------------------------------  -------------------------------------------------
-critical  Incorrect Handling of Non-Boolean Comparisons During Minification  uglify-js                         https://nodesecurity.io/advisories/39
-critical  Private SSH key                                                    regex_rsa                         Check contents of the file
-critical  Private SSH key                                                    id_rsa                            Check contents of the file
-critical  Potential cryptographic private key                                cert.pem                          Check contents of the file
-critical  Private key in file                                                some_file_with_private_key_in.md  Check line number: 1
-critical  Found 1 dependencies with critical-severity vulnerabilities        Vulnerable npm dependency         Run npm audit for further information
-high      Regular Expression Denial of Service                               negotiator                        https://nodesecurity.io/advisories/106
-high      Module is one or more major versions out of date                   nodemailer                        Update to 4.0.1
-high      GNOME Keyring database file                                        keyring                           Check contents of the file
-high      Found 5 dependencies with high-severity vulnerabilities            Vulnerable npm dependency         Run npm audit for further information
-medium    Regular Expression Denial of Service                               uglify-js                         https://nodesecurity.io/advisories/48
-medium    Module is one or more minor versions out of date                   express                           Update to 4.15.2
-medium    Rubygems credentials file                                          gem/credentials                   Might contain API key for a rubygems.org account.
-medium    Module is one or more minor versions out of date                   morgan                            Update to 1.8.1
-medium    Module is one or more minor versions out of date                   serve-favicon                     Update to 2.4.2
-medium    Module is one or more minor versions out of date                   body-parser                       Update to 1.17.1
-medium    Module is one or more minor versions out of date                   debug                             Update to 2.6.3
-low       Contains words: private, key                                       some_file_with_private_key_in.md  Check contents of the file
+Options:
+  -a, --all                                       Scan all files, regardless if a git repo is found. Defaults to tracked files in git repositories
+  -t, --target [/path/to/project]                 The location to scan, usually the project root
+  -f, --fail-on [low, medium, high, critical]     Set the level at which hawkeye returns non-zero status codes. Defaults to low
+  -m, --module [module name]                      Run specific module. Defaults to all applicable modules
+  -e, --exclude [pattern]                         Specify one or more exclusion patterns (eg. test/*). Can be specified multiple times.
+  -j, --json [/path/to/file.json]                 Write findings to file.
+  -s, --sumo [https://sumologic-http-connector]   Write findings to SumoLogic
+  -H, --http [https://your-site.com/api/results]  Write findings to a given url
+  -T, --threshold [low, medium, high, critical]   Set the minimum threshold priority of findings to display
+  -g, --staged                                    Scan only git-staged files
+  -h, --help                                      output usage information
 ```
 
-I plan to add options to supress log outputs etc in the future, but for now if you want to parse this output, you can supress the logs and just output the table like this:
+# Results
 
-```
-$ (hawkeye scan >/dev/null) 2>&1 | tail -n +3
-critical  Incorrect Handling of Non-Boolean Comparisons During Minification  uglify-js                         https://nodesecurity.io/advisories/39
-critical  Private SSH key                                                    regex_rsa                         Check contents of the file
-critical  Private SSH key                                                    id_rsa                            Check contents of the file
-critical  Potential cryptographic private key                                cert.pem                          Check contents of the file
-critical  Private key in file                                                some_file_with_private_key_in.md  Check line number: 1
-high      Regular Expression Denial of Service                               negotiator                        https://nodesecurity.io/advisories/106
-high      Module is one or more major versions out of date                   nodemailer                        Update to 4.0.1
-high      GNOME Keyring database file                                        keyring                           Check contents of the file
-medium    Regular Expression Denial of Service                               uglify-js                         https://nodesecurity.io/advisories/48
-medium    Module is one or more minor versions out of date                   express                           Update to 4.15.2
-medium    Rubygems credentials file                                          gem/credentials                   Might contain API key for a rubygems.org account.
-medium    Module is one or more minor versions out of date                   morgan                            Update to 1.8.1
-medium    Module is one or more minor versions out of date                   serve-favicon                     Update to 2.4.2
-medium    Module is one or more minor versions out of date                   body-parser                       Update to 1.17.1
-medium    Module is one or more minor versions out of date                   debug                             Update to 2.6.3
-low       Contains words: private, key                                       some_file_with_private_key_in.md  Check contents of the file
-```
+#### Exit Codes
 
-Here are some other handy examples:
+The scanner-cli responds with the following exit codes:
 
-- `(hawkeye scan >/dev/null) 2>&1 | tail -n +3 | grep critical` - output just critical items
+* Exit code 0 indicates no findings above or equal to the minimum threshold were found.
+* Exit code 1 indicates that issues were found above or equal to the minimum threshold.
+* Exit code 42 indicates that an unexpected error happened somewhere in the program. This is likely a bug and should not happen. Please check the log output and report a bug.
 
-Another option is for you to use a different output writer, for example...
+#### Console output
 
-### Json
-You can output much more information in the form of a JSON artefact that groups by executed module.
+By default, the scanner outputs its results to the console in tabular form.
 
-Check out a sample [here](test/samples/results.json)
+#### Sumologic
 
-### SumoLogic
-The output of Hawkeye can be sent to a SumoLogic HTTP collector of your choice.  In this example, I have a collector of `hawkeye`, with a single HTTP source.
+The results can be sent to a SumoLogic collector of your choice. In this example, we have a collector with a single HTTP source.
+
 ```
 hawkeye scan --sumo https://collectors.us2.sumologic.com/receiver/v1/http/your-http-collector-url
-
-...
-[info] Doing writer: sumologic
-[info] sending 16 results to SumoLogic
 ```
 
-And in sumo logic, search for `_collector="hawkeye" | json auto`:
+In SumoLogic, search for `_collector="hawkeye" | json auto`:
 
 ![SumoLogic](screenshots/sumologic.png)
 
-## Development
+#### Any HTTP endpoint
 
-### Adding a new handler
-The idea is that this project should be super extensible, I want people to write new handlers with ease.  Simply create a handler in `lib/modules` which exposes the following signature:
-
-  - key: A short alphanumeric key for your module
-  - name: The name of your module
-  - description: The description of your module
-  - enabled: True or Fale as to if this module should run by default, or if it needs to be specified with `--module`
-  - function handles(path): A function to decide if this handler should run against the target path
-  - function run(results, done): The function which is called if handles returns true
-
-### The run function
-The first argument passed is `results`, this is where the module should send its results to, it exposes four methods for each 'level' of issue found, `critical`, `high`, `medium` and `low`.  Those methods expect you to pass something like this:
+Similar to the SumoLogic example, the scanner can send the results to any given HTTP endpoint that accepts POST messages.
 
 ```
-results.critial('offender', 'description', 'extra', { additional: 'data' });
+hawkeye scan --http http://your.logging.foobar/endpoint
 ```
+
+The results will be sent with `User-Agent: hawkeye`. Similar to the console output, the following `JSON` will be POSTed for each finding:
+
+```json
+{
+  "module": "files-contents"
+  "level": "critical"
+  "offender": "testfile3.yml"
+  "description": "Private key in file"
+  "mitigation": "Check line number: 3"
+}
+```
+
+# How it works
+
+Hawkeye is designed to be extensible by adding modules and writers.
+
+* Add modules in the [modules](lib/modules) folder.
+* Add writers in the [writers](lib/folder) folder.
+
+## Modules
+
+Modules are basically little bits of code that either implement their own logic, or wrap a third party tool and standardise the output. They only run if the required criteria are met. For example: The `npm outdated` module would only run if a `package.json` is detected in the scan target - as a result, you don't need to tell Hawkeye what type of project you are scanning.
+
+#### Generic Modules
+
+* **files-ccnumber**: Scans for suspicious file contents that are likely to contain credit card numbers
+* **files-contents**: Scans for suspicious file contents that are likely to contain secrets
+* **files-entropy**: Scans files for strings with high entropy that are likely to contain passwords. Entropy scanning is disabled by default because of the high number of false positives. It is useful to scan codebases every now and then for keys, in which case please run it please using the `-m files-entropy` switch.
+* **files-secrets**: Scans for suspicious filenames that are likely to contain secrets
+
+#### Java
+
+* **java-find-secbugs**: Finds common security issues in Java code with findsecbugs
+* **java-owasp**: Scans Java projects for gradle/maven dependencies with known vulnerabilities with the OWASP dependency checker
+
+#### Node.js
+
+* **node-crossenv**: Scans node projects for known malicious [crossenv](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) dependencies
+* **node-npmaudit**: Checks node projects for dependencies with known vulnerabilities with [npm audit](https://docs.npmjs.com/cli/audit)
+* **node-npmoutdated**: Checks node projects for outdated npm modules with [npm outdated](https://docs.npmjs.com/cli/outdated)
+
+#### PHP
+
+* **php-security-checker**: Checks whether the composer.lock contains dependencies with known vulnerabilities using security-checker
+
+#### Python
+
+* **python-bandit**: Scans for common security issues in Python code with bandit.
+* **python-piprot**: Scans python dependencies for out of date packages with [piprot](https://github.com/sesh/piprot)
+* **python-safety**: Checks python dependencies for known security vulnerabilities with the safety tool.
+
+#### Ruby
+
+* **ruby-brakeman**: Statically analyzes Rails code for security issues with Brakeman.
+* **ruby-bundler-scan**: Scan for Ruby gems with known vulnerabilities using bundler
+
+#### Adding a module
+
+If you have an idea for a module, please feel free open a feature request in the issues section. If you have a bit of time left, please consider sending us a pull request. To see modules work, please head over to the [modules](lib/modules) folder to find how things are working.

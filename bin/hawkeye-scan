@@ -11,25 +11,25 @@ const rc = new Rc()
 
 program
   .option('-a, --all',
-    'Scan all files, regardless if a git repo is found', rc.withAll.bind(rc))
-  .option('-t, --target  </path/to/project>',
-    'The location to scan, usually the project root', rc.withTarget.bind(rc))
-  .option('-f, --fail-on <low, medium, high, critical>',
-    'Set the level at which hawkeye returns non-zero status codes (defaults to low)', rc.withFailOn.bind(rc))
-  .option('-m, --module  <module name>',
-    'Run specific module.  Can be specified multiple times', rc.withModule.bind(rc))
-  .option('-e, --exclude <pattern>',
-    'Specify one or more exclusion patterns (eg. test/*)', rc.withExclude.bind(rc))
-  .option('-j, --json    </path/to/summary,json>',
-    'Write JSON output to file.  Can be specified multiple times', rc.withJson.bind(rc))
-  .option('-s, --sumo    <https://sumologic-http-connector>',
-    'Write the vulnerabilities to SumoLogic', rc.withSumo.bind(rc))
-  .option('-h, --http    <https://your-site.com/api/results>',
-    'Write the vulnerabilities to a given url', rc.withHttp.bind(rc))
-  .option('-M, --min-threshold    <low, medium, high, critical>',
-    'Set the minimum threshold priority of vulnerabilities to display', rc.withThreshold.bind(rc))
+    'Scan all files, regardless if a git repo is found. Defaults to tracked files in git repositories.', rc.withAll.bind(rc))
+  .option('-t, --target [/path/to/project]',
+    'The location to scan. Defaults to $PWD.', rc.withTarget.bind(rc))
+  .option('-f, --fail-on [low|medium|high|critical]',
+    'Set the level at which hawkeye returns non-zero status codes. Defaults to low.', rc.withFailOn.bind(rc))
+  .option('-m, --module [module name]',
+    'Run specific module. Defaults to all applicable modules.', rc.withModule.bind(rc))
+  .option('-e, --exclude [pattern]',
+    'Specify one or more exclusion patterns (eg. test/*). Can be specified multiple times.', rc.withExclude.bind(rc))
+  .option('-j, --json [/path/to/file.json]',
+    'Write findings to file.', rc.withJson.bind(rc))
+  .option('-s, --sumo [https://sumologic-http-connector]',
+    'Write findings to SumoLogic.', rc.withSumo.bind(rc))
+  .option('-H, --http [https://your-site.com/api/results]',
+    'Write findings to a given url.', rc.withHttp.bind(rc))
+  .option('-T, --threshold [low, medium, high, critical]',
+    'Set the minimum threshold priority of findings to display.', rc.withThreshold.bind(rc))
   .option('-g, --staged',
-    'Scan only git-staged files', rc.withStaged.bind(rc))
+    'Scan only git-staged files.', rc.withStaged.bind(rc))
   .parse(process.argv)
 
 if (!rc.target) {
