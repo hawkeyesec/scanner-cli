@@ -9,18 +9,17 @@ notifications:
 script:
 - npm test
 deploy:
-  - provider: script
-    script: bash scripts/deploy.sh
-    on:
-      tags: true
-      all_branches: true
-      condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
-  - provider: npm
-    email: karlstoney@googlemail.com
-    api_key:
-      secure: newdYdorCm85Khr8GnF9/9cL4wNbrtzsNffU+11zAizlXjjRxyowyP9qGlX5ZDLOitQTyse7F7JPhz2jqNzg1WJNpkUhs4k2iE4le68ydr5qZXW4vx/tZVnCGrGwORiM4IOoCfBwPpCNHuEY5+zQl+LPBAbeboq/nDeCw9NUykw3zXPNcFlmlz/DPF/v4c3yrhCWwYqs9bEM25zBZrcTH/0pB6TgLPTL9srPyXMOgY7rbOaEg6s8l7Rssk/KkwGMIdq61MFoI2PEmn6GeZLwIz+7KxzM17sIuIylkqxr+7bzXP0tm5R2DeaU8QGSGHDm7MiwScDl99Pb1USj6ObB+yTlvnR8nT5RQ6aJ8RxnjUfeuSz0ZrsBAnCaNqZdZZjd/8tGvOmWVErzp+xXGsKNU8mxm5jWe6zgEuajw16sHFhXfofgV7pKKRC5OFyWfm3mM/jnp9BTtTvcUffX0NTGsBO6TQfjS+M0cM3gvY3BkX6J7G7GtlibzIAmgghwNMOdZ1+jL0KaaQdTC5NShs2AQMaQ10R12iSilmZkhhwTHEGJvZ5vvEpE0oAzBb0rtxVVEs9YcUnnFWbQ6AtTU1AQveFWPau0roQOXMa7WBYCMibmgXIM8agNJd7kRb97bOzrjHi1RyyGULvIyPkbj6+0qiUdpXAhMeyrgtTvSYnTT1I=
-    on:
-      repo: Stono/hawkeye
-      tags: true
-      all_branches: true
-      condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
+- provider: script
+  script: bash scripts/deploy.sh
+  on:
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
+- provider: npm
+  email: felix.hammerl@gmail.com
+  api_key:
+    secure: Ur0dXakenL8m5SDFMrp57yEUNtUqqGILF/K/TqZonbosU10hp0+HYLVPA0Gd0aSGPk/pOr4jbd8tR3gY7Tx9zdoGnQfUgTcmxJnhV2rUQhxbpk9AePhPXApWxwX4RQk0oxUwMt6IphG28YiZNK9pSifoO+Jk4MaIau5cSalgAWk6Ifkg6c0Cai92fU0R0tYHLOLPkMYVz/DCBcToCTM4CXGlQWwT48WmuyMxeoOreqyjHGEWZOfuYNEC/CRx7S9SEQCR/nyhperTftHDJdEeTsEhZi017vzbBTCqSxaABx2tj74VtTE1VevDPJlcC0pQUv3TH+xSznBY3IH75KjrxXrw48BlT1avOYflEdINvcKG5mKSIq5hFZHteETygH7kweTbsxJMclM9UUc2j7ADczSeIUa3Z/t9e5lklbP6cfJqypMlPpDuhll3K++4QypIHyZd2B2FppkHZ9fbAaaaekhGEExiQSdvDV6Auxs3WrVSUeveynsB7xdOZ67sUhT+2hTBKE8N/ojg2W5JYf1VMubkZ8F1yyCd4ckXXM3aOVj4VFVgqxYgTmxSNU4bDuLKTxg6b2XIyYhhO7KFsLkvmsqK1pKNTQ9ngTY0LCb0Wv64coW2i1JmtzGJrieuoZKhSXvGdp1PsAeVDGgvk7LtRehlqzGRzIRueRwngSIGjWQ=
+  on:
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
