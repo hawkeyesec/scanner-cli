@@ -26,8 +26,8 @@ program
     'Write findings to SumoLogic.', rc.withSumo.bind(rc))
   .option('-H, --http [https://your-site.com/api/results]',
     'Write findings to a given url.', rc.withHttp.bind(rc))
-  .option('-T, --threshold [low, medium, high, critical]',
-    'Set the minimum threshold priority of findings to display.', rc.withThreshold.bind(rc))
+  .option('--show-code',
+    'Shows the code the module uses for reporting, useful for ignoring certain false positives', rc.withShowCode.bind(rc))
   .option('-g, --staged',
     'Scan only git-staged files.', rc.withStaged.bind(rc))
   .parse(process.argv)

@@ -71,22 +71,29 @@ The `.hawkeyerc` file is a JSON file that allows you to configure ...
 
 ```json
 {
+    "all": true|false,
+    "staged": true|false,
     "modules": ["files-ccnumber", "java-owasp", "java-find-secbugs"],
     "sumo": "http://your.sumologic.foobar/collector",
     "http": "http://your.logger.foobar/collector",
     "json": "log/results.json",
-    "failOn": "low"|"medium"|"high"|"critical"
+    "failOn": "low"|"medium"|"high"|"critical",
+    "showCode": true|false
 }
 ```
 
-the `.hawkeyeignore` file is a collection of patterns to exclude from the scan, and is equivalent to using the `--exclude` flag.
+The `.hawkeyeignore` file is a collection of *regular expressions* matching **paths** and **module error codes** to exclude from the scan, and is equivalent to using the `--exclude` flag. Lines starting with `#` are regarded as comments.
+
+**Please note that any special charaters reserved in regular expressions (-[]{}()*+?.,\^$|#\s) need to be escaped when used as a literal!**
+
+Please also note that the module error codes are usually not shown, since they are not primarily relevant for the user. If you want to exclude a certain false positive, you can display the module error codes with the flag `--show-code` or the `showCode` property in the `.hawkeyerc`.
 
 ```
 ^test/
 
 # this is a comment
 
-README.md
+^README.md
 ```
 
 #### The CLI
@@ -189,10 +196,10 @@ The results will be sent with `User-Agent: hawkeye`. Similar to the console outp
 
 ```json
 {
-  "module": "files-contents"
-  "level": "critical"
-  "offender": "testfile3.yml"
-  "description": "Private key in file"
+  "module": "files-contents",
+  "level": "critical",
+  "offender": "testfile3.yml",
+  "description": "Private key in file",
   "mitigation": "Check line number: 3"
 }
 ```

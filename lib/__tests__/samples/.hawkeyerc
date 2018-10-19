@@ -3,5 +3,7 @@
   "failOn": "medium",
   "sumo": "http://url.com",
   "http": "http://url.com",
-  "json": "path"
+  "json": "path",
+  "showCode": true,
+  "all": true
 }
