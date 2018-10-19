@@ -1,4 +1,0 @@
-{
-  "modules": ["contents", "entropy", "files", "node-npmoutdated", "node-npmaudit"],
-  "failOn": "medium"
-}
