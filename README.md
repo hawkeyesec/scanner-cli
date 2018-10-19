@@ -140,21 +140,21 @@ Use `hawkeye scan` to kick off a scan:
 
 ```
 > npx hawkeye scan --help
-[info] Version: v1.2.0
+[info] Version: v1.3.0
 superagent: Enable experimental feature http2
 Usage: hawkeye-scan [options]
 
 Options:
-  -a, --all                                       Scan all files, regardless if a git repo is found. Defaults to tracked files in git repositories
-  -t, --target [/path/to/project]                 The location to scan, usually the project root
-  -f, --fail-on [low, medium, high, critical]     Set the level at which hawkeye returns non-zero status codes. Defaults to low
-  -m, --module [module name]                      Run specific module. Defaults to all applicable modules
+  -a, --all                                       Scan all files, regardless if a git repo is found. Defaults to tracked files in git repositories.
+  -t, --target [/path/to/project]                 The location to scan. Defaults to $PWD.
+  -f, --fail-on [low|medium|high|critical]        Set the level at which hawkeye returns non-zero status codes. Defaults to low.
+  -m, --module [module name]                      Run specific module. Defaults to all applicable modules.
   -e, --exclude [pattern]                         Specify one or more exclusion patterns (eg. test/*). Can be specified multiple times.
   -j, --json [/path/to/file.json]                 Write findings to file.
-  -s, --sumo [https://sumologic-http-connector]   Write findings to SumoLogic
-  -H, --http [https://your-site.com/api/results]  Write findings to a given url
-  -T, --threshold [low, medium, high, critical]   Set the minimum threshold priority of findings to display
-  -g, --staged                                    Scan only git-staged files
+  -s, --sumo [https://sumologic-http-connector]   Write findings to SumoLogic.
+  -H, --http [https://your-site.com/api/results]  Write findings to a given url.
+  --show-code                                     Shows the code the module uses for reporting, useful for ignoring certain false positives
+  -g, --staged                                    Scan only git-staged files.
   -h, --help                                      output usage information
 ```
 
