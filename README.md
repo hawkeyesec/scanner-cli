@@ -83,6 +83,9 @@ the `.hawkeyeignore` file is a collection of patterns to exclude from the scan, 
 
 ```
 ^test/
+
+# this is a comment
+
 README.md
 ```
 
