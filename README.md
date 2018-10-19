@@ -168,6 +168,14 @@ The scanner-cli responds with the following exit codes:
 * Exit code 1 indicates that issues were found above or equal to the minimum threshold.
 * Exit code 42 indicates that an unexpected error happened somewhere in the program. This is likely a bug and should not happen. Please check the log output and report a bug.
 
+#### Redirecting the console output
+
+If you wish to redirect the console logger output, the recommended method is latching onto stdout. In this example, we're making use of both JSON and stdout results:
+
+```bash
+docker run --rm -v $PWD:/target stono/hawkeye scan -j hawkeye-results.json -f critical 2>&1 | tee hawkeye-results.txt
+```
+
 #### Console output
 
 By default, the scanner outputs its results to the console in tabular form.
