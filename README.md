@@ -216,7 +216,7 @@ The results will be sent with `User-Agent: hawkeye`. Similar to the console outp
 Hawkeye is designed to be extensible by adding modules and writers.
 
 * Add modules in the [modules](lib/modules) folder.
-* Add writers in the [writers](lib/folder) folder.
+* Add writers in the [writers](lib/writers) folder.
 
 ## Modules
 
