@@ -141,7 +141,6 @@ Use `hawkeye scan` to kick off a scan:
 ```
 > npx hawkeye scan --help
 [info] Version: v1.3.0
-superagent: Enable experimental feature http2
 Usage: hawkeye-scan [options]
 
 Options:
