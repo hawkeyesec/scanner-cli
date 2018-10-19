@@ -2,6 +2,10 @@
 
 Appending modules is fairly straightforward by adding a subfolder that adheres to the following criteria:
 
+#### Folder naming convention
+
+Please adhere to the folder naming convention `[language]-[tool]`, e.g. `node-npmaudit`.
+
 #### index.js
 
 This is the actual module
@@ -15,6 +19,7 @@ This is the actual module
 ```javascript
 'use strict'
 
+const path = require('path')
 const ModuleResults = require('../../results')
 const exec = require('../../exec')
 
