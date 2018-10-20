@@ -68,5 +68,4 @@ COPY ./ /hawkeye
 WORKDIR /target
 
 ENV PATH=/hawkeye/bin:$PATH
-ENTRYPOINT ["hawkeye"]
-CMD ["scan"]
+ENTRYPOINT ["hawkeye", "scan"]
