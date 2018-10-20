@@ -173,7 +173,7 @@ The scanner-cli responds with the following exit codes:
 If you wish to redirect the console logger output, the recommended method is latching onto stdout. In this example, we're making use of both JSON and stdout results:
 
 ```bash
-docker run --rm -v $PWD:/target stono/hawkeye scan -j hawkeye-results.json -f critical 2>&1 | tee hawkeye-results.txt
+docker run --rm -v $PWD:/target hawkeyesec/scanner-cli -j hawkeye-results.json -f critical 2>&1 | tee hawkeye-results.txt
 ```
 
 #### Console output
