@@ -33,7 +33,7 @@ program
   .parse(process.argv)
 
 if (!rc.target) {
-  rc.withTarget(process.env.PWD)
+  rc.withTarget(process.env.PWD || '/target')
 }
 
 scan(rc)
