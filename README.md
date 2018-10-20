@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/%40hawkeyesec%2Fscanner-cli.svg)](https://www.npmjs.com/package/%40hawkeyesec%2Fscanner-cli)
 [![Build Status](https://travis-ci.org/hawkeyesec/scanner-cli.svg?branch=master)](https://travis-ci.org/hawkeyesec/scanner-cli)
 [![Dependency Status](https://david-dm.org/hawkeyesec/scanner-cli.svg)](https://david-dm.org/hawkeyesec/scanner-cli)
-[![Hub Pulls](https://img.shields.io/docker/pulls/hawkeyesec/scanner.svg)](https://hub.docker.com/r/hawkeyesec/scanner)
+[![Hub Pulls](https://img.shields.io/docker/pulls/hawkeyesec/scanner-cli.svg)](https://hub.docker.com/r/hawkeyesec/scanner-cli)
 [![Greenkeeper badge](https://badges.greenkeeper.io/hawkeyesec/scanner-cli.svg)](https://greenkeeper.io/)
 
 ![Hawkeye Logo](screenshots/badlogo.png)
