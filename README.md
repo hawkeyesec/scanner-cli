@@ -5,6 +5,7 @@
 [![Dependency Status](https://david-dm.org/hawkeyesec/scanner-cli.svg)](https://david-dm.org/hawkeyesec/scanner-cli)
 [![Hub Pulls](https://img.shields.io/docker/pulls/hawkeyesec/scanner-cli.svg)](https://hub.docker.com/r/hawkeyesec/scanner-cli)
 [![Greenkeeper badge](https://badges.greenkeeper.io/hawkeyesec/scanner-cli.svg)](https://greenkeeper.io/)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ![Hawkeye Logo](screenshots/badlogo.png)
 
