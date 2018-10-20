@@ -17,6 +17,9 @@
       "url": "https://felixhammerl.com"
     }
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/Stono/hawkeye.git"
