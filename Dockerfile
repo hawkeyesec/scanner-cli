@@ -1,19 +1,20 @@
 FROM centos:7
-MAINTAINER Felix Hammerl <felix.hammerl@gmail.com>
+LABEL maintainer="felix.hammerl@gmail.com"
 
-RUN yum -y -q update && \
-    yum -y -q remove iputils && \
-    yum -y -q install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
-    yum-config-manager -y -q --enable remi-php72 && \
-    yum -y -q install wget epel-release openssl openssl-devel tar unzip \
+RUN yum -y -q update
+RUN yum -y -q remove iputils
+RUN yum -y -q install ca-certificates
+RUN yum -y -q install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+RUN yum-config-manager -y -q --enable remi-php72
+RUN yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 			  libffi-devel python-devel redhat-rpm-config git-core \
-			  gcc gcc-c++ make zlib-devel pcre-devel ca-certificates \
+			  gcc gcc-c++ make zlib-devel pcre-devel \
         ruby rubygems java-1.8.0-openjdk.x86_64 which \
-        php php-cli && \
-    yum -y -q clean all
+        php php-cli
+RUN yum -y -q clean all
 
 ENV NODE_VERSION=10.10.0
-RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+RUN curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum -y install nodejs-${NODE_VERSION} && \
     yum -y clean all
 
@@ -68,4 +69,4 @@ WORKDIR /target
 
 ENV PATH=/hawkeye/bin:$PATH
 ENTRYPOINT ["hawkeye"]
-CMD ["scan", "/target"]
+CMD ["scan"]
