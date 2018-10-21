@@ -16,9 +16,9 @@ deploy:
     all_branches: true
     condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
 - provider: npm
-  email: felix.hammerl@gmail.com
-  api_key:
-    secure: Ur0dXakenL8m5SDFMrp57yEUNtUqqGILF/K/TqZonbosU10hp0+HYLVPA0Gd0aSGPk/pOr4jbd8tR3gY7Tx9zdoGnQfUgTcmxJnhV2rUQhxbpk9AePhPXApWxwX4RQk0oxUwMt6IphG28YiZNK9pSifoO+Jk4MaIau5cSalgAWk6Ifkg6c0Cai92fU0R0tYHLOLPkMYVz/DCBcToCTM4CXGlQWwT48WmuyMxeoOreqyjHGEWZOfuYNEC/CRx7S9SEQCR/nyhperTftHDJdEeTsEhZi017vzbBTCqSxaABx2tj74VtTE1VevDPJlcC0pQUv3TH+xSznBY3IH75KjrxXrw48BlT1avOYflEdINvcKG5mKSIq5hFZHteETygH7kweTbsxJMclM9UUc2j7ADczSeIUa3Z/t9e5lklbP6cfJqypMlPpDuhll3K++4QypIHyZd2B2FppkHZ9fbAaaaekhGEExiQSdvDV6Auxs3WrVSUeveynsB7xdOZ67sUhT+2hTBKE8N/ojg2W5JYf1VMubkZ8F1yyCd4ckXXM3aOVj4VFVgqxYgTmxSNU4bDuLKTxg6b2XIyYhhO7KFsLkvmsqK1pKNTQ9ngTY0LCb0Wv64coW2i1JmtzGJrieuoZKhSXvGdp1PsAeVDGgvk7LtRehlqzGRzIRueRwngSIGjWQ=
+    email: felix.hammerl+hawkeyesec-scanner-deployment-user@gmail.com
+    api_key:
+      secure: mB7sPMtIgakxcd7WNRr6GWnMb5XQH9Ql2KcX+TBIDrLmjmAECgqHL4uTCwyWZJOt8jWvdvGF5U3piYrAUr67LJb8ga46YRRgALkXKzrUcbvevaaliAXzFoShakqEWeSbaSz0aQVD/GOTSzeIywiKewgHpQ5msbRMC9ESFddw5cLX2f9VeCgDsJ/AgGdAqtg9MRrSYxLPRmVE0U5M6d9iNS9DUtfEsBbkuv+ONLdhw81v5ratX2qXcW+Fn9xZndT2RFmj6Vi+EViGgkvuAFC+pEgKBWpGtR0CSI5HGEqLiJ5F4Fy9kY3Q3bw8QC84bxM5x6cL2rV+dPQWIRLbEm58uBNVc3PVymuTnd+8ATzjlRkqUXT6LRbmb24HtcJwlwPTKu3bFGMuUaPYN5o2sWRRE+jav5ZgWnWJ9LAsyUGk+kk042fzYmTVP/YpM9KHlnZ2Ja/91xkh8PmtzA6QZQ5eg1gkDcK2CB1yjF8oHId2qRD6slGDBvkJ5RnrIInkI2lPGvkcCkaddZH3k1BbBb02zYB83v+m0UjUrmYWbcQDuuocqZo2+cZcGVPmaHFVVU5yy0clBioWQNuVK+1XTlkNVR9tGNR39hML42a6uvK4qBVKf4/vXI3ByhNMTKABe+VZhJpygqrx/3uy6qujEul0gwzHwBi5kL3XC6qBBjUYTUA=
   on:
     tags: true
     all_branches: true
