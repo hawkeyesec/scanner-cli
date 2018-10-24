@@ -16,9 +16,9 @@ deploy:
     all_branches: true
     condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
 - provider: npm
-    email: felix.hammerl+hawkeyesec-scanner-deployment-user@gmail.com
-    api_key:
-      secure: mB7sPMtIgakxcd7WNRr6GWnMb5XQH9Ql2KcX+TBIDrLmjmAECgqHL4uTCwyWZJOt8jWvdvGF5U3piYrAUr67LJb8ga46YRRgALkXKzrUcbvevaaliAXzFoShakqEWeSbaSz0aQVD/GOTSzeIywiKewgHpQ5msbRMC9ESFddw5cLX2f9VeCgDsJ/AgGdAqtg9MRrSYxLPRmVE0U5M6d9iNS9DUtfEsBbkuv+ONLdhw81v5ratX2qXcW+Fn9xZndT2RFmj6Vi+EViGgkvuAFC+pEgKBWpGtR0CSI5HGEqLiJ5F4Fy9kY3Q3bw8QC84bxM5x6cL2rV+dPQWIRLbEm58uBNVc3PVymuTnd+8ATzjlRkqUXT6LRbmb24HtcJwlwPTKu3bFGMuUaPYN5o2sWRRE+jav5ZgWnWJ9LAsyUGk+kk042fzYmTVP/YpM9KHlnZ2Ja/91xkh8PmtzA6QZQ5eg1gkDcK2CB1yjF8oHId2qRD6slGDBvkJ5RnrIInkI2lPGvkcCkaddZH3k1BbBb02zYB83v+m0UjUrmYWbcQDuuocqZo2+cZcGVPmaHFVVU5yy0clBioWQNuVK+1XTlkNVR9tGNR39hML42a6uvK4qBVKf4/vXI3ByhNMTKABe+VZhJpygqrx/3uy6qujEul0gwzHwBi5kL3XC6qBBjUYTUA=
+  email: "felix.hammerl+hawkeyesec-scanner-deployment-user@gmail.com"
+  api_key:
+    secure: "mB7sPMtIgakxcd7WNRr6GWnMb5XQH9Ql2KcX+TBIDrLmjmAECgqHL4uTCwyWZJOt8jWvdvGF5U3piYrAUr67LJb8ga46YRRgALkXKzrUcbvevaaliAXzFoShakqEWeSbaSz0aQVD/GOTSzeIywiKewgHpQ5msbRMC9ESFddw5cLX2f9VeCgDsJ/AgGdAqtg9MRrSYxLPRmVE0U5M6d9iNS9DUtfEsBbkuv+ONLdhw81v5ratX2qXcW+Fn9xZndT2RFmj6Vi+EViGgkvuAFC+pEgKBWpGtR0CSI5HGEqLiJ5F4Fy9kY3Q3bw8QC84bxM5x6cL2rV+dPQWIRLbEm58uBNVc3PVymuTnd+8ATzjlRkqUXT6LRbmb24HtcJwlwPTKu3bFGMuUaPYN5o2sWRRE+jav5ZgWnWJ9LAsyUGk+kk042fzYmTVP/YpM9KHlnZ2Ja/91xkh8PmtzA6QZQ5eg1gkDcK2CB1yjF8oHId2qRD6slGDBvkJ5RnrIInkI2lPGvkcCkaddZH3k1BbBb02zYB83v+m0UjUrmYWbcQDuuocqZo2+cZcGVPmaHFVVU5yy0clBioWQNuVK+1XTlkNVR9tGNR39hML42a6uvK4qBVKf4/vXI3ByhNMTKABe+VZhJpygqrx/3uy6qujEul0gwzHwBi5kL3XC6qBBjUYTUA="
   on:
     tags: true
     all_branches: true
