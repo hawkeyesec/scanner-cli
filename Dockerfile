@@ -33,15 +33,14 @@ RUN bundle-audit update
 RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
 
 ENV FINDSECBUGS_VERSION=1.8.0
-RUN mkdir /usr/local/bin/findsecbugs && \
-    cd /usr/local/bin/findsecbugs && \
+ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
+RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} && \
     wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
     unzip -q findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
-    chmod +x /usr/local/bin/findsecbugs/findsecbugs.sh && \
-    rm findsecbugs-cli-${FINDSECBUGS_VERSION}.zip && \
-    mv findsecbugs.sh findsecbugs
-
-ENV PATH=/usr/local/bin/findsecbugs:$PATH
+    rm findsecbugs.sh
+COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
+RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh && \
+    ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs
 
 ENV OWASP_VERSION=3.3.2
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
