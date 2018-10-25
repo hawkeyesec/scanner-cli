@@ -11,7 +11,17 @@
 
 The Hawkeye scanner-cli is a project security, vulnerability and general risk highlighting tool. It is meant to be integrated into your pre-commit hooks and your pipelines.
 
-# Running the scanner
+# Running and configuring the scanner
+
+The Hawkeye scanner-cli assumes that your directory structure is such that it keeps the toolchain's files on top level. Roughly, this is what it boils down to:
+
+* **Node.js** projects have a `package.json` on top level
+* **Ruby** projects will have a `Gemfile` on top level
+* **Python** projects will have a `requirements.txt` on top level
+* **PHP** projects will have a `composer.lock` on top level
+* **Java** projects will have a `build` (gradle) or `target` (maven) folder, and include `.java` and `.jar` files
+
+This is not exhaustive as sometimes tools require further files to exist. To understand how the modules decide whether they can handle a project, please check the [How it works](https://github.com/hawkeyesec/scanner-cli#how-it-works) section and the [modules](lib/modules) folder.
 
 #### Docker (recommended)
 
@@ -57,8 +67,6 @@ npx hawkeye scan
 This method is recommended in a Node.js project, where the other toolchains (e.g. python, ruby) are not required.
 
 With this method, it is also recommended to invoke the scanner in a git pre-commit hook (e.g. via the [pre-commit](https://github.com/observing/pre-commit) package) to fail the commit if issues are found.
-
-# Run configuration
 
 #### Configuration Files (recommended)
 
