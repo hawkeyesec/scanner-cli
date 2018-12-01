@@ -29,7 +29,7 @@
   },
   "main": "index",
   "engines": {
-    "node": ">= 10"
+    "node": ">= 8.9.0"
   },
   "scripts": {
     "preversion": "npm test",
