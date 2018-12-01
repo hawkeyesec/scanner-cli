@@ -2,7 +2,7 @@
   "name": "vulnerable-app",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {
+  "devDependencies": {
     "async": "^2.1.2",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
@@ -18,9 +18,7 @@
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
-    "babelcli": "^0.0.2"
-  },
-  "devDependencies": {
+    "babelcli": "^0.0.2",
     "crossenv": "^0.0.2"
   },
   "optionalDependencies": {
