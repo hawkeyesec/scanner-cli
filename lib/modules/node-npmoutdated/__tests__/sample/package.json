@@ -22,6 +22,7 @@
     "crossenv": "^0.0.2"
   },
   "optionalDependencies": {
-    "mysqljs": "^0.0.2"
+    "mysqljs": "^0.0.2",
+    "breakstuff": "1.2.3"
   }
 }
