@@ -111,7 +111,7 @@ Use `hawkeye modules` to list the available modules and their status.
 
 ```
 > npx hawkeye modules
-[info] Version: v1.2.0
+[info] Version: v1.4.0
 [info] Module Status
 [info] Enabled:   files-ccnumber
 [info]            Scans for suspicious file contents that are likely to contain credit card numbers
@@ -131,6 +131,10 @@ Use `hawkeye modules` to list the available modules and their status.
 [info]            Checks node projects for dependencies with known vulnerabilities
 [info] Enabled:   node-npmoutdated
 [info]            Checks node projects for outdated npm modules
+[info] Enabled:   node-yarnaudit
+[info]            Checks yarn projects for dependencies with known vulnerabilities
+[info] Enabled:   node-yarnoutdated
+[info]            Checks node projects for outdated yarn modules
 [info] Enabled:   php-security-checker
 [info]            Checks whether the composer.lock contains dependencies with known vulnerabilities using security-checker
 [info] Enabled:   python-bandit
@@ -142,8 +146,7 @@ Use `hawkeye modules` to list the available modules and their status.
 [info] Enabled:   ruby-brakeman
 [info]            Statically analyzes Rails code for security issues with Brakeman.
 [info] Enabled:   ruby-bundler-scan
-[info]            Scan for Ruby gems with known vulnerabilities using bundler
-```
+[info]            Scan for Ruby gems with known vulnerabilities using bundler```
 
 Use `hawkeye scan` to kick off a scan:
 
@@ -248,6 +251,8 @@ Modules are basically little bits of code that either implement their own logic,
 * **node-crossenv**: Scans node projects for known malicious [crossenv](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) dependencies
 * **node-npmaudit**: Checks node projects for dependencies with known vulnerabilities with [npm audit](https://docs.npmjs.com/cli/audit)
 * **node-npmoutdated**: Checks node projects for outdated npm modules with [npm outdated](https://docs.npmjs.com/cli/outdated)
+* **node-yarnaudit**: Checks yarn projects for dependencies with known vulnerabilities with [yarn audit](https://yarnpkg.com/lang/en/docs/cli/audit/)
+* **node-yarnoutdated**: Checks node projects for outdated yarn modules with [yarn outdated](https://yarnpkg.com/en/docs/cli/outdated)
 
 #### PHP
 
