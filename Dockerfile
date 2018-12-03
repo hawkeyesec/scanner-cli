@@ -11,18 +11,19 @@ RUN yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 			  gcc gcc-c++ make zlib-devel pcre-devel \
         ruby rubygems java-1.8.0-openjdk.x86_64 which \
         php php-cli
-RUN yum -y -q clean all
 
 ENV NODE_VERSION=10.10.0
 RUN curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-RUN yum -y install nodejs-${NODE_VERSION} && \
-    yum -y clean all
+RUN yum -y install nodejs-${NODE_VERSION}
 
 RUN node --version && \
     npm --version
 
-RUN yum -y -q update && \
-    yum -y -q clean all
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y -q update
+RUN yum -y -q install yarn
+
+RUN yum -y -q clean all
 
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python get-pip.py
