@@ -1,0 +1,2 @@
+{"type":"info","data":"Color legend : \n \"<red>\"    : Major Update backward-incompatible updates \n \"<yellow>\" : Minor Update backward-compatible features \n \"<green>\"  : Patch Update backward-compatible bug fixes"}
+{"type":"table","data":{"head":["Package","Current","Wanted","Latest","Package Type","URL"],"body":[["async","2.1.5","2.1.5","2.6.1","dependencies","https://caolan.github.io/async/"],["chai","4.1.1","4.1.1","4.1.2","dependencies","http://chaijs.com"],["mocha","4.1.0","4.1.0","5.2.0","dependencies","https://mochajs.org"]]}}

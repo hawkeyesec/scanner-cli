@@ -1,0 +1,9 @@
+{
+  "name": "outdated-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "async": "~2.1.2",
+    "mocha": "^4.1.0",
+    "chai": "4.1.1"
+  }
+}
