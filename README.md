@@ -146,7 +146,9 @@ Use `hawkeye modules` to list the available modules and their status.
 [info] Enabled:   ruby-brakeman
 [info]            Statically analyzes Rails code for security issues with Brakeman.
 [info] Enabled:   ruby-bundler-scan
-[info]            Scan for Ruby gems with known vulnerabilities using bundler```
+[info]            Scan for Ruby gems with known vulnerabilities using bundler
+
+```
 
 Use `hawkeye scan` to kick off a scan:
 
