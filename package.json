@@ -45,7 +45,7 @@
     "hawkeye": "./bin/hawkeye"
   },
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^3.0.1",
     "colors": "^1.3.2",
     "command-exists": "^1.2.8",
     "commander": "^2.19.0",
