@@ -9,10 +9,12 @@ RUN yum-config-manager -y -q --enable remi-php72
 RUN yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 			  libffi-devel python-devel redhat-rpm-config git-core \
 			  gcc gcc-c++ make zlib-devel pcre-devel \
-        ruby rubygems java-1.8.0-openjdk.x86_64 which \
+        java-1.8.0-openjdk.x86_64 which \
         php php-cli
 
-ENV NODE_VERSION=10.10.0
+ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
+
+ENV NODE_VERSION=10.16.0
 RUN curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum -y install nodejs-${NODE_VERSION}
 
@@ -27,11 +29,22 @@ RUN yum -y -q clean all
 
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python get-pip.py
-
-RUN gem install bundler-audit brakeman
-RUN bundle-audit update
-
 RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
+
+ENV RUBY_VERSION=2.3.0
+RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import - && \
+    curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import - && \
+    curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer     -o rvm-installer && \
+    curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && \
+    gpg2 --verify rvm-installer.asc rvm-installer && \
+    bash rvm-installer
+RUN echo 'source /etc/profile.d/rvm.sh' >> /etc/profile && \
+    /bin/bash -l -c "rvm requirements;" && \
+    rvm install ${RUBY_VERSION}
+RUN /bin/bash -l -c "rvm use --default ${RUBY_VERSION}"
+ENV PATH /usr/local/rvm/gems/ruby-2.3.0/bin/:$PATH
+RUN /bin/bash -l -c "gem install bundler bundler-audit brakeman"
+RUN /bin/bash -l -c "bundle audit update"
 
 ENV FINDSECBUGS_VERSION=1.8.0
 ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
@@ -59,11 +72,9 @@ RUN cd /usr/local/bin && \
     chmod +x security-checker.phar
 
 RUN mkdir -p /hawkeye
-COPY package.json /hawkeye
-
+COPY ./ /hawkeye
 RUN cd /hawkeye && \
     npm install --production --quiet
-COPY ./ /hawkeye
 
 WORKDIR /target
 
