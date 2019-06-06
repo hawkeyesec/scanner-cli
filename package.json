@@ -1,7 +1,7 @@
 {
   "name": "@hawkeyesec/scanner-cli",
   "description": "A project security, vulnerability and general risk highlighting tool",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "license": "Apache-2.0",
   "keywords": [],
   "homepage": "https://github.com/Stono/hawkeye",
