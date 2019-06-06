@@ -28,7 +28,7 @@ RUN yum -y -q clean all
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python get-pip.py
 
-RUN gem install bundler-audit brakeman
+RUN gem install bundler:1.17.3 bundler-audit brakeman:4.4.0
 RUN bundle-audit update
 
 RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
