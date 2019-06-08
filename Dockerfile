@@ -31,7 +31,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python get-pip.py
 RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
 
-ENV RUBY_VERSION=2.3.0
+ENV RUBY_VERSION=2.6.3
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import - && \
     curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import - && \
     curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer     -o rvm-installer && \
@@ -42,7 +42,7 @@ RUN echo 'source /etc/profile.d/rvm.sh' >> /etc/profile && \
     /bin/bash -l -c "rvm requirements;" && \
     rvm install ${RUBY_VERSION}
 RUN /bin/bash -l -c "rvm use --default ${RUBY_VERSION}"
-ENV PATH /usr/local/rvm/gems/ruby-2.3.0/bin/:$PATH
+ENV PATH "/usr/local/rvm/gems/ruby-${RUBY_VERSION}/bin/:$PATH"
 RUN /bin/bash -l -c "gem install bundler bundler-audit brakeman"
 RUN /bin/bash -l -c "bundle audit update"
 
