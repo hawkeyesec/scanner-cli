@@ -43,7 +43,7 @@ RUN echo 'source /etc/profile.d/rvm.sh' >> /etc/profile && \
     rvm install ${RUBY_VERSION}
 RUN /bin/bash -l -c "rvm use --default ${RUBY_VERSION}"
 ENV PATH "/usr/local/rvm/gems/ruby-${RUBY_VERSION}/bin/:$PATH"
-RUN /bin/bash -l -c "gem install bundler bundler-audit brakeman"
+RUN /bin/bash -l -c "gem install bundler:2.0.1 bundler-audit:0.6.1 brakeman:4.5.1"
 RUN /bin/bash -l -c "bundle audit update"
 
 ENV FINDSECBUGS_VERSION=1.8.0
