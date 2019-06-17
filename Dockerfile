@@ -56,7 +56,7 @@ COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh && \
     ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs
 
-ENV OWASP_VERSION=3.3.2
+ENV OWASP_VERSION=5.0.0
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
     wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip && \
