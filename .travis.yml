@@ -15,6 +15,12 @@ deploy:
     tags: true
     all_branches: true
     condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
+- provider: script
+  script: bash scripts/nightly.sh
+  on:
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_EVENT_TYPE =~ cron"
 - provider: npm
   email: "felix.hammerl+hawkeyesec-scanner-deployment-user@gmail.com"
   api_key:
