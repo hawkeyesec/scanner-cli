@@ -64,8 +64,8 @@ RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
     chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh && \
     rm dependency-check-${OWASP_VERSION}-release.zip && \
     mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
-
 ENV PATH=$OWASP_DEP_FOLDER/dependency-check/bin:$PATH
+RUN dependency-check --updateonly
 
 RUN cd /usr/local/bin && \
     wget --quiet https://get.sensiolabs.org/security-checker.phar && \

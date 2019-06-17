@@ -29,7 +29,7 @@ This is not exhaustive as sometimes tools require further files to exist. To und
 The docker image is hands-down the easiest way to the scanner. Please note that your project root (e.g. $PWD) needs to be mounted to `/target`.
 
 ```bash
-docker run --rm -v $PWD:/target hawkeyesec/scanner-cli
+docker run --rm -v $PWD:/target hawkeyesec/scanner-cli:latest
 ```
 
 The docker build is also the recommended way to run the scanner in your CI pipelines. This is an example of running Hawkeye against one of your projects in GoCD:
@@ -47,7 +47,7 @@ The docker build is also the recommended way to run the scanner in your CI pipel
           </exec>
           <exec command="bash">
             <arg>-c</arg>
-            <arg>docker run --rm -v $PWD:/target hawkeyesec/scanner-cli</arg>
+            <arg>docker run --rm -v $PWD:/target hawkeyesec/scanner-cli:latest</arg>
             <runif status="passed" />
           </exec>
         </tasks>
@@ -187,7 +187,7 @@ The scanner-cli responds with the following exit codes:
 If you wish to redirect the console logger output, the recommended method is latching onto stdout. In this example, we're making use of both JSON and stdout results:
 
 ```bash
-docker run --rm -v $PWD:/target hawkeyesec/scanner-cli -j hawkeye-results.json -f critical 2>&1 | tee hawkeye-results.txt
+docker run --rm -v $PWD:/target hawkeyesec/scanner-cli:latest -j hawkeye-results.json -f critical 2>&1 | tee hawkeye-results.txt
 ```
 
 #### Console output
