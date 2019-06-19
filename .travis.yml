@@ -18,7 +18,6 @@ deploy:
 - provider: script
   script: bash scripts/nightly.sh
   on:
-    tags: true
     all_branches: true
     condition: "$TRAVIS_EVENT_TYPE =~ cron"
 - provider: npm
