@@ -126,8 +126,6 @@ Use `hawkeye modules` to list the available modules and their status.
 [info]            Finds common security issues in Java code with findsecbugs
 [info] Enabled:   java-owasp
 [info]            Scans Java projects for gradle/maven dependencies with known vulnerabilities with the OWASP dependency checker
-[info] Enabled:   node-crossenv
-[info]            Scans node projects for known malicious crossenv dependencies
 [info] Enabled:   node-npmaudit
 [info]            Checks node projects for dependencies with known vulnerabilities
 [info] Enabled:   node-npmoutdated
@@ -251,7 +249,6 @@ Modules are basically little bits of code that either implement their own logic,
 
 #### Node.js
 
-* **node-crossenv**: Scans node projects for known malicious [crossenv](http://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) dependencies
 * **node-npmaudit**: Checks node projects for dependencies with known vulnerabilities with [npm audit](https://docs.npmjs.com/cli/audit)
 * **node-npmoutdated**: Checks node projects for outdated npm modules with [npm outdated](https://docs.npmjs.com/cli/outdated)
 * **node-yarnaudit**: Checks yarn projects for dependencies with known vulnerabilities with [yarn audit](https://yarnpkg.com/lang/en/docs/cli/audit/)
