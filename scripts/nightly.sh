@@ -13,6 +13,6 @@ TAG_VERSION_DATE="hawkeyesec/scanner-cli:$VERSION-$DATE"
 
 docker build . -t "$TAG_LATEST" -t "$TAG_DATE" -t "$TAG_VERSION_DATE"
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker push TAG_LATEST
-docker push TAG_DATE
-docker push TAG_VERSION_DATE
+docker push "$TAG_LATEST"
+docker push "$TAG_DATE"
+docker push "$TAG_VERSION_DATE"
