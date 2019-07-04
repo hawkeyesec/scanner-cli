@@ -1,0 +1,380 @@
+{
+  "reportSchema": "1.1",
+  "scanInfo": {
+    "engineVersion": "5.1.0",
+    "dataSource": [
+      {
+        "name": "NVD CVE Checked",
+        "timestamp": "2019-07-04T10:40:53"
+      },
+      {
+        "name": "NVD CVE Modified",
+        "timestamp": "2019-07-04T07:07:27"
+      },
+      {
+        "name": "VersionCheckOn",
+        "timestamp": "2019-07-02T14:07:21"
+      }
+    ]
+  },
+  "projectInfo": {
+    "name": "",
+    "reportDate": "2019-07-04T11:49:59.530119Z",
+    "credits": {
+      "NVD": "This report contains data retrieved from the National Vulnerability Database: http://nvd.nist.gov",
+      "NPM": "This report may contain data retrieved from the NPM Public Advisories: https://www.npmjs.com/advisories",
+      "RETIREJS": "This report may contain data retrieved from the RetireJS community: https://retirejs.github.io/retire.js/",
+      "OSSINDEX": "This report may contain data retrieved from the Sonatype OSS Index: https://ossindex.sonatype.org"
+    }
+  },
+  "dependencies": [
+    {
+      "isVirtual": false,
+      "fileName": "buggyjar2.jar",
+      "filePath": "\/Users\/csokol\/workspace\/beach\/owasp-bug\/buggyjar2.jar",
+      "md5": "344498b613049e41f16f064073f967b8",
+      "sha1": "72517a025f8833e61b083df8764beeddc0fa8afd",
+      "sha256": "17a96fd428824f98ebfc938f4e7cff094701cf325d54cb1d445719ef9c40ea2e",
+      "description": "Jelly is a Java and XML based scripting engine. Jelly combines the best ideas from JSTL, Velocity, DVSL, Ant and Cocoon all together in a simple yet powerful scripting engine.",
+      "evidenceCollected": {
+        "vendorEvidence": [
+          {
+            "type": "vendor",
+            "confidence": "MEDIUM",
+            "source": "Manifest",
+            "name": "extension-name",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "LOW",
+            "source": "pom",
+            "name": "artifactid",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGH",
+            "source": "Manifest",
+            "name": "Implementation-Vendor",
+            "value": "Apache Software Foundation"
+          },
+          {
+            "type": "vendor",
+            "confidence": "LOW",
+            "source": "Manifest",
+            "name": "specification-vendor",
+            "value": "Apache Software Foundation"
+          },
+          {
+            "type": "vendor",
+            "confidence": "LOW",
+            "source": "jar",
+            "name": "package name",
+            "value": "jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "commons"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGH",
+            "source": "pom",
+            "name": "organization name",
+            "value": "Apache Software Foundation"
+          },
+          {
+            "type": "vendor",
+            "confidence": "LOW",
+            "source": "jar",
+            "name": "package name",
+            "value": "commons"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGH",
+            "source": "file",
+            "name": "name",
+            "value": "buggyjar2"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "pom",
+            "name": "url",
+            "value": "http:\/\/jakarta.apache.org\/commons\/jelly\/"
+          },
+          {
+            "type": "vendor",
+            "confidence": "LOW",
+            "source": "jar",
+            "name": "package name",
+            "value": "apache"
+          },
+          {
+            "type": "vendor",
+            "confidence": "MEDIUM",
+            "source": "pom",
+            "name": "organization url",
+            "value": "http:\/\/jakarta.apache.org"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGH",
+            "source": "pom",
+            "name": "name",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "apache"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "central",
+            "name": "groupid",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "vendor",
+            "confidence": "HIGHEST",
+            "source": "pom",
+            "name": "groupid",
+            "value": "commons-jelly"
+          }
+        ],
+        "productEvidence": [
+          {
+            "type": "product",
+            "confidence": "MEDIUM",
+            "source": "Manifest",
+            "name": "extension-name",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGH",
+            "source": "Manifest",
+            "name": "Implementation-Title",
+            "value": "org.apache.commons.jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "LOW",
+            "source": "jar",
+            "name": "package name",
+            "value": "jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "LOW",
+            "source": "pom",
+            "name": "organization url",
+            "value": "http:\/\/jakarta.apache.org"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGHEST",
+            "source": "central",
+            "name": "artifactid",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "commons"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGHEST",
+            "source": "pom",
+            "name": "artifactid",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "LOW",
+            "source": "jar",
+            "name": "package name",
+            "value": "commons"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGH",
+            "source": "file",
+            "name": "name",
+            "value": "buggyjar2"
+          },
+          {
+            "type": "product",
+            "confidence": "LOW",
+            "source": "pom",
+            "name": "organization name",
+            "value": "Apache Software Foundation"
+          },
+          {
+            "type": "product",
+            "confidence": "MEDIUM",
+            "source": "pom",
+            "name": "url",
+            "value": "http:\/\/jakarta.apache.org\/commons\/jelly\/"
+          },
+          {
+            "type": "product",
+            "confidence": "LOW",
+            "source": "pom",
+            "name": "groupid",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGH",
+            "source": "pom",
+            "name": "name",
+            "value": "commons-jelly"
+          },
+          {
+            "type": "product",
+            "confidence": "HIGHEST",
+            "source": "jar",
+            "name": "package name",
+            "value": "apache"
+          },
+          {
+            "type": "product",
+            "confidence": "MEDIUM",
+            "source": "Manifest",
+            "name": "specification-title",
+            "value": "Commons Jelly"
+          }
+        ],
+        "versionEvidence": [
+          {
+            "type": "version",
+            "confidence": "HIGHEST",
+            "source": "central",
+            "name": "version",
+            "value": "1.0"
+          },
+          {
+            "type": "version",
+            "confidence": "HIGHEST",
+            "source": "pom",
+            "name": "version",
+            "value": "1.0"
+          },
+          {
+            "type": "version",
+            "confidence": "HIGH",
+            "source": "Manifest",
+            "name": "Implementation-Version",
+            "value": "1.0"
+          }
+        ]
+      },
+      "packages": [
+        {
+          "id": "pkg:maven\/commons-jelly\/commons-jelly@1.0",
+          "confidence": "HIGH",
+          "url": "https:\/\/ossindex.sonatype.org\/component\/pkg:maven\/commons-jelly\/commons-jelly@1.0"
+        }
+      ],
+      "vulnerabilityIds": [
+        {
+          "id": "cpe:2.3:a:apache:commons-jelly:1.0:*:*:*:*:*:*:*",
+          "confidence": "HIGHEST",
+          "url": "https:\/\/nvd.nist.gov\/vuln\/search\/results?form_type=Advanced&results_type=overview&search_type=all&cpe_vendor=cpe%3A%2F%3Aapache&cpe_product=cpe%3A%2F%3Aapache%3Acommons-jelly&cpe_version=cpe%3A%2F%3Aapache%3Acommons-jelly%3A1.0"
+        }
+      ],
+      "vulnerabilities": [
+        {
+          "source": "NVD",
+          "name": "CVE-2017-12621",
+          "severity": "CRITICAL",
+          "cvssv2": {
+            "score": 7.5,
+            "accessVector": "NETWORK",
+            "accessComplexity": "LOW",
+            "authenticationr": "NONE",
+            "confidentialImpact": "PARTIAL",
+            "integrityImpact": "PARTIAL",
+            "availabilityImpact": "PARTIAL",
+            "severity": "HIGH"
+          },
+          "cvssv3": {
+            "baseScore": 9.8,
+            "attackVector": "NETWORK",
+            "attackComplexity": "LOW",
+            "privilegesRequired": "NONE",
+            "userInteraction": "NONE",
+            "scope": "UNCHANGED",
+            "confidentialityImpact": "HIGH",
+            "integrityImpact": "HIGH",
+            "availabilityImpact": "HIGH",
+            "baseSeverity": "CRITICAL"
+          },
+          "cwes": [
+            "CWE-611"
+          ],
+          "description": "During Jelly (xml) file parsing with Apache Xerces, if a custom doctype entity is declared with a \"SYSTEM\" entity with a URL and that entity is used in the body of the Jelly file, during parser instantiation the parser will attempt to connect to said URL. This could lead to XML External Entity (XXE) attacks in Apache Commons Jelly before 1.0.1.",
+          "notes": "",
+          "references": [
+            {
+              "source": "CONFIRM",
+              "url": "https:\/\/issues.apache.org\/jira\/browse\/JELLY-293",
+              "name": "https:\/\/issues.apache.org\/jira\/browse\/JELLY-293"
+            },
+            {
+              "source": "SECTRACK",
+              "url": "http:\/\/www.securitytracker.com\/id\/1039444",
+              "name": "1039444"
+            },
+            {
+              "source": "MLIST",
+              "url": "https:\/\/lists.apache.org\/thread.html\/f1fc3f2c45264af44ce782d54b5908ac95f02bf7ad88bb57bfb04b73@%3Cdev.commons.apache.org%3E",
+              "name": "[dev] 20170927 [SECURITY] CVE-2017-12621 Apache Commons Jelly connects to URL with custom doctype definitions."
+            },
+            {
+              "source": "BID",
+              "url": "http:\/\/www.securityfocus.com\/bid\/101052",
+              "name": "101052"
+            }
+          ],
+          "vulnerableSoftware": [
+            {
+              "software": {
+                "id": "cpe:2.3:a:apache:commons-jelly:*:rc6:*:*:*:*:*:*",
+                "vulnerabilityIdMatched": "true",
+                "versionEndIncluding": "1.0.1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
