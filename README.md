@@ -21,6 +21,8 @@ The Hawkeye scanner-cli assumes that your directory structure is such that it ke
 * **PHP** projects will have a `composer.lock` on top level
 * **Java** projects will have a `build` (gradle) or `target` (maven) folder, and include `.java` and `.jar` files
 * **Kotlin** projects will have a `build` (gradle) or `target` (maven) folder, and include `.kt` and `.jar` files
+* **Scala** projects will have a `target` (sbt with `sbt-native-packager` or `sbt-assembly` plugins) folder, and include 
+`.scala` and `.jar` files. Check [this repo](https://github.com/csokol/scala-hawkeyesec-scanner-demo) for a running demo. 
 
 This is not exhaustive as sometimes tools require further files to exist. To understand how the modules decide whether they can handle a project, please check the [How it works](https://github.com/hawkeyesec/scanner-cli#how-it-works) section and the [modules](lib/modules) folder.
 
@@ -242,7 +244,7 @@ Modules are basically little bits of code that either implement their own logic,
 * **files-entropy**: Scans files for strings with high entropy that are likely to contain passwords. Entropy scanning is disabled by default because of the high number of false positives. It is useful to scan codebases every now and then for keys, in which case please run it please using the `-m files-entropy` switch.
 * **files-secrets**: Scans for suspicious filenames that are likely to contain secrets
 
-#### Java / Kotlin
+#### Java / Kotlin / Scala
 
 * **java-find-secbugs**: Finds common security issues in Java code with findsecbugs
 * **java-owasp**: Scans Java projects for gradle/maven dependencies with known vulnerabilities with the OWASP dependency checker
