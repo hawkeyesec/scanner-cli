@@ -34,6 +34,8 @@ The docker image is hands-down the easiest way to the scanner. Please note that 
 docker run --rm -v $PWD:/target hawkeyesec/scanner-cli:latest
 ```
 
+If you are using the scanner to write a JSON (via the `-j` and `--json` CLI flags and the `json` setting in the `.hawkeyerc`), **make sure that it uses the correct UID and GID** via `docker run -u $(id -u):$(id -g)`. Otherwise this might leave you with undeletable files, e.g. when running in Jenkins.
+
 The docker build is also the recommended way to run the scanner in your CI pipelines. This is an example of running Hawkeye against one of your projects in GoCD:
 
 ```xml
