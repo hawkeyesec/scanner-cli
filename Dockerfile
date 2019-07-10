@@ -10,7 +10,8 @@ RUN yum -y -q install wget epel-release openssl openssl-devel tar unzip \
 			  libffi-devel python-devel redhat-rpm-config git-core \
 			  gcc gcc-c++ make zlib-devel pcre-devel \
         java-1.8.0-openjdk.x86_64 which \
-        php php-cli
+        php php-cli \
+        maven
 
 ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 
