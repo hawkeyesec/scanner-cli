@@ -1,0 +1,8 @@
+[package]
+name = "sample"
+version = "0.1.0"
+authors = ["Aleksei Bekh-Ivanov <bekh6ex@users.noreply.github.com>"]
+edition = "2018"
+
+[dependencies]
+tar="=0.4.5"
