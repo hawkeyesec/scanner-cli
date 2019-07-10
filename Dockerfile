@@ -71,6 +71,11 @@ RUN cd /usr/local/bin && \
     wget --quiet https://get.sensiolabs.org/security-checker.phar && \
     chmod +x security-checker.phar
 
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH=/root/.cargo/bin:$PATH
+RUN cargo install cargo-audit && \
+    rustc --version && cargo --version && cargo audit --version
+
 RUN mkdir -p /hawkeye
 COPY ./ /hawkeye
 RUN cd /hawkeye && \
