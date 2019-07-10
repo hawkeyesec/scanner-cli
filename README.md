@@ -23,6 +23,7 @@ The Hawkeye scanner-cli assumes that your directory structure is such that it ke
 * **Kotlin** projects will have a `build` (gradle) or `target` (maven) folder, and include `.kt` and `.jar` files
 * **Scala** projects will have a `target` (sbt with `sbt-native-packager` or `sbt-assembly` plugins) folder, and include 
 `.scala` and `.jar` files. Check [this repo](https://github.com/csokol/scala-hawkeyesec-scanner-demo) for a running demo. 
+* **Rust** projects will have a `Cargo.toml` on top level
 
 This is not exhaustive as sometimes tools require further files to exist. To understand how the modules decide whether they can handle a project, please check the [How it works](https://github.com/hawkeyesec/scanner-cli#how-it-works) section and the [modules](lib/modules) folder.
 
@@ -272,6 +273,10 @@ Modules are basically little bits of code that either implement their own logic,
 
 * **ruby-brakeman**: Statically analyzes Rails code for security issues with Brakeman.
 * **ruby-bundler-scan**: Scan for Ruby gems with known vulnerabilities using bundler
+
+#### Rust
+
+* **rust-cargoaudit**: Checks whether the `Cargo.lock` contains dependencies with known vulnerabilities using [cargo audit](https://github.com/RustSec/cargo-audit)
 
 #### Adding a module
 
