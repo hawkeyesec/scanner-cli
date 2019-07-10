@@ -1,0 +1,8 @@
+The following dependencies in Dependency Management have newer versions:
+  antlr:antlr ........................................ 2.7.7 -> 20030911
+  com.microsoft.sqlserver:mssql-jdbc ...
+                                       6.4.0.jre8 -> 7.3.1.jre12-preview
+  com.rabbitmq:amqp-client .............................. 5.4.3 -> 5.7.2
+  xml-apis:xml-apis .................................... 1.4.01 -> 2.0.2
+
+No dependencies in pluginManagement of plugins have newer versions.
