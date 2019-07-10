@@ -1,0 +1,47 @@
+{
+  "database": {
+    "advisory-count": 31
+  },
+  "lockfile": {
+    "dependency-count": 6,
+    "path": "Cargo.lock"
+  },
+  "vulnerabilities": {
+    "count": 1,
+    "found": true,
+    "list": [
+      {
+        "advisory": {
+          "affected_arch": null,
+          "affected_functions": null,
+          "affected_os": null,
+          "aliases": [],
+          "date": "2018-06-29",
+          "description": "Some\nlong\ndescription",
+          "id": "RUSTSEC-2018-0002",
+          "keywords": [
+            "file-overwrite"
+          ],
+          "package": "tar",
+          "patched_versions": [
+            ">= 0.4.16"
+          ],
+          "references": [],
+            "title": "Links in archives can overwrite any existing file",
+          "unaffected_versions": [],
+          "url": "https://github.com/alexcrichton/tar-rs/pull/156"
+        },
+        "package": {
+          "dependencies": [
+            "filetime 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
+            "libc 0.2.59 (registry+https://github.com/rust-lang/crates.io-index)"
+          ],
+          "name": "tar",
+          "source": "registry+https://github.com/rust-lang/crates.io-index",
+          "version": "0.4.5"
+        }
+      }
+    ]
+  }
+}
+
