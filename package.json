@@ -39,6 +39,7 @@
     "watch": "nodemon --watch . --exec 'npm test'",
     "test": "npx npm-run-all test:lint test:unit",
     "test:lint": "npx standard",
+    "test:lint:fix": "npx standard --fix",
     "test:unit": "NODE_ENV=testing npx mocha 'lib/**/*-unit.js' -R 'spec' testutils.js"
   },
   "bin": {
