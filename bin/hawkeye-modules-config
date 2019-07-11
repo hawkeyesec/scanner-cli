@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const logger = require('../lib/logger')
+const modules = require('../lib/modules')
+require('colors')
+const program = require('commander')
+
+program
+  .arguments('<module>')
+  .action(printModuleConfigurationDocumentation);
+
+program.parse(process.argv);
+
+function printModuleConfigurationDocumentation(moduleKey) {
+  console.log(`${moduleKey} configuration:`.bold)
+  console.log('')
+
+  let module = modules().filter(m => m.key === moduleKey)[0];
+  const schema = module.configSchema;
+  for (const [k, v] of Object.entries(schema.properties)) {
+    console.log(`${k.bold} (${v.type}): ${v.title}`)
+  }
+
+  const exmapleConfig = {
+    moduleConfig:{
+    }
+  }
+
+  exmapleConfig.moduleConfig[module.key] = schema.examples[0];
+
+  console.log('')
+  console.log('Example .hawkeyerc:'.bold)
+
+  let example = JSON.stringify(exmapleConfig, undefined, 2).padStart(4);
+  console.log(example)
+
+
+}
+

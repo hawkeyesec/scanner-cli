@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const logger = require('../lib/logger')
+const modules = require('../lib/modules')
+require('colors')
+
+logger.log('Module Status'.bold)
+modules().forEach(m => {
+  logger.log(`${m.enabled ? 'Enabled:  '.green : 'Disabled: '.red} ${m.key.bold}`)
+  logger.log('           ' + m.description)
+})

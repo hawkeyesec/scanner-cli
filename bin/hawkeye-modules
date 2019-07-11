@@ -2,12 +2,11 @@
 
 'use strict'
 
-const logger = require('../lib/logger')
-const modules = require('../lib/modules')
-require('colors')
+const program = require('commander')
+program
+  .command('config <module>', 'Module configuration documentation')
+  .command('ls', 'Lists the currently install modules', {isDefault: true})
+  .parse(process.argv)
 
-logger.log('Module Status'.bold)
-modules().forEach(m => {
-  logger.log(`${m.enabled ? 'Enabled:  '.green : 'Disabled: '.red} ${m.key.bold}`)
-  logger.log('           ' + m.description)
-})
+
+
