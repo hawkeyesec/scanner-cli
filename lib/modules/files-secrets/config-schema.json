@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Schema of Hawkeye module files-secrets",
+  "properties": {
+    "files": {
+      "type": "array",
+      "title": "List of files containing patterns of suspicious filenames",
+      "default": [],
+      "items": {
+        "type": "string",
+        "title": "Path to file",
+        "examples": [
+          "path/to/patterns.json"
+        ]
+      }
+    }
+  },
+  "examples": [
+    {
+      "files": [
+        "path/to/patterns.json"
+      ]
+    }
+  ]
+}

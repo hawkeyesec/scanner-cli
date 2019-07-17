@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const modules = require('../lib/modules')
+require('colors')
+const program = require('commander')
+
+program
+  .arguments('<module>')
+  .action(printModuleConfigurationDocumentation);
+
+program.parse(process.argv);
+
+function printModuleConfigurationDocumentation(moduleKey) {
+  console.log(`${moduleKey} module configuration properties:`.bold)
+  console.log('')
+
+  let module = modules().filter(m => m.key === moduleKey)[0];
+  const schema = module.configSchema;
+  for (const [k, v] of Object.entries(schema.properties)) {
+    let type = v.type;
+    if (type === 'array') {
+      type = v.items.type + '[]'
+    }
+    console.log(`    ${k.bold} (${type}): ${v.title}`)
+  }
+
+  const exampleConfig = {
+    moduleConfig:{
+    }
+  }
+
+  console.log('')
+  console.log('.hawkeyerc examples:'.bold)
+  schema.examples.forEach((e) => {
+    exampleConfig.moduleConfig[module.key] = e;
+    let example = JSON.stringify(exampleConfig, undefined, 2).padStart(4);
+    console.log(example)
+    console.log('')
+  })
+}
+
