@@ -71,8 +71,10 @@ RUN cd /usr/local/bin && \
     wget --quiet https://get.sensiolabs.org/security-checker.phar && \
     chmod +x security-checker.phar
 
+ENV RUSTUP_HOME=/usr/local/opt/rust
+ENV CARGO_HOME=$RUSTUP_HOME
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH=/root/.cargo/bin:$PATH
+ENV PATH=$CARGO_HOME/bin:$PATH
 RUN cargo install cargo-audit && \
     rustc --version && cargo --version && cargo audit --version
 
