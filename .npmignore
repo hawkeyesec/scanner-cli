@@ -1,0 +1,8 @@
+**/__tests__/
+screenshots/
+scripts/
+ISSUE_TEMPLATE
+PULL_REQUEST_TEMPLATE
+.dockerignore
+testutils.js
+CONTRIBUTING
