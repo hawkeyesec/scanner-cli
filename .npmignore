@@ -6,3 +6,4 @@ PULL_REQUEST_TEMPLATE
 .dockerignore
 testutils.js
 CONTRIBUTING
+.git
