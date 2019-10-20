@@ -74,5 +74,3 @@ WORKDIR /target
 
 ENV PATH /hawkeye/bin:$OWASP_DEP_FOLDER/dependency-check/bin:$PATH:/root/.rvm/rubies/ruby-2.6.3/bin
 ENTRYPOINT ["hawkeye", "scan"]
-
-# && apk del alpine-sdk gcc gnupg musl-dev make linux-headers zlib-dev openssl-dev musl-dev
