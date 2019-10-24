@@ -1,3 +1,8 @@
+FROM ekidd/rust-musl-builder AS cargo-audit-build
+
+RUN cargo install cargo-audit --root /home/rust && \
+    strip /home/rust/bin/cargo-audit
+
 FROM alpine:3.10
 
 ENV RUBY_VERSION=2.6.3
@@ -24,22 +29,22 @@ RUN apk add ca-certificates \
     pcre-dev \
     && curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" \
     && python get-pip.py \
-    && pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1 \
-    && curl -sSL https://github.com/rvm/rvm/tarball/stable -o rvm-stable.tar.gz \
+    && pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
+
+RUN curl -sSL https://github.com/rvm/rvm/tarball/stable -o rvm-stable.tar.gz \
     && echo 'export rvm_prefix="$HOME"' > /root/.rvmrc \
     && echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc \
     && mkdir rvm && cd rvm \
     && tar --strip-components=1 -xzf ../rvm-stable.tar.gz \
     && ./install --auto-dotfiles --autolibs=0 \
-    && cd .. \
-    # && rm -rf rvm-stable rvm-stable.tar.gz \
-    $$ source ~/.rvm/scripts/rvm
-RUN /bin/bash -l -c "rvm requirements" \
+    && source ~/.rvm/scripts/rvm \
+    && /bin/bash -l -c "rvm requirements" \
     && /bin/bash -l -c "rvm autolibs 4" \
     && yes | /bin/bash -l -c "rvm install ${RUBY_VERSION}" \
     && /bin/bash -l -c "gem install bundler:2.0.1 bundler-audit:0.6.1 brakeman:4.5.1" \
-    && /bin/bash -l -c "bundle audit update" \
-    && mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
+    && /bin/bash -l -c "bundle audit update"
+
+RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
     && wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
     && unzip -q findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
     && rm findsecbugs.sh \
@@ -48,6 +53,9 @@ RUN /bin/bash -l -c "rvm requirements" \
 ENV PATH $HOME/.cargo/bin:$PATH
 
 COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
+
+COPY --from=cargo-audit-build /home/rust/bin/cargo-audit /usr/local/bin/
+
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs \
     && mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER \
@@ -62,8 +70,7 @@ RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && source $HOME/.cargo/env \
     && rustc --version \
     && cargo --version \
-    && cargo install cargo-audit \
-    && cargo audit --version \
+    && cargo-audit --help \
     && mkdir -p /hawkeye
 
 COPY . /hawkeye
