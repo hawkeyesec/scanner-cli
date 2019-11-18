@@ -52,7 +52,7 @@
     "console.table": "^0.10.0",
     "glob": "^7.1.4",
     "is-valid-path": "^0.1.1",
-    "istextorbinary": "^2.5.1",
+    "istextorbinary": "^3.0.0",
     "lodash": "^4.17.15",
     "semver": "^6.3.0",
     "superagent": "^5.1.0",
