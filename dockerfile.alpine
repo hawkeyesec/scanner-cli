@@ -12,6 +12,7 @@ ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 
 RUN apk add --no-cache \
+            git \
             nodejs \
             npm \
             openjdk8-jre \
@@ -31,7 +32,7 @@ RUN { \
 
 RUN pip install --no-cache-dir safety==1.8.5 piprot==0.9.10 bandit==1.6.2
 
-RUN gem install bundler:2.0.1 bundler-audit:0.6.1 brakeman:4.5.1 && bundle audit update
+RUN gem install bundler bundler-audit:0.6.1 brakeman:4.5.1 && bundle audit update
 
 RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
     && wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
@@ -45,14 +46,14 @@ COPY --from=cargo-audit-build /home/rust/bin/cargo-audit /usr/local/bin/
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs \
     && mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER \
-    && wget http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip \
+    && wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip \
     && unzip -q dependency-check-${OWASP_VERSION}-release.zip \
     && chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh \
     && rm dependency-check-${OWASP_VERSION}-release.zip \
     && mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check \
     && cd /usr/local/bin \
-    && wget https://get.sensiolabs.org/security-checker.phar \
-    && chmod +x security-checker.phar && cd \
+    && wget --quiet https://get.sensiolabs.org/security-checker.phar \
+    && chmod +x security-checker.phar \
     && cargo-audit --help \
     && mkdir -p /hawkeye
 
