@@ -1,12 +1,12 @@
 FROM ekidd/rust-musl-builder AS cargo-audit-build
 
-RUN cargo install cargo-audit --root /home/rust && \
-    strip /home/rust/bin/cargo-audit
+RUN cargo install cargo cargo-audit --root /home/rust && \
+    strip /home/rust/bin/cargo /home/rust/bin/cargo-audit
 
 FROM alpine:3.10
 
 ENV FINDSECBUGS_VERSION=1.8.0
-ENV OWASP_VERSION=5.0.0
+ENV OWASP_VERSION=5.2.4
 
 ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
@@ -42,7 +42,7 @@ RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
 
 COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
 
-COPY --from=cargo-audit-build /home/rust/bin/cargo-audit /usr/local/bin/
+COPY --from=cargo-audit-build /home/rust/bin/ /usr/local/bin/
 
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs \
