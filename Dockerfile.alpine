@@ -5,9 +5,6 @@ RUN cargo install cargo cargo-audit --root /home/rust && \
 
 FROM alpine:3.10
 
-ENV FINDSECBUGS_VERSION=1.8.0
-ENV OWASP_VERSION=5.2.4
-
 ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 
@@ -36,15 +33,16 @@ RUN pip install --no-cache-dir safety==1.8.5 piprot==0.9.10 bandit==1.6.2
 RUN gem install bundler bundler-audit:0.6.1 brakeman:4.5.1 && bundle audit update \
     && rm -rf $(gem env home)/cache/*
 
+ENV FINDSECBUGS_VERSION=1.8.0
 RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
     && wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
     && unzip -q findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
+    && rm findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
     && rm findsecbugs.sh
 
 COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
 
-COPY --from=cargo-audit-build /home/rust/bin/ /usr/local/bin/
-
+ENV OWASP_VERSION=5.2.4
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs \
     && mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER \
@@ -58,6 +56,8 @@ RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && chmod +x security-checker.phar \
     && cargo-audit --help \
     && mkdir -p /hawkeye
+
+COPY --from=cargo-audit-build /home/rust/bin/ /usr/local/bin/
 
 COPY . /hawkeye
 RUN cd /hawkeye && npm install --production --quiet \
