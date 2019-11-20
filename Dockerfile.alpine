@@ -33,7 +33,8 @@ RUN { \
 
 RUN pip install --no-cache-dir safety==1.8.5 piprot==0.9.10 bandit==1.6.2
 
-RUN gem install bundler bundler-audit:0.6.1 brakeman:4.5.1 && bundle audit update
+RUN gem install bundler bundler-audit:0.6.1 brakeman:4.5.1 && bundle audit update \
+    && rm -rf /usr/lib/ruby/gems/2.5.0/cache/*
 
 RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
     && wget --quiet https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-${FINDSECBUGS_VERSION}/findsecbugs-cli-${FINDSECBUGS_VERSION}.zip \
