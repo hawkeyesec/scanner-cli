@@ -41,24 +41,25 @@ RUN mkdir -p ${FINDSECBUGS_FOLDER} && cd ${FINDSECBUGS_FOLDER} \
     && rm findsecbugs.sh
 
 COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
+RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
+    && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs
 
 ENV OWASP_VERSION=5.2.4
-RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
-    && ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs \
-    && mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER \
+RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER \
     && wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip \
     && unzip -q dependency-check-${OWASP_VERSION}-release.zip \
     && chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh \
     && rm dependency-check-${OWASP_VERSION}-release.zip \
-    && mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check \
-    && cd /usr/local/bin \
+    && mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
+
+RUN cd /usr/local/bin \
     && wget --quiet https://get.sensiolabs.org/security-checker.phar \
-    && chmod +x security-checker.phar \
-    && cargo-audit --help \
-    && mkdir -p /hawkeye
+    && chmod +x security-checker.phar
 
 COPY --from=cargo-audit-build /home/rust/bin/ /usr/local/bin/
+RUN cargo-audit --help
 
+RUN mkdir -p /hawkeye
 COPY . /hawkeye
 RUN cd /hawkeye && npm install --production --quiet \
     && rm -rf /var/cache/apk/*
