@@ -64,6 +64,7 @@ RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh \
     && rm dependency-check-${OWASP_VERSION}-release.zip \
     && mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check \
+    dependency-check --updateonly && \
     && cd /usr/local/bin \
     && wget --quiet https://get.sensiolabs.org/security-checker.phar \
     && chmod +x security-checker.phar && cd \
@@ -74,7 +75,8 @@ RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh \
     && mkdir -p /hawkeye
 
 COPY . /hawkeye
-RUN npm install --production --quiet \
+RUN cd /hawkeye && \
+    npm install --production --quiet \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /target
