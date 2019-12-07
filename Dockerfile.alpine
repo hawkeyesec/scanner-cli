@@ -64,7 +64,6 @@ RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh && \
     chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh && \
     rm dependency-check-${OWASP_VERSION}-release.zip && \
     mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check && \
-    dependency-check --updateonly && \
     cd /usr/local/bin && \
     wget --quiet https://get.sensiolabs.org/security-checker.phar && \
     chmod +x security-checker.phar && cd && \
@@ -82,4 +81,5 @@ RUN cd /hawkeye && \
 WORKDIR /target
 
 ENV PATH /hawkeye/bin:$OWASP_DEP_FOLDER/dependency-check/bin:$PATH:/root/.rvm/rubies/ruby-2.6.3/bin
+RUN dependency-check --updateonly
 ENTRYPOINT ["hawkeye", "scan"]
