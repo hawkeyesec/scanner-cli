@@ -1,7 +1,7 @@
 FROM ekidd/rust-musl-builder AS cargo-audit-build
 
-RUN cargo install cargo-audit --root /home/rust && \
-    strip /home/rust/bin/cargo-audit
+RUN cargo install cargo cargo-audit --root /home/rust && \
+    strip /home/rust/bin/cargo /home/rust/bin/cargo-audit
 
 FROM alpine:3.10
 
