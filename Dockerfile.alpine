@@ -15,21 +15,26 @@ ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 RUN apk update  && \
     apk add --no-cache bash && \
     bash --login
-RUN apk add --no-cache ca-certificates \
-    openssl openssl-dev \
-    alpine-sdk gcc g++ make \
-    libffi-dev zlib zlib-dev \
-    gnupg procps musl-dev sqlite \
-    linux-headers shadow \
-    nodejs npm yarn \
-    openjdk8-jre maven \
-    python python-dev \
-    perl git \
-    php7 php7-cli \
-    pcre-dev && \
-    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
-    python get-pip.py && \
-    pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
+RUN apk add --no-cache \
+            ca-certificates \
+            nodejs \
+            npm \
+            yarn \
+            openjdk8-jdk \
+            maven \
+            python \
+            py2-pip \
+            perl \
+            git \
+            php7 \ 
+            php7-cli
+
+RUN { \
+        echo 'install: --no-document'; \
+        echo 'update: --no-document'; \
+    } >> /etc/gemrc
+
+RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
 
 RUN curl -sSL https://github.com/rvm/rvm/tarball/stable -o rvm-stable.tar.gz && \
     echo 'export rvm_prefix="$HOME"' > /root/.rvmrc && \
@@ -57,29 +62,32 @@ COPY scripts/findsecbugs.sh ${FINDSECBUGS_FOLDER}/findsecbugs.sh
 COPY --from=cargo-audit-build /home/rust/bin/cargo-audit /usr/local/bin/
 
 RUN chmod +x ${FINDSECBUGS_FOLDER}/findsecbugs.sh && \
-    ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs && \
-    mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
+    ln -s ${FINDSECBUGS_FOLDER}/findsecbugs.sh /usr/local/bin/findsecbugs
+
+RUN mkdir $OWASP_DEP_FOLDER && cd $OWASP_DEP_FOLDER && \
     wget --quiet http://dl.bintray.com/jeremy-long/owasp/dependency-check-${OWASP_VERSION}-release.zip && \
     unzip -q dependency-check-${OWASP_VERSION}-release.zip && \
     chmod +x $OWASP_DEP_FOLDER/dependency-check/bin/dependency-check.sh && \
     rm dependency-check-${OWASP_VERSION}-release.zip && \
-    mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check && \
-    cd /usr/local/bin && \
+    mv dependency-check/bin/dependency-check.sh dependency-check/bin/dependency-check
+
+RUN cd /usr/local/bin && \
     wget --quiet https://get.sensiolabs.org/security-checker.phar && \
-    chmod +x security-checker.phar && cd && \
-    source $HOME/.cargo/env && \
+    chmod +x security-checker.phar
+
+RUN source $HOME/.cargo/env && \
     rustc --version && \
     cargo --version && \
-    cargo-audit --help && \
-    mkdir -p /hawkeye
+    cargo-audit --help
 
-COPY . /hawkeye
-RUN cd /hawkeye && \
-    npm install --production --quiet && \
+WORKDIR /hawkeye
+COPY . .
+RUN npm install --production --quiet && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /target
-
 ENV PATH /hawkeye/bin:$OWASP_DEP_FOLDER/dependency-check/bin:$PATH:/root/.rvm/rubies/ruby-2.6.3/bin
+
 RUN dependency-check --updateonly
+
 ENTRYPOINT ["hawkeye", "scan"]
