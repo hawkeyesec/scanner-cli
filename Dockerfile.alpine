@@ -13,9 +13,9 @@ ARG FINDSECBUGS_FOLDER=/usr/local/opt/findsecbugs
 ARG OWASP_DEP_FOLDER=/usr/local/bin/owaspdependency
 
 RUN apk update  && \
-    apk add  bash && \
+    apk add --no-cache bash && \
     bash --login
-RUN apk add ca-certificates \
+RUN apk add --no-cache ca-certificates \
     openssl openssl-dev \
     alpine-sdk gcc g++ make \
     libffi-dev zlib zlib-dev \
