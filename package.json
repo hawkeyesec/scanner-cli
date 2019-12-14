@@ -54,7 +54,7 @@
     "is-valid-path": "^0.1.1",
     "istextorbinary": "^2.5.1",
     "lodash": "^4.17.15",
-    "semver": "^6.3.0",
+    "semver": "^7.0.0",
     "superagent": "^5.1.0",
     "tmp": "^0.1.0",
     "xml2js": "^0.4.22"
