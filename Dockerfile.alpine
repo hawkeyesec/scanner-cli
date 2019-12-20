@@ -27,7 +27,8 @@ RUN apk add --no-cache \
             perl \
             git \
             php7 \ 
-            php7-cli
+            php7-cli \
+            curl
 
 RUN { \
         echo 'install: --no-document'; \
