@@ -20,7 +20,7 @@ RUN apk add --no-cache \
             nodejs \
             npm \
             yarn \
-            openjdk8-jdk \
+            openjdk8 \
             maven \
             python \
             py2-pip \
