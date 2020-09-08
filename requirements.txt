@@ -1,0 +1,3 @@
+safety==1.8.4
+piprot==0.9.11
+bandit==1.6.2

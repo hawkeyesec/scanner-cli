@@ -22,15 +22,13 @@ RUN apk add --no-cache \
             openjdk8 \
             maven \
             python \
-            py2-pip \
+            py3-pip \
             perl \
             git \
             php7 \
             php7-cli \
             curl \
             ruby
-
-RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
 
 RUN { \
         echo 'install: --no-document'; \
@@ -63,6 +61,7 @@ COPY --from=cargo-audit-build /home/rust/bin/ /usr/local/bin/
 
 WORKDIR /hawkeye
 COPY . .
+RUN pip3 install -r requirements.txt
 RUN npm install --production --quiet && \
     rm -rf /var/cache/apk/*
 
