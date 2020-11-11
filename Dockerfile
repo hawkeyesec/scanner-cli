@@ -3,7 +3,7 @@ FROM ekidd/rust-musl-builder AS cargo-audit-build
 RUN cargo install cargo cargo-audit --root /home/rust && \
     strip /home/rust/bin/cargo /home/rust/bin/cargo-audit
 
-FROM alpine:3.10
+FROM alpine:3.12
 
 ENV FINDSECBUGS_VERSION=1.10.1
 ENV OWASP_VERSION=5.3.0
@@ -21,8 +21,8 @@ RUN apk add --no-cache \
             yarn \
             openjdk8 \
             maven \
-            python \
-            py2-pip \
+            python3 \
+            py3-pip \
             perl \
             git \
             php7 \
@@ -30,7 +30,7 @@ RUN apk add --no-cache \
             curl \
             ruby
 
-RUN pip install safety==1.8.4 piprot==0.9.10 bandit==1.5.1
+RUN pip install safety==1.9.0 piprot==0.9.11 bandit==1.6.2
 
 RUN { \
         echo 'install: --no-document'; \
