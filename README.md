@@ -1,3 +1,5 @@
+# Deprecation Notice: Hawkeye is not actively being maintained at this point. There are probably better and more tailored options out there for you.
+
 [![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby)
 [![npm version](https://badge.fury.io/js/%40hawkeyesec%2Fscanner-cli.svg)](https://badge.fury.io/js/%40hawkeyesec%2Fscanner-cli)
 [![npm](https://img.shields.io/npm/dt/%40hawkeyesec%2Fscanner-cli.svg)](https://www.npmjs.com/package/%40hawkeyesec%2Fscanner-cli)
