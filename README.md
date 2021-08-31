@@ -1,15 +1,18 @@
-# Deprecation Notice: Hawkeye is not actively being maintained at this point. There are probably better and more tailored options out there for you.
+# Deprecation Notice: Hawkeye has reached its end of life.
 
-[![Discussion on Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/hawkeye-scanner/Lobby)
-[![npm version](https://badge.fury.io/js/%40hawkeyesec%2Fscanner-cli.svg)](https://badge.fury.io/js/%40hawkeyesec%2Fscanner-cli)
-[![npm](https://img.shields.io/npm/dt/%40hawkeyesec%2Fscanner-cli.svg)](https://www.npmjs.com/package/%40hawkeyesec%2Fscanner-cli)
-[![Build Status](https://travis-ci.org/hawkeyesec/scanner-cli.svg?branch=master)](https://travis-ci.org/hawkeyesec/scanner-cli)
-[![Dependency Status](https://david-dm.org/hawkeyesec/scanner-cli.svg)](https://david-dm.org/hawkeyesec/scanner-cli)
-[![Hub Pulls](https://img.shields.io/docker/pulls/hawkeyesec/scanner-cli.svg)](https://hub.docker.com/r/hawkeyesec/scanner-cli)
-[![Greenkeeper badge](https://badges.greenkeeper.io/hawkeyesec/scanner-cli.svg)](https://greenkeeper.io/)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+There are more modern options out there for you and your project. If you wish to pick up maintenance of the project, please feel free to contact me. You'll find means of reaching out to me on [my personal homepage](https://felixhammerl.com/).
 
-![Hawkeye Logo](screenshots/badlogo.png)
+.  
+
+.
+
+.
+
+.
+
+.
+
+.
 
 The Hawkeye scanner-cli is a project security, vulnerability and general risk highlighting tool. It is meant to be integrated into your pre-commit hooks and your pipelines.
 
